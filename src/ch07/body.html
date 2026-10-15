@@ -1,0 +1,233 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>A tax splits one price into two</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Before a tax there is one price. After a per-unit tax there are two, separated by exactly the tax —
+    and the single most counter-intuitive result in the course falls straight out of that.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>P<sub>buyer</sub></strong> — what buyers hand over. Higher than before.</li>
+      <li><strong>P<sub>seller</sub></strong> — what sellers keep after the tax. Lower than before.</li>
+      <li>The gap between them is the <strong>tax</strong>, and quantity falls because the trades worth
+        making at the old price no longer clear the wedge.</li>
+    </ul>
+    <div class="card trap">
+      <div class="label">Statutory vs economic incidence</div>
+      <p style="margin-bottom:0">
+        <strong>Who the law makes write the cheque is irrelevant to who actually bears the burden.</strong>
+        Levy the tax on sellers or on buyers and you get the identical quantity, the identical buyer price
+        and the identical seller price. The legal side is called <em>statutory</em> incidence; the side
+        whose surplus actually falls is <em>economic</em> incidence, and only the second is economics. You
+        can verify this below by flipping a switch.
+      </p>
+    </div>
+    <p>
+      This is Chapter 1's incentives foundation in its sharpest form: the tax changes costs and benefits,
+      people respond, and the final resting place of the burden is decided by behaviour — not by statute.
+    </p>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Elasticity decides the split</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    One rule carries the whole chapter: <strong>the less elastic side bears more of the tax.</strong>
+  </p>
+  <div class="sec-body">
+    <p>
+      Elasticity measures your ability to walk away. The side that can easily switch — to substitutes, to
+      other markets, to not trading at all — walks away from the tax, and the side that is stuck absorbs
+      it. Cigarettes are taxed heavily and buyers pay nearly all of it, because demand is close to
+      inelastic. The same tax on a good with many substitutes lands mostly on sellers.
+    </p>
+    <div class="card accent">
+      <div class="label">The two extremes, worth knowing cold</div>
+      <ul style="margin-bottom:0">
+        <li><strong>Perfectly inelastic demand</strong> — buyers bear 100%. Quantity does not fall, so
+          there is no deadweight loss at all.</li>
+        <li><strong>Perfectly elastic demand</strong> — sellers bear 100%. Any price rise and buyers vanish
+          entirely.</li>
+      </ul>
+    </div>
+    <p>Set the tax, then make one side steeper and watch the burden move onto it.</p>
+
+    <div class="applet" id="ap-tax">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Driving the wedge</div>
+      <div class="ap-sub">no-tax equilibrium P* = $25, Q* = 70 · burdens measured against that</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tax-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Tax per unit</span><span class="cv" id="tax-t-v">$6</span></div>
+            <input type="range" id="tax-t" min="0" max="24" step="1" value="6">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How steep demand is <em>(higher = more inelastic buyers)</em></span><span class="cv" id="tax-b-v">0.50</span></div>
+            <input type="range" id="tax-b" min="0.1" max="1.5" step="0.05" value="0.5">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How steep supply is <em>(higher = more inelastic sellers)</em></span><span class="cv" id="tax-d-v">0.25</span></div>
+            <input type="range" id="tax-d" min="0.1" max="1.5" step="0.05" value="0.25">
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="tax-onbuyer">
+            <label for="tax-onbuyer">Levy the tax on <strong>buyers</strong> instead of sellers <em>(watch every number stay put)</em></label>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Buyers pay</div><div class="rv" id="tax-ro-pb">—</div></div>
+            <div class="ro"><div class="rl">Sellers keep</div><div class="rv" id="tax-ro-ps">—</div></div>
+            <div class="ro"><div class="rl">Quantity</div><div class="rv" id="tax-ro-q">—</div></div>
+            <div class="ro hero"><div class="rl">Buyers' share</div><div class="rv" id="tax-ro-share">—</div></div>
+            <div class="ro"><div class="rl">Buyer burden / unit</div><div class="rv" id="tax-ro-bb">—</div></div>
+            <div class="ro good"><div class="rl">Seller burden / unit</div><div class="rv" id="tax-ro-sb">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tax-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Wedge &amp; incidence · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Revenue, and what it costs to raise</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    A tax raises money and destroys surplus. The two do not scale together, and that asymmetry is the
+    policy point of the chapter.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Revenue = tax × quantity traded.</strong> Raising the tax raises the first term and
+        shrinks the second, so revenue eventually <em>falls</em> as the tax rises.</li>
+      <li><strong>Deadweight loss = ½ × tax × (units no longer traded).</strong> Since the lost quantity
+        itself grows with the tax, deadweight loss grows roughly with the <em>square</em> of the tax.</li>
+    </ul>
+    <div class="card">
+      <div class="label">Why that matters</div>
+      <p style="margin-bottom:0">
+        Doubling a tax rate roughly <em>quadruples</em> the damage while much less than doubling the
+        revenue. It is the standard argument for broad, low taxes over narrow, high ones — and the reason
+        the last few dollars of revenue are the most expensive to collect.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-rev">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Revenue and damage, as the tax climbs</div>
+      <div class="ap-sub">both curves computed across every tax rate, not sketched</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="rev-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Tax per unit</span><span class="cv" id="rev-t-v">$10</span></div>
+            <input type="range" id="rev-t" min="0" max="50" step="1" value="10">
+            <div class="ch">Push it well past the revenue peak and watch both curves diverge.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Quantity traded</div><div class="rv" id="rev-ro-q">—</div></div>
+            <div class="ro hero"><div class="rl">Tax revenue</div><div class="rv" id="rev-ro-rev">—</div></div>
+            <div class="ro"><div class="rl">Deadweight loss</div><div class="rv" id="rev-ro-dwl">—</div></div>
+            <div class="ro"><div class="rl">Lost per $1 raised</div><div class="rv" id="rev-ro-ratio">—</div></div>
+            <div class="ro good"><div class="rl">Revenue peaks at</div><div class="rv" id="rev-ro-peak">—</div></div>
+            <div class="ro"><div class="rl">Total surplus left</div><div class="rv" id="rev-ro-ts">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="rev-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Revenue &amp; deadweight loss · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Four shapes, plus the subsidy case, which is a tax with the sign flipped.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Who bears more of the tax?"</td><td>Whichever side is less elastic.</td>
+            <td>Answering "whoever the law taxes." Statutory incidence is irrelevant.</td></tr>
+        <tr><td>"Calculate the burden per unit"</td><td>Buyer burden = P<sub>buyer</sub> − P*. Seller burden = P* − P<sub>seller</sub>. They sum to the tax.</td>
+            <td>Comparing against the new price instead of the <em>original</em> equilibrium.</td></tr>
+        <tr><td>"Find government revenue"</td><td>Tax × the <em>new</em> quantity.</td>
+            <td>Using the old quantity, which overstates it — the tax itself shrank the market.</td></tr>
+        <tr><td>"Find the deadweight loss"</td><td>½ × tax × (Q* − Q<sub>new</sub>).</td>
+            <td>Counting the revenue as a loss. Revenue is a transfer to the government.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">Subsidies — the mirror image</div>
+      <p style="margin-bottom:0">
+        A per-unit subsidy drives the wedge the other way: sellers receive <em>more</em> than buyers pay,
+        quantity rises <em>above</em> the efficient level, and there is still a deadweight loss — because
+        units are now produced whose cost exceeds their value. The benefit also lands mostly on the less
+        elastic side, by exactly the same logic.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">The sentence to carry out of the course</div>
+      <p style="margin-bottom:0">
+        Taxes, price controls and trade barriers all do the same two things: they <strong>move</strong>
+        surplus between groups, and they <strong>destroy</strong> some of it by preventing trades that were
+        worth making. Keeping those two apart — transfer versus loss — is most of what Chapters 6 and 7
+        are testing.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint of the course</div>
+      <div class="ck-s">Method, subsidies &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled, and the last of the course. Several items reach back into Chapters 4–6.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 7, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>The wedge</td>
+            <td>The post-tax equilibrium by re-solving the shifted system, both prices, each side's burden against the original equilibrium, and the split. The buyer-levied case is solved separately and lands on the same numbers — that identity is computed, not asserted.</td>
+            <td>Linear curves, a per-unit (not <em>ad valorem</em>) tax, and perfect compliance.</td></tr>
+        <tr><td>Revenue &amp; damage</td>
+            <td>Quantity, revenue, deadweight loss and remaining surplus at every tax rate; the revenue-maximising tax found by scanning.</td>
+            <td>No behavioural responses beyond this market — no smuggling, no cross-border shopping, no evasion.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,1478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 07 — Tax Incidence · ECN 1A study guide</title>
+<meta name="description" content="The tax wedge, why who writes the cheque is irrelevant, how elasticity decides who really pays, and the trade-off between revenue and deadweight loss.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 07 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 07</div>
+      <h1>Who <em>really</em> pays the tax</h1>
+      <p class="intro">The last chapter, and it uses every one of the others: a wedge on the Chapter 4 diagram, surplus from Chapter 6, elasticity from Chapter 5 deciding the split, and incentives from Chapter 1 explaining why the quantity falls at all.</p>
+      <div class="meta">4 chunks · 2 live models · 3 checkpoints · 10-question quiz</div>
+      <nav class="toc"><a href="#c0">The wedge <span class="n">00</span></a><a href="#c1">Who pays <span class="n">01</span></a><a href="#c2">Revenue & loss <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">the wedge</span>
+      <div class="fig-h">price paid vs price received</div>
+      <svg viewBox="0 0 280 180"><line x1="30" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="30" y1="150" x2="30" y2="18" stroke="#D1CFC5" stroke-width="1.5"/><line x1="38" y1="26" x2="250" y2="142" stroke="#B85C3E" stroke-width="2"/><line x1="38" y1="138" x2="250" y2="34" stroke="#5A6B45" stroke-width="2"/><rect x="104" y="62" width="46" height="38" fill="#D97757" opacity="0.35"/><line x1="104" y1="62" x2="150" y2="62" stroke="#141413" stroke-width="1.5"/><line x1="104" y1="100" x2="150" y2="100" stroke="#141413" stroke-width="1.5"/><text x="158" y="66" font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A">buyer pays</text><text x="158" y="104" font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A">seller keeps</text><text x="96" y="86" text-anchor="end" font-family="ui-monospace,monospace" font-size="8.5" fill="#B85C3E">tax</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>A tax splits one price into two</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Before a tax there is one price. After a per-unit tax there are two, separated by exactly the tax —
+    and the single most counter-intuitive result in the course falls straight out of that.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>P<sub>buyer</sub></strong> — what buyers hand over. Higher than before.</li>
+      <li><strong>P<sub>seller</sub></strong> — what sellers keep after the tax. Lower than before.</li>
+      <li>The gap between them is the <strong>tax</strong>, and quantity falls because the trades worth
+        making at the old price no longer clear the wedge.</li>
+    </ul>
+    <div class="card trap">
+      <div class="label">Statutory vs economic incidence</div>
+      <p style="margin-bottom:0">
+        <strong>Who the law makes write the cheque is irrelevant to who actually bears the burden.</strong>
+        Levy the tax on sellers or on buyers and you get the identical quantity, the identical buyer price
+        and the identical seller price. The legal side is called <em>statutory</em> incidence; the side
+        whose surplus actually falls is <em>economic</em> incidence, and only the second is economics. You
+        can verify this below by flipping a switch.
+      </p>
+    </div>
+    <p>
+      This is Chapter 1's incentives foundation in its sharpest form: the tax changes costs and benefits,
+      people respond, and the final resting place of the burden is decided by behaviour — not by statute.
+    </p>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Elasticity decides the split</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    One rule carries the whole chapter: <strong>the less elastic side bears more of the tax.</strong>
+  </p>
+  <div class="sec-body">
+    <p>
+      Elasticity measures your ability to walk away. The side that can easily switch — to substitutes, to
+      other markets, to not trading at all — walks away from the tax, and the side that is stuck absorbs
+      it. Cigarettes are taxed heavily and buyers pay nearly all of it, because demand is close to
+      inelastic. The same tax on a good with many substitutes lands mostly on sellers.
+    </p>
+    <div class="card accent">
+      <div class="label">The two extremes, worth knowing cold</div>
+      <ul style="margin-bottom:0">
+        <li><strong>Perfectly inelastic demand</strong> — buyers bear 100%. Quantity does not fall, so
+          there is no deadweight loss at all.</li>
+        <li><strong>Perfectly elastic demand</strong> — sellers bear 100%. Any price rise and buyers vanish
+          entirely.</li>
+      </ul>
+    </div>
+    <p>Set the tax, then make one side steeper and watch the burden move onto it.</p>
+
+    <div class="applet" id="ap-tax">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Driving the wedge</div>
+      <div class="ap-sub">no-tax equilibrium P* = $25, Q* = 70 · burdens measured against that</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tax-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Tax per unit</span><span class="cv" id="tax-t-v">$6</span></div>
+            <input type="range" id="tax-t" min="0" max="24" step="1" value="6">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How steep demand is <em>(higher = more inelastic buyers)</em></span><span class="cv" id="tax-b-v">0.50</span></div>
+            <input type="range" id="tax-b" min="0.1" max="1.5" step="0.05" value="0.5">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How steep supply is <em>(higher = more inelastic sellers)</em></span><span class="cv" id="tax-d-v">0.25</span></div>
+            <input type="range" id="tax-d" min="0.1" max="1.5" step="0.05" value="0.25">
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="tax-onbuyer">
+            <label for="tax-onbuyer">Levy the tax on <strong>buyers</strong> instead of sellers <em>(watch every number stay put)</em></label>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Buyers pay</div><div class="rv" id="tax-ro-pb">—</div></div>
+            <div class="ro"><div class="rl">Sellers keep</div><div class="rv" id="tax-ro-ps">—</div></div>
+            <div class="ro"><div class="rl">Quantity</div><div class="rv" id="tax-ro-q">—</div></div>
+            <div class="ro hero"><div class="rl">Buyers' share</div><div class="rv" id="tax-ro-share">—</div></div>
+            <div class="ro"><div class="rl">Buyer burden / unit</div><div class="rv" id="tax-ro-bb">—</div></div>
+            <div class="ro good"><div class="rl">Seller burden / unit</div><div class="rv" id="tax-ro-sb">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tax-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Wedge &amp; incidence · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Revenue, and what it costs to raise</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    A tax raises money and destroys surplus. The two do not scale together, and that asymmetry is the
+    policy point of the chapter.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Revenue = tax × quantity traded.</strong> Raising the tax raises the first term and
+        shrinks the second, so revenue eventually <em>falls</em> as the tax rises.</li>
+      <li><strong>Deadweight loss = ½ × tax × (units no longer traded).</strong> Since the lost quantity
+        itself grows with the tax, deadweight loss grows roughly with the <em>square</em> of the tax.</li>
+    </ul>
+    <div class="card">
+      <div class="label">Why that matters</div>
+      <p style="margin-bottom:0">
+        Doubling a tax rate roughly <em>quadruples</em> the damage while much less than doubling the
+        revenue. It is the standard argument for broad, low taxes over narrow, high ones — and the reason
+        the last few dollars of revenue are the most expensive to collect.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-rev">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Revenue and damage, as the tax climbs</div>
+      <div class="ap-sub">both curves computed across every tax rate, not sketched</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="rev-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Tax per unit</span><span class="cv" id="rev-t-v">$10</span></div>
+            <input type="range" id="rev-t" min="0" max="50" step="1" value="10">
+            <div class="ch">Push it well past the revenue peak and watch both curves diverge.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Quantity traded</div><div class="rv" id="rev-ro-q">—</div></div>
+            <div class="ro hero"><div class="rl">Tax revenue</div><div class="rv" id="rev-ro-rev">—</div></div>
+            <div class="ro"><div class="rl">Deadweight loss</div><div class="rv" id="rev-ro-dwl">—</div></div>
+            <div class="ro"><div class="rl">Lost per $1 raised</div><div class="rv" id="rev-ro-ratio">—</div></div>
+            <div class="ro good"><div class="rl">Revenue peaks at</div><div class="rv" id="rev-ro-peak">—</div></div>
+            <div class="ro"><div class="rl">Total surplus left</div><div class="rv" id="rev-ro-ts">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="rev-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Revenue &amp; deadweight loss · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Four shapes, plus the subsidy case, which is a tax with the sign flipped.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Who bears more of the tax?"</td><td>Whichever side is less elastic.</td>
+            <td>Answering "whoever the law taxes." Statutory incidence is irrelevant.</td></tr>
+        <tr><td>"Calculate the burden per unit"</td><td>Buyer burden = P<sub>buyer</sub> − P*. Seller burden = P* − P<sub>seller</sub>. They sum to the tax.</td>
+            <td>Comparing against the new price instead of the <em>original</em> equilibrium.</td></tr>
+        <tr><td>"Find government revenue"</td><td>Tax × the <em>new</em> quantity.</td>
+            <td>Using the old quantity, which overstates it — the tax itself shrank the market.</td></tr>
+        <tr><td>"Find the deadweight loss"</td><td>½ × tax × (Q* − Q<sub>new</sub>).</td>
+            <td>Counting the revenue as a loss. Revenue is a transfer to the government.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">Subsidies — the mirror image</div>
+      <p style="margin-bottom:0">
+        A per-unit subsidy drives the wedge the other way: sellers receive <em>more</em> than buyers pay,
+        quantity rises <em>above</em> the efficient level, and there is still a deadweight loss — because
+        units are now produced whose cost exceeds their value. The benefit also lands mostly on the less
+        elastic side, by exactly the same logic.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">The sentence to carry out of the course</div>
+      <p style="margin-bottom:0">
+        Taxes, price controls and trade barriers all do the same two things: they <strong>move</strong>
+        surplus between groups, and they <strong>destroy</strong> some of it by preventing trades that were
+        worth making. Keeping those two apart — transfer versus loss — is most of what Chapters 6 and 7
+        are testing.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint of the course</div>
+      <div class="ck-s">Method, subsidies &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled, and the last of the course. Several items reach back into Chapters 4–6.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 7, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>The wedge</td>
+            <td>The post-tax equilibrium by re-solving the shifted system, both prices, each side's burden against the original equilibrium, and the split. The buyer-levied case is solved separately and lands on the same numbers — that identity is computed, not asserted.</td>
+            <td>Linear curves, a per-unit (not <em>ad valorem</em>) tax, and perfect compliance.</td></tr>
+        <tr><td>Revenue &amp; damage</td>
+            <td>Quantity, revenue, deadweight loss and remaining surplus at every tax rate; the revenue-maximising tax found by scanning.</td>
+            <td>No behavioural responses beyond this market — no smuggling, no cross-border shopping, no evasion.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 07 of 07</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div><strong>That's the course.</strong> Revisit Chapter 1 — it reads differently now.</div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* Inverse demand P = A - bQ, inverse supply P = C + dQ.
+ * A = 60, C = 7.5, b = 0.5, d = 0.25 give P* = 25, Q* = 70. */
+var TAXA = 60, TAXC = 7.5;
+
+/* =================================================================
+ * MODEL 1 — the wedge. The buyer-levied case is solved as a SEPARATE
+ * system rather than copied, so the equivalence is a computed result.
+ * ================================================================= */
+(function () {
+  function solve(p) {
+    var q0 = (TAXA - TAXC) / (p.b + p.d), p0 = TAXA - p.b * q0;
+    var q, pb, ps;
+    if (p.onBuyer) {
+      // buyers pay the tax: demand net of tax meets supply
+      q = (TAXA - p.t - TAXC) / (p.b + p.d);
+      ps = TAXC + p.d * q;
+      pb = ps + p.t;
+    } else {
+      // sellers remit it: supply curve shifts up by t
+      q = (TAXA - TAXC - p.t) / (p.b + p.d);
+      pb = TAXA - p.b * q;
+      ps = pb - p.t;
+    }
+    q = Math.max(0, q);
+    return { q0: q0, p0: p0, q: q, pb: pb, ps: ps };
+  }
+  function compute(p) {
+    var s = solve(p);
+    var bb = s.pb - s.p0, sb = s.p0 - s.ps;
+    return {
+      q0: s.q0, p0: s.p0, q: s.q, pb: s.pb, ps: s.ps, bb: bb, sb: sb,
+      share: p.t > 0 ? bb / p.t : 0,
+      rev: p.t * s.q, dwl: 0.5 * p.t * (s.q0 - s.q)
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], qm = Math.max(m.q0 * 1.45, 60), pm = TAXA * 1.1;
+    var x = scale(0, qm, 48, 340), y = scale(0, pm, 230, 24);
+    b.push(line(48, 230, 344, 230, AX), line(48, 230, 48, 20, AX));
+    b.push(txt(48, 248, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(line(x(0), y(TAXA), x(qm), y(TAXA - p.b * qm), CLAYD, 2.2));
+    b.push(line(x(0), y(TAXC), x(qm), y(TAXC + p.d * qm), '#5A6B45', 2.2));
+    if (p.t > 0) {
+      // the wedge: revenue block plus the deadweight triangle
+      b.push(rect(x(0), y(m.pb), x(m.q) - x(0), y(m.ps) - y(m.pb), CLAY, 0));
+      b.push('<rect x="' + x(0) + '" y="' + y(m.pb) + '" width="' + (x(m.q) - x(0)) + '" height="' + (y(m.ps) - y(m.pb)) + '" fill="' + CLAY + '" opacity="0.3"/>');
+      b.push('<polygon points="' + x(m.q) + ',' + y(m.pb) + ' ' + x(m.q) + ',' + y(m.ps) + ' ' + x(m.q0) + ',' + y(m.p0) + '" fill="' + INK + '" opacity="0.45"/>');
+      b.push(line(x(0), y(m.pb), x(m.q), y(m.pb), INK, 2));
+      b.push(line(x(0), y(m.ps), x(m.q), y(m.ps), INK, 2));
+      b.push(txt(44, y(m.pb) + 4, '$' + m.pb.toFixed(1), { a: 'end', s: 9, f: CLAYD }));
+      b.push(txt(44, y(m.ps) + 4, '$' + m.ps.toFixed(1), { a: 'end', s: 9, f: '#5A6B45' }));
+      b.push(txt(x(m.q / 2), (y(m.pb) + y(m.ps)) / 2 + 3, 'tax $' + p.t, { a: 'middle', s: 9.5, f: INK }));
+      b.push(txt(x(m.q0) + 8, y(m.p0) + 4, 'DWL', { s: 9, f: INK }));
+    }
+    b.push('<circle cx="' + x(m.q0) + '" cy="' + y(m.p0) + '" r="4" fill="none" stroke="' + FAINT + '" stroke-width="1.5"/>');
+    b.push(line(x(m.q), 230, x(m.q), y(m.pb), AX, 1.2, '3 3'));
+    b.push(txt(x(m.q), 244, m.q.toFixed(0), { a: 'middle', s: 9, f: INK }));
+    // burden split bar
+    b.push(txt(48, 272, 'WHO BEARS THE TAX', { s: 8, f: FAINT, ls: 0.8 }));
+    var w = 292, bw = p.t > 0 ? w * clamp(m.share, 0, 1) : w / 2;
+    b.push(rect(48, 280, bw, 18, CLAY, 0));
+    b.push(rect(48 + bw, 280, w - bw, 18, OLIVE, 0));
+    if (p.t > 0) {
+      if (bw > 40) b.push(txt(48 + bw / 2, 293, 'buyers ' + Math.round(m.share * 100) + '%', { a: 'middle', s: 9, f: '#fff' }));
+      if (w - bw > 40) b.push(txt(48 + bw + (w - bw) / 2, 293, 'sellers ' + Math.round((1 - m.share) * 100) + '%', { a: 'middle', s: 9, f: '#fff' }));
+    } else {
+      b.push(txt(48 + w / 2, 293, 'no tax', { a: 'middle', s: 9, f: '#fff' }));
+    }
+    return svg('0 0 360 306', b.join(''));
+  }
+
+  function params() {
+    return { t: +el('tax-t').value, b: +el('tax-b').value, d: +el('tax-d').value, onBuyer: el('tax-onbuyer').checked };
+  }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('tax-t-v').textContent = '$' + p.t;
+    el('tax-b-v').textContent = p.b.toFixed(2);
+    el('tax-d-v').textContent = p.d.toFixed(2);
+    el('tax-fig').innerHTML = draw(p, m);
+    el('tax-ro-pb').textContent = '$' + m.pb.toFixed(2);
+    el('tax-ro-ps').textContent = '$' + m.ps.toFixed(2);
+    el('tax-ro-q').textContent = m.q.toFixed(1);
+    el('tax-ro-share').textContent = p.t > 0 ? Math.round(m.share * 100) + '%' : '—';
+    el('tax-ro-bb').textContent = '$' + m.bb.toFixed(2);
+    el('tax-ro-sb').textContent = '$' + m.sb.toFixed(2);
+    var note;
+    if (p.t === 0) {
+      note = 'No tax: one price, $' + m.p0.toFixed(2) + ', and ' + m.q0.toFixed(0) +
+        ' units. Add a tax and this single price splits into two.';
+    } else if (p.onBuyer) {
+      note = '<strong>The tax is now levied on buyers — and nothing moved.</strong> This case was solved as a ' +
+        'separate system (demand net of tax meeting the original supply), and it lands on the same $' + m.pb.toFixed(2) +
+        ', the same $' + m.ps.toFixed(2) + ' and the same ' + m.q.toFixed(1) + ' units. <em>Statutory</em> incidence ' +
+        'changed; <em>economic</em> incidence did not. This is why "tax the corporations, not the consumers" is not an ' +
+        'economic statement — the law cannot assign the burden.';
+    } else {
+      var steeper = p.b > p.d ? 'Demand' : p.d > p.b ? 'Supply' : 'Neither curve';
+      note = '<strong>Buyers bear ' + Math.round(m.share * 100) + '%, sellers ' + Math.round((1 - m.share) * 100) + '%.</strong> ' +
+        (steeper === 'Neither curve'
+          ? 'The two curves are equally steep, so the tax splits exactly in half.'
+          : steeper + ' is the steeper — the less elastic — side, so it absorbs more. The burdens, $' +
+            m.bb.toFixed(2) + ' and $' + m.sb.toFixed(2) + ', always sum to the $' + p.t + ' tax.') +
+        ' Quantity fell from ' + m.q0.toFixed(0) + ' to ' + m.q.toFixed(1) + ', and the dark triangle is the surplus ' +
+        'that fall destroyed — $' + m.dwl.toFixed(0) + ', which nobody collects.';
+    }
+    el('tax-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['t', 'b', 'd'].forEach(function (k) { el('tax-' + k).addEventListener('input', render); });
+  el('tax-onbuyer').addEventListener('change', render);
+  st = Stepper(el('ap-tax'), [
+    { t: 'The tax opens a gap between the two prices. Buyers pay the top line, sellers keep the bottom one, and the difference is exactly the tax.', lit: ['tax-ro-pb', 'tax-ro-ps'], v: function (m) { return '$' + m.pb.toFixed(2) + ' paid, $' + m.ps.toFixed(2) + ' kept'; } },
+    { t: 'Quantity falls, because trades that cleared at the old price no longer clear the wedge. That fall is where the damage comes from.', lit: ['tax-ro-q'], v: function (m) { return m.q0.toFixed(0) + ' → ' + m.q.toFixed(1) + ' units'; } },
+    { t: 'Measure each burden against the <strong>original</strong> equilibrium price, not against each other. The two always sum to the tax.', lit: ['tax-ro-bb', 'tax-ro-sb'], v: function (m) { return '$' + m.bb.toFixed(2) + ' + $' + m.sb.toFixed(2) + ' = the tax'; } },
+    { t: 'The split is decided by <strong>relative elasticity</strong>: the steeper, less elastic side cannot walk away, so it absorbs more.', lit: ['tax-ro-share'], v: function (m) { return 'buyers bear ' + Math.round(m.share * 100) + '%'; } },
+    { t: 'Now flip the levy onto buyers. Every number holds. Who writes the cheque is a legal fact with no economic content.', lit: [], v: function () { return 'statutory ≠ economic incidence'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — revenue against damage, across every tax rate.
+ * ================================================================= */
+(function () {
+  var B = 0.5, D = 0.25, Q0 = (TAXA - TAXC) / (B + D), TS0 = 0.5 * (TAXA - TAXC) * Q0;
+
+  function at(t) {
+    var q = Math.max(0, (TAXA - TAXC - t) / (B + D));
+    return { q: q, rev: t * q, dwl: 0.5 * t * (Q0 - q) };
+  }
+  function compute(p) {
+    var a = at(p.t), best = 0, bestRev = -1;
+    for (var t = 0; t <= TAXA - TAXC; t += 0.25) {
+      var r = at(t).rev;
+      if (r > bestRev) { bestRev = r; best = t; }
+    }
+    return {
+      q: a.q, rev: a.rev, dwl: a.dwl, best: best, bestRev: bestRev,
+      ratio: a.rev > 0 ? a.dwl / a.rev : 0, ts: TS0 - a.dwl, maxT: TAXA - TAXC
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, m.maxT, 48, 340);
+    var top = Math.max(m.bestRev, 1) * 1.15, y = scale(0, top, 196, 26);
+    b.push(line(48, 196, 344, 196, AX), line(48, 196, 48, 20, AX));
+    b.push(txt(48, 214, 'TAX PER UNIT →', { s: 8, f: FAINT, ls: 0.8 }));
+    var rp = [], dp = [];
+    for (var t = 0; t <= m.maxT; t += 0.5) {
+      var a = at(t);
+      rp.push(x(t).toFixed(1) + ',' + y(a.rev).toFixed(1));
+      dp.push(x(t).toFixed(1) + ',' + y(a.dwl).toFixed(1));
+    }
+    b.push('<polyline points="' + rp.join(' ') + '" fill="none" stroke="' + OLIVE + '" stroke-width="2.5"/>');
+    b.push('<polyline points="' + dp.join(' ') + '" fill="none" stroke="' + CLAY + '" stroke-width="2.5"/>');
+    b.push(txt(x(m.maxT * 0.3), y(at(m.maxT * 0.3).rev) - 9, 'revenue', { s: 9, f: '#5A6B45' }));
+    b.push(txt(x(m.maxT * 0.78), y(at(m.maxT * 0.78).dwl) - 9, 'deadweight loss', { a: 'middle', s: 9, f: CLAYD }));
+    b.push(line(x(m.best), 196, x(m.best), y(m.bestRev), OLIVE, 1.5, '3 3'));
+    b.push(txt(clamp(x(m.best), 60, 290), y(m.bestRev) - 8, 'peak $' + Math.round(m.bestRev), { a: 'middle', s: 9, f: '#5A6B45' }));
+    b.push(line(x(p.t), 196, x(p.t), 24, INK, 2));
+    b.push('<circle cx="' + x(p.t) + '" cy="' + y(m.rev) + '" r="4.5" fill="' + OLIVE + '"/>');
+    b.push('<circle cx="' + x(p.t) + '" cy="' + y(m.dwl) + '" r="4.5" fill="' + CLAY + '"/>');
+    b.push(txt(clamp(x(p.t) + 7, 0, 300), 34, '$' + p.t, { s: 9.5, f: INK }));
+    return svg('0 0 360 222', b.join(''));
+  }
+
+  function params() { return { t: +el('rev-t').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('rev-t-v').textContent = '$' + p.t;
+    el('rev-fig').innerHTML = draw(p, m);
+    el('rev-ro-q').textContent = m.q.toFixed(1);
+    el('rev-ro-rev').textContent = '$' + Math.round(m.rev).toLocaleString('en-US');
+    el('rev-ro-dwl').textContent = '$' + Math.round(m.dwl).toLocaleString('en-US');
+    el('rev-ro-ratio').textContent = m.rev > 0 ? '$' + m.ratio.toFixed(2) : '—';
+    el('rev-ro-peak').textContent = '$' + m.best.toFixed(2);
+    el('rev-ro-ts').textContent = '$' + Math.round(m.ts).toLocaleString('en-US');
+    var note;
+    if (p.t === 0) {
+      note = 'No tax, no revenue, no deadweight loss, and the full $' + Math.round(TS0).toLocaleString('en-US') +
+        ' of surplus intact. Raise the tax and watch the two curves separate.';
+    } else if (p.t < m.best) {
+      note = '<strong>$' + Math.round(m.rev).toLocaleString('en-US') + ' raised, $' + Math.round(m.dwl).toLocaleString('en-US') +
+        ' destroyed</strong> — ' + m.ratio.toFixed(2) + ' of damage per dollar collected. Revenue is still climbing toward its peak at $' +
+        m.best.toFixed(2) + '. Notice how differently the two curves grow: revenue is close to linear here, while the loss ' +
+        'is bending upward, because the lost quantity itself grows with the tax.';
+    } else {
+      note = '<strong>Past the peak.</strong> The tax is above $' + m.best.toFixed(2) +
+        ', so raising it further now <em>reduces</em> revenue — the market has shrunk to ' + m.q.toFixed(1) +
+        ' units — while deadweight loss keeps climbing. Every dollar collected here costs $' + m.ratio.toFixed(2) +
+        ' of destroyed surplus. This is the argument for broad, low taxes rather than narrow, high ones.';
+    }
+    el('rev-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  el('rev-t').addEventListener('input', render);
+  st = Stepper(el('ap-rev'), [
+    { t: 'Revenue is <strong>tax × quantity</strong>. Raising the tax lifts one factor and shrinks the other, so revenue cannot climb forever.', lit: ['rev-ro-rev', 'rev-ro-q'], v: function (m) { return '$' + Math.round(m.rev).toLocaleString('en-US') + ' from ' + m.q.toFixed(1) + ' units'; } },
+    { t: 'There is a tax rate that collects the most. Beyond it the shrinking market outweighs the higher rate.', lit: ['rev-ro-peak'], v: function (m) { return 'peak revenue at a $' + m.best.toFixed(2) + ' tax'; } },
+    { t: 'Deadweight loss is <strong>½ × tax × units lost</strong>. Since the units lost also grow with the tax, the loss grows roughly with its <em>square</em>.', lit: ['rev-ro-dwl'], v: function (m) { return '$' + Math.round(m.dwl).toLocaleString('en-US') + ' destroyed'; } },
+    { t: 'So the real cost of revenue rises as you lean harder on one market. Watch the damage per dollar climb.', lit: ['rev-ro-ratio'], v: function (m) { return '$' + m.ratio.toFixed(2) + ' lost per $1 raised'; } },
+    { t: 'What remains of the original surplus is what the market still delivers. Revenue is a <strong>transfer</strong> out of it — the deadweight loss is the part nobody gets.', lit: ['rev-ro-ts'], v: function (m) { return '$' + Math.round(m.ts).toLocaleString('en-US') + ' of surplus survives'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch07", "title": "Chapter 07 \u2014 Tax Incidence", "anchors": ["c2", "c3", "quiz"], "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3}};
+var FND = ['The tax wedge', 'Statutory vs economic', 'Incidence & elasticity', 'Tax revenue', 'Deadweight loss'];
+
+var BANK = [
+  { id: 'tw1', home: 1, fnd: 1, type: 'mcq', short: 'What a tax does to price',
+    stem: 'A $4 per-unit tax is imposed on a competitive market. Which is true?',
+    opts: [
+      { t: 'Buyers pay more than before and sellers keep less, with the two separated by $4', ok: true },
+      { t: 'The price rises by exactly $4 and sellers are unaffected', why: 'That happens only when demand is perfectly inelastic. In general the price buyers pay rises by <em>less</em> than the tax, with the rest coming out of what sellers keep.' },
+      { t: 'Sellers absorb the whole $4 and the buyer price is unchanged', why: 'That is the perfectly elastic demand case, not the general one. Usually both sides move.' },
+      { t: 'The price is unchanged; only quantity falls', why: 'If no price moved, nobody would be paying the tax. The wedge between the two prices <em>is</em> the tax.' }
+    ] },
+  { id: 'tw2', home: 1, fnd: 2, type: 'mcq', short: 'Who writes the cheque',
+    stem: 'A government moves a payroll tax from employers to employees, leaving the rate unchanged. The economic burden:',
+    opts: [
+      { t: 'Does not change — statutory incidence does not determine who bears the tax', ok: true },
+      { t: 'Shifts entirely onto employees', why: 'The legal side changed, but the burden is decided by relative elasticities of labour supply and demand, which the law did not touch.' },
+      { t: 'Shifts entirely onto employers', why: 'Reversed, and wrong for the same reason: who remits the tax is not who bears it.' },
+      { t: 'Depends on which side is larger in number', why: 'Numbers do not decide incidence. Responsiveness does — the side that can more easily walk away bears less.' }
+    ] },
+  { id: 'tw3', home: 1, fnd: 3, type: 'mcq', short: 'Who bears more',
+    stem: 'Demand for a good is highly inelastic and supply is highly elastic. A per-unit tax falls mainly on:',
+    opts: [
+      { t: 'Buyers, because they have nowhere else to go', ok: true },
+      { t: 'Sellers, because they are more responsive', why: 'Responsiveness is exactly what lets them <em>escape</em> the tax. The elastic side shifts the burden onto the inelastic one.' },
+      { t: 'Both equally, since the tax is per unit', why: 'An equal split happens only when the two elasticities match. Here they are deliberately very different.' },
+      { t: 'The government, which collects it', why: 'The government receives the revenue; it does not bear a burden. Burdens fall on buyers and sellers through the prices they face.' }
+    ] },
+
+  { id: 'rv1', home: 2, fnd: 4, type: 'numeric', short: 'Computing revenue',
+    stem: 'A $5 per-unit tax reduces the quantity traded from 70 to 58 units. What is the government\'s tax revenue?',
+    pre: '$', answer: 290, tol: 0,
+    why: 'Revenue = tax × the <strong>new</strong> quantity = $5 × 58 = <strong>$290</strong>. Using the pre-tax 70 gives $350 and overstates it — the tax itself shrank the market, and only units that actually trade are taxed.' },
+  { id: 'rv2', home: 2, fnd: 5, type: 'numeric', short: 'Computing DWL',
+    stem: 'Same tax: $5 per unit, quantity falling from 70 to 58. What is the deadweight loss?',
+    pre: '$', answer: 30, tol: 0,
+    why: '½ × tax × units lost = ½ × $5 × 12 = <strong>$30</strong>. Note how much smaller this is than the $290 of revenue — revenue is a transfer to the government, while only this $30 is destroyed outright.' },
+  { id: 'rv3', home: 2, fnd: 5, type: 'mcq', short: 'Elasticity and damage',
+    stem: 'A per-unit tax of the same size creates a <em>larger</em> deadweight loss when:',
+    opts: [
+      { t: 'Both curves are more elastic, so quantity falls further', ok: true },
+      { t: 'Both curves are more inelastic', why: 'Inelastic curves mean quantity barely falls, so few trades are lost. A tax on a perfectly inelastic good has <em>zero</em> deadweight loss.' },
+      { t: 'The tax is levied on sellers rather than buyers', why: 'The statutory side changes nothing at all, including the deadweight loss.' },
+      { t: 'The government spends the revenue badly', why: 'How revenue is spent is a separate question. Deadweight loss arises from the trades the tax prevented.' }
+    ] },
+
+  { id: 'ex1', home: 3, fnd: 4, type: 'mcq', short: 'Revenue is not a loss',
+    stem: 'Why is tax revenue not counted as part of the deadweight loss?',
+    opts: [
+      { t: 'It is a transfer — someone still has it, namely the government', ok: true },
+      { t: 'Because governments spend it efficiently', why: 'Efficiency of spending is irrelevant and unproven. The point is simply that the money still exists in someone\'s hands.' },
+      { t: 'Because it is returned to buyers and sellers', why: 'It need not be returned to anyone in particular. It counts as a transfer regardless of where it goes.' },
+      { t: 'It is counted as a loss, along with the triangle', why: 'This is the error the question is testing. Deadweight loss is only the surplus that exists nowhere.' }
+    ] },
+  { id: 'ex2', home: 3, fnd: 3, type: 'mcq', short: 'Subsidies',
+    stem: 'A per-unit subsidy is introduced in a competitive market. Which is true?',
+    opts: [
+      { t: 'Quantity rises above the efficient level, so there is still a deadweight loss', ok: true },
+      { t: 'There is no deadweight loss, because everyone gains', why: 'Buyers and sellers both gain, but the extra units cost more to produce than anyone values them at. That overshoot is a real loss.' },
+      { t: 'Sellers receive less than buyers pay', why: 'That is a <em>tax</em>. A subsidy works the other way: sellers receive more than buyers pay, with the government covering the gap.' },
+      { t: 'The benefit always lands on buyers', why: 'Like a tax burden, a subsidy\'s benefit lands mostly on the less elastic side — which may be either one.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 1, type: 'numeric', short: 'Burden split',
+    stem: 'Before a tax the price is $20. After a $6 per-unit tax, buyers pay $24. How much of the tax do <em>sellers</em> bear per unit?',
+    pre: '$', answer: 2, tol: 0,
+    why: 'Buyers bear $24 − $20 = $4. The two burdens must sum to the tax, so sellers bear $6 − $4 = <strong>$2</strong> (they now keep $18). Measure both against the <em>original</em> $20, not against each other.' },
+  { id: 'q2', fnd: 2, type: 'mcq', short: 'Legal side is irrelevant',
+    stem: 'A politician proposes taxing oil companies rather than drivers "so that ordinary people don\'t pay." An economist\'s reply is:',
+    opts: [
+      { t: 'The split depends on elasticities, not on who the law names', ok: true },
+      { t: 'Correct — taxing firms protects consumers', why: 'This is precisely the error. Firms pass the burden on to whichever side is less able to walk away, regardless of the statute.' },
+      { t: 'Wrong — taxing firms always falls entirely on consumers', why: 'Overcorrecting. It falls <em>mostly</em> on consumers only when demand is relatively inelastic; the general answer is "it depends on elasticities."' },
+      { t: 'The tax will have no effect at all', why: 'It certainly has effects: both prices move, quantity falls, and surplus is destroyed. What it cannot do is let the law choose who pays.' }
+    ] },
+  { id: 'q3', fnd: 3, type: 'mcq', short: 'Cigarettes',
+    stem: 'Cigarette taxes are large, and most of the burden falls on smokers. The best explanation is:',
+    opts: [
+      { t: 'Demand is highly inelastic, so buyers cannot escape the tax', ok: true },
+      { t: 'The tax is legally levied on consumers', why: 'In most places it is levied on manufacturers or distributors. The burden lands on smokers because of their inelastic demand.' },
+      { t: 'Cigarettes have many close substitutes', why: 'Many substitutes would make demand <em>elastic</em> and push the burden onto sellers. The opposite is true here.' },
+      { t: 'Supply is perfectly inelastic', why: 'Perfectly inelastic supply would put the burden on <em>sellers</em>. The inelastic side here is demand.' }
+    ] },
+  { id: 'q4', fnd: 5, type: 'mcq', short: 'Zero deadweight loss',
+    stem: 'For which good does a per-unit tax create the <em>least</em> deadweight loss?',
+    opts: [
+      { t: 'One with perfectly inelastic demand', ok: true },
+      { t: 'One with perfectly elastic demand', why: 'Perfectly elastic demand means quantity collapses when the price rises, so the lost trades — and the deadweight loss — are as large as possible.' },
+      { t: 'One with many close substitutes', why: 'Many substitutes make demand elastic, so buyers switch away and many trades are lost.' },
+      { t: 'One where supply is highly elastic', why: 'Elastic supply also means quantity responds strongly, which enlarges the triangle.' }
+    ] },
+  { id: 'q5', fnd: 4, type: 'mcq', short: 'Doubling the tax',
+    stem: 'A government doubles a per-unit tax. Roughly what happens?',
+    opts: [
+      { t: 'Deadweight loss roughly quadruples while revenue less than doubles', ok: true },
+      { t: 'Both revenue and deadweight loss double', why: 'Revenue grows more slowly than the rate because quantity falls, and deadweight loss grows faster because both the wedge and the lost quantity grow.' },
+      { t: 'Revenue doubles and deadweight loss is unchanged', why: 'Deadweight loss depends directly on the size of the tax and on the quantity it destroys — both of which just rose.' },
+      { t: 'Revenue quadruples', why: 'Revenue is tax × quantity, and quantity falls as the tax rises. It can even decline outright past the revenue-maximising rate.' }
+    ] },
+  { id: 'q6', fnd: 1, type: 'classify', short: 'Transfer or destroyed',
+    stem: 'After a per-unit tax, classify each amount.',
+    cats: ['Transferred', 'Destroyed'],
+    rows: [
+      { t: 'The revenue the government collects', cat: 'Transferred' },
+      { t: 'The surplus on units no longer traded', cat: 'Destroyed' },
+      { t: 'The extra amount buyers pay on units still traded', cat: 'Transferred' },
+      { t: 'The surplus of a buyer priced out of the market entirely', cat: 'Destroyed' }
+    ],
+    why: 'Anything that someone still holds is a transfer, even if it moved to the government. Only surplus attached to trades that <em>stopped happening</em> is destroyed — nobody receives it, which is why it is the measure of the tax\'s true cost.' },
+  { id: 'q7', fnd: 3, type: 'mcq', short: 'Equal elasticities',
+    stem: 'Demand and supply are equally elastic at the equilibrium. A $10 tax is imposed. Buyers bear:',
+    opts: [
+      { t: '$5', ok: true },
+      { t: '$10, since buyers always pay', why: 'Buyers bear the whole tax only when demand is perfectly inelastic. With equal elasticities the burden splits evenly.' },
+      { t: '$0, since the tax is on sellers', why: 'The statutory side does not determine the burden, and in any case the question gives equal elasticities.' },
+      { t: 'It cannot be determined', why: 'It can: equal elasticities give an equal split, which is the clean benchmark case.' }
+    ] },
+  { id: 'q8', fnd: 4, type: 'mcq', short: 'Revenue falling',
+    stem: 'A government raises a tax rate and collects <em>less</em> revenue. This means:',
+    opts: [
+      { t: 'The market shrank enough that the smaller base outweighed the higher rate', ok: true },
+      { t: 'The tax must have been levied on the wrong side', why: 'Which side is levied has no effect on quantity, and therefore none on revenue.' },
+      { t: 'This is impossible — higher rates always raise more', why: 'Revenue is tax × quantity, and quantity falls as the tax rises. Past a point the second effect wins.' },
+      { t: 'Deadweight loss must have fallen too', why: 'Deadweight loss keeps rising with the tax even after revenue turns down — which is the worst region to be in.' }
+    ] },
+  { id: 'q9', fnd: 5, type: 'mcq', short: 'Where DWL comes from',
+    stem: 'The deadweight loss of a tax exists because:',
+    opts: [
+      { t: 'Trades whose value exceeded their cost no longer happen', ok: true },
+      { t: 'Buyers pay a higher price', why: 'The higher price mostly transfers surplus to the government. The loss comes from the trades that stop, not from the price on trades that continue.' },
+      { t: 'The government spends inefficiently', why: 'Deadweight loss is calculated on the market diagram alone, with no assumption about spending.' },
+      { t: 'Sellers earn lower profits', why: 'Lower seller surplus is partly a transfer. Only the portion attached to vanished trades is deadweight loss.' }
+    ] },
+  { id: 'q10', fnd: 2, type: 'mcq', short: 'Tying the course together',
+    stem: 'Price controls and taxes both reduce total surplus. The key difference in <em>where the surplus goes</em> is:',
+    opts: [
+      { t: 'A tax transfers some surplus to the government; a price control transfers it between buyers and sellers', ok: true },
+      { t: 'Only taxes create deadweight loss', why: 'Both do, because both prevent mutually beneficial trades. The difference is who receives the transferred portion.' },
+      { t: 'Only price controls change the quantity traded', why: 'Both reduce the quantity traded — that reduction is exactly what creates the deadweight loss in each case.' },
+      { t: 'Price controls raise revenue for the government', why: 'A price control collects nothing. That is the distinguishing feature of a tax.' }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>
