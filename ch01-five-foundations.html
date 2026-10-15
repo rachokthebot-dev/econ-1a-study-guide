@@ -1,0 +1,2095 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 01 — The Five Foundations of Economics · ECN 1A study guide</title>
+<meta name="description" content="Interactive study guide for Chapter 1 of Mateer, Coppock & Nietfeld: incentives, trade-offs, opportunity cost, marginal thinking, and trade. Four live models, retrieval checkpoints between chunks, and a chapter quiz.">
+<style>
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and all four models are built in
+    the browser — with scripts blocked you will see empty cards and no quiz. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 01 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ============================ masthead ============================ -->
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 01</div>
+      <h1>Five ideas that carry the <em>whole</em> course</h1>
+      <p class="intro">
+        Mateer, Coppock &amp; Nietfeld open with five foundations, and every later chapter is one of them
+        wearing a different hat. Supply and demand is trade-offs with a graph. Elasticity is marginal
+        thinking with a ratio. Tax incidence is incentives plus opportunity cost. Learn these five properly
+        and the rest of the quarter is bookkeeping.
+      </p>
+      <p class="intro">
+        Read a chunk, then answer the checkpoint before scrolling on. Questions you miss come back a
+        checkpoint later, and questions you get right come back twice before they retire — that spacing is
+        the part that actually moves exam scores.
+      </p>
+      <div class="meta">6 chunks · 4 live models · 5 checkpoints · 15-question chapter quiz</div>
+      <nav class="toc">
+        <a href="#c0">Scarcity <span class="n">00</span></a>
+        <a href="#c1">Incentives <span class="n">01</span></a>
+        <a href="#c2">Trade-offs <span class="n">02</span></a>
+        <a href="#c3">Opportunity cost <span class="n">03</span></a>
+        <a href="#c4">Marginal thinking <span class="n">04</span></a>
+        <a href="#c5">Trade creates value <span class="n">05</span></a>
+        <a href="#quiz">Chapter quiz <span class="n">▸</span></a>
+      </nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">the five</span>
+      <div class="fig-h">everything hangs off these</div>
+      <svg viewBox="0 0 280 180">
+        <line x1="24" y1="158" x2="268" y2="158" stroke="#D1CFC5" stroke-width="1.5"/>
+        <g font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A" text-anchor="middle">
+          <rect x="24"  y="40"  width="38" height="118" rx="5" fill="#D97757"/>
+          <text x="43"  y="172">Incent</text>
+          <rect x="72"  y="58"  width="38" height="100" rx="5" fill="#E3DACC"/>
+          <text x="91"  y="172">Trade-off</text>
+          <rect x="120" y="28"  width="38" height="130" rx="5" fill="#D97757"/>
+          <text x="139" y="172">Opp cost</text>
+          <rect x="168" y="46"  width="38" height="112" rx="5" fill="#E3DACC"/>
+          <text x="187" y="172">Marginal</text>
+          <rect x="216" y="70"  width="38" height="88"  rx="5" fill="#788C5D" opacity="0.55"/>
+          <text x="235" y="172">Trade</text>
+        </g>
+        <text x="268" y="20" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#87867F" letter-spacing="1">EXAM WEIGHT →</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ chunk 0 ============================ -->
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Scarcity is the reason economics exists</h2><span class="count">chunk 1 of 6</span></div>
+  <p class="sec-intro">
+    Two minutes. This chunk only has to install one idea and two vocabulary splits that show up on every
+    exam in the course.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Economics is the study of how people allocate scarce resources.</strong> That is the whole
+      subject. The engine underneath it is scarcity.
+    </p>
+    <div class="card trap">
+      <div class="label">The trap everyone falls into first</div>
+      <p>
+        <strong>Scarcity does not mean "rare."</strong> Scarcity means wants are unlimited while the
+        resources to satisfy them are limited. Drinking water is abundant and still scarce — you cannot
+        have unlimited amounts of it at zero cost. Meanwhile a signed photo of your least favourite
+        musician is extremely rare and <em>not</em> scarce, because nobody wants it. Rare is about supply.
+        Scarce is about supply <em>relative to wants</em>.
+      </p>
+    </div>
+    <p>
+      Because resources are scarce, every society has to answer the same three questions: what to produce,
+      how to produce it, and who gets it. The rest of the course is machinery for answering those.
+    </p>
+    <h4>Two splits you will be asked to make</h4>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Split</th><th>One side</th><th>Other side</th><th>How to tell</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Scale</strong></td>
+          <td><strong>Micro</strong> — individual decision-makers: a household, a firm, one market</td>
+          <td><strong>Macro</strong> — the economy as a whole: inflation, unemployment, growth</td>
+          <td>Count the actors. One market or one chooser → micro.</td>
+        </tr>
+        <tr>
+          <td><strong>Claim type</strong></td>
+          <td><strong>Positive</strong> — testable, factual: "a $15 minimum wage reduces teen employment"</td>
+          <td><strong>Normative</strong> — value judgement: "a $15 minimum wage is fair"</td>
+          <td>Could data settle it? Yes → positive. Words like <em>should</em>, <em>fair</em>, <em>ought</em> → normative.</td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p>
+      Positive statements can be wrong and still be positive — "the earth is flat" is a positive statement.
+      The test is whether evidence <em>could</em> decide it, not whether the claim is true.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ chunk 1 ============================ -->
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Foundation 1 — Incentives</h2><span class="count">chunk 2 of 6</span></div>
+  <p class="sec-intro">
+    People respond to incentives, predictably, and often in ways the person designing the incentive did not
+    plan. This foundation is where most exam questions about "unintended consequences" come from.
+  </p>
+  <div class="sec-body">
+    <p>
+      An <strong>incentive</strong> is anything that changes the costs or benefits of an action. Two
+      classifications matter, and exam questions almost always turn on the second one.
+    </p>
+    <ul>
+      <li><strong>Positive vs negative.</strong> Positive incentives make an action more attractive (a
+        rebate, a bonus, a scholarship). Negative incentives make it less attractive (a fine, a tax, a
+        late fee). Both work by changing cost–benefit.</li>
+      <li><strong>Direct vs indirect.</strong> A <strong>direct</strong> incentive gives the result you were
+        aiming at. An <strong>indirect</strong> incentive is the side effect nobody put in the press
+        release. Indirect incentives are where the interesting economics lives.</li>
+    </ul>
+    <div class="card">
+      <div class="label">Worked example — seat belts</div>
+      <p>
+        Mandatory seat belts have a <strong>direct</strong> effect: a given crash is more survivable, so
+        deaths per crash fall. They also have an <strong>indirect</strong> effect: feeling safer, some
+        drivers drive a little faster and follow a little closer, so the number of crashes rises — including
+        crashes involving pedestrians and cyclists, who got no seat belt. The net effect on total deaths is
+        an empirical question, and that is exactly the point. Identifying the indirect incentive is the
+        skill being tested; you are not expected to know the net sign from memory.
+      </p>
+    </div>
+    <p>
+      Try it on a real policy. The model below is the actual arithmetic of a city bag fee — how many
+      shoppers switch, how much plastic that saves, and how much of the saving the indirect incentive
+      eats back.
+    </p>
+
+    <div class="applet" id="ap-bag">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A plastic-bag fee, and the incentive nobody voted for</div>
+      <div class="ap-sub">10,000 households · 2.5 shopping trips/week · 4 bags/trip</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="bag-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Fee per bag</span><span class="cv" id="bag-fee-v">10¢</span></div>
+            <input type="range" id="bag-fee" min="0" max="40" step="1" value="10">
+            <div class="ch">The negative incentive. Raising it moves shoppers to reusable bags.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How much shoppers mind carrying their own</span><span class="cv" id="bag-h-v">25¢</span></div>
+            <input type="range" id="bag-h" min="5" max="60" step="1" value="25">
+            <div class="ch">The most reluctant shopper's hassle cost. Shoppers switch when the fee exceeds their own hassle cost.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Share who reused free bags as bin liners</span><span class="cv" id="bag-l-v">40%</span></div>
+            <input type="range" id="bag-l" min="0" max="100" step="5" value="40">
+            <div class="ch">The indirect incentive. These households now <em>buy</em> trash bags — which are thicker.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Switch to reusable</div><div class="rv" id="bag-ro-switch">—</div></div>
+            <div class="ro"><div class="rl">Bags / week</div><div class="rv" id="bag-ro-bags">—</div></div>
+            <div class="ro"><div class="rl">Fee revenue / wk</div><div class="rv" id="bag-ro-rev">—</div></div>
+            <div class="ro"><div class="rl">Plastic avoided</div><div class="rv" id="bag-ro-gross">—</div></div>
+            <div class="ro"><div class="rl">Liner offset</div><div class="rv" id="bag-ro-off">—</div></div>
+            <div class="ro hero"><div class="rl">Net plastic saved</div><div class="rv" id="bag-ro-net">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="bag-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Scarcity &amp; incentives · answer from memory, not by scrolling up</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 2 ============================ -->
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Foundation 2 — Trade-offs</h2><span class="count">chunk 3 of 6</span></div>
+  <p class="sec-intro">
+    Short chunk, because the idea is short. Scarcity forces choice, and choice means giving something up.
+    The reason it gets its own foundation is that students routinely collapse it into opportunity cost,
+    and the exam distinguishes them.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>There is no such thing as a free lunch.</strong> Every choice costs you the alternatives.
+      Not "most choices" — every choice, including the ones that feel free. A free concert costs you the
+      three hours. A free app costs you attention and data.
+    </p>
+    <div class="card accent">
+      <div class="label">Trade-off vs opportunity cost — the distinction</div>
+      <p>
+        A <strong>trade-off</strong> is the fact that choosing one thing means giving up others. It is
+        plural and qualitative: "studying tonight means no gym, no party, no shift at work."
+      </p>
+      <p>
+        An <strong>opportunity cost</strong> is the <em>single highest-valued</em> alternative you gave up,
+        and it carries a number. "Studying tonight cost me the $80 shift" — the one you'd actually have
+        picked.
+      </p>
+      <p style="margin-bottom:0">
+        Trade-offs are the menu of things forgone. Opportunity cost is the best item on that menu. If a
+        question says "list the trade-offs" and you name one thing, you lost points; if it says "what is
+        the opportunity cost" and you name three, you also lost points.
+      </p>
+    </div>
+    <p>
+      Trade-offs are why the <strong>production possibilities curve</strong> in Chapter 3 slopes downward
+      and why budget constraints in Chapter 4 are straight lines. When you meet those, you are meeting
+      this foundation with axes attached.
+    </p>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Trade-offs · plus a callback to earlier material</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 3 ============================ -->
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>Foundation 3 — Opportunity cost</h2><span class="count">chunk 4 of 6</span></div>
+  <p class="sec-intro">
+    The single most tested idea in the chapter, and the one with the most reliable wrong answers. Three
+    rules and one model will cover every version of it you will see.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Opportunity cost is the value of the highest-valued alternative you gave up.</strong> Three
+      rules follow, and each one is a graded exam trap.
+    </p>
+    <h4>Rule 1 — Count implicit costs, not just the money</h4>
+    <p>
+      <strong>Explicit costs</strong> are payments you actually make: tuition, rent on a shop, wages to
+      employees. <strong>Implicit costs</strong> are the value of resources you already own and use up:
+      the salary you did not earn, the rent you did not collect on your own building, the interest your
+      own capital did not make.
+    </p>
+    <p>
+      Accountants count explicit costs. Economists count both. That is the entire difference between
+      <strong>accounting profit</strong> (revenue − explicit) and <strong>economic profit</strong>
+      (revenue − explicit − implicit), and it is why a business can be "profitable" and still worth
+      shutting down.
+    </p>
+    <h4>Rule 2 — Only count what actually changes</h4>
+    <p>
+      If a cost happens whether or not you choose the thing, it is not part of the opportunity cost of
+      choosing it. Food and housing while you are in college are the classic case: you eat either way, so
+      ordinary living expenses are <em>not</em> a cost of attending. Only the <em>difference</em> counts —
+      if dorm housing costs $4,000 more than living at home would, that $4,000 is in.
+    </p>
+    <h4>Rule 3 — Sunk costs are gone, so ignore them</h4>
+    <p>
+      A <strong>sunk cost</strong> is already spent and unrecoverable. It cannot be an opportunity cost of
+      a future decision, because no future choice can get it back. You paid $60 for a concert ticket, you
+      now feel ill: the $60 is gone in both worlds. The only live question is whether a miserable evening
+      out beats a comfortable evening in.
+    </p>
+    <p>
+      Here is Rule 1 and Rule 2 as arithmetic. Toggle the living-expenses switch to watch the most common
+      wrong answer inflate the number.
+    </p>
+
+    <div class="applet" id="ap-oc">
+      <span class="tag">model · live</span>
+      <div class="ap-title">What a degree actually costs</div>
+      <div class="ap-sub">economic cost = explicit + implicit · everything below is computed, not looked up</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="oc-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Tuition &amp; fees / year</span><span class="cv" id="oc-t-v">$16,000</span></div>
+            <input type="range" id="oc-t" min="0" max="40000" step="500" value="16000">
+            <div class="ch">Explicit. You write this cheque.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Salary you'd have earned / year</span><span class="cv" id="oc-w-v">$34,000</span></div>
+            <input type="range" id="oc-w" min="0" max="70000" step="1000" value="34000">
+            <div class="ch">Implicit. Nobody bills you for it, and it is usually the biggest number here.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Years to finish</span><span class="cv" id="oc-y-v">4</span></div>
+            <input type="range" id="oc-y" min="1" max="7" step="1" value="4">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Salary gain after graduating / year</span><span class="cv" id="oc-g-v">$22,000</span></div>
+            <input type="range" id="oc-g" min="2000" max="60000" step="1000" value="22000">
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="oc-live">
+            <label for="oc-live">Also count $14,000/yr of food &amp; housing <em>(this is the wrong answer — switch it on and see what it does)</em></label>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Explicit cost</div><div class="rv" id="oc-ro-ex">—</div></div>
+            <div class="ro"><div class="rl">Implicit cost</div><div class="rv" id="oc-ro-im">—</div></div>
+            <div class="ro hero"><div class="rl">Economic cost</div><div class="rv" id="oc-ro-tot">—</div></div>
+            <div class="ro"><div class="rl">"Tuition only" answer</div><div class="rv" id="oc-ro-wrong">—</div></div>
+            <div class="ro good"><div class="rl">Years to break even</div><div class="rv" id="oc-ro-be">—</div></div>
+            <div class="ro"><div class="rl">Understated by</div><div class="rv" id="oc-ro-gap">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="oc-note"></p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Opportunity cost · the heaviest-weighted checkpoint in the chapter</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 4 ============================ -->
+<section id="c4">
+  <div class="sec-head"><span class="idx">04</span><h2>Foundation 4 — Marginal thinking</h2><span class="count">chunk 5 of 6</span></div>
+  <p class="sec-intro">
+    Economic decisions are almost never all-or-nothing. They are "a bit more or a bit less," and the rule
+    for finding the right amount is the most reusable tool in the course.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Marginal</strong> means "one more unit." <strong>Marginal benefit</strong> is the extra
+      benefit from one more unit; <strong>marginal cost</strong> is the extra cost. Thinking at the margin
+      means asking "is the <em>next</em> one worth it?" rather than "is this activity worth doing at all?"
+    </p>
+    <div class="card accent">
+      <div class="label">The rule</div>
+      <p style="margin-bottom:0">
+        Keep going while <strong>MB &gt; MC</strong>. Stop where <strong>MB = MC</strong>. That point
+        maximises <em>net</em> benefit — total benefit minus total cost — and it is the same rule that will
+        later give you profit maximisation, the optimal consumption bundle, and the efficient quantity in
+        a market.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">Two wrong stopping rules that look right</div>
+      <ul style="margin-bottom:0">
+        <li><strong>"Keep going while total benefit is still rising."</strong> Total benefit keeps rising
+          long after each extra unit has stopped being worth its cost. This rule massively overshoots.</li>
+        <li><strong>"Stop where marginal benefit is highest."</strong> MB is usually highest at the very
+          first unit, so this rule tells you to do almost nothing.</li>
+      </ul>
+    </div>
+    <p>
+      The model below computes it unit by unit. Drag the quantity and watch net benefit — the bottom curve —
+      peak exactly where the two lines cross, and crash if you follow either wrong rule.
+    </p>
+
+    <div class="applet" id="ap-mt">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Where to stop: hours of studying this week</div>
+      <div class="ap-sub">MB falls as you tire · MC rises as you give up better alternatives · net = Σ(MB − MC)</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="mt-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Hours you choose</span><span class="cv" id="mt-q-v">6 hr</span></div>
+            <input type="range" id="mt-q" min="1" max="14" step="1" value="6">
+            <div class="ch">Your decision variable. The optimum is marked on the figure.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Value of the first hour (MB intercept)</span><span class="cv" id="mt-a-v">100</span></div>
+            <input type="range" id="mt-a" min="60" max="140" step="4" value="100">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>How fast alternatives get precious (MC slope)</span><span class="cv" id="mt-d-v">4</span></div>
+            <input type="range" id="mt-d" min="1" max="12" step="1" value="4">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">MB of that hour</div><div class="rv" id="mt-ro-mb">—</div></div>
+            <div class="ro"><div class="rl">MC of that hour</div><div class="rv" id="mt-ro-mc">—</div></div>
+            <div class="ro"><div class="rl">Net benefit here</div><div class="rv" id="mt-ro-net">—</div></div>
+            <div class="ro hero"><div class="rl">Optimal hours</div><div class="rv" id="mt-ro-opt">—</div></div>
+            <div class="ro good"><div class="rl">Best possible net</div><div class="rv" id="mt-ro-best">—</div></div>
+            <div class="ro"><div class="rl">Net if you chase total benefit</div><div class="rv" id="mt-ro-greedy">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="mt-note"></p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Marginal thinking · one of these is numeric</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 5 ============================ -->
+<section id="c5">
+  <div class="sec-head"><span class="idx">05</span><h2>Foundation 5 — Trade creates value</h2><span class="count">chunk 6 of 6</span></div>
+  <p class="sec-intro">
+    The least intuitive foundation, because ordinary language treats deals as win–lose. Voluntary trade is
+    not win–lose, and the model below shows exactly where the winnings come from.
+  </p>
+  <div class="sec-body">
+    <p>
+      <strong>Voluntary trade creates value.</strong> Nothing new is manufactured in the moment of
+      exchange, yet both sides end up better off. That is not a paradox — value is not a property of an
+      object, it is a relationship between an object and a person. Move the object to the person who
+      values it more and total value has gone up.
+    </p>
+    <p>
+      So trade is <strong>positive-sum</strong>: both parties gain, or at minimum neither loses, because
+      either party could have walked away. This is why "if I gained, they must have lost" is wrong, and
+      why it is wrong for international trade too.
+    </p>
+    <div class="card">
+      <div class="label">Where the gains come from</div>
+      <p style="margin-bottom:0">
+        Trade is worth doing when people value things differently — usually because they can
+        <em>produce</em> things at different opportunity costs. That is <strong>comparative
+        advantage</strong>, and it is the whole of Chapter 2. Keep the shape of it in mind now: each side
+        specialises where its own opportunity cost is lowest, then trades for the rest.
+      </p>
+    </div>
+    <p>
+      Drag the price below. Watch the two surplus bars trade size against each other while their
+      <em>sum never moves</em> — that is the one result in this applet worth memorising.
+    </p>
+
+    <div class="applet" id="ap-tv">
+      <span class="tag">model · live</span>
+      <div class="ap-title">One buyer, one seller, a used textbook</div>
+      <div class="ap-sub">consumer surplus = value − price · producer surplus = price − cost</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tv-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>What it's worth to the buyer</span><span class="cv" id="tv-b-v">$80</span></div>
+            <input type="range" id="tv-b" min="0" max="120" step="2" value="80">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>What the seller gives up to part with it</span><span class="cv" id="tv-s-v">$30</span></div>
+            <input type="range" id="tv-s" min="0" max="120" step="2" value="30">
+            <div class="ch">The seller's own opportunity cost — keeping it, or selling it elsewhere.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Agreed price</span><span class="cv" id="tv-p-v">$55</span></div>
+            <input type="range" id="tv-p" min="0" max="120" step="1" value="55">
+            <div class="ch">Slide it outside the shaded band and the trade stops happening.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="tv-ro-cs">—</div></div>
+            <div class="ro"><div class="rl">Producer surplus</div><div class="rv" id="tv-ro-ps">—</div></div>
+            <div class="ro hero"><div class="rl">Total value created</div><div class="rv" id="tv-ro-tot">—</div></div>
+            <div class="ro"><div class="rl">Bargaining range</div><div class="rv" id="tv-ro-range">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tv-note"></p>
+    </div>
+
+    <div class="check" id="ck5"><span class="tag">checkpoint 05</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Trade creates value · plus callbacks from across the chapter</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ quiz ============================ -->
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">15 questions</span></div>
+  <p class="sec-intro">
+    Interleaved on purpose — the five foundations are shuffled rather than blocked, because mixing topics
+    within a quiz beats grouping them (d ≈ 0.35) even though it feels harder while you do it. Feeling
+    fluent is not the goal; being right in week 10 is.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All five foundations, shuffled</div>
+      <div class="ck-s">no feedback until you submit · mirrors how the real midterm feels</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<!-- ============================ ledger ============================ -->
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed, and what isn't</h2></div>
+  <p class="sec-intro">
+    Half the value of a model is knowing which of its numbers to trust. Every figure in this chapter comes
+    out of arithmetic you can read in the page source — none of it is a lookup table or a tween between
+    pre-baked answers. Here is the honest boundary.
+  </p>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Assumed / simplified</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Bag fee</td>
+          <td>Share switching from a uniform distribution of hassle costs; bags used; fee revenue; plastic
+              avoided and the bin-liner offset, by mass.</td>
+          <td>Hassle costs are uniform (real ones aren't). Trips, bags/trip, and bag masses (5.5 g vs 20 g
+              liner) are fixed stand-ins, not survey data. No price effect on groceries.</td>
+        </tr>
+        <tr>
+          <td>Degree cost</td>
+          <td>Explicit, implicit and total economic cost; the tuition-only answer; the gap between them;
+              break-even years from the salary gain.</td>
+          <td>No discounting — a real present-value calculation would shrink later gains. No tuition
+              inflation, no graduation risk, no part-time work.</td>
+        </tr>
+        <tr>
+          <td>Marginal thinking</td>
+          <td>MB and MC per unit from linear schedules; total benefit and cost by summation; net benefit at
+              every quantity; the optimum by the MB = MC crossing; the net benefit the overshoot rule gets.</td>
+          <td>Whole hours only, and both schedules are linear. Real MB and MC curve.</td>
+        </tr>
+        <tr>
+          <td>Trade surplus</td>
+          <td>Consumer surplus, producer surplus, total value created, whether a trade occurs, and the
+              bargaining range.</td>
+          <td>One buyer and one seller. A market with many of each is Chapter 4 — that's where these bars
+              become the triangles under supply and demand.</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <div class="card">
+      <div class="label">How the repetition works</div>
+      <p>
+        Checkpoint items are scheduled, not just listed. A question you miss returns at the very next
+        checkpoint; one you get right returns two checkpoints later; get it right twice and it retires to
+        the chapter quiz. That's deliberately plainer than a real spaced-repetition algorithm, because
+        meta-analysis finds expanding and uniform intervals perform about the same (g = 0.034) — the thing
+        that matters is the number of successful retrievals, not the cleverness of the gaps.
+      </p>
+      <p style="margin-bottom:0">
+        Progress lives in this browser only (<code>localStorage</code>), so it survives a reload but does
+        not follow you to another device. Use the export button below to carry it.
+      </p>
+    </div>
+
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 01 of 07</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div>Next: <strong>Chapter 02 — Gains from trade</strong></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* =================================================================
+ * MODEL 1 — the bag fee. A negative incentive with an indirect one
+ * riding along behind it.
+ * ================================================================= */
+(function () {
+  var HH = 10000, TRIPS = 2.5, BPT = 4, G_BAG = 5.5, G_LINER = 20, LINERS_WK = 2;
+
+  function compute(p) {
+    var share = clamp(p.fee / p.hassle, 0, 1);        // uniform hassle costs
+    var base = HH * TRIPS * BPT;                       // bags/wk with no fee
+    var bags = base * (1 - share);
+    var revenue = p.fee * bags / 100;                  // cents -> dollars
+    var gross = (base - bags) * G_BAG;                 // grams of plastic avoided
+    var offset = HH * share * p.liner * LINERS_WK * G_LINER;
+    var net = gross - offset;
+    return {
+      share: share, base: base, bags: bags, revenue: revenue,
+      gross: gross, offset: offset, net: net,
+      eff: gross > 0 ? net / gross : 0
+    };
+  }
+
+  function draw(p, m) {
+    var x = scale(0, 40, 44, 340), y = scale(0, 1, 118, 24), b = [];
+    b.push(line(44, 118, 340, 118, AX), line(44, 118, 44, 24, AX));
+    b.push(txt(40, 28, '100%', { a: 'end', s: 8, f: FAINT }), txt(40, 121, '0', { a: 'end', s: 8, f: FAINT }));
+    b.push(txt(44, 132, '0¢', { s: 8, f: FAINT }), txt(340, 132, '40¢ fee', { a: 'end', s: 8, f: FAINT }));
+    b.push(txt(48, 20, 'SHARE SWITCHING TO REUSABLE', { s: 8, f: FAINT, ls: 0.8 }));
+    // the response curve: share = min(fee/hassle, 1)
+    var pts = [], f;
+    for (f = 0; f <= 40; f += 0.5) pts.push(x(f).toFixed(1) + ',' + y(clamp(f / p.hassle, 0, 1)).toFixed(1));
+    b.push('<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + CLAY + '" stroke-width="2"/>');
+    b.push(line(x(p.fee), 118, x(p.fee), y(m.share), AX, 1.5, '3 3'));
+    b.push('<circle cx="' + x(p.fee) + '" cy="' + y(m.share) + '" r="4.5" fill="' + CLAYD + '"/>');
+    b.push(txt(clamp(x(p.fee) + 8, 0, 300), y(m.share) - 7, pct(m.share), { s: 10, f: CLAYD }));
+
+    // mass bars: gross avoided, liner offset, net
+    var mx = scale(0, Math.max(m.gross, 1), 108, 340), yy = 168;
+    b.push(txt(44, 154, 'PLASTIC, GRAMS PER WEEK', { s: 8, f: FAINT, ls: 0.8 }));
+    [['avoided', m.gross, OAT], ['liner offset', -m.offset, CLAY], ['net saved', m.net, OLIVE]].forEach(function (r, i) {
+      var yv = yy + i * 26;
+      b.push(txt(104, yv + 11, r[0], { a: 'end', s: 8.5, f: INK }));
+      b.push(rect(108, yv, 232, 16, G100, 3));
+      var w = mx(Math.abs(r[1])) - 108;
+      b.push(rect(108, yv, clamp(w, 0, 232), 16, r[2], 3));
+      b.push(txt(344, yv + 11, (r[1] < 0 ? '−' : '') + kg(Math.abs(r[1])), { a: 'end', s: 8.5, f: i === 2 ? OLIVE : INK }));
+    });
+    return svg('0 0 360 250', b.join(''));
+  }
+
+  var ids = ['fee', 'h', 'l'];
+  function params() {
+    return { fee: +el('bag-fee').value, hassle: +el('bag-h').value, liner: +el('bag-l').value / 100 };
+  }
+  var stepper;
+  function render() {
+    var p = params(), m = compute(p);
+    el('bag-fee-v').textContent = p.fee + '¢';
+    el('bag-h-v').textContent = p.hassle + '¢';
+    el('bag-l-v').textContent = Math.round(p.liner * 100) + '%';
+    el('bag-fig').innerHTML = draw(p, m);
+    el('bag-ro-switch').textContent = pct(m.share);
+    el('bag-ro-bags').textContent = Math.round(m.bags).toLocaleString('en-US');
+    el('bag-ro-rev').textContent = money(m.revenue);
+    el('bag-ro-gross').textContent = kg(m.gross);
+    el('bag-ro-off').textContent = '−' + kg(m.offset);
+    el('bag-ro-net').textContent = kg(m.net);
+    var note;
+    if (p.fee === 0) {
+      note = '<strong>No fee, no response.</strong> Nobody switches, the city collects nothing, and no plastic is saved. Incentives only work when they change someone\'s cost–benefit.';
+    } else if (m.eff < 0) {
+      note = '<strong>The policy now backfires.</strong> The liner substitution outweighs the bags saved — the fee moved households onto thicker plastic. This is an indirect incentive swamping a direct one, and it is a real finding in the bag-fee literature.';
+    } else if (m.eff < 0.55) {
+      note = '<strong>The indirect incentive is eating ' + pct(1 - m.eff) + ' of the win.</strong> The fee works — fewer carrier bags — but households that used those bags as bin liners now buy heavier ones. Note also that revenue falls as the fee rises past the switching point: a tax designed to change behaviour stops raising money precisely when it succeeds.';
+    } else {
+      note = '<strong>Mostly working as intended</strong> — ' + pct(m.eff) + ' of the plastic saving survives the liner offset. Push the liner share up and watch a well-intentioned policy lose most of its effect without anyone changing the fee.';
+    }
+    el('bag-note').innerHTML = note;
+    if (stepper) stepper.refresh();
+  }
+
+  ids.forEach(function (i) { el('bag-' + i).addEventListener('input', render); });
+  stepper = Stepper(el('ap-bag'), [
+    { t: 'The fee is a <strong>negative incentive</strong>: it raises the cost of taking a bag. A shopper switches to reusable only if the fee exceeds their own hassle cost.', lit: ['bag-ro-switch'], v: function (m) { return pct(m.share) + ' of households switch'; } },
+    { t: 'That is the <strong>direct effect</strong> — fewer carrier bags leave the store, so less carrier-bag plastic.', lit: ['bag-ro-bags', 'bag-ro-gross'], v: function (m) { return kg(m.gross) + ' of plastic avoided per week'; } },
+    { t: 'Now the <strong>indirect effect</strong>. Households that reused free bags as bin liners still need liners — so they buy them. Trash bags are about 4× the mass.', lit: ['bag-ro-off'], v: function (m) { return '−' + kg(m.offset) + ' clawed back'; } },
+    { t: 'Net the two and you have the policy\'s real effect. The gap between the headline and this number is the whole lesson of Foundation 1.', lit: ['bag-ro-net'], v: function (m) { return kg(m.net) + ' net — ' + pct(m.eff) + ' of the headline'; } },
+    { t: 'One more: revenue <strong>falls</strong> once the fee is high enough to change behaviour. A tax that works collects less. You will meet this again in Chapter 7.', lit: ['bag-ro-rev'], v: function (m) { return money(m.revenue) + ' per week'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — what a degree costs. Explicit + implicit, with the
+ * living-expenses trap wired to a switch.
+ * ================================================================= */
+(function () {
+  var LIVING = 14000;
+
+  function compute(p) {
+    var explicit = p.tuition * p.years;
+    var implicit = p.wage * p.years;
+    var living = p.countLiving ? LIVING * p.years : 0;
+    var total = explicit + implicit + living;
+    var correct = explicit + implicit;          // the right answer, always
+    return {
+      explicit: explicit, implicit: implicit, living: living, total: total, correct: correct,
+      wrong: explicit,                           // "tuition only"
+      gap: correct - explicit,
+      be: p.gain > 0 ? total / p.gain : Infinity
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], W = 300, x0 = 46;
+    var mx = scale(0, Math.max(m.total, 1), x0, x0 + W);
+    b.push(txt(x0, 20, 'ECONOMIC COST OF ' + p.years + ' YEAR' + (p.years > 1 ? 'S' : ''), { s: 8, f: FAINT, ls: 0.8 }));
+    var segs = [['explicit', m.explicit, OAT], ['implicit', m.implicit, CLAY]];
+    if (m.living) segs.push(['living (shouldn\'t count)', m.living, '#D9D4C7']);
+    var cx = x0;
+    segs.forEach(function (s) {
+      var w = mx(s[1]) - x0;
+      b.push(rect(cx, 30, w, 34, s[2], 0));
+      if (w > 46) b.push(txt(cx + w / 2, 51, money(s[1]), { a: 'middle', s: 9.5, f: s[2] === CLAY ? '#fff' : INK }));
+      cx += w;
+    });
+    b.push('<rect x="' + x0 + '" y="30" width="' + W + '" height="34" fill="none" stroke="' + AX + '" stroke-width="1.5"/>');
+    // legend
+    var ly = 78;
+    segs.forEach(function (s, i) {
+      b.push(rect(x0 + i * 100, ly, 9, 9, s[2], 2));
+      b.push(txt(x0 + i * 100 + 13, ly + 8, s[0], { s: 8, f: INK }));
+    });
+    // the "tuition only" marker against the true cost
+    b.push(line(x0, 108, x0 + W, 108, AX));
+    b.push(txt(x0, 102, 'WHERE THE COMMON WRONG ANSWER LANDS', { s: 8, f: FAINT, ls: 0.8 }));
+    var wx = mx(m.wrong);
+    b.push(rect(x0, 112, wx - x0, 14, '#E8E4DA', 3));
+    b.push(rect(x0, 112, mx(m.correct) - x0, 14, 'none', 3));
+    b.push(line(mx(m.correct), 108, mx(m.correct), 132, CLAYD, 2));
+    b.push(line(wx, 108, wx, 132, FAINT, 1.5, '3 3'));
+    b.push(txt(x0, 142, 'tuition only ' + money(m.wrong), { s: 8.5, f: FAINT }));
+    b.push(txt(x0 + W, 142, 'true ' + money(m.correct), { a: 'end', s: 8.5, f: CLAYD }));
+    // break-even timeline
+    b.push(txt(x0, 172, 'YEARS OF HIGHER SALARY TO REPAY IT', { s: 8, f: FAINT, ls: 0.8 }));
+    var maxY = 25, bx = scale(0, maxY, x0, x0 + W);
+    b.push(rect(x0, 182, W, 16, G100, 3));
+    var beW = isFinite(m.be) ? clamp(bx(m.be) - x0, 0, W) : W;
+    b.push(rect(x0, 182, beW, 16, isFinite(m.be) && m.be <= maxY ? OLIVE : CLAY, 3));
+    b.push(txt(x0 + W + 2, 194, isFinite(m.be) ? m.be.toFixed(1) + ' yr' : 'never', { a: 'end', s: 9, f: INK }));
+    for (var t = 0; t <= maxY; t += 5) b.push(txt(bx(t), 212, t, { a: 'middle', s: 8, f: FAINT }));
+    return svg('0 0 360 220', b.join(''));
+  }
+
+  function params() {
+    return {
+      tuition: +el('oc-t').value, wage: +el('oc-w').value, years: +el('oc-y').value,
+      gain: +el('oc-g').value, countLiving: el('oc-live').checked
+    };
+  }
+  var stepper;
+  function render() {
+    var p = params(), m = compute(p);
+    el('oc-t-v').textContent = money(p.tuition);
+    el('oc-w-v').textContent = money(p.wage);
+    el('oc-y-v').textContent = p.years;
+    el('oc-g-v').textContent = money(p.gain);
+    el('oc-fig').innerHTML = draw(p, m);
+    el('oc-ro-ex').textContent = money(m.explicit);
+    el('oc-ro-im').textContent = money(m.implicit);
+    el('oc-ro-tot').textContent = money(m.total);
+    el('oc-ro-wrong').textContent = money(m.wrong);
+    el('oc-ro-be').textContent = isFinite(m.be) ? m.be.toFixed(1) + ' yr' : '∞';
+    el('oc-ro-gap').textContent = m.wrong > 0 ? (m.correct / m.wrong).toFixed(1) + '×' : '∞';
+    var note;
+    if (p.countLiving) {
+      note = '<strong>That switch is the wrong answer, and now you can see its size.</strong> Food and housing are ' +
+        money(m.living) + ' of the ' + money(m.total) + ' on screen — but you eat and sleep whether or not you enrol, so they are not a cost <em>of enrolling</em>. Only the <em>difference</em> between dorm and the alternative belongs here. Switch it back off.';
+    } else if (m.implicit > m.explicit) {
+      note = '<strong>The invisible cost is the bigger one.</strong> Forgone salary (' + money(m.implicit) +
+        ') exceeds tuition (' + money(m.explicit) + '), and nobody ever sends you a bill for it. Answering "' +
+        money(m.wrong) + '" understates the true cost by ' + (m.correct / Math.max(m.wrong, 1)).toFixed(1) + '×.';
+    } else {
+      note = '<strong>Tuition dominates here</strong>, but the implicit cost is still ' + money(m.implicit) +
+        ' — and it is the part that vanishes from most students\' answers. Economic cost = explicit + implicit, every time.';
+    }
+    el('oc-note').innerHTML = note;
+    if (stepper) stepper.refresh();
+  }
+
+  ['t', 'w', 'y', 'g'].forEach(function (i) { el('oc-' + i).addEventListener('input', render); });
+  el('oc-live').addEventListener('change', render);
+  stepper = Stepper(el('ap-oc'), [
+    { t: 'Start with the cheques you actually write. These are the <strong>explicit costs</strong> — the only ones an accountant records.', lit: ['oc-ro-ex'], v: function (m) { return money(m.explicit) + ' explicit'; } },
+    { t: 'Now the resource you already own and are using up: your own time. The salary you did not earn is an <strong>implicit cost</strong>, and it is real even though no money moves.', lit: ['oc-ro-im'], v: function (m) { return money(m.implicit) + ' implicit'; } },
+    { t: 'Add them. <strong>Economic cost = explicit + implicit.</strong> Revenue minus just the explicit part is accounting profit; minus both is economic profit.', lit: ['oc-ro-tot'], v: function (m) { return money(m.correct) + ' true economic cost'; } },
+    { t: 'Compare that against the answer most students give — tuition alone. The dashed line on the figure is how far short it falls.', lit: ['oc-ro-wrong', 'oc-ro-gap'], v: function (m) { return 'off by ' + money(m.gap) + ' (' + (m.correct / Math.max(m.wrong, 1)).toFixed(1) + '×)'; } },
+    { t: 'Finally, is it worth it? Divide the total cost by the annual salary gain. This is a decision at the margin, which is Foundation 4.', lit: ['oc-ro-be'], v: function (m) { return (isFinite(m.be) ? m.be.toFixed(1) + ' years to break even' : 'never breaks even'); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 3 — marginal thinking. MB and MC per unit, totals by
+ * summation, the optimum from the crossing, and the net benefit that
+ * each wrong stopping rule actually delivers.
+ * ================================================================= */
+(function () {
+  var B = 8, C0 = 20, QMAX = 14;
+
+  function mb(q, a) { return a - B * q; }
+  function mc(q, d) { return C0 + d * q; }
+  function tb(q, a) { return a * q - B * q * (q + 1) / 2; }
+  function tc(q, d) { return C0 * q + d * q * (q + 1) / 2; }
+  function net(q, a, d) { return tb(q, a) - tc(q, d); }
+
+  function compute(p) {
+    var optReal = (p.a - C0) / (B + p.d);
+    var opt = clamp(Math.floor(optReal), 0, QMAX);
+    var greedy = clamp(Math.floor(p.a / B), 0, QMAX);   // "while total benefit rises"
+    return {
+      mb: mb(p.q, p.a), mc: mc(p.q, p.d),
+      net: net(p.q, p.a, p.d), opt: opt, optReal: optReal,
+      best: net(opt, p.a, p.d), greedy: greedy, greedyNet: net(greedy, p.a, p.d),
+      unitNet: mb(p.q, p.a) - mc(p.q, p.d),
+      lost: net(opt, p.a, p.d) - net(p.q, p.a, p.d)
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, QMAX, 46, 346), lo = 0, hi = Math.max(p.a, mc(QMAX, p.d)) * 1.05, y = scale(lo, hi, 174, 24);
+    b.push(line(46, 174, 346, 174, AX), line(46, 174, 46, 24, AX));
+    b.push(txt(42, 28, Math.round(hi), { a: 'end', s: 8, f: FAINT }), txt(42, 177, '0', { a: 'end', s: 8, f: FAINT }));
+    b.push(txt(46, 188, 'hours of study →', { s: 8, f: FAINT }));
+    // net-benefit shading: each unit up to q is a column of height MB−MC
+    for (var i = 1; i <= p.q; i++) {
+      var h = mb(i, p.a) - mc(i, p.d), top = Math.max(mb(i, p.a), mc(i, p.d));
+      b.push(rect(x(i - 1) + 1, y(top), x(i) - x(i - 1) - 2, Math.abs(y(top) - y(top - Math.abs(h))), h >= 0 ? '#EDF1E7' : '#FBE6DE', 1));
+    }
+    // the two schedules
+    var pm = [], pc = [];
+    for (var q = 0; q <= QMAX; q++) {
+      if (mb(q, p.a) >= 0) pm.push(x(q) + ',' + y(mb(q, p.a)));   // stop MB at the axis
+      pc.push(x(q) + ',' + y(mc(q, p.d)));
+    }
+    b.push('<polyline points="' + pm.join(' ') + '" fill="none" stroke="' + CLAY + '" stroke-width="2"/>');
+    b.push('<polyline points="' + pc.join(' ') + '" fill="none" stroke="' + OLIVE + '" stroke-width="2"/>');
+    // label where the two schedules are furthest apart — at the left edge — so
+    // the captions never chase MB below the axis when it goes negative.
+    b.push(txt(x(1.3), y(mb(1.3, p.a)) - 7, 'MB', { s: 10, f: CLAYD }));
+    b.push(txt(x(1.3), y(mc(1.3, p.d)) + 15, 'MC', { s: 10, f: '#5A6B45' }));
+    // optimum
+    if (m.optReal >= 0 && m.optReal <= QMAX) {
+      var ox = x(m.optReal), oy = y(mc(m.optReal, p.d));
+      b.push(line(ox, 174, ox, oy, INK, 1.5, '3 3'));
+      b.push('<circle cx="' + ox + '" cy="' + oy + '" r="4" fill="' + INK + '"/>');
+      b.push(txt(ox, 18, 'MB = MC', { a: 'middle', s: 8.5, f: INK, ls: 0.5 }));
+    }
+    // where the reader is
+    b.push(line(x(p.q), 174, x(p.q), 24, CLAYD, 2));
+    b.push(txt(clamp(x(p.q), 46, 320) + 4, 36, 'you: ' + p.q + ' hr', { s: 9, f: CLAYD }));
+    // net benefit strip
+    var ny0 = 220, ny1 = 286, nmax = Math.max(m.best, 1), ny = scale(0, nmax, ny1, ny0);
+    b.push(txt(46, 214, 'NET BENEFIT AT EACH CHOICE  =  Σ (MB − MC)', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(line(46, ny1, 346, ny1, AX));
+    for (var k = 1; k <= QMAX; k++) {
+      var nv = net(k, p.a, p.d), w = x(1) - x(0) - 3;
+      b.push(rect(x(k - 1) + 1.5, nv >= 0 ? ny(nv) : ny1, w, Math.abs(ny1 - ny(Math.max(nv, 0))) || 1,
+        k === p.q ? CLAYD : k === m.opt ? OLIVE : OAT, 2));
+    }
+    b.push(txt(346, 214, 'peak at ' + m.opt + ' hr', { a: 'end', s: 8, f: '#5A6B45', ls: 0.5 }));
+    return svg('0 0 360 296', b.join(''));
+  }
+
+  function params() { return { q: +el('mt-q').value, a: +el('mt-a').value, d: +el('mt-d').value }; }
+  var stepper;
+  function render() {
+    var p = params(), m = compute(p);
+    el('mt-q-v').textContent = p.q + ' hr';
+    el('mt-a-v').textContent = p.a;
+    el('mt-d-v').textContent = p.d;
+    el('mt-fig').innerHTML = draw(p, m);
+    el('mt-ro-mb').textContent = Math.round(m.mb);
+    el('mt-ro-mc').textContent = Math.round(m.mc);
+    el('mt-ro-net').textContent = Math.round(m.net);
+    el('mt-ro-opt').textContent = m.opt + ' hr';
+    el('mt-ro-best').textContent = Math.round(m.best);
+    el('mt-ro-greedy').textContent = Math.round(m.greedyNet);
+    var note;
+    if (p.q === m.opt) {
+      note = '<strong>That\'s the optimum.</strong> The next hour would cost ' + Math.round(mc(p.q + 1, p.d)) +
+        ' and return ' + Math.round(mb(p.q + 1, p.a)) + ' — not worth it. Stopping here is worth ' +
+        Math.round(m.best) + ', against ' + Math.round(m.greedyNet) + ' if you kept going while total benefit was still rising.';
+    } else if (p.q < m.opt) {
+      note = '<strong>You stopped too early.</strong> Hour ' + (p.q + 1) + ' returns ' + Math.round(mb(p.q + 1, p.a)) +
+        ' and costs ' + Math.round(mc(p.q + 1, p.d)) + ' — still worth having. You are leaving ' +
+        Math.round(m.lost) + ' of net benefit on the table.';
+    } else {
+      note = '<strong>You overshot.</strong> Hour ' + p.q + ' cost ' + Math.round(m.mc) + ' and returned only ' +
+        Math.round(m.mb) + ', a net loss of ' + Math.round(-m.unitNet) +
+        ' on that hour alone. Total benefit is still rising — which is exactly why "keep going while total benefit rises" is the wrong rule. You have given up ' + Math.round(m.lost) + ' versus stopping at ' + m.opt + '.';
+    }
+    el('mt-note').innerHTML = note;
+    if (stepper) stepper.refresh();
+  }
+
+  ['q', 'a', 'd'].forEach(function (i) { el('mt-' + i).addEventListener('input', render); });
+  stepper = Stepper(el('ap-mt'), [
+    { t: 'Look at <strong>one</strong> hour, not the whole week. What does this hour add in benefit, and what does it cost in alternatives given up?', lit: ['mt-ro-mb', 'mt-ro-mc'], v: function (m) { return 'MB ' + Math.round(m.mb) + ' vs MC ' + Math.round(m.mc); } },
+    { t: 'If MB &gt; MC, that hour is worth having — take it and ask again. If MB &lt; MC, it destroys value. Repeat until they meet.', lit: [], v: function (m) { return m.unitNet >= 0 ? 'worth +' + Math.round(m.unitNet) + ' — take it' : 'loses ' + Math.round(-m.unitNet) + ' — don\'t'; } },
+    { t: 'The crossing is the answer: <strong>MB = MC</strong>. On the figure it is the dashed vertical; the net-benefit bars below peak at the same place, which is the proof the rule works.', lit: ['mt-ro-opt', 'mt-ro-best'], v: function (m) { return m.opt + ' hours, net ' + Math.round(m.best); } },
+    { t: 'Now the wrong rule. "Keep going while <em>total</em> benefit rises" takes you all the way to where MB hits zero — total benefit really is higher there, and you are much worse off.', lit: ['mt-ro-greedy'], v: function (m) { return m.greedy + ' hours gives net ' + Math.round(m.greedyNet) + ', not ' + Math.round(m.best); } },
+    { t: 'Nothing above was specific to studying. Replace MB and MC with revenue and cost and you have profit maximisation; with price and willingness to pay and you have the efficient quantity.', lit: [], v: function () { return 'same rule, every chapter'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 4 — trade creates value. The sum of the two surpluses is the
+ * one number the price cannot move.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var trades = p.price <= p.buyer && p.price >= p.seller && p.buyer >= p.seller;
+    return {
+      trades: trades,
+      cs: trades ? p.buyer - p.price : 0,
+      ps: trades ? p.price - p.seller : 0,
+      total: trades ? p.buyer - p.seller : 0,
+      possible: Math.max(0, p.buyer - p.seller),
+      lo: p.seller, hi: p.buyer
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, 120, 46, 344);
+    // the value line
+    b.push(txt(46, 20, 'VALUATIONS, AND THE RANGE A DEAL CAN LAND IN', { s: 8, f: FAINT, ls: 0.8 }));
+    if (m.possible > 0) b.push(rect(x(p.seller), 30, x(p.buyer) - x(p.seller), 26, '#F5EFE6', 3));
+    b.push(line(46, 56, 344, 56, AX));
+    [[p.seller, 'seller\'s cost', OLIVE], [p.buyer, 'buyer\'s value', CLAY]].forEach(function (v, i) {
+      b.push(line(x(v[0]), 30, x(v[0]), 62, v[2], 2));
+      b.push(txt(clamp(x(v[0]), 60, 330), i === 0 ? 76 : 26, v[1] + ' ' + money(v[0]), { a: 'middle', s: 8.5, f: v[2] === CLAY ? CLAYD : '#5A6B45' }));
+    });
+    b.push('<polygon points="' + x(p.price) + ',38 ' + (x(p.price) - 5) + ',28 ' + (x(p.price) + 5) + ',28" fill="' + INK + '"/>');
+    b.push(line(x(p.price), 30, x(p.price), 56, INK, 2));
+    b.push(txt(clamp(x(p.price), 56, 334), 94, 'price ' + money(p.price), { a: 'middle', s: 9.5, f: INK }));
+    for (var t = 0; t <= 120; t += 30) b.push(txt(x(t), 110, '$' + t, { a: 'middle', s: 8, f: FAINT }));
+
+    // the two surpluses, stacked, total pinned
+    var y0 = 146, H = 30, sx = scale(0, Math.max(m.possible, 1), 46, 344);
+    b.push(txt(46, 138, 'WHO GETS THE GAINS', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(rect(46, y0, 298, H, G100, 3));
+    if (m.trades) {
+      var wps = sx(m.ps) - 46, wcs = sx(m.cs) - 46;
+      b.push(rect(46, y0, wps, H, OLIVE, 0));
+      b.push(rect(46 + wps, y0, wcs, H, CLAY, 0));
+      if (wps > 42) b.push(txt(46 + wps / 2, y0 + 19, money(m.ps), { a: 'middle', s: 9.5, f: '#fff' }));
+      if (wcs > 42) b.push(txt(46 + wps + wcs / 2, y0 + 19, money(m.cs), { a: 'middle', s: 9.5, f: '#fff' }));
+      b.push(txt(46, y0 + 46, 'producer surplus', { s: 8, f: '#5A6B45' }));
+      b.push(txt(344, y0 + 46, 'consumer surplus', { a: 'end', s: 8, f: CLAYD }));
+    } else {
+      b.push(txt(195, y0 + 19, 'NO TRADE — NO VALUE CREATED', { a: 'middle', s: 9.5, f: CLAYD, ls: 0.6 }));
+    }
+    b.push('<rect x="46" y="' + y0 + '" width="298" height="' + H + '" fill="none" stroke="' + AX + '" stroke-width="1.5"/>');
+    // the invariant
+    b.push(txt(46, 212, 'TOTAL VALUE CREATED  =  BUYER\'S VALUE − SELLER\'S COST', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(rect(46, 220, sx(m.possible) - 46, 12, m.trades ? INK : '#E8E4DA', 3));
+    b.push(txt(46, 248, m.trades ? money(m.total) + ' — and the price slider cannot change this number' : 'zero', { s: 9.5, f: m.trades ? INK : CLAYD }));
+    return svg('0 0 360 258', b.join(''));
+  }
+
+  function params() { return { buyer: +el('tv-b').value, seller: +el('tv-s').value, price: +el('tv-p').value }; }
+  var stepper;
+  function render() {
+    var p = params(), m = compute(p);
+    el('tv-b-v').textContent = money(p.buyer);
+    el('tv-s-v').textContent = money(p.seller);
+    el('tv-p-v').textContent = money(p.price);
+    el('tv-fig').innerHTML = draw(p, m);
+    el('tv-ro-cs').textContent = money(m.cs);
+    el('tv-ro-ps').textContent = money(m.ps);
+    el('tv-ro-tot').textContent = money(m.total);
+    el('tv-ro-range').textContent = m.possible > 0 ? money(m.lo) + '–' + money(m.hi) : 'none';
+    var note;
+    if (p.buyer < p.seller) {
+      note = '<strong>No trade should happen, and none does.</strong> The buyer values it at less than it costs the seller to give up, so there is no price both would accept. Trade creates value only when valuations differ <em>in the right direction</em> — this is the case people forget exists.';
+    } else if (!m.trades) {
+      note = '<strong>The price is outside the bargaining range, so nothing happens.</strong> Above ' + money(p.buyer) +
+        ' the buyer walks; below ' + money(p.seller) + ' the seller walks. Either way ' + money(m.possible) +
+        ' of value that <em>could</em> have been created isn\'t. Voluntary means both sides can refuse.';
+    } else {
+      note = '<strong>Both sides gain, and the total is fixed.</strong> The buyer clears ' + money(m.cs) +
+        ', the seller ' + money(m.ps) + ' — and ' + money(m.cs) + ' + ' + money(m.ps) + ' = ' + money(m.total) +
+        ' no matter where in the range the price lands. Price decides the <em>split</em>; the <em>size</em> comes from the gap between valuations. Haggling moves the line between the bars; it never moves the bar\'s end.';
+    }
+    el('tv-note').innerHTML = note;
+    if (stepper) stepper.refresh();
+  }
+
+  ['b', 's', 'p'].forEach(function (i) { el('tv-' + i).addEventListener('input', render); });
+  stepper = Stepper(el('ap-tv'), [
+    { t: 'Two different numbers for the same object. The buyer would pay up to one; the seller would part with it for no less than the other. <strong>Value is not in the object.</strong>', lit: [], v: function (m) { return 'gap of ' + money(m.possible); } },
+    { t: 'Any price inside that gap — the shaded band — makes both sides better off, so both agree. Outside it, someone refuses.', lit: ['tv-ro-range'], v: function (m) { return m.possible > 0 ? 'deals possible from ' + money(m.lo) + ' to ' + money(m.hi) : 'no band — no deal'; } },
+    { t: 'The buyer\'s gain is <strong>consumer surplus</strong>: what it was worth minus what they paid.', lit: ['tv-ro-cs'], v: function (m) { return money(m.cs); } },
+    { t: 'The seller\'s gain is <strong>producer surplus</strong>: what they got minus what they gave up.', lit: ['tv-ro-ps'], v: function (m) { return money(m.ps); } },
+    { t: 'Now move the price and watch. The split changes; <strong>the total never does.</strong> That total is the value trade created out of nothing but a difference in valuations.', lit: ['tv-ro-tot'], v: function (m) { return money(m.total) + ' — invariant to price'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+</script>
+
+<script>
+'use strict';
+/* =================================================================
+ * THE ITEM BANK
+ *
+ * Every wrong option below is a mistake students actually make — a
+ * named misconception, a sign error, a rule misapplied. That matters:
+ * distractors have to be plausible enough to pull real students
+ * (the standard is >5% of low performers), and implausible ones make
+ * an item measure nothing. Each carries the reason it's wrong, because
+ * the feedback is where the learning happens, not the score.
+ *
+ * `home` = the checkpoint an item debuts at. `fnd` = foundation, used
+ * for the quiz breakdown.
+ * ================================================================= */
+var FND = ['Scarcity & method', 'Incentives', 'Trade-offs', 'Opportunity cost', 'Marginal thinking', 'Trade creates value'];
+
+var BANK = [
+  /* ---- checkpoint 1: scarcity & incentives ---- */
+  { id: 'sc1', home: 1, fnd: 1, type: 'mcq', short: 'What scarcity means',
+    stem: 'A signed poster of a band nobody has heard of exists in only one copy worldwide. Bottled water exists in billions. Which is <em>scarce</em> in the economic sense?',
+    opts: [
+      { t: 'Bottled water, because people want more of it than can be had at zero cost', ok: true },
+      { t: 'The poster, because there is only one of them', why: 'This is the rare-vs-scarce confusion. Rarity is about quantity supplied; scarcity is about quantity supplied <em>relative to wants</em>. Nobody wants the poster, so it is rare but not scarce.' },
+      { t: 'Both, since both exist in finite amounts', why: 'Finite is not the test. If an item exists in finite quantity but no one wants more of it than exists, there is no scarcity — no allocation problem to solve.' },
+      { t: 'Neither, because both can be bought', why: 'Being purchasable is evidence of scarcity, not evidence against it. A price exists precisely because the good is scarce.' }
+    ] },
+  { id: 'pn1', home: 1, fnd: 1, type: 'mcq', short: 'Positive vs normative',
+    stem: 'Which of these is a <em>positive</em> statement?',
+    opts: [
+      { t: 'Rent control reduces the number of apartments available in the long run', ok: true },
+      { t: 'The government ought to make housing more affordable', why: '"Ought" signals a value judgement. No dataset can settle whether something <em>should</em> happen — that is normative.' },
+      { t: 'It is unfair that landlords can raise rents without limit', why: '"Unfair" is a value judgement. Normative statements can be widely agreed with and still be normative.' },
+      { t: 'Housing policy is the most important issue facing the state', why: '"Most important" ranks by values, not by evidence. Normative.' }
+    ] },
+  { id: 'in1', home: 1, fnd: 2, type: 'mcq', short: 'Direct vs indirect incentive',
+    stem: 'A university replaces letter grades with pass/fail in a tough course. Enrolment rises, and average hours studied per enrolled student falls. Which part is the <em>indirect</em> incentive?',
+    opts: [
+      { t: 'The drop in study hours, because removing the grade reward lowered the payoff to extra effort', ok: true },
+      { t: 'The rise in enrolment, because that is what the policy was meant to encourage', why: 'That is the <em>direct</em> effect — the outcome the designers were aiming at. Indirect effects are the ones nobody put in the announcement.' },
+      { t: 'Neither, since both were caused by the same policy', why: 'Both being caused by the policy is exactly why they are both incentive effects. Direct vs indirect is about whether the effect was the intended target, not about what caused it.' },
+      { t: 'Both equally, because the policy changed two things at once', why: 'The policy changed one thing — the grading rule. The two outcomes differ in kind: one was the goal, one was a side effect.' }
+    ] },
+  { id: 'in2', home: 1, fnd: 2, type: 'classify', short: 'Classifying incentives',
+    stem: 'Sort each one. A <em>positive</em> incentive rewards an action; a <em>negative</em> one penalises it.',
+    cats: ['Positive incentive', 'Negative incentive'],
+    rows: [
+      { t: 'A $2,000 scholarship for keeping a 3.5 GPA', cat: 'Positive incentive' },
+      { t: 'A $75 fine for parking in a staff space', cat: 'Negative incentive' },
+      { t: 'A late-submission penalty of 10% per day', cat: 'Negative incentive' },
+      { t: 'A deposit refunded when you return the bottle', cat: 'Positive incentive' }
+    ],
+    why: 'Watch the bottle deposit: paying the deposit feels like a penalty, but the <em>refund for returning it</em> is the thing that changes behaviour, and it rewards the action. Ask what the incentive does to the cost–benefit of the action you want.' },
+
+  /* ---- checkpoint 2: trade-offs ---- */
+  { id: 'to1', home: 2, fnd: 3, type: 'mcq', short: 'Trade-off vs opportunity cost',
+    stem: 'You skip a shift to study. You could instead have worked ($90), gone to the gym, or slept. What is the <em>opportunity cost</em> of studying?',
+    opts: [
+      { t: 'The $90 shift — the single most valuable thing you gave up', ok: true },
+      { t: 'The shift, the gym and the sleep, all together', why: 'That is the list of <em>trade-offs</em>. Opportunity cost is the single highest-valued alternative, not the sum of everything forgone — otherwise you could inflate any cost by listing more options you never would have taken.' },
+      { t: 'Zero, since you chose studying and so preferred it', why: 'Preferring your choice does not make it free. Opportunity cost is what the alternative was worth, regardless of which you picked — it is a cost even when the choice is correct.' },
+      { t: '$90 plus the value of the gym and the sleep', why: 'Double counting. You could only have done one of them with that time, so only the best one is forgone.' }
+    ] },
+  { id: 'to2', home: 2, fnd: 3, type: 'mcq', short: 'No free lunch',
+    stem: 'A campus concert is free to attend, with no ticket and no fee. An economist says it still has a cost. What is the cost?',
+    opts: [
+      { t: 'The time, which could have gone to the next-best use', ok: true },
+      { t: 'Nothing — "free" means zero cost by definition', why: 'This is the free-lunch error. Money price and cost are different things. Time is a scarce resource, so spending it always forecloses something.' },
+      { t: 'Only the cost to whoever paid for the concert', why: 'Their cost is real but it is <em>their</em> cost. The question asks about the cost to the attendee, and the attendee spends time.' },
+      { t: 'The travel cost of getting there, and nothing else', why: 'Travel is part of it, but the dominant cost for a three-hour concert is the three hours.' }
+    ] },
+
+  /* ---- checkpoint 3: opportunity cost ---- */
+  { id: 'oc1', home: 3, fnd: 4, type: 'numeric', short: 'Computing economic cost',
+    stem: 'Maya quits a $38,000-a-year job for a two-year master\'s. Tuition is $21,000 a year. Her food and housing cost $15,000 a year — the same as they would have if she had kept working. What is the <em>economic cost</em> of the degree over the two years?',
+    pre: '$', answer: 118000, tol: 0,
+    why: 'Explicit = $21,000 × 2 = $42,000. Implicit = $38,000 × 2 = $76,000 of forgone salary. Total = <strong>$118,000</strong>. Food and housing are explicitly stated to be unchanged, so they are not a cost <em>of this choice</em> — including them gives $148,000, the single most common wrong answer. Leaving out the forgone salary gives $42,000, the second most common.' },
+  { id: 'oc2', home: 3, fnd: 4, type: 'mcq', short: 'The living-expenses trap',
+    stem: 'Why do economists normally leave ordinary food and housing out of the cost of attending college?',
+    opts: [
+      { t: 'Because you would incur them whether or not you attended, so they do not change with the decision', ok: true },
+      { t: 'Because they are implicit costs rather than explicit ones', why: 'They are explicit — you pay real money for them. The reason to exclude them is not their type but that they do not <em>change</em> with the decision.' },
+      { t: 'Because they are small compared with tuition', why: 'Size is irrelevant, and they often are not small. A cost is excluded because it is unaffected by the choice, not because it is minor.' },
+      { t: 'Because students usually have them paid by someone else', why: 'Who pays does not determine whether something is a cost of the decision. The test is whether the cost changes when the decision changes.' }
+    ] },
+  { id: 'oc3', home: 3, fnd: 4, type: 'mcq', short: 'Sunk costs',
+    stem: 'You paid $600, non-refundable, for a flight. The day before, a free trip you would enjoy far more comes up. What should the $600 do to your decision?',
+    opts: [
+      { t: 'Nothing — it is gone either way, so compare only the two trips', ok: true },
+      { t: 'Push you to take the paid flight, so the $600 is not wasted', why: 'This is the sunk-cost fallacy, and it is the single most tested error in the chapter. Taking the worse trip does not recover the $600; it just adds a worse experience to a loss you already have.' },
+      { t: 'Count as the opportunity cost of taking the free trip', why: 'Opportunity cost is what you give up <em>by choosing</em>. The $600 is unrecoverable under both choices, so no choice forgoes it.' },
+      { t: 'Be split between the two options, since both are affected', why: 'Neither option is affected by it. A cost that is identical across all options cannot discriminate between them.' }
+    ] },
+
+  /* ---- checkpoint 4: marginal thinking ---- */
+  { id: 'mt1', home: 4, fnd: 5, type: 'mcq', short: 'The stopping rule',
+    stem: 'A bakery is deciding how many extra loaves to bake. Which rule maximises net benefit?',
+    opts: [
+      { t: 'Keep baking while marginal benefit exceeds marginal cost; stop where they are equal', ok: true },
+      { t: 'Keep baking while total benefit is still rising', why: 'Total benefit keeps rising long after each extra loaf has stopped covering its own cost. This rule systematically overshoots — in the model above it costs most of the available net benefit.' },
+      { t: 'Bake the quantity where marginal benefit is highest', why: 'Marginal benefit is usually highest on the very first unit, so this rule says bake almost nothing. It confuses the <em>level</em> of MB with the comparison between MB and MC.' },
+      { t: 'Bake while average cost is falling', why: 'Average cost can still be falling when the next unit already costs more than it returns. Decisions at the margin use marginal quantities, not averages.' }
+    ] },
+  { id: 'mt2', home: 4, fnd: 5, type: 'numeric', short: 'Finding the optimum',
+    stem: 'For the <em>q</em>-th hour of studying, marginal benefit is MB = 90 − 6q and marginal cost is MC = 18 + 6q. How many <em>whole</em> hours should you study?',
+    pre: '', answer: 6, tol: 0,
+    why: 'Set MB = MC: 90 − 6q = 18 + 6q → 72 = 12q → q = 6. Check it: hour 6 gives MB 54 against MC 54 — exactly break-even and worth taking; hour 7 gives MB 48 against MC 60, a loss of 12. The answer is <strong>6</strong>. Solving MB = 0 instead gives 15, which is the "maximise total benefit" error.' },
+  { id: 'mt3', home: 4, fnd: 5, type: 'mcq', short: 'Marginal vs all-or-nothing',
+    stem: 'An airline\'s flight has 4 empty seats at departure. Average cost per passenger on the route is $210. A standby traveller offers $70. The extra cost of carrying one more person is about $12. Should they take it?',
+    opts: [
+      { t: 'Yes — $70 exceeds the $12 marginal cost, so it adds $58', ok: true },
+      { t: 'No — $70 is well below the $210 it costs to carry a passenger', why: 'The $210 is an <em>average</em>, and it includes costs incurred whether or not this person boards (fuel for the plane, crew, the gate). Decisions at the margin compare against marginal cost, never average cost.' },
+      { t: 'No, because selling below average cost means losing money on the flight', why: 'The flight\'s fixed costs are already committed — they are sunk at this point. Refusing $70 does not avoid them; it just forgoes $58.' },
+      { t: 'Only if they can fill all four seats at that price', why: 'Each seat is a separate marginal decision. One profitable sale is worth making even if the other three go empty.' }
+    ] },
+
+  /* ---- checkpoint 5: trade creates value ---- */
+  { id: 'tv1', home: 5, fnd: 6, type: 'mcq', short: 'Why trade is positive-sum',
+    stem: 'You sell a used textbook for $55. You valued keeping it at $30; the buyer valued having it at $80. How much value did the trade create?',
+    opts: [
+      { t: '$50 — the gap between what it was worth to each of you', ok: true },
+      { t: '$0 — you gained $25 and the buyer lost $25, so it nets out', why: 'This is the zero-sum error. The buyer did not lose $55; they <em>exchanged</em> $55 for something worth $80 to them, gaining $25. Both sides gain, which is why both agreed.' },
+      { t: '$55 — the amount of money that changed hands', why: 'Money changing hands is a transfer, not value creation. The value created is the improvement in how well the object is matched to its owner.' },
+      { t: '$25 — only your own gain counts, since you were the seller', why: 'Total value created is both surpluses added together: your $25 plus the buyer\'s $25 = $50, which equals $80 − $30.' }
+    ] },
+  { id: 'tv2', home: 5, fnd: 6, type: 'mcq', short: 'What price does and does not do',
+    stem: 'Same textbook: your cost $30, buyer\'s value $80. You haggle the price from $55 up to $70. What happens to the <em>total</em> value created?',
+    opts: [
+      { t: 'It stays $50 — only the split between you changes', ok: true },
+      { t: 'It rises, because the seller now captures more', why: 'The seller does capture more ($40 instead of $25), but every dollar of that comes out of the buyer\'s surplus. Total value created is buyer\'s value minus seller\'s cost, and neither moved.' },
+      { t: 'It falls, because the buyer is worse off', why: 'The buyer is worse off than at $55, but still better off than not trading ($10 of surplus). The total is unchanged — haggling moves the line between the two bars, not the end of the bar.' },
+      { t: 'It cannot be determined without knowing who needed the deal more', why: 'Bargaining power determines the <em>split</em>. The size of the pie is fixed by the two valuations alone.' }
+    ] },
+  { id: 'tv3', home: 5, fnd: 6, type: 'classify', short: 'Which foundation is this',
+    stem: 'Each scenario is built to test one foundation. Name it.',
+    cats: ['Incentives', 'Trade-offs', 'Opportunity cost', 'Marginal thinking', 'Trade creates value'],
+    rows: [
+      { t: 'A toll on a bridge leads drivers to use a longer free route, worsening traffic there', cat: 'Incentives' },
+      { t: 'A firm asks whether the eleventh delivery van earns more than it costs to run', cat: 'Marginal thinking' },
+      { t: 'A country with a cold climate imports fruit and exports software', cat: 'Trade creates value' },
+      { t: 'A student quantifies the $31,000 salary she gave up to go back to school', cat: 'Opportunity cost' },
+      { t: 'A city can fund either a library or a pool with the same money, not both', cat: 'Trade-offs' }
+    ],
+    why: 'The giveaway in each: a behaviour change in response to a changed cost → incentives. A question about <em>one more</em> unit → marginal. Specialising and exchanging → trade. A single quantified forgone alternative → opportunity cost. Two options, one budget → trade-offs.' }
+];
+
+/* The quiz draws from its own pool, interleaved rather than blocked. */
+var QUIZ = [
+  { id: 'q1', fnd: 4, type: 'mcq', short: 'Economic vs accounting profit',
+    stem: 'Devi leaves a $60,000 job to run a shop out of a building she owns and could rent out for $18,000 a year. The shop earns $140,000 in revenue with $55,000 of explicit costs. What is her <em>economic</em> profit?',
+    opts: [
+      { t: '$7,000', ok: true },
+      { t: '$85,000', why: 'That is accounting profit: $140,000 − $55,000. It omits both implicit costs — the $60,000 salary and the $18,000 of forgone rent.' },
+      { t: '$25,000', why: 'This subtracts the forgone salary but forgets the forgone rent. The building is a resource she owns and uses up, so its rental value is an implicit cost.' },
+      { t: '$67,000', why: 'This subtracts the forgone rent but not the salary. Both are implicit costs and both count.' }
+    ] },
+  { id: 'q2', fnd: 2, type: 'mcq', short: 'Unintended consequences',
+    stem: 'A city caps rents well below market. Over several years the housing stock available for rent shrinks. In the five-foundations framing, the shrinkage is best described as:',
+    opts: [
+      { t: 'An indirect incentive effect — landlords respond to a lower payoff by supplying less', ok: true },
+      { t: 'A trade-off, since the city chose affordability over supply', why: 'The city did face a trade-off, but the <em>mechanism</em> producing the shrinkage is behavioural: owners responded to a changed payoff. That is an incentive effect.' },
+      { t: 'An opportunity cost of the policy', why: 'Loosely, yes — but opportunity cost names the best forgone alternative to a choice. The question asks what produced the shrinkage, and that is landlords responding to incentives.' },
+      { t: 'Evidence that trade does not create value in housing', why: 'Nothing here bears on whether trade creates value. The cap restricts which trades may occur; it does not show that the trades were valueless.' }
+    ] },
+  { id: 'q3', fnd: 1, type: 'mcq', short: 'Micro vs macro',
+    stem: 'Which question is <em>microeconomic</em>?',
+    opts: [
+      { t: 'How a drought in Brazil affects the price of coffee in Davis', ok: true },
+      { t: 'Why national unemployment rose from 4% to 6% last year', why: 'Unemployment for a whole economy is a macro aggregate.' },
+      { t: 'Whether the Fed should raise interest rates', why: 'Economy-wide monetary policy is macro (and "should" makes it normative too).' },
+      { t: 'What causes inflation to accelerate', why: 'Inflation is an economy-wide price-level phenomenon — macro.' }
+    ] },
+  { id: 'q4', fnd: 5, type: 'numeric', short: 'Marginal optimum',
+    stem: 'A food truck\'s marginal benefit from the <em>q</em>-th hour open is MB = 120 − 10q; marginal cost is MC = 20 + 10q. How many whole hours should it stay open?',
+    pre: '', answer: 5, tol: 0,
+    why: '120 − 10q = 20 + 10q → 100 = 20q → q = 5. Hour 5: MB 70, MC 70 — break even, take it. Hour 6: MB 60, MC 80 — a $20 loss. Answer: <strong>5</strong>.' },
+  { id: 'q5', fnd: 6, type: 'mcq', short: 'Gains from trade direction',
+    stem: 'Two roommates both prefer a tidy kitchen. Ana finds dishes quick and vacuuming miserable; Ben is the reverse. They each specialise and swap. This illustrates:',
+    opts: [
+      { t: 'Trade creating value through differences in opportunity cost', ok: true },
+      { t: 'Trade creating value by producing more total output', why: 'More output is usually a <em>result</em>, but the source of the gain is that each person\'s opportunity cost differs. Even with identical total output, matching tasks to the lower-cost person creates value.' },
+      { t: 'Marginal thinking, because each is doing one more chore', why: 'No marginal comparison is being made here. The structure is specialise-then-exchange, which is the trade foundation.' },
+      { t: 'A trade-off, because each gives up one chore to do another', why: 'There is a trade-off involved, but the point of the example is that the swap leaves <em>both</em> better off — that is trade creating value.' }
+    ] },
+  { id: 'q6', fnd: 4, type: 'mcq', short: 'Sunk cost in business',
+    stem: 'A studio has spent $40M on a film. Finishing it costs another $10M, and the finished film would earn $25M. Abandoning it earns nothing. What should they do?',
+    opts: [
+      { t: 'Finish it — $25M beats the $10M still required', ok: true },
+      { t: 'Abandon it, since $50M of total cost exceeds $25M of revenue', why: 'The $40M is sunk — it is lost under both options. Comparing total spend against revenue leads you to abandon a project that will return $25M for a further $10M.' },
+      { t: 'Finish it only if the total eventually exceeds $50M', why: 'That treats the sunk $40M as recoverable. It never is. The only live comparison is $10M more against $25M in.' },
+      { t: 'Abandon it to avoid throwing good money after bad', why: 'The phrase describes the opposite error. Here the extra $10M returns $25M — that is good money after a good marginal bet, on top of a loss that exists regardless.' }
+    ] },
+  { id: 'q7', fnd: 1, type: 'mcq', short: 'Positive but false',
+    stem: '"Raising the state sales tax by 1 point will increase state revenue by exactly 4%." Suppose this turns out to be false. The statement is:',
+    opts: [
+      { t: 'Positive, because evidence could settle it — being wrong does not make it normative', ok: true },
+      { t: 'Normative, because it turned out to be untrue', why: 'Truth and the positive/normative split are different axes. A positive statement is one that evidence <em>could</em> decide; it is free to be false.' },
+      { t: 'Neither, since it is a prediction rather than a fact', why: 'Predictions are positive statements — they are testable in principle, which is the whole criterion.' },
+      { t: 'Normative, because tax policy involves value judgements', why: 'The subject matter can be politically charged while the statement itself stays purely factual. This one makes no claim about what <em>should</em> happen.' }
+    ] },
+  { id: 'q8', fnd: 3, type: 'mcq', short: 'Opportunity cost of a gift',
+    stem: 'You receive a non-transferable, non-refundable ticket to a Saturday game. You would otherwise have worked a $120 shift, or studied (worth about $60 to you). The opportunity cost of attending is:',
+    opts: [
+      { t: '$120', ok: true },
+      { t: '$0, because the ticket was a gift', why: 'The ticket being free makes the <em>explicit</em> cost zero. The implicit cost — your Saturday — is unaffected by how you got the ticket.' },
+      { t: '$180', why: 'Summing the alternatives double-counts the same block of time. You could only have done one of them.' },
+      { t: 'The face value printed on the ticket', why: 'Face value is irrelevant: it is neither what you paid (nothing) nor what you gave up (the shift).' }
+    ] },
+  { id: 'q9', fnd: 2, type: 'classify', short: 'Direct or indirect',
+    stem: 'A city installs speed bumps on a residential street. Classify each outcome.',
+    cats: ['Direct effect', 'Indirect effect'],
+    rows: [
+      { t: 'Average traffic speed on that street falls', cat: 'Direct effect' },
+      { t: 'Some drivers reroute through an adjacent street, raising its traffic', cat: 'Indirect effect' },
+      { t: 'Ambulance response times to the street get slightly longer', cat: 'Indirect effect' },
+      { t: 'Collisions on the treated street decline', cat: 'Direct effect' }
+    ],
+    why: 'The test is whether the outcome is the one the policy was aiming at. Speed and collisions on the treated street are the target; everything that happens <em>elsewhere</em> or to <em>other objectives</em> is the indirect incentive at work.' },
+  { id: 'q10', fnd: 6, type: 'numeric', short: 'Total surplus',
+    stem: 'A seller would part with a bike for no less than $140. A buyer values it at $230. They settle at $185. What is the total value created by the trade?',
+    pre: '$', answer: 90, tol: 0,
+    why: '$230 − $140 = <strong>$90</strong>. Split: consumer surplus $45, producer surplus $45 — but you did not need the price to get the total. $185 is there to see whether you reach for the price; the total depends only on the two valuations.' },
+  { id: 'q11', fnd: 5, type: 'mcq', short: 'Average vs marginal',
+    stem: 'A gym\'s average cost per member is $42/month. Adding one more member to an under-capacity gym costs about $4/month. A prospect offers $20/month. Taking the offer:',
+    opts: [
+      { t: 'Adds $16/month, because the relevant comparison is marginal cost', ok: true },
+      { t: 'Loses $22/month, because $20 is below the $42 average cost', why: 'Average cost spreads fixed costs — building, equipment, staff — across members. Those do not change when one more person joins. Marginal decisions use marginal cost.' },
+      { t: 'Breaks even, since discounts cancel out across members', why: 'Nothing cancels. The gym receives $20 and incurs $4, a gain of $16.' },
+      { t: 'Cannot be evaluated without knowing total membership', why: 'Total membership would matter if the gym were at capacity — then the marginal cost would be much higher. The question states it is under capacity.' }
+    ] },
+  { id: 'q12', fnd: 1, type: 'mcq', short: 'Scarcity and the three questions',
+    stem: 'Why does every society, regardless of its politics, have to answer what to produce, how, and for whom?',
+    opts: [
+      { t: 'Because resources are scarce relative to wants, so not everything can be produced at once', ok: true },
+      { t: 'Because governments need to plan production', why: 'Market economies answer the three questions too — through prices rather than plans. The questions arise from scarcity, not from the existence of a planner.' },
+      { t: 'Because some goods are rare', why: 'Rarity of particular goods is not the driver. Even with abundant resources of every kind, unlimited wants would still force allocation choices.' },
+      { t: 'Because people have unequal incomes', why: 'Inequality shapes <em>who gets what</em>, but the three questions would still need answering in a perfectly equal society with scarce resources.' }
+    ] },
+  { id: 'q13', fnd: 3, type: 'mcq', short: 'Trade-offs vs scarcity',
+    stem: 'A student has 20 hours this week to split between a paid job and exam revision. The existence of this constraint is most directly an illustration of:',
+    opts: [
+      { t: 'Scarcity producing a trade-off — a limited resource that must be divided', ok: true },
+      { t: 'Opportunity cost, because hours spent revising are hours not earning', why: 'Opportunity cost appears once she <em>chooses</em> and we price the best forgone alternative. The question asks about the constraint itself, which is scarcity giving rise to a trade-off.' },
+      { t: 'Marginal thinking, because she will add hours one at a time', why: 'Marginal thinking is the method for <em>solving</em> the problem. The constraint existing is the trade-off.' },
+      { t: 'Incentives, because the job pays and revision does not', why: 'Pay will influence her choice, but the 20-hour limit is there regardless of what anything pays.' }
+    ] },
+  { id: 'q14', fnd: 6, type: 'mcq', short: 'Voluntary means both gain',
+    stem: 'Why can we normally infer that <em>both</em> parties to a voluntary trade expected to gain?',
+    opts: [
+      { t: 'Because either side could have refused, so agreeing reveals each expected to be better off', ok: true },
+      { t: 'Because the price is always set at the midpoint of their valuations', why: 'Prices land anywhere in the bargaining range depending on bargaining power. Both can gain at any price inside the range — the midpoint is not required.' },
+      { t: 'Because trades are regulated to protect both sides', why: 'Regulation is not what makes voluntary trade mutually beneficial. The ability to walk away is.' },
+      { t: 'Because both parties always have the same information', why: 'They often do not, which is why the inference is about <em>expected</em> gain. Symmetric information is not what the argument rests on.' }
+    ] },
+  { id: 'q15', fnd: 4, type: 'numeric', short: 'Opportunity cost with a wage change',
+    stem: 'Theo turns down 15 hours of overtime at $28/hour to attend a weekend workshop costing $190. Entry also requires $40 of materials he would not otherwise buy. What is the economic cost of the workshop?',
+    pre: '$', answer: 650, tol: 0,
+    why: 'Explicit: $190 + $40 = $230. Implicit: 15 × $28 = $420 of forgone wages. Total = <strong>$650</strong>. Answering $230 drops the implicit cost; answering $420 drops the explicit.' }
+];
+</script>
+
+<script>
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+var Store = (function () {
+  var KEY = 'econ1a.ch01.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return ['c2', 'c3', 'c4', 'c5', 'quiz'][tick - 1] || 'quiz'; }
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = {'#c1':1,'#c2':2,'#c3':3,'#c4':4,'#c5':5}[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+[1, 2, 3, 4, 5].forEach(function (t) { mountCheckpoint('ck' + t, t); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), Chapter 1 — the five foundations of economics.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A Chapter 1 (the five foundations) and currently have no outstanding missed items. ' +
+      'Quiz me on the hardest applications of opportunity cost, marginal thinking and tax-incidence-style reasoning.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>
