@@ -1,0 +1,17 @@
+{
+  "id": "ch06",
+  "file": "ch06-market-outcomes.html",
+  "num": "Chapter 06",
+  "title": "Chapter 06 — Market Outcomes",
+  "desc": "Consumer and producer surplus, why the competitive equilibrium maximises total surplus, and what price ceilings and floors destroy.",
+  "h1": "Measuring what a market is <em>worth</em>",
+  "intro": "Chapter 4 found the equilibrium; this one asks whether it was any good. Two triangles turn the diagram into a measure of value created — and then show exactly how much a well-meant price control burns.",
+  "stats": "4 chunks · 2 live models · 3 checkpoints · 10-question quiz",
+  "herotag": "surplus",
+  "herosub": "the value a market creates",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"30\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"18\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><polygon points=\"30,26 30,88 150,88\" fill=\"#D97757\" opacity=\"0.8\"/><polygon points=\"30,130 30,88 150,88\" fill=\"#788C5D\" opacity=\"0.75\"/><line x1=\"36\" y1=\"22\" x2=\"240\" y2=\"146\" stroke=\"#B85C3E\" stroke-width=\"2\"/><line x1=\"36\" y1=\"134\" x2=\"240\" y2=\"30\" stroke=\"#5A6B45\" stroke-width=\"2\"/><text x=\"58\" y=\"58\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#fff\">CS</text><text x=\"58\" y=\"112\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#fff\">PS</text></svg>",
+  "next": "Next: <strong>Chapter 07 — Tax incidence</strong>",
+  "anchors": ["c2", "c3", "quiz"],
+  "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3},
+  "toc": [["c0", "The two surpluses", "00"], ["c1", "Efficiency", "01"], ["c2", "Price controls", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Chapter quiz", "▸"]]
+}

@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 06 — Market Outcomes · ECN 1A study guide</title>
+<meta name="description" content="Consumer and producer surplus, why the competitive equilibrium maximises total surplus, and what price ceilings and floors destroy.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 06 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 06</div>
+      <h1>Measuring what a market is <em>worth</em></h1>
+      <p class="intro">Chapter 4 found the equilibrium; this one asks whether it was any good. Two triangles turn the diagram into a measure of value created — and then show exactly how much a well-meant price control burns.</p>
+      <div class="meta">4 chunks · 2 live models · 3 checkpoints · 10-question quiz</div>
+      <nav class="toc"><a href="#c0">The two surpluses <span class="n">00</span></a><a href="#c1">Efficiency <span class="n">01</span></a><a href="#c2">Price controls <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">surplus</span>
+      <div class="fig-h">the value a market creates</div>
+      <svg viewBox="0 0 280 180"><line x1="30" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="30" y1="150" x2="30" y2="18" stroke="#D1CFC5" stroke-width="1.5"/><polygon points="30,26 30,88 150,88" fill="#D97757" opacity="0.8"/><polygon points="30,130 30,88 150,88" fill="#788C5D" opacity="0.75"/><line x1="36" y1="22" x2="240" y2="146" stroke="#B85C3E" stroke-width="2"/><line x1="36" y1="134" x2="240" y2="30" stroke="#5A6B45" stroke-width="2"/><text x="58" y="58" font-family="ui-monospace,monospace" font-size="9" fill="#fff">CS</text><text x="58" y="112" font-family="ui-monospace,monospace" font-size="9" fill="#fff">PS</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Surplus is the gap between value and price</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    This is Chapter 1's single buyer and seller, scaled up to a whole market. The curves you already know
+    turn out to be lists of valuations.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Term</th><th>Is</th><th>On the diagram</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Willingness to pay</strong></td><td>The most a buyer would give up for a unit</td>
+            <td>The height of the <em>demand</em> curve at that unit</td></tr>
+        <tr><td><strong>Consumer surplus</strong></td><td>Willingness to pay − price actually paid</td>
+            <td>Area <em>under</em> demand and <em>above</em> the price</td></tr>
+        <tr><td><strong>Willingness to accept</strong></td><td>The least a seller would take, i.e. their cost</td>
+            <td>The height of the <em>supply</em> curve at that unit</td></tr>
+        <tr><td><strong>Producer surplus</strong></td><td>Price received − cost</td>
+            <td>Area <em>above</em> supply and <em>below</em> the price</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card accent">
+      <div class="label">Reading the curves as valuations</div>
+      <p style="margin-bottom:0">
+        The demand curve slopes down because buyers are <em>sorted</em>: the keenest buyer is served first,
+        and each later unit goes to someone who values it less. Supply slopes up for the mirror reason —
+        the cheapest producer goes first. So the vertical gap between the curves at any unit is the value
+        that unit creates, exactly as in Chapter 1.
+      </p>
+    </div>
+    <p>
+      Since both areas are triangles here, you can usually compute them with
+      <code>½ × base × height</code> — base is the quantity, height is the distance from the price to the
+      curve's intercept.
+    </p>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Why the equilibrium is efficient</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    <strong>Total surplus = consumer surplus + producer surplus.</strong> The competitive equilibrium
+    maximises it, and the reason is a marginal argument you already own from Chapter 1.
+  </p>
+  <div class="sec-body">
+    <p>
+      Every unit where willingness to pay exceeds cost is worth making — it creates surplus. Every unit
+      beyond that destroys surplus, because it costs more to make than anyone will pay. The quantity where
+      the curves cross is precisely where those two conditions meet. It is <strong>MB = MC</strong> again,
+      drawn at market scale.
+    </p>
+    <div class="card trap">
+      <div class="label">Efficient is not fair</div>
+      <p style="margin-bottom:0">
+        Maximum total surplus says nothing about how that surplus is <em>split</em>, or about who could
+        afford to participate at all. "The market outcome is efficient" and "the market outcome is just"
+        are different claims, and the second is normative. An exam answer that slides from one to the other
+        is making a value judgement it has not earned.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-sur">
+      <span class="tag">model · live</span>
+      <div class="ap-title">The two triangles</div>
+      <div class="ap-sub">Qd = 120 − 2P · Qs = −30 + 4P · areas integrated, not estimated</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="sur-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Buyers' top valuation (choke price)</span><span class="cv" id="sur-a-v">$60</span></div>
+            <input type="range" id="sur-a" min="40" max="90" step="2" value="60">
+            <div class="ch">Raises how much the keenest buyers would pay. Moves demand.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Cheapest seller's cost</span><span class="cv" id="sur-c-v">$7.5</span></div>
+            <input type="range" id="sur-c" min="0" max="30" step="2.5" value="7.5">
+            <div class="ch">Raises every seller's cost. Moves supply.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Equilibrium price</div><div class="rv" id="sur-ro-p">—</div></div>
+            <div class="ro"><div class="rl">Equilibrium quantity</div><div class="rv" id="sur-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="sur-ro-cs">—</div></div>
+            <div class="ro"><div class="rl">Producer surplus</div><div class="rv" id="sur-ro-ps">—</div></div>
+            <div class="ro hero"><div class="rl">Total surplus</div><div class="rv" id="sur-ro-ts">—</div></div>
+            <div class="ro good"><div class="rl">Buyers' share</div><div class="rv" id="sur-ro-sh">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="sur-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Surplus &amp; efficiency · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Price controls and what they burn</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    A control only does anything if it <em>binds</em>. When it does, trades that would have created value
+    stop happening, and that lost value is deadweight loss.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Control</th><th>Binds when</th><th>Produces</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Price ceiling</strong> — a legal maximum</td><td>Set <em>below</em> equilibrium</td>
+            <td>A shortage</td><td>Rent control</td></tr>
+        <tr><td><strong>Price floor</strong> — a legal minimum</td><td>Set <em>above</em> equilibrium</td>
+            <td>A surplus</td><td>Minimum wage</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">The direction that trips people up</div>
+      <p style="margin-bottom:0">
+        A ceiling is a <em>maximum</em>, so it only matters if it sits <strong>below</strong> where the
+        price wanted to be — a ceiling above the equilibrium is non-binding and changes nothing. A floor is
+        a <em>minimum</em>, so it bites from <strong>above</strong>. Draw the line before you reason about
+        it and the direction stops being a guess.
+      </p>
+    </div>
+    <p>
+      <strong>Deadweight loss</strong> is the surplus that simply disappears — not transferred to anyone,
+      just not created, because mutually beneficial trades were blocked. Watch the triangle open up.
+    </p>
+
+    <div class="applet" id="ap-pc">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Set a legal price</div>
+      <div class="ap-sub">free-market P* = $25, Q* = 70, total surplus $1,838</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pc-fig"></div>
+        <div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="pc-floor">
+            <label for="pc-floor">Make it a price <strong>floor</strong> (a legal minimum) rather than a ceiling</label>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>The legal price</span><span class="cv" id="pc-p-v">$18</span></div>
+            <input type="range" id="pc-p" min="10" max="42" step="1" value="18">
+            <div class="ch">Slide it past $25 and watch the control stop binding.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Binding?</div><div class="rv" id="pc-ro-bind">—</div></div>
+            <div class="ro"><div class="rl">Units traded</div><div class="rv" id="pc-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Gap</div><div class="rv" id="pc-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="pc-ro-cs">—</div></div>
+            <div class="ro"><div class="rl">Producer surplus</div><div class="rv" id="pc-ro-ps">—</div></div>
+            <div class="ro hero"><div class="rl">Deadweight loss</div><div class="rv" id="pc-ro-dwl">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pc-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Controls &amp; deadweight loss · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Four shapes, and the error each is built around.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Calculate consumer surplus"</td><td>½ × quantity × (choke price − price paid)</td>
+            <td>Using the price instead of the <em>distance</em> from the price to the intercept.</td></tr>
+        <tr><td>"Is this ceiling binding?"</td><td>Compare it with P*. Below → binding.</td>
+            <td>Assuming every control binds. A ceiling above P* does nothing at all.</td></tr>
+        <tr><td>"Who gains from the ceiling?"</td><td>Buyers who still get the good. Buyers shut out lose; sellers lose.</td>
+            <td>Saying "consumers gain" flatly — some consumers are rationed out entirely.</td></tr>
+        <tr><td>"Find the deadweight loss"</td><td>½ × (Q* − Q traded) × (vertical gap between the curves at Q traded)</td>
+            <td>Counting a transfer as a loss. Surplus moved from sellers to buyers is not destroyed.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Transfer vs loss — the distinction that carries the marks</div>
+      <p style="margin-bottom:0">
+        A binding ceiling does two different things. It <strong>transfers</strong> surplus from producers to
+        the consumers who still buy — that surplus still exists, just in different hands. And it
+        <strong>destroys</strong> the surplus on units no longer traded — that is the deadweight loss, and
+        nobody receives it. Only the second is a loss to society. Confusing the two is the most common
+        error in the whole chapter.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Transfers, losses &amp; method · plus callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled. Two items are area calculations — draw the triangle before you reach for a formula.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 6, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>The two triangles</td>
+            <td>Equilibrium from the linear system, then consumer and producer surplus as the exact areas between each curve and the price, and the buyers' share of the total.</td>
+            <td>Linear curves, so the areas really are triangles. Curved demand needs calculus for the same idea.</td></tr>
+        <tr><td>Price controls</td>
+            <td>Whether the control binds, the quantity traded as the short side, both surpluses at the controlled price by integration, and deadweight loss as the drop in total surplus.</td>
+            <td>No black market, no queueing cost, no quality degradation — all real responses to a binding ceiling, none of them on this diagram.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 06 of 07</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div>Next: <strong>Chapter 07 — Tax incidence</strong></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* Inverse curves: demand P = a - Q/2, supply P = c + Q/4.
+ * Defaults a = 60, c = 7.5 give P* = 25, Q* = 70 — the same market as Ch4. */
+function eqOf(a, c) {
+  var q = (a - c) / 0.75;
+  return { q: q, p: a - q / 2 };
+}
+function csOf(a, price, q) { return (a - price) * q / 2; }         // triangle under demand
+function psOf(c, price, q) { return (price - c) * q / 2; }         // triangle above supply
+
+/* =================================================================
+ * MODEL 1 — the two triangles at equilibrium.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var e = eqOf(p.a, p.c);
+    var cs = csOf(p.a, e.p, e.q), ps = psOf(p.c, e.p, e.q);
+    return { p: e.p, q: e.q, cs: cs, ps: ps, ts: cs + ps, share: cs / (cs + ps) };
+  }
+
+  function draw(p, m) {
+    var b = [], qm = Math.max(m.q * 1.5, 110), pm = p.a * 1.12;
+    var x = scale(0, qm, 48, 340), y = scale(0, pm, 230, 24);
+    b.push(line(48, 230, 344, 230, AX), line(48, 230, 48, 20, AX));
+    b.push(txt(48, 248, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(txt(44, 18, 'PRICE', { a: 'end', s: 8, f: FAINT, ls: 0.8 }));
+    // CS and PS as filled triangles
+    b.push('<polygon points="' + x(0) + ',' + y(p.a) + ' ' + x(0) + ',' + y(m.p) + ' ' + x(m.q) + ',' + y(m.p) + '" fill="' + CLAY + '" opacity="0.72"/>');
+    b.push('<polygon points="' + x(0) + ',' + y(p.c) + ' ' + x(0) + ',' + y(m.p) + ' ' + x(m.q) + ',' + y(m.p) + '" fill="' + OLIVE + '" opacity="0.68"/>');
+    b.push(line(x(0), y(p.a), x(2 * p.a), y(0), CLAYD, 2.2));
+    b.push(line(x(0), y(p.c), x(qm), y(p.c + qm / 4), '#5A6B45', 2.2));
+    b.push(line(48, y(m.p), x(m.q), y(m.p), INK, 1.5, '3 3'));
+    b.push(line(x(m.q), 230, x(m.q), y(m.p), INK, 1.5, '3 3'));
+    b.push('<circle cx="' + x(m.q) + '" cy="' + y(m.p) + '" r="5" fill="' + INK + '"/>');
+    b.push(txt(x(m.q * 0.26), y((p.a + m.p) / 2) + 4, 'CS', { a: 'middle', s: 11, f: '#fff' }));
+    b.push(txt(x(m.q * 0.26), y((p.c + m.p) / 2) + 4, 'PS', { a: 'middle', s: 11, f: '#fff' }));
+    b.push(txt(44, y(m.p) + 4, '$' + m.p.toFixed(0), { a: 'end', s: 9, f: INK }));
+    b.push(txt(x(m.q), 244, m.q.toFixed(0), { a: 'middle', s: 9, f: INK }));
+    // the split as one stacked bar
+    b.push(txt(48, 272, 'HOW THE TOTAL SPLITS', { s: 8, f: FAINT, ls: 0.8 }));
+    var w = 292, cw = w * m.share;
+    b.push(rect(48, 280, cw, 18, CLAY, 0));
+    b.push(rect(48 + cw, 280, w - cw, 18, OLIVE, 0));
+    b.push(txt(48 + cw / 2, 293, Math.round(m.share * 100) + '%', { a: 'middle', s: 9.5, f: '#fff' }));
+    b.push(txt(48 + cw + (w - cw) / 2, 293, Math.round((1 - m.share) * 100) + '%', { a: 'middle', s: 9.5, f: '#fff' }));
+    return svg('0 0 360 306', b.join(''));
+  }
+
+  function params() { return { a: +el('sur-a').value, c: +el('sur-c').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('sur-a-v').textContent = '$' + p.a;
+    el('sur-c-v').textContent = '$' + p.c;
+    el('sur-fig').innerHTML = draw(p, m);
+    el('sur-ro-p').textContent = '$' + m.p.toFixed(1);
+    el('sur-ro-q').textContent = m.q.toFixed(0);
+    el('sur-ro-cs').textContent = '$' + Math.round(m.cs).toLocaleString('en-US');
+    el('sur-ro-ps').textContent = '$' + Math.round(m.ps).toLocaleString('en-US');
+    el('sur-ro-ts').textContent = '$' + Math.round(m.ts).toLocaleString('en-US');
+    el('sur-ro-sh').textContent = Math.round(m.share * 100) + '%';
+    el('sur-note').innerHTML = '<strong>Total surplus $' + Math.round(m.ts).toLocaleString('en-US') +
+      ', split ' + Math.round(m.share * 100) + '/' + Math.round((1 - m.share) * 100) + ' between buyers and sellers.</strong> ' +
+      'Buyers capture the gap between what they would have paid and the $' + m.p.toFixed(0) + ' they did pay; ' +
+      'sellers capture the gap between that price and their costs. Raise the choke price and the demand curve ' +
+      'steepens away from the price line, so the buyers\' triangle grows — the market creates more value and ' +
+      'buyers take more of it. Note that no unit past ' + m.q.toFixed(0) + ' is worth making: beyond there, cost exceeds what anyone will pay.';
+    if (st) st.refresh();
+  }
+  ['a', 'c'].forEach(function (k) { el('sur-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-sur'), [
+    { t: 'The demand curve is a <strong>sorted list of valuations</strong> — keenest buyer first. Everyone above the price line pays less than the unit was worth to them.', lit: ['sur-ro-cs'], v: function (m) { return '$' + Math.round(m.cs).toLocaleString('en-US') + ' of consumer surplus'; } },
+    { t: 'Supply is the same list for sellers, cheapest first. Everyone below the price line is paid more than the unit cost them.', lit: ['sur-ro-ps'], v: function (m) { return '$' + Math.round(m.ps).toLocaleString('en-US') + ' of producer surplus'; } },
+    { t: 'Add them for <strong>total surplus</strong> — the value this market created out of differences in valuation, exactly as in Chapter 1 but with many traders.', lit: ['sur-ro-ts'], v: function (m) { return '$' + Math.round(m.ts).toLocaleString('en-US') + ' in total'; } },
+    { t: 'The equilibrium quantity maximises it. Every unit before it has value above cost; every unit after costs more than it is worth. That is MB = MC at market scale.', lit: ['sur-ro-q'], v: function (m) { return 'maximised at Q = ' + m.q.toFixed(0); } },
+    { t: 'Efficiency says nothing about the <strong>split</strong>. Move the sliders: the total can grow while one side takes a smaller share. Fairness is a separate, normative question.', lit: ['sur-ro-sh'], v: function (m) { return 'buyers take ' + Math.round(m.share * 100) + '%'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — a legal price. Binding or not, the short side, both
+ * surpluses by integration, and deadweight loss as the surplus that
+ * is simply never created.
+ * ================================================================= */
+(function () {
+  var A = 60, C = 7.5, E = eqOf(A, C), TS0 = csOf(A, E.p, E.q) + psOf(C, E.p, E.q);
+
+  function compute(p) {
+    var binds = p.floor ? p.p > E.p : p.p < E.p;
+    if (!binds) {
+      return { binds: false, price: E.p, q: E.q, gap: 0,
+               cs: csOf(A, E.p, E.q), ps: psOf(C, E.p, E.q), dwl: 0 };
+    }
+    var qd = 2 * (A - p.p), qs = 4 * (p.p - C);      // from the inverse curves
+    var q = Math.min(qd, qs);
+    // areas between each curve and the controlled price, over the units traded
+    var cs = (A - p.p) * q - q * q / 4;
+    var ps = (p.p - C) * q - q * q / 8;
+    return { binds: true, price: p.p, q: q, gap: qd - qs, cs: cs, ps: ps, dwl: TS0 - cs - ps };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, 110, 48, 340), y = scale(0, 66, 232, 24);
+    b.push(line(48, 232, 344, 232, AX), line(48, 232, 48, 20, AX));
+    b.push(txt(48, 250, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    if (m.binds) {
+      b.push('<polygon points="' + x(0) + ',' + y(A) + ' ' + x(0) + ',' + y(m.price) + ' ' + x(m.q) + ',' + y(m.price) + ' ' + x(m.q) + ',' + y(A - m.q / 2) + '" fill="' + CLAY + '" opacity="0.72"/>');
+      b.push('<polygon points="' + x(0) + ',' + y(C) + ' ' + x(0) + ',' + y(m.price) + ' ' + x(m.q) + ',' + y(m.price) + ' ' + x(m.q) + ',' + y(C + m.q / 4) + '" fill="' + OLIVE + '" opacity="0.68"/>');
+      // the deadweight-loss triangle, between the curves from q to q*
+      b.push('<polygon points="' + x(m.q) + ',' + y(A - m.q / 2) + ' ' + x(m.q) + ',' + y(C + m.q / 4) + ' ' + x(E.q) + ',' + y(E.p) + '" fill="#141413" opacity="0.5"/>');
+      b.push(txt(x((m.q + E.q) / 2) + 14, y(E.p) + 2, 'DWL', { s: 9.5, f: INK }));
+    } else {
+      b.push('<polygon points="' + x(0) + ',' + y(A) + ' ' + x(0) + ',' + y(E.p) + ' ' + x(E.q) + ',' + y(E.p) + '" fill="' + CLAY + '" opacity="0.72"/>');
+      b.push('<polygon points="' + x(0) + ',' + y(C) + ' ' + x(0) + ',' + y(E.p) + ' ' + x(E.q) + ',' + y(E.p) + '" fill="' + OLIVE + '" opacity="0.68"/>');
+    }
+    b.push(line(x(0), y(A), x(110), y(A - 55), CLAYD, 2.2));
+    b.push(line(x(0), y(C), x(110), y(C + 27.5), '#5A6B45', 2.2));
+    b.push(line(48, y(E.p), 340, y(E.p), AX, 1.5, '3 3'));
+    b.push(txt(344, y(E.p) - 4, 'P* $25', { a: 'end', s: 8.5, f: FAINT }));
+    b.push(line(48, y(p.p), 340, y(p.p), m.binds ? INK : FAINT, m.binds ? 2.5 : 1.5, m.binds ? '' : '2 3'));
+    b.push(txt(52, y(p.p) - 6, (p.floor ? 'floor' : 'ceiling') + ' $' + p.p, { s: 9.5, f: m.binds ? INK : FAINT }));
+    b.push(line(x(m.q), 232, x(m.q), y(m.price), INK, 1.5, '3 3'));
+    b.push(txt(x(m.q), 246, m.q.toFixed(0), { a: 'middle', s: 9, f: INK }));
+    return svg('0 0 360 258', b.join(''));
+  }
+
+  function params() { return { p: +el('pc-p').value, floor: el('pc-floor').checked }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('pc-p-v').textContent = '$' + p.p;
+    el('pc-fig').innerHTML = draw(p, m);
+    el('pc-ro-bind').textContent = m.binds ? 'binding' : 'not binding';
+    el('pc-ro-q').textContent = m.q.toFixed(0);
+    el('pc-ro-gap').textContent = !m.binds ? 'none'
+      : (m.gap > 0 ? 'shortage ' : 'surplus ') + Math.abs(m.gap).toFixed(0);
+    el('pc-ro-cs').textContent = '$' + Math.round(m.cs).toLocaleString('en-US');
+    el('pc-ro-ps').textContent = '$' + Math.round(m.ps).toLocaleString('en-US');
+    el('pc-ro-dwl').textContent = '$' + Math.round(m.dwl).toLocaleString('en-US');
+    var note;
+    if (!m.binds) {
+      note = '<strong>Not binding — the market ignores it.</strong> A ' + (p.floor ? 'floor' : 'ceiling') +
+        ' at $' + p.p + ' sits ' + (p.floor ? 'below' : 'above') + ' the $25 equilibrium, so the price the market ' +
+        'wanted is already legal. Nothing changes: same quantity, same surpluses, no deadweight loss. Half the marks on ' +
+        'control questions come from spotting this case rather than reflexively drawing a shortage.';
+    } else if (p.floor) {
+      note = '<strong>Binding floor: a surplus of ' + Math.abs(m.gap).toFixed(0) + ' units.</strong> ' +
+        'Sellers would supply far more at $' + p.p + ' than buyers will take, so only ' + m.q.toFixed(0) +
+        ' units trade — limited by <em>buyers</em> now. Sellers who still sell get a better price, but ' +
+        '$' + Math.round(m.dwl).toLocaleString('en-US') + ' of surplus is destroyed outright on the trades that no longer happen. ' +
+        'This is the minimum-wage diagram, with hours on the horizontal axis.';
+    } else {
+      note = '<strong>Binding ceiling: a shortage of ' + Math.abs(m.gap).toFixed(0) + ' units.</strong> ' +
+        'Only ' + m.q.toFixed(0) + ' units get made, against 70 before. Two separate things happened: surplus was ' +
+        '<em>transferred</em> from sellers to the buyers lucky enough to still buy, and $' +
+        Math.round(m.dwl).toLocaleString('en-US') + ' was <em>destroyed</em> — the dark triangle, which nobody receives. ' +
+        'Only that second part is the loss to society, and keeping the two apart is where the marks are.';
+    }
+    el('pc-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  el('pc-p').addEventListener('input', render);
+  el('pc-floor').addEventListener('change', render);
+  st = Stepper(el('ap-pc'), [
+    { t: 'First: does it <strong>bind</strong>? A ceiling only bites below the equilibrium price; a floor only bites above it.', lit: ['pc-ro-bind'], v: function (m) { return m.binds ? 'yes — the market cannot reach $25' : 'no — $25 is still legal'; } },
+    { t: 'If it binds, trade is capped by the <strong>short side</strong>: whichever of quantity demanded and quantity supplied is smaller at the legal price.', lit: ['pc-ro-q', 'pc-ro-gap'], v: function (m) { return m.q.toFixed(0) + ' units trade'; } },
+    { t: 'Recompute both surpluses over just those units. Some surplus has <em>moved</em> between buyers and sellers — a transfer, not a loss.', lit: ['pc-ro-cs', 'pc-ro-ps'], v: function (m) { return 'CS $' + Math.round(m.cs).toLocaleString('en-US') + ' · PS $' + Math.round(m.ps).toLocaleString('en-US'); } },
+    { t: 'What is left over is <strong>deadweight loss</strong>: surplus that used to exist and now exists nowhere, because trades worth making were blocked.', lit: ['pc-ro-dwl'], v: function (m) { return '$' + Math.round(m.dwl).toLocaleString('en-US') + ' destroyed'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch06", "title": "Chapter 06 \u2014 Market Outcomes", "anchors": ["c2", "c3", "quiz"], "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3}};
+var FND = ['Consumer surplus', 'Producer surplus', 'Efficiency', 'Price controls', 'Deadweight loss'];
+
+var BANK = [
+  { id: 'cs1', home: 1, fnd: 1, type: 'mcq', short: 'What CS measures',
+    stem: 'You would have paid $40 for a concert ticket. You bought one for $25. Your consumer surplus is:',
+    opts: [
+      { t: '$15', ok: true },
+      { t: '$25, the price you paid', why: 'The price is what you gave up, not what you gained. Surplus is the gap between value and price.' },
+      { t: '$40, what it was worth to you', why: 'That is your willingness to pay. You had to hand over $25 to get it, so only the $15 difference is surplus.' },
+      { t: '$65, the two added together', why: 'Adding value to price double counts. Surplus is always a difference.' }
+    ] },
+  { id: 'cs2', home: 1, fnd: 2, type: 'numeric', short: 'Computing CS',
+    stem: 'Demand is P = 60 − Q/2. At a price of $20, quantity demanded is 80. What is consumer surplus?',
+    pre: '$', answer: 1600, tol: 0,
+    why: 'The triangle is ½ × base × height = ½ × 80 × (60 − 20) = ½ × 80 × 40 = <strong>$1,600</strong>. The height is the <em>distance</em> from the price to the choke price, not the price itself — using 20 as the height gives $800, the standard wrong answer.' },
+  { id: 'cs3', home: 1, fnd: 3, type: 'mcq', short: 'Efficiency vs fairness',
+    stem: 'A market reaches its competitive equilibrium. Which claim is justified?',
+    opts: [
+      { t: 'Total surplus is maximised, which says nothing about how it is divided', ok: true },
+      { t: 'The outcome is fair to everyone involved', why: 'Fairness is a normative judgement. Efficiency only says that no reallocation of production could create more total value.' },
+      { t: 'Consumer and producer surplus are equal', why: 'The split depends on the relative slopes of the two curves and is usually unequal. Only the total is maximised.' },
+      { t: 'Everyone who wants the good can afford it', why: 'Buyers whose willingness to pay is below the price are shut out, and the outcome is still efficient — those units were not worth producing.' }
+    ] },
+
+  { id: 'pc1', home: 2, fnd: 4, type: 'mcq', short: 'When a ceiling binds',
+    stem: 'The equilibrium rent is $1,800. A city sets a rent ceiling of $2,200. What happens?',
+    opts: [
+      { t: 'Nothing — the ceiling is above equilibrium, so it does not bind', ok: true },
+      { t: 'A shortage, since rents are capped', why: 'A cap only matters if it stops the price reaching where it wanted to go. $1,800 is already legal under a $2,200 ceiling.' },
+      { t: 'Rents rise to $2,200', why: 'A ceiling is a maximum, not a target. Nothing pushes the market price up to it.' },
+      { t: 'A surplus of apartments', why: 'Surpluses come from binding <em>floors</em>. This control does nothing at all.' }
+    ] },
+  { id: 'pc2', home: 2, fnd: 4, type: 'mcq', short: 'Minimum wage shape',
+    stem: 'A minimum wage set above the equilibrium wage is an example of:',
+    opts: [
+      { t: 'A binding price floor, producing a surplus of labour — unemployment', ok: true },
+      { t: 'A binding price ceiling, producing a shortage of labour', why: 'A minimum is a floor, and it binds from above. Workers supply more hours than firms want at the higher wage, so the gap is a surplus.' },
+      { t: 'A non-binding floor', why: 'Set <em>above</em> equilibrium is exactly when a floor binds. Below equilibrium it would do nothing.' },
+      { t: 'A tax on employers', why: 'A tax drives a wedge between what one side pays and the other receives. A floor sets a single legal price.' }
+    ] },
+  { id: 'pc3', home: 2, fnd: 5, type: 'mcq', short: 'Where DWL comes from',
+    stem: 'Deadweight loss from a binding price ceiling represents:',
+    opts: [
+      { t: 'Surplus from mutually beneficial trades that no longer happen', ok: true },
+      { t: 'Surplus transferred from sellers to buyers', why: 'That transfer is real but it is not a loss — the surplus still exists, in different hands. Deadweight loss is surplus that exists nowhere.' },
+      { t: 'The money the government collects', why: 'A price control collects nothing. Even with a tax, revenue is a transfer rather than a deadweight loss.' },
+      { t: 'The higher prices buyers now pay', why: 'A binding ceiling lowers the price buyers pay. And in any case a price change moves surplus around rather than destroying it.' }
+    ] },
+
+  { id: 'dw1', home: 3, fnd: 5, type: 'numeric', short: 'Computing DWL',
+    stem: 'A control cuts quantity from 70 to 50. At 50 units, buyers value the good at $35 and sellers\' cost is $20. What is the deadweight loss?',
+    pre: '$', answer: 150, tol: 0,
+    why: 'The triangle is ½ × (70 − 50) × ($35 − $20) = ½ × 20 × 15 = <strong>$150</strong>. The base is the units <em>lost</em> and the height is the vertical gap between the curves at the new quantity.' },
+  { id: 'dw2', home: 3, fnd: 3, type: 'mcq', short: 'Transfer or loss',
+    stem: 'A binding rent ceiling leaves tenants who keep their flats paying $400 less per month. That $400 is:',
+    opts: [
+      { t: 'A transfer from landlords to those tenants, not a deadweight loss', ok: true },
+      { t: 'Deadweight loss, since landlords lost it', why: 'Deadweight loss is surplus nobody holds. This $400 is held by the tenant every month — it moved rather than vanished.' },
+      { t: 'A gain to society, since tenants need it more', why: 'Who needs it more is a normative judgement. In surplus accounting a dollar moved is a dollar moved.' },
+      { t: 'Neither — surplus is unchanged by price changes', why: 'The <em>total</em> is unchanged by a pure transfer, but each side\'s share certainly changes, which is what this question is about.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 1, type: 'numeric', short: 'CS from a diagram',
+    stem: 'Demand is P = 100 − 2Q. The market price is $40 and 30 units are sold. What is consumer surplus?',
+    pre: '$', answer: 900, tol: 0,
+    why: '½ × 30 × (100 − 40) = ½ × 30 × 60 = <strong>$900</strong>. Check the quantity is consistent: at P = 40, 40 = 100 − 2Q gives Q = 30 ✓.' },
+  { id: 'q2', fnd: 4, type: 'classify', short: 'Binding or not',
+    stem: 'Equilibrium price is $50. Classify each control.',
+    cats: ['Binding', 'Not binding'],
+    rows: [
+      { t: 'A price ceiling of $35', cat: 'Binding' },
+      { t: 'A price ceiling of $70', cat: 'Not binding' },
+      { t: 'A price floor of $65', cat: 'Binding' },
+      { t: 'A price floor of $40', cat: 'Not binding' }
+    ],
+    why: 'A ceiling is a maximum, so it binds only <em>below</em> equilibrium. A floor is a minimum, so it binds only <em>above</em> it. Anything on the other side leaves the equilibrium price perfectly legal, so nothing happens.' },
+  { id: 'q3', fnd: 2, type: 'mcq', short: 'Producer surplus',
+    stem: 'A farmer would accept $3 per kilo. The market price is $8 and she sells 200 kilos. Her producer surplus is:',
+    opts: [
+      { t: '$1,000', ok: true },
+      { t: '$1,600, her total revenue', why: 'Revenue is price × quantity. Surplus is what is left after the cost of supplying those units — here $5 per kilo.' },
+      { t: '$600, her total cost', why: 'That is the cost side alone. Surplus is the gap between what she received and that cost.' },
+      { t: '$5, the gap per kilo', why: 'That is the per-unit surplus. The question asks for her total, so multiply by the 200 kilos.' }
+    ] },
+  { id: 'q4', fnd: 3, type: 'mcq', short: 'Why Q* is efficient',
+    stem: 'Why does the competitive equilibrium quantity maximise total surplus?',
+    opts: [
+      { t: 'Every unit before it is worth more than it costs, and every unit after costs more than it is worth', ok: true },
+      { t: 'Because consumer and producer surplus are equalised there', why: 'They are generally unequal at equilibrium. What is maximised is the sum, not the balance.' },
+      { t: 'Because the price is as low as possible', why: 'The equilibrium price is not the lowest possible — a binding ceiling is lower, and it destroys surplus.' },
+      { t: 'Because quantity is as large as possible', why: 'More units can be produced, but they would cost more than buyers value them, which reduces total surplus.' }
+    ] },
+  { id: 'q5', fnd: 5, type: 'mcq', short: 'Elasticity and DWL',
+    stem: 'A binding price ceiling causes a larger deadweight loss when:',
+    opts: [
+      { t: 'Supply and demand are more elastic, so quantity falls further', ok: true },
+      { t: 'Supply and demand are more inelastic', why: 'Inelastic curves mean quantity barely moves, so few trades are lost and the triangle is small. Deadweight loss comes from <em>lost trades</em>.' },
+      { t: 'The good is a necessity', why: 'Necessities tend to be inelastic, which makes the loss smaller, not larger.' },
+      { t: 'Elasticity has no effect on deadweight loss', why: 'Elasticity determines how much quantity responds, and the lost quantity is the base of the triangle.' }
+    ] },
+  { id: 'q6', fnd: 4, type: 'mcq', short: 'Who loses from a ceiling',
+    stem: 'Rent control binds in a city. Which group is unambiguously worse off?',
+    opts: [
+      { t: 'Landlords, and renters who can no longer find a flat at all', ok: true },
+      { t: 'All renters, since quality falls', why: 'Quality effects are real but off this diagram. Renters who keep a flat pay less and are better off in surplus terms.' },
+      { t: 'Nobody — a ceiling only transfers surplus', why: 'It transfers <em>and</em> destroys. The deadweight loss triangle falls on would-be traders who are shut out.' },
+      { t: 'Only the government', why: 'The government neither pays nor collects under a price control.' }
+    ] },
+  { id: 'q7', fnd: 1, type: 'mcq', short: 'What the demand curve height is',
+    stem: 'The height of the demand curve at a given unit tells you:',
+    opts: [
+      { t: 'The most some buyer would pay for that unit', ok: true },
+      { t: 'The price everyone pays', why: 'Everyone pays the single market price. The curve\'s height is each buyer\'s <em>maximum</em>, which is why surplus exists at all.' },
+      { t: 'The cost of producing that unit', why: 'That is the height of the <em>supply</em> curve. Demand describes buyers, supply describes costs.' },
+      { t: 'The quantity demanded at that price', why: 'Quantity is read off the horizontal axis. The height is a valuation.' }
+    ] },
+  { id: 'q8', fnd: 5, type: 'mcq', short: 'DWL from a floor',
+    stem: 'A binding price floor is imposed. Compared with the free market, the quantity traded:',
+    opts: [
+      { t: 'Falls, because buyers demand less at the higher price', ok: true },
+      { t: 'Rises, because sellers supply more', why: 'Sellers do want to supply more, but nobody can sell what buyers will not buy. Trade is capped by the short side, which is now demand.' },
+      { t: 'Is unchanged, since the quantity is set by equilibrium', why: 'The equilibrium is exactly what the floor prevents. Quantity is determined by whichever side is smaller at the legal price.' },
+      { t: 'Depends on whether the good is normal or inferior', why: 'Normal versus inferior concerns income effects, not the mechanics of a binding floor.' }
+    ] },
+  { id: 'q9', fnd: 2, type: 'mcq', short: 'Surplus and the price',
+    stem: 'The market price falls while quantity traded rises along a fixed demand curve. Consumer surplus:',
+    opts: [
+      { t: 'Rises — buyers pay less and more of them buy', ok: true },
+      { t: 'Falls, because sellers receive less', why: 'Sellers receiving less reduces <em>producer</em> surplus. The question asks about buyers, who are better off.' },
+      { t: 'Is unchanged, because it is a transfer', why: 'Some of it is a transfer from sellers, but the consumer surplus triangle unambiguously grows when the price falls along a fixed demand curve.' },
+      { t: 'Cannot be determined without elasticity', why: 'Elasticity affects how much it rises, not whether. A lower price on a fixed demand curve always raises consumer surplus.' }
+    ] },
+  { id: 'q10', fnd: 3, type: 'mcq', short: 'Linking back to Chapter 1',
+    stem: 'Total surplus in a market is the many-trader version of which Chapter 1 idea?',
+    opts: [
+      { t: 'Trade creates value, because buyers and sellers value the good differently', ok: true },
+      { t: 'Scarcity, because resources are limited', why: 'Scarcity is why the curves slope at all, but surplus specifically measures the <em>gains from exchange</em>.' },
+      { t: 'Incentives, because prices change behaviour', why: 'Prices do give incentives, but surplus measures value created rather than behaviour changed.' },
+      { t: 'Trade-offs, because buying one thing means not buying another', why: 'Trade-offs shape the demand curve\'s position. Surplus is the gap between valuation and price, which is the trade-creates-value idea.' }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>

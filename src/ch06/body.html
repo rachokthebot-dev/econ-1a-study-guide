@@ -1,0 +1,238 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Surplus is the gap between value and price</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    This is Chapter 1's single buyer and seller, scaled up to a whole market. The curves you already know
+    turn out to be lists of valuations.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Term</th><th>Is</th><th>On the diagram</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Willingness to pay</strong></td><td>The most a buyer would give up for a unit</td>
+            <td>The height of the <em>demand</em> curve at that unit</td></tr>
+        <tr><td><strong>Consumer surplus</strong></td><td>Willingness to pay − price actually paid</td>
+            <td>Area <em>under</em> demand and <em>above</em> the price</td></tr>
+        <tr><td><strong>Willingness to accept</strong></td><td>The least a seller would take, i.e. their cost</td>
+            <td>The height of the <em>supply</em> curve at that unit</td></tr>
+        <tr><td><strong>Producer surplus</strong></td><td>Price received − cost</td>
+            <td>Area <em>above</em> supply and <em>below</em> the price</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card accent">
+      <div class="label">Reading the curves as valuations</div>
+      <p style="margin-bottom:0">
+        The demand curve slopes down because buyers are <em>sorted</em>: the keenest buyer is served first,
+        and each later unit goes to someone who values it less. Supply slopes up for the mirror reason —
+        the cheapest producer goes first. So the vertical gap between the curves at any unit is the value
+        that unit creates, exactly as in Chapter 1.
+      </p>
+    </div>
+    <p>
+      Since both areas are triangles here, you can usually compute them with
+      <code>½ × base × height</code> — base is the quantity, height is the distance from the price to the
+      curve's intercept.
+    </p>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Why the equilibrium is efficient</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    <strong>Total surplus = consumer surplus + producer surplus.</strong> The competitive equilibrium
+    maximises it, and the reason is a marginal argument you already own from Chapter 1.
+  </p>
+  <div class="sec-body">
+    <p>
+      Every unit where willingness to pay exceeds cost is worth making — it creates surplus. Every unit
+      beyond that destroys surplus, because it costs more to make than anyone will pay. The quantity where
+      the curves cross is precisely where those two conditions meet. It is <strong>MB = MC</strong> again,
+      drawn at market scale.
+    </p>
+    <div class="card trap">
+      <div class="label">Efficient is not fair</div>
+      <p style="margin-bottom:0">
+        Maximum total surplus says nothing about how that surplus is <em>split</em>, or about who could
+        afford to participate at all. "The market outcome is efficient" and "the market outcome is just"
+        are different claims, and the second is normative. An exam answer that slides from one to the other
+        is making a value judgement it has not earned.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-sur">
+      <span class="tag">model · live</span>
+      <div class="ap-title">The two triangles</div>
+      <div class="ap-sub">Qd = 120 − 2P · Qs = −30 + 4P · areas integrated, not estimated</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="sur-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Buyers' top valuation (choke price)</span><span class="cv" id="sur-a-v">$60</span></div>
+            <input type="range" id="sur-a" min="40" max="90" step="2" value="60">
+            <div class="ch">Raises how much the keenest buyers would pay. Moves demand.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Cheapest seller's cost</span><span class="cv" id="sur-c-v">$7.5</span></div>
+            <input type="range" id="sur-c" min="0" max="30" step="2.5" value="7.5">
+            <div class="ch">Raises every seller's cost. Moves supply.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Equilibrium price</div><div class="rv" id="sur-ro-p">—</div></div>
+            <div class="ro"><div class="rl">Equilibrium quantity</div><div class="rv" id="sur-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="sur-ro-cs">—</div></div>
+            <div class="ro"><div class="rl">Producer surplus</div><div class="rv" id="sur-ro-ps">—</div></div>
+            <div class="ro hero"><div class="rl">Total surplus</div><div class="rv" id="sur-ro-ts">—</div></div>
+            <div class="ro good"><div class="rl">Buyers' share</div><div class="rv" id="sur-ro-sh">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="sur-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Surplus &amp; efficiency · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Price controls and what they burn</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    A control only does anything if it <em>binds</em>. When it does, trades that would have created value
+    stop happening, and that lost value is deadweight loss.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Control</th><th>Binds when</th><th>Produces</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Price ceiling</strong> — a legal maximum</td><td>Set <em>below</em> equilibrium</td>
+            <td>A shortage</td><td>Rent control</td></tr>
+        <tr><td><strong>Price floor</strong> — a legal minimum</td><td>Set <em>above</em> equilibrium</td>
+            <td>A surplus</td><td>Minimum wage</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">The direction that trips people up</div>
+      <p style="margin-bottom:0">
+        A ceiling is a <em>maximum</em>, so it only matters if it sits <strong>below</strong> where the
+        price wanted to be — a ceiling above the equilibrium is non-binding and changes nothing. A floor is
+        a <em>minimum</em>, so it bites from <strong>above</strong>. Draw the line before you reason about
+        it and the direction stops being a guess.
+      </p>
+    </div>
+    <p>
+      <strong>Deadweight loss</strong> is the surplus that simply disappears — not transferred to anyone,
+      just not created, because mutually beneficial trades were blocked. Watch the triangle open up.
+    </p>
+
+    <div class="applet" id="ap-pc">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Set a legal price</div>
+      <div class="ap-sub">free-market P* = $25, Q* = 70, total surplus $1,838</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pc-fig"></div>
+        <div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="pc-floor">
+            <label for="pc-floor">Make it a price <strong>floor</strong> (a legal minimum) rather than a ceiling</label>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>The legal price</span><span class="cv" id="pc-p-v">$18</span></div>
+            <input type="range" id="pc-p" min="10" max="42" step="1" value="18">
+            <div class="ch">Slide it past $25 and watch the control stop binding.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Binding?</div><div class="rv" id="pc-ro-bind">—</div></div>
+            <div class="ro"><div class="rl">Units traded</div><div class="rv" id="pc-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Gap</div><div class="rv" id="pc-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="pc-ro-cs">—</div></div>
+            <div class="ro"><div class="rl">Producer surplus</div><div class="rv" id="pc-ro-ps">—</div></div>
+            <div class="ro hero"><div class="rl">Deadweight loss</div><div class="rv" id="pc-ro-dwl">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pc-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Controls &amp; deadweight loss · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Four shapes, and the error each is built around.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Calculate consumer surplus"</td><td>½ × quantity × (choke price − price paid)</td>
+            <td>Using the price instead of the <em>distance</em> from the price to the intercept.</td></tr>
+        <tr><td>"Is this ceiling binding?"</td><td>Compare it with P*. Below → binding.</td>
+            <td>Assuming every control binds. A ceiling above P* does nothing at all.</td></tr>
+        <tr><td>"Who gains from the ceiling?"</td><td>Buyers who still get the good. Buyers shut out lose; sellers lose.</td>
+            <td>Saying "consumers gain" flatly — some consumers are rationed out entirely.</td></tr>
+        <tr><td>"Find the deadweight loss"</td><td>½ × (Q* − Q traded) × (vertical gap between the curves at Q traded)</td>
+            <td>Counting a transfer as a loss. Surplus moved from sellers to buyers is not destroyed.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Transfer vs loss — the distinction that carries the marks</div>
+      <p style="margin-bottom:0">
+        A binding ceiling does two different things. It <strong>transfers</strong> surplus from producers to
+        the consumers who still buy — that surplus still exists, just in different hands. And it
+        <strong>destroys</strong> the surplus on units no longer traded — that is the deadweight loss, and
+        nobody receives it. Only the second is a loss to society. Confusing the two is the most common
+        error in the whole chapter.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Transfers, losses &amp; method · plus callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled. Two items are area calculations — draw the triangle before you reach for a formula.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 6, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>The two triangles</td>
+            <td>Equilibrium from the linear system, then consumer and producer surplus as the exact areas between each curve and the price, and the buyers' share of the total.</td>
+            <td>Linear curves, so the areas really are triangles. Curved demand needs calculus for the same idea.</td></tr>
+        <tr><td>Price controls</td>
+            <td>Whether the control binds, the quantity traded as the short side, both surpluses at the controlled price by integration, and deadweight loss as the drop in total surplus.</td>
+            <td>No black market, no queueing cost, no quality degradation — all real responses to a binding ceiling, none of them on this diagram.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
