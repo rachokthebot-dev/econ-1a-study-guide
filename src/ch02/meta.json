@@ -1,0 +1,17 @@
+{
+  "id": "ch02",
+  "file": "ch02-gains-from-trade.html",
+  "num": "Chapter 02",
+  "title": "Chapter 02 — Gains from Trade",
+  "desc": "Absolute vs comparative advantage, computing opportunity cost from output, specialisation and the terms of trade — two live models and a chapter quiz.",
+  "h1": "Why the <em>worse</em> producer still gets the job",
+  "intro": "The one chapter where the right answer offends common sense: a country that is worse at making everything still has something worth specialising in, and both sides end up with more. The arithmetic is short, and the exam tests it relentlessly.",
+  "stats": "4 chunks · 2 live models · 3 checkpoints · 10-question quiz",
+  "herotag": "opportunity cost",
+  "herosub": "who should make laptops",
+  "hero": "<svg viewBox=\"0 0 280 180\"><text x=\"12\" y=\"22\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#87867F\" letter-spacing=\"1\">COST OF 1 LAPTOP, IN AVOCADOS</text><line x1=\"12\" y1=\"150\" x2=\"268\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><rect x=\"40\" y=\"88\" width=\"62\" height=\"62\" rx=\"5\" fill=\"#D97757\"/><text x=\"71\" y=\"80\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"13\" fill=\"#B85C3E\">2</text><text x=\"71\" y=\"166\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#3D3D3A\">Ridge</text><rect x=\"150\" y=\"26\" width=\"62\" height=\"124\" rx=\"5\" fill=\"#E3DACC\"/><text x=\"181\" y=\"18\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"13\" fill=\"#3D3D3A\">4</text><text x=\"181\" y=\"166\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#3D3D3A\">Vale</text><text x=\"71\" y=\"120\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"8\" fill=\"#fff\" letter-spacing=\"0.5\">CHEAPER</text></svg>",
+  "next": "Next: <strong>Chapter 03 — Production possibilities</strong>",
+  "anchors": ["c2", "c3", "quiz"],
+  "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3},
+  "toc": [["c0", "The two advantages", "00"], ["c1", "Computing opportunity cost", "01"], ["c2", "Specialise and trade", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Chapter quiz", "▸"]]
+}

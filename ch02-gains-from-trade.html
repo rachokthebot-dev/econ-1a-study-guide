@@ -1,0 +1,1485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 02 — Gains from Trade · ECN 1A study guide</title>
+<meta name="description" content="Absolute vs comparative advantage, computing opportunity cost from output, specialisation and the terms of trade — two live models and a chapter quiz.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 02 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 02</div>
+      <h1>Why the <em>worse</em> producer still gets the job</h1>
+      <p class="intro">The one chapter where the right answer offends common sense: a country that is worse at making everything still has something worth specialising in, and both sides end up with more. The arithmetic is short, and the exam tests it relentlessly.</p>
+      <div class="meta">4 chunks · 2 live models · 3 checkpoints · 10-question quiz</div>
+      <nav class="toc"><a href="#c0">The two advantages <span class="n">00</span></a><a href="#c1">Computing opportunity cost <span class="n">01</span></a><a href="#c2">Specialise and trade <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">opportunity cost</span>
+      <div class="fig-h">who should make laptops</div>
+      <svg viewBox="0 0 280 180"><text x="12" y="22" font-family="ui-monospace,monospace" font-size="9" fill="#87867F" letter-spacing="1">COST OF 1 LAPTOP, IN AVOCADOS</text><line x1="12" y1="150" x2="268" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><rect x="40" y="88" width="62" height="62" rx="5" fill="#D97757"/><text x="71" y="80" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#B85C3E">2</text><text x="71" y="166" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#3D3D3A">Ridge</text><rect x="150" y="26" width="62" height="124" rx="5" fill="#E3DACC"/><text x="181" y="18" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#3D3D3A">4</text><text x="181" y="166" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#3D3D3A">Vale</text><text x="71" y="120" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#fff" letter-spacing="0.5">CHEAPER</text></svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ chunk 0 ============================ -->
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Two different advantages</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Nearly every lost mark in this chapter comes from confusing these two. Get the distinction solid here
+    and the rest is arithmetic.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Term</th><th>Means</th><th>Measured by</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Absolute advantage</strong></td>
+            <td>Producing <em>more</em> of a good with the same resources</td>
+            <td>Output per worker-hour. Just compare the two numbers.</td></tr>
+        <tr><td><strong>Comparative advantage</strong></td>
+            <td>Producing a good at a <em>lower opportunity cost</em></td>
+            <td>What you give up of the other good. Requires a ratio, not a comparison.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">The result that decides the chapter</div>
+      <p style="margin-bottom:0">
+        One party can hold <strong>absolute advantage in everything</strong>. No party can hold
+        <strong>comparative advantage in everything</strong> — it is arithmetically impossible, because
+        opportunity costs are reciprocals. If you are the cheaper producer of laptops in forgone avocados,
+        you are necessarily the <em>dearer</em> producer of avocados in forgone laptops. Trade follows
+        comparative advantage, so there is always something for each side to do.
+      </p>
+    </div>
+    <p>
+      A surgeon may be the fastest typist in the hospital. She still does not type her own notes, because
+      an hour of her typing costs an hour of surgery. Absolute advantage in typing, comparative advantage
+      in surgery — and the slower typist gets the work.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ chunk 1 ============================ -->
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Computing opportunity cost from a table</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    This is the mechanical skill the exam actually grades. Two goods, two producers, four numbers — and a
+    division you must do in the right direction.
+  </p>
+  <div class="sec-body">
+    <div class="card accent">
+      <div class="label">The rule, and how to not invert it</div>
+      <p style="margin-bottom:0">
+        For the opportunity cost of <strong>one laptop</strong>, put laptops <em>underneath</em>:
+        <code>avocados ÷ laptops</code>. The good you are pricing goes on the bottom. Say it out loud —
+        "cost of one laptop, so laptops on the bottom" — because inverting this is the single most common
+        error in the chapter, and it flips which country should specialise in what.
+      </p>
+    </div>
+    <p>
+      Push the four production numbers below. Notice you can give one country absolute advantage in both
+      goods and <em>still</em> get a clean division of labour out of the opportunity costs.
+    </p>
+
+    <div class="applet" id="ap-ca">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Who should make what</div>
+      <div class="ap-sub">output per day · opportunity costs computed both directions</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="ca-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Ridge — laptops/day</span><span class="cv" id="ca-al-v">100</span></div>
+            <input type="range" id="ca-al" min="10" max="200" step="10" value="100">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Ridge — avocados/day</span><span class="cv" id="ca-aa-v">200</span></div>
+            <input type="range" id="ca-aa" min="10" max="400" step="10" value="200">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Vale — laptops/day</span><span class="cv" id="ca-bl-v">40</span></div>
+            <input type="range" id="ca-bl" min="10" max="200" step="10" value="40">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Vale — avocados/day</span><span class="cv" id="ca-ba-v">160</span></div>
+            <input type="range" id="ca-ba" min="10" max="400" step="10" value="160">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Ridge: 1 laptop costs</div><div class="rv" id="ca-ro-a1">—</div></div>
+            <div class="ro"><div class="rl">Vale: 1 laptop costs</div><div class="rv" id="ca-ro-b1">—</div></div>
+            <div class="ro"><div class="rl">Absolute adv.</div><div class="rv" id="ca-ro-abs">—</div></div>
+            <div class="ro hero"><div class="rl">Laptops made by</div><div class="rv" id="ca-ro-cmp">—</div></div>
+            <div class="ro good"><div class="rl">Avocados made by</div><div class="rv" id="ca-ro-cmp2">—</div></div>
+            <div class="ro"><div class="rl">Terms of trade</div><div class="rv" id="ca-ro-tot">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="ca-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Advantages &amp; opportunity cost · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 2 ============================ -->
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Specialise, then trade</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    Knowing who should make what is half the answer. The other half is the exchange rate between the two
+    goods, and the fact that only a band of rates leaves both sides better off.
+  </p>
+  <div class="sec-body">
+    <p>
+      Each side specialises where its opportunity cost is lower, then swaps. The exchange rate — how many
+      avocados buy one laptop — is the <strong>terms of trade</strong>, and it must sit
+      <em>between the two opportunity costs</em>. Outside that band one side would rather make the good
+      itself, so it refuses, exactly like the price slider in Chapter 1.
+    </p>
+    <div class="card">
+      <div class="label">Why the band is where it is</div>
+      <p style="margin-bottom:0">
+        Ridge gives up 2 avocados to make a laptop, so it will not sell one for less than 2. Vale gives up
+        4, so it will not pay more than 4. Any rate strictly between 2 and 4 beats self-sufficiency for
+        both. The two opportunity costs are the floor and the ceiling — that is <em>all</em> the band is.
+      </p>
+    </div>
+    <p>
+      But a rate inside the band is necessary, not sufficient: the <em>volume</em> matters too. Move both
+      sliders and watch the "both gain" verdict flip.
+    </p>
+
+    <div class="applet" id="ap-tot">
+      <span class="tag">model · live</span>
+      <div class="ap-title">The deal, and whether it is actually a deal</div>
+      <div class="ap-sub">Ridge 100L or 200A · Vale 40L or 160A · consumption vs going it alone</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tot-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Terms of trade — avocados per laptop</span><span class="cv" id="tot-t-v">3.0</span></div>
+            <input type="range" id="tot-t" min="1" max="5" step="0.1" value="3">
+            <div class="ch">Must land between the two opportunity costs, 2 and 4.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Laptops Ridge exports</span><span class="cv" id="tot-e-v">25</span></div>
+            <input type="range" id="tot-e" min="5" max="60" step="1" value="25">
+            <div class="ch">The volume. A fair rate on the wrong volume still fails someone.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Ridge consumes</div><div class="rv" id="tot-ro-a">—</div></div>
+            <div class="ro"><div class="rl">Alone, Ridge had</div><div class="rv" id="tot-ro-a0">70L 60A</div></div>
+            <div class="ro"><div class="rl">Vale consumes</div><div class="rv" id="tot-ro-b">—</div></div>
+            <div class="ro"><div class="rl">Alone, Vale had</div><div class="rv" id="tot-ro-b0">20L 80A</div></div>
+            <div class="ro hero"><div class="rl">Verdict</div><div class="rv" id="tot-ro-v">—</div></div>
+            <div class="ro good"><div class="rl">World output gain</div><div class="rv" id="tot-ro-w">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tot-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Specialisation &amp; terms of trade · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 3 ============================ -->
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">
+    Four recurring question shapes, and the error each one is hunting for.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap being set</th></tr></thead>
+      <tbody>
+        <tr><td>"Who has absolute advantage?"</td>
+            <td>Compare raw output. No division.</td>
+            <td>Students divide anyway and answer the comparative question.</td></tr>
+        <tr><td>"Who has comparative advantage in X?"</td>
+            <td><code>other ÷ X</code> for both. Lower wins.</td>
+            <td>Inverting the ratio, which reverses the answer.</td></tr>
+        <tr><td>"Give an acceptable terms of trade"</td>
+            <td>Any number strictly between the two opportunity costs.</td>
+            <td>Quoting a rate equal to one cost — that side is indifferent, so it isn't a gain.</td></tr>
+        <tr><td>"Can both gain if one is better at everything?"</td>
+            <td>Yes. Say <em>why</em>: comparative advantage cannot be held in both goods.</td>
+            <td>Answering "no" from intuition.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Three more things that cost marks</div>
+      <ul style="margin-bottom:0">
+        <li><strong>Units.</strong> "2 avocados per laptop" and "0.5 laptops per avocado" are the same fact.
+          State which good you are pricing or the answer is unmarkable.</li>
+        <li><strong>Identical opportunity costs.</strong> If both sides give up the same amount, there is
+          <em>no</em> comparative advantage and no gain from trade. This case appears on exams specifically
+          to see whether you noticed.</li>
+        <li><strong>More output ≠ gains from trade.</strong> Gains come from reallocating production toward
+          lower-cost producers, not from anyone working harder.</li>
+      </ul>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Exam patterns · plus callbacks from across the chapter</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ quiz ============================ -->
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">
+    Shuffled rather than blocked. Several items give you a production table and nothing else — that is the
+    exam's favourite shape.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 2, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<!-- ============================ ledger ============================ -->
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Who makes what</td>
+            <td>Both opportunity costs in both directions, absolute advantage, comparative advantage, and the terms-of-trade band — all from the four output numbers.</td>
+            <td>Constant opportunity cost (straight-line PPCs). Chapter 3 bends them.</td></tr>
+        <tr><td>The deal</td>
+            <td>Specialised output, the swap at your terms of trade, each side's final consumption, the comparison against going it alone, and the change in world output.</td>
+            <td>Two goods, two parties, no transport cost, and a fixed self-sufficiency baseline (Ridge 70L+60A, Vale 20L+80A).</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 02 of 07</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div>Next: <strong>Chapter 03 — Production possibilities</strong></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* =================================================================
+ * MODEL 1 — who should make what. Four output numbers in; both
+ * opportunity costs, both advantages and the terms-of-trade band out.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var aCostL = p.aa / p.al, bCostL = p.ba / p.bl;   // avocados given up per laptop
+    var aCostA = p.al / p.aa, bCostA = p.bl / p.ba;   // laptops given up per avocado
+    var tie = Math.abs(aCostL - bCostL) < 1e-9;
+    return {
+      aCostL: aCostL, bCostL: bCostL, aCostA: aCostA, bCostA: bCostA, tie: tie,
+      lapBy: tie ? null : (aCostL < bCostL ? 'Ridge' : 'Vale'),
+      avoBy: tie ? null : (aCostA < bCostA ? 'Ridge' : 'Vale'),
+      absL: p.al > p.bl ? 'Ridge' : p.al < p.bl ? 'Vale' : 'tie',
+      absA: p.aa > p.ba ? 'Ridge' : p.aa < p.ba ? 'Vale' : 'tie',
+      lo: Math.min(aCostL, bCostL), hi: Math.max(aCostL, bCostL)
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], hi = Math.max(m.aCostL, m.bCostL) * 1.25, x = scale(0, hi, 92, 330);
+    b.push(txt(16, 20, 'COST OF ONE LAPTOP, IN AVOCADOS GIVEN UP', { s: 8, f: FAINT, ls: 0.8 }));
+    [['Ridge', m.aCostL], ['Vale', m.bCostL]].forEach(function (r, i) {
+      var y = 34 + i * 34, win = !m.tie && r[1] === m.lo;
+      b.push(txt(88, y + 15, r[0], { a: 'end', s: 10, f: INK }));
+      b.push(rect(92, y, 238, 21, G100, 3));
+      b.push(rect(92, y, x(r[1]) - 92, 21, win ? CLAY : OAT, 3));
+      b.push(txt(x(r[1]) + 6, y + 15, r[1].toFixed(2), { s: 10, f: win ? CLAYD : INK }));
+    });
+    // the terms-of-trade band
+    b.push(txt(16, 124, 'ACCEPTABLE TERMS OF TRADE', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(line(92, 150, 330, 150, AX));
+    if (!m.tie) {
+      b.push(rect(x(m.lo), 134, x(m.hi) - x(m.lo), 32, '#F5EFE6', 3));
+      b.push(line(x(m.lo), 132, x(m.lo), 168, OLIVE, 2));
+      b.push(line(x(m.hi), 132, x(m.hi), 168, CLAY, 2));
+      b.push(txt((x(m.lo) + x(m.hi)) / 2, 154, m.lo.toFixed(2) + ' – ' + m.hi.toFixed(2),
+        { a: 'middle', s: 10, f: CLAYD }));
+      b.push(txt(x(m.lo), 180, 'floor', { a: 'middle', s: 8, f: '#5A6B45' }));
+      b.push(txt(x(m.hi), 180, 'ceiling', { a: 'middle', s: 8, f: CLAYD }));
+    } else {
+      b.push(txt(211, 154, 'NONE — COSTS ARE IDENTICAL', { a: 'middle', s: 9.5, f: CLAYD, ls: 0.6 }));
+    }
+    // the reciprocal, to make "can't win both" visible
+    b.push(txt(16, 208, 'COST OF ONE AVOCADO, IN LAPTOPS', { s: 8, f: FAINT, ls: 0.8 }));
+    var hi2 = Math.max(m.aCostA, m.bCostA) * 1.25, x2 = scale(0, hi2, 92, 330);
+    [['Ridge', m.aCostA], ['Vale', m.bCostA]].forEach(function (r, i) {
+      var y = 220 + i * 30, win = !m.tie && r[1] === Math.min(m.aCostA, m.bCostA);
+      b.push(txt(88, y + 14, r[0], { a: 'end', s: 10, f: INK }));
+      b.push(rect(92, y, 238, 19, G100, 3));
+      b.push(rect(92, y, x2(r[1]) - 92, 19, win ? OLIVE : OAT, 3));
+      b.push(txt(x2(r[1]) + 6, y + 14, r[1].toFixed(3), { s: 9.5, f: win ? '#5A6B45' : INK }));
+    });
+    return svg('0 0 360 290', b.join(''));
+  }
+
+  function params() {
+    return { al: +el('ca-al').value, aa: +el('ca-aa').value, bl: +el('ca-bl').value, ba: +el('ca-ba').value };
+  }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    ['al', 'aa', 'bl', 'ba'].forEach(function (k) { el('ca-' + k + '-v').textContent = p[k]; });
+    el('ca-fig').innerHTML = draw(p, m);
+    el('ca-ro-a1').textContent = m.aCostL.toFixed(2) + ' avo';
+    el('ca-ro-b1').textContent = m.bCostL.toFixed(2) + ' avo';
+    el('ca-ro-abs').textContent = m.absL === m.absA ? (m.absL === 'tie' ? 'neither' : m.absL + ' (both)')
+      : 'L:' + m.absL + ' A:' + m.absA;
+    el('ca-ro-cmp').textContent = m.lapBy || 'neither';
+    el('ca-ro-cmp2').textContent = m.avoBy || 'neither';
+    el('ca-ro-tot').textContent = m.tie ? 'none' : m.lo.toFixed(2) + '–' + m.hi.toFixed(2);
+    var note;
+    if (m.tie) {
+      note = '<strong>No comparative advantage, so no gains from trade.</strong> Both give up exactly ' +
+        m.aCostL.toFixed(2) + ' avocados per laptop, so neither can supply the other more cheaply than it ' +
+        'can supply itself. There is no rate both would accept, and the band disappears. Exams include this ' +
+        'case on purpose.';
+    } else if (m.absL === m.absA && m.absL !== 'tie') {
+      note = '<strong>' + m.absL + ' has absolute advantage in both goods — and it changes nothing.</strong> ' +
+        m.lapBy + ' still makes the laptops because it gives up fewer avocados to do it (' +
+        m.lo.toFixed(2) + ' vs ' + m.hi.toFixed(2) + '), and ' + m.avoBy + ' still makes the avocados. ' +
+        'Notice the bottom pair: whoever wins the top chart necessarily loses the bottom one. That is the ' +
+        'reciprocal at work, and it is why no one can hold comparative advantage in everything.';
+    } else {
+      note = '<strong>' + m.lapBy + ' makes the laptops, ' + m.avoBy + ' makes the avocados.</strong> ' +
+        'Any terms of trade strictly between ' + m.lo.toFixed(2) + ' and ' + m.hi.toFixed(2) +
+        ' avocados per laptop leaves both better off than self-sufficiency.';
+    }
+    el('ca-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['al', 'aa', 'bl', 'ba'].forEach(function (k) { el('ca-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-ca'), [
+    { t: 'Start with <strong>absolute</strong> advantage — just compare raw output. No division, and it tells you almost nothing about who should do what.', lit: ['ca-ro-abs'], v: function (m) { return 'laptops: ' + m.absL + ' · avocados: ' + m.absA; } },
+    { t: 'Now the cost of a laptop, <em>in avocados</em>. Laptops are what we are pricing, so laptops go on the bottom: <code>avocados ÷ laptops</code>.', lit: ['ca-ro-a1', 'ca-ro-b1'], v: function (m) { return 'Ridge ' + m.aCostL.toFixed(2) + ' vs Vale ' + m.bCostL.toFixed(2); } },
+    { t: 'Lower cost wins. That producer has <strong>comparative advantage</strong> in laptops and should specialise there.', lit: ['ca-ro-cmp'], v: function (m) { return m.lapBy ? m.lapBy + ' makes the laptops' : 'tied — nobody'; } },
+    { t: 'Flip the ratio for avocados. Whoever won above must lose here — opportunity costs are reciprocals, so comparative advantage in both is impossible.', lit: ['ca-ro-cmp2'], v: function (m) { return m.avoBy ? m.avoBy + ' makes the avocados' : 'tied — nobody'; } },
+    { t: 'The two laptop costs are the floor and ceiling of the deal. Below the floor the low-cost producer would rather keep making them; above the ceiling the buyer would rather make its own.', lit: ['ca-ro-tot'], v: function (m) { return m.tie ? 'no band exists' : m.lo.toFixed(2) + ' to ' + m.hi.toFixed(2) + ' avocados per laptop'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — the deal. Specialise, swap at your terms of trade, and
+ * compare what each side ends up holding against going it alone.
+ * ================================================================= */
+(function () {
+  var A_L = 100, A_A = 200, B_L = 40, B_A = 160;      // full-specialisation capacity
+  var A0_L = 70, A0_A = 60, B0_L = 20, B0_A = 80;     // self-sufficiency baseline
+
+  function compute(p) {
+    var aL = A_L - p.e, aA = p.e * p.t;                // Ridge: keeps laptops, imports avocados
+    var bL = p.e, bA = B_A - p.e * p.t;                // Vale: keeps avocados, imports laptops
+    var aGain = aL >= A0_L && aA >= A0_A;
+    var bGain = bL >= B0_L && bA >= B0_A;
+    return {
+      aL: aL, aA: aA, bL: bL, bA: bA, aGain: aGain, bGain: bGain,
+      feasible: bA >= 0 && aL >= 0,
+      inBand: p.t > 2 && p.t < 4,
+      dL: (A_L) - (A0_L + B0_L), dA: (B_A) - (A0_A + B0_A)
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, 220, 96, 340);
+    function pair(label, y, nowL, nowA, wasL, wasA, gain) {
+      b.push(txt(16, y - 6, label, { s: 8, f: FAINT, ls: 0.8 }));
+      [['laptops', wasL, nowL, CLAY], ['avocados', wasA, nowA, OLIVE]].forEach(function (r, i) {
+        var yy = y + i * 24;
+        b.push(txt(92, yy + 13, r[0], { a: 'end', s: 8.5, f: INK }));
+        b.push(rect(96, yy, 244, 17, G100, 3));
+        b.push(rect(96, yy, clamp(x(r[1]) - 96, 0, 244), 17, '#E8E4DA', 3));   // before
+        b.push(rect(96, yy, clamp(x(r[2]) - 96, 0, 244), 9, r[3], 2));          // after
+        b.push(txt(344, yy + 13, Math.round(r[2]), { a: 'end', s: 9, f: INK }));
+      });
+      b.push(txt(16, y + 42, gain ? '✓ better off' : '✗ worse off', { s: 9, f: gain ? '#5A6B45' : CLAYD }));
+    }
+    pair('RIDGE — AFTER THE DEAL vs ALONE', 24, m.aL, m.aA, A0_L, A0_A, m.aGain);
+    pair('VALE — AFTER THE DEAL vs ALONE', 112, m.bL, m.bA, B0_L, B0_A, m.bGain);
+    // terms-of-trade band
+    b.push(txt(16, 196, 'YOUR TERMS OF TRADE AGAINST THE BAND', { s: 8, f: FAINT, ls: 0.8 }));
+    var tx = scale(1, 5, 96, 340);
+    b.push(line(96, 222, 340, 222, AX));
+    b.push(rect(tx(2), 206, tx(4) - tx(2), 32, '#F5EFE6', 3));
+    b.push(txt(tx(2), 250, '2', { a: 'middle', s: 8.5, f: '#5A6B45' }));
+    b.push(txt(tx(4), 250, '4', { a: 'middle', s: 8.5, f: CLAYD }));
+    b.push(line(tx(p.t), 204, tx(p.t), 240, INK, 2));
+    b.push(txt(clamp(tx(p.t), 104, 332), 200, p.t.toFixed(1), { a: 'middle', s: 10, f: INK }));
+    return svg('0 0 360 262', b.join(''));
+  }
+
+  function params() { return { t: +el('tot-t').value, e: +el('tot-e').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('tot-t-v').textContent = p.t.toFixed(1);
+    el('tot-e-v').textContent = p.e;
+    el('tot-fig').innerHTML = draw(p, m);
+    el('tot-ro-a').textContent = Math.round(m.aL) + 'L ' + Math.round(m.aA) + 'A';
+    el('tot-ro-b').textContent = Math.round(m.bL) + 'L ' + Math.round(m.bA) + 'A';
+    el('tot-ro-v').textContent = m.aGain && m.bGain ? 'both gain' : m.aGain ? 'Vale refuses' : m.bGain ? 'Ridge refuses' : 'both refuse';
+    el('tot-ro-w').textContent = '+' + m.dL + 'L +' + m.dA + 'A';
+    var note;
+    if (!m.inBand) {
+      note = '<strong>' + p.t.toFixed(1) + ' is outside the 2–4 band.</strong> ' +
+        (p.t <= 2 ? 'Ridge gives up 2 avocados to make a laptop itself, so it will not sell one for ' + p.t.toFixed(1) + '.'
+                  : 'Vale gives up only 4 avocados to make its own laptop, so it will not pay ' + p.t.toFixed(1) + '.') +
+        ' No rate outside the two opportunity costs is ever accepted.';
+    } else if (m.aGain && m.bGain) {
+      note = '<strong>A real deal.</strong> Both sides hold more of both goods than they could produce alone — ' +
+        'not because anyone worked harder, but because production moved to whoever gave up less. World output ' +
+        'is up ' + m.dL + ' laptops and ' + m.dA + ' avocados.';
+    } else {
+      note = '<strong>The rate is inside the band, but the volume breaks it.</strong> ' +
+        (!m.aGain ? 'Ridge ends with ' + Math.round(m.aA) + ' avocados against the 60 it had alone — it exported too many laptops for too few avocados back.'
+                  : 'Vale ends with ' + Math.round(m.bA) + ' avocados against the 80 it had alone — it is paying away more than the laptops are worth to it.') +
+        ' A fair exchange rate on the wrong volume still fails someone, which is why both sliders matter.';
+    }
+    el('tot-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['t', 'e'].forEach(function (k) { el('tot-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-tot'), [
+    { t: 'Each side drops the good it is <em>relatively</em> bad at. Ridge makes 100 laptops and no avocados; Vale makes 160 avocados and no laptops.', lit: ['tot-ro-w'], v: function (m) { return 'world output +' + m.dL + 'L +' + m.dA + 'A'; } },
+    { t: 'Now swap. Ridge ships laptops out and avocados come back at your chosen rate.', lit: ['tot-ro-a'], v: function (m) { return 'Ridge ends with ' + Math.round(m.aL) + 'L ' + Math.round(m.aA) + 'A'; } },
+    { t: 'Vale ends up holding the mirror image of that trade.', lit: ['tot-ro-b'], v: function (m) { return 'Vale ends with ' + Math.round(m.bL) + 'L ' + Math.round(m.bA) + 'A'; } },
+    { t: 'Compare each against self-sufficiency. A deal only counts if <strong>both</strong> beat their own baseline — either side can simply refuse.', lit: ['tot-ro-v'], v: function (m) { return m.aGain && m.bGain ? 'both beat going it alone' : 'someone is worse off'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch02", "title": "Chapter 02 \u2014 Gains from Trade", "anchors": ["c2", "c3", "quiz"], "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3}};
+/* Every distractor below is a mistake students actually make: inverting the
+ * ratio, answering the absolute question when asked the comparative one,
+ * quoting a rate on the boundary, or concluding that the better producer
+ * should do everything. */
+var FND = ['Absolute advantage', 'Comparative advantage', 'Specialisation', 'Terms of trade', 'Gains from trade'];
+
+var BANK = [
+  { id: 'aa1', home: 1, fnd: 1, type: 'mcq', short: 'Absolute vs comparative',
+    stem: 'Alta makes 60 shirts or 30 loaves a day. Bram makes 20 shirts or 20 loaves. Who has the <em>absolute</em> advantage?',
+    opts: [
+      { t: 'Alta, in both goods', ok: true },
+      { t: 'Alta in shirts, Bram in bread', why: 'That is the answer to the <em>comparative</em> question. Absolute advantage is a raw output comparison: 60 &gt; 20 and 30 &gt; 20, so Alta wins both.' },
+      { t: 'Neither — you need opportunity costs first', why: 'Opportunity costs are for comparative advantage. Absolute advantage needs no division at all, just the four numbers as given.' },
+      { t: 'Bram, because it is more balanced', why: 'Balance is irrelevant. Absolute advantage asks only who produces more, and Bram produces less of both.' }
+    ] },
+  { id: 'ca1', home: 1, fnd: 2, type: 'numeric', short: 'Opportunity cost of a shirt',
+    stem: 'Same table — Alta: 60 shirts or 30 loaves. For Alta, what is the opportunity cost of <em>one shirt</em>, in loaves?',
+    pre: '', answer: 0.5, tol: 0.01,
+    why: 'You are pricing shirts, so shirts go on the bottom: 30 loaves ÷ 60 shirts = <strong>0.5</strong> loaves per shirt. Answering 2 inverts the ratio — that is the cost of one <em>loaf</em>, and the inversion flips which country should specialise where.' },
+  { id: 'ca2', home: 1, fnd: 2, type: 'mcq', short: 'Comparative advantage in both',
+    stem: 'Can one country hold comparative advantage in <em>both</em> goods?',
+    opts: [
+      { t: 'No — opportunity costs are reciprocals, so winning one means losing the other', ok: true },
+      { t: 'Yes, if it is far more productive in both', why: 'That gives absolute advantage in both, which is common. Comparative advantage in both is arithmetically impossible however large the productivity gap.' },
+      { t: 'Yes, but only if the two goods are unrelated', why: 'Relatedness plays no part. The impossibility is pure arithmetic: if your cost of A in terms of B is lower, your cost of B in terms of A must be higher.' },
+      { t: 'Only when opportunity costs are identical', why: 'Identical costs mean <em>neither</em> side has comparative advantage in either good — the opposite of one side holding both.' }
+    ] },
+
+  { id: 'sp1', home: 2, fnd: 3, type: 'mcq', short: 'Who specialises where',
+    stem: 'Alta: 60 shirts or 30 loaves. Bram: 20 shirts or 20 loaves. Who should make the bread?',
+    opts: [
+      { t: 'Bram — it gives up 1 shirt per loaf against Alta\'s 2', ok: true },
+      { t: 'Alta — it produces more bread per day', why: 'That is absolute advantage. Alta makes more bread, but each loaf costs it 2 shirts; Bram gives up only 1. Specialisation follows opportunity cost.' },
+      { t: 'Both should make some of each', why: 'With constant opportunity costs the gains are maximised by complete specialisation along comparative advantage.' },
+      { t: 'Alta, because it has absolute advantage in both', why: 'Absolute advantage in both changes nothing. Alta cannot do everything without giving up the shirts it is relatively far better at.' }
+    ] },
+  { id: 'tt1', home: 2, fnd: 4, type: 'mcq', short: 'An acceptable rate',
+    stem: 'Alta gives up 0.5 loaves per shirt; Bram gives up 1. Which terms of trade would <em>both</em> accept?',
+    opts: [
+      { t: '0.75 loaves per shirt', ok: true },
+      { t: '0.5 loaves per shirt', why: 'Exactly on the floor. At 0.5 Alta is indifferent — it gains nothing over making its own — so this is not a rate that makes both better off. Exam answers must be strictly inside the band.' },
+      { t: '1.2 loaves per shirt', why: 'Above the ceiling. Bram can make a shirt itself for 1 loaf, so it will never pay 1.2.' },
+      { t: '0.3 loaves per shirt', why: 'Below the floor. Alta gives up 0.5 loaves to make a shirt, so selling at 0.3 would lose it value.' }
+    ] },
+  { id: 'tt2', home: 2, fnd: 4, type: 'mcq', short: 'Where the band comes from',
+    stem: 'Why is the terms-of-trade band bounded by the two opportunity costs?',
+    opts: [
+      { t: 'Because outside it, one side can produce the good more cheaply itself and refuses to trade', ok: true },
+      { t: 'Because governments set tariffs at those points', why: 'Nothing institutional is involved. The band falls straight out of the two producers\' own costs.' },
+      { t: 'Because prices always settle at the midpoint of the band', why: 'Where inside the band the rate lands depends on bargaining power. The <em>bounds</em> are what the opportunity costs fix.' },
+      { t: 'Because beyond it world output would fall', why: 'World output depends on who produces what, not on the exchange rate. The rate only splits the gains.' }
+    ] },
+
+  { id: 'gt1', home: 3, fnd: 5, type: 'mcq', short: 'Better at everything',
+    stem: 'A surgeon types faster than her assistant. Why does she still hand over the typing?',
+    opts: [
+      { t: 'An hour of her typing costs an hour of surgery; the assistant gives up far less', ok: true },
+      { t: 'Because typing is beneath her job description', why: 'Status plays no part in the economics. The argument is entirely about what each person forgoes.' },
+      { t: 'Because the assistant has absolute advantage in typing', why: 'The assistant is explicitly slower, so has no absolute advantage. The assistant has comparative advantage — a lower opportunity cost.' },
+      { t: 'Because she would be slower overall at both tasks together', why: 'She is faster at both. Specialisation is still right, because speed is not the measure — forgone alternatives are.' }
+    ] },
+  { id: 'gt2', home: 3, fnd: 5, type: 'mcq', short: 'When trade has nothing to offer',
+    stem: 'Two countries each give up exactly 2 bushels per machine. What are the gains from specialising and trading?',
+    opts: [
+      { t: 'Zero — with identical opportunity costs neither can supply the other more cheaply', ok: true },
+      { t: 'Positive, as long as one country is larger', why: 'Size affects how much is produced, not the cost ratios. With equal opportunity costs there is no cheaper producer to shift production toward.' },
+      { t: 'Positive, because specialising always raises output', why: 'Specialisation raises output only when it moves production to a lower-cost producer. Here there isn\'t one.' },
+      { t: 'Negative, because trade has transport costs', why: 'The gains are zero before any transport cost is considered. The point is that no comparative advantage exists.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 2, type: 'numeric', short: 'Opportunity cost of bread',
+    stem: 'Alta makes 60 shirts or 30 loaves a day. For Alta, the opportunity cost of <em>one loaf</em> is how many shirts?',
+    pre: '', answer: 2, tol: 0.01,
+    why: 'Pricing loaves, so loaves on the bottom: 60 shirts ÷ 30 loaves = <strong>2</strong> shirts per loaf. Answering 0.5 prices a shirt instead.' },
+  { id: 'q2', fnd: 1, type: 'mcq', short: 'What absolute advantage decides',
+    stem: 'A country has absolute advantage in every good it can make. What does this tell you about what it should produce?',
+    opts: [
+      { t: 'Nothing on its own — the pattern of production follows comparative advantage', ok: true },
+      { t: 'It should produce everything itself', why: 'This is the chapter\'s central error. Producing everything means giving up the goods it is relatively best at, which costs it more than importing.' },
+      { t: 'It should produce whichever good it leads by the widest margin', why: 'Warm, but not the rule as stated — and "widest margin" in raw output is not the same as lowest opportunity cost unless you do the division.' },
+      { t: 'It should not trade at all', why: 'It gains from trade exactly as the less productive country does, because comparative advantage still differs.' }
+    ] },
+  { id: 'q3', fnd: 3, type: 'mcq', short: 'Specialisation direction',
+    stem: 'Bram gives up 1 shirt per loaf; Alta gives up 2. Alta produces more of both goods. Who makes the shirts?',
+    opts: [
+      { t: 'Alta — its cost per shirt is 0.5 loaves against Bram\'s 1', ok: true },
+      { t: 'Bram, to balance the gains', why: 'Gains are balanced by the terms of trade, not by assigning production to the weaker party. Bram giving up 1 shirt per loaf means its cost per shirt is 1 loaf — higher than Alta\'s.' },
+      { t: 'Both equally, since Alta is better at everything', why: 'Alta being better at everything is exactly when specialisation matters most. Splitting production wastes the cost difference.' },
+      { t: 'Cannot be determined without the terms of trade', why: 'Who specialises where is fixed by opportunity costs alone. The terms of trade only divide the resulting gains.' }
+    ] },
+  { id: 'q4', fnd: 4, type: 'numeric', short: 'Band floor',
+    stem: 'Producer X gives up 3 tonnes of wheat per tractor; producer Y gives up 7. In wheat per tractor, what is the <em>lowest</em> rate at which a trade could make both strictly better off? Give the boundary value.',
+    pre: '', answer: 3, tol: 0.01,
+    why: 'X is the low-cost tractor producer, and it will not sell below its own cost of <strong>3</strong>. The acceptable rates are those strictly above 3 and strictly below 7; 3 itself is the floor, where X is exactly indifferent.' },
+  { id: 'q5', fnd: 5, type: 'mcq', short: 'Source of the gains',
+    stem: 'Two countries specialise and trade, and both consume more than before. Where did the extra output come from?',
+    opts: [
+      { t: 'Production shifted toward whoever gives up less to make each good', ok: true },
+      { t: 'Both countries increased their total hours worked', why: 'No extra effort is assumed anywhere in the model. The same resources produce more because they are better matched to tasks.' },
+      { t: 'Trade created new resources', why: 'No resources are created. The same inputs are simply allocated to their lower-opportunity-cost uses.' },
+      { t: 'One country gained at the other\'s expense', why: 'Both consume more than before — that is the premise. Voluntary trade inside the band is positive-sum.' }
+    ] },
+  { id: 'q6', fnd: 2, type: 'classify', short: 'Which advantage',
+    stem: 'Each statement describes one of the two advantages. Which?',
+    cats: ['Absolute advantage', 'Comparative advantage'],
+    rows: [
+      { t: 'Vietnam produces 400 shirts per worker-day; Portugal produces 250', cat: 'Absolute advantage' },
+      { t: 'Portugal gives up less wine per shirt than Vietnam does', cat: 'Comparative advantage' },
+      { t: 'A paralegal drafts briefs more slowly than the partner does', cat: 'Absolute advantage' },
+      { t: 'An hour of the partner\'s drafting costs three hours of client meetings', cat: 'Comparative advantage' }
+    ],
+    why: 'Any statement that compares raw output or speed is about absolute advantage. Any statement phrased as "gives up", "costs", or "per" with the other good as the unit is about opportunity cost, and therefore comparative advantage.' },
+  { id: 'q7', fnd: 4, type: 'mcq', short: 'Rate inside, deal still bad',
+    stem: 'The terms of trade sit comfortably inside the acceptable band, yet one country ends up worse off than self-sufficiency. How?',
+    opts: [
+      { t: 'The volume traded was wrong — a good rate on too many units can still leave a side short', ok: true },
+      { t: 'Impossible — a rate inside the band guarantees both gain', why: 'The band guarantees each unit traded is worth doing at that rate, not that any quantity leaves both above their baseline. The model in this chapter shows the failure directly.' },
+      { t: 'The country lacked absolute advantage', why: 'Absolute advantage never determines who gains. Gains depend on costs and on the deal\'s terms and size.' },
+      { t: 'Opportunity costs must have been identical', why: 'Identical costs would mean no band at all, but the question states the rate is comfortably inside one.' }
+    ] },
+  { id: 'q8', fnd: 5, type: 'mcq', short: 'No gains available',
+    stem: 'Which situation leaves <em>no</em> gains from trade on the table?',
+    opts: [
+      { t: 'Both parties face exactly the same opportunity costs', ok: true },
+      { t: 'One party is more productive in both goods', why: 'This is the standard case where trade still pays. Comparative advantage differs even when absolute advantage does not.' },
+      { t: 'One party is much larger than the other', why: 'Size changes the volume traded, not whether gains exist.' },
+      { t: 'Both parties want the same good', why: 'Wanting the same goods is normal and does not remove the cost differences that generate gains.' }
+    ] },
+  { id: 'q9', fnd: 3, type: 'mcq', short: 'Units discipline',
+    stem: '"The opportunity cost is 2." Why is this unmarkable as it stands?',
+    opts: [
+      { t: 'It does not say which good is being priced or in what units', ok: true },
+      { t: 'Opportunity cost must always be given in money', why: 'Opportunity cost is measured in forgone goods here; money is not required. What is required is naming the goods.' },
+      { t: 'Opportunity cost cannot exceed 1', why: 'It can take any positive value — it is a ratio of two outputs.' },
+      { t: 'It should have been rounded', why: 'Precision is not the problem. "2 what, per what?" is.' }
+    ] },
+  { id: 'q10', fnd: 1, type: 'mcq', short: 'Trade with a weaker partner',
+    stem: 'A politician argues the country should not trade with a far less productive nation because "they can\'t make anything better than we can." The best economic reply is:',
+    opts: [
+      { t: 'Productivity is not the test — they will still be the cheaper producer of something in opportunity-cost terms', ok: true },
+      { t: 'They will catch up on productivity eventually', why: 'True or not, it concedes the premise. The gains exist right now, at today\'s productivity levels.' },
+      { t: 'Trade should be restricted to equally productive partners', why: 'This is the error restated. Differences in comparative advantage are exactly what make trade worth doing.' },
+      { t: 'We gain only if we have absolute advantage in both goods', why: 'Absolute advantage never determines the gains. Reverse the claim and it is still wrong.' }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>

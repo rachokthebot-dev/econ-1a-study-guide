@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chapter 01 — The Five Foundations of Economics · ECN 1A study guide</title>
-<meta name="description" content="Interactive study guide for Chapter 1 of Mateer, Coppock & Nietfeld: incentives, trade-offs, opportunity cost, marginal thinking, and trade. Four live models, retrieval checkpoints between chunks, and a chapter quiz.">
+<meta name="description" content="Incentives, trade-offs, opportunity cost, marginal thinking and trade — four live models, spaced retrieval checkpoints and a chapter quiz.">
 <style>
+
 /* guide.css — design language lifted from local-models-blog (ivory/clay, serif
  * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
  * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
@@ -373,8 +374,8 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 
 <noscript>
   <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
-    <strong>This page needs JavaScript.</strong> The questions, the quiz and all four models are built in
-    the browser — with scripts blocked you will see empty cards and no quiz. Open it in a normal browser tab.
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
   </div>
 </noscript>
 
@@ -388,53 +389,19 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 
 <div class="wrap">
 
-<!-- ============================ masthead ============================ -->
 <header class="masthead">
   <div class="hero-grid">
     <div>
       <div class="eyebrow">ECN 1A · UC Davis · Chapter 01</div>
       <h1>Five ideas that carry the <em>whole</em> course</h1>
-      <p class="intro">
-        Mateer, Coppock &amp; Nietfeld open with five foundations, and every later chapter is one of them
-        wearing a different hat. Supply and demand is trade-offs with a graph. Elasticity is marginal
-        thinking with a ratio. Tax incidence is incentives plus opportunity cost. Learn these five properly
-        and the rest of the quarter is bookkeeping.
-      </p>
-      <p class="intro">
-        Read a chunk, then answer the checkpoint before scrolling on. Questions you miss come back a
-        checkpoint later, and questions you get right come back twice before they retire — that spacing is
-        the part that actually moves exam scores.
-      </p>
-      <div class="meta">6 chunks · 4 live models · 5 checkpoints · 15-question chapter quiz</div>
-      <nav class="toc">
-        <a href="#c0">Scarcity <span class="n">00</span></a>
-        <a href="#c1">Incentives <span class="n">01</span></a>
-        <a href="#c2">Trade-offs <span class="n">02</span></a>
-        <a href="#c3">Opportunity cost <span class="n">03</span></a>
-        <a href="#c4">Marginal thinking <span class="n">04</span></a>
-        <a href="#c5">Trade creates value <span class="n">05</span></a>
-        <a href="#quiz">Chapter quiz <span class="n">▸</span></a>
-      </nav>
+      <p class="intro">Every later chapter is one of these five wearing a different hat — supply and demand is trade-offs with a graph, elasticity is marginal thinking with a ratio. Read a chunk, then answer the checkpoint from memory before scrolling on.</p>
+      <div class="meta">6 chunks · 4 live models · 5 checkpoints · 10-question quiz</div>
+      <nav class="toc"><a href="#c0">Scarcity <span class="n">00</span></a><a href="#c1">Incentives <span class="n">01</span></a><a href="#c2">Trade-offs <span class="n">02</span></a><a href="#c3">Opportunity cost <span class="n">03</span></a><a href="#c4">Marginal thinking <span class="n">04</span></a><a href="#c5">Trade creates value <span class="n">05</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
     </div>
     <div class="hero-fig" aria-hidden="true">
       <span class="tag">the five</span>
       <div class="fig-h">everything hangs off these</div>
-      <svg viewBox="0 0 280 180">
-        <line x1="24" y1="158" x2="268" y2="158" stroke="#D1CFC5" stroke-width="1.5"/>
-        <g font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A" text-anchor="middle">
-          <rect x="24"  y="40"  width="38" height="118" rx="5" fill="#D97757"/>
-          <text x="43"  y="172">Incent</text>
-          <rect x="72"  y="58"  width="38" height="100" rx="5" fill="#E3DACC"/>
-          <text x="91"  y="172">Trade-off</text>
-          <rect x="120" y="28"  width="38" height="130" rx="5" fill="#D97757"/>
-          <text x="139" y="172">Opp cost</text>
-          <rect x="168" y="46"  width="38" height="112" rx="5" fill="#E3DACC"/>
-          <text x="187" y="172">Marginal</text>
-          <rect x="216" y="70"  width="38" height="88"  rx="5" fill="#788C5D" opacity="0.55"/>
-          <text x="235" y="172">Trade</text>
-        </g>
-        <text x="268" y="20" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#87867F" letter-spacing="1">EXAM WEIGHT →</text>
-      </svg>
+      <svg viewBox="0 0 280 180"><line x1="24" y1="158" x2="268" y2="158" stroke="#D1CFC5" stroke-width="1.5"/><g font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A" text-anchor="middle"><rect x="24" y="40" width="38" height="118" rx="5" fill="#D97757"/><text x="43" y="172">Incent</text><rect x="72" y="58" width="38" height="100" rx="5" fill="#E3DACC"/><text x="91" y="172">Trade-off</text><rect x="120" y="28" width="38" height="130" rx="5" fill="#D97757"/><text x="139" y="172">Opp cost</text><rect x="168" y="46" width="38" height="112" rx="5" fill="#E3DACC"/><text x="187" y="172">Marginal</text><rect x="216" y="70" width="38" height="88" rx="5" fill="#788C5D" opacity="0.55"/><text x="235" y="172">Trade</text></g><text x="268" y="20" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#87867F" letter-spacing="1">EXAM WEIGHT →</text></svg>
     </div>
   </div>
 </header>
@@ -443,8 +410,7 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 <section id="c0">
   <div class="sec-head"><span class="idx">00</span><h2>Scarcity is the reason economics exists</h2><span class="count">chunk 1 of 6</span></div>
   <p class="sec-intro">
-    Two minutes. This chunk only has to install one idea and two vocabulary splits that show up on every
-    exam in the course.
+    One idea and two vocabulary splits that show up on every exam in the course.
   </p>
   <div class="sec-body">
     <p>
@@ -454,16 +420,15 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
     <div class="card trap">
       <div class="label">The trap everyone falls into first</div>
       <p>
-        <strong>Scarcity does not mean "rare."</strong> Scarcity means wants are unlimited while the
-        resources to satisfy them are limited. Drinking water is abundant and still scarce — you cannot
-        have unlimited amounts of it at zero cost. Meanwhile a signed photo of your least favourite
-        musician is extremely rare and <em>not</em> scarce, because nobody wants it. Rare is about supply.
-        Scarce is about supply <em>relative to wants</em>.
+        <strong>Scarcity does not mean "rare."</strong> Water is abundant and still scarce — you cannot
+        have unlimited amounts at zero cost. A signed photo of a band nobody likes is rare and <em>not</em>
+        scarce, because nobody wants it. Rare is about supply; scarce is about supply <em>relative to
+        wants</em>.
       </p>
     </div>
     <p>
-      Because resources are scarce, every society has to answer the same three questions: what to produce,
-      how to produce it, and who gets it. The rest of the course is machinery for answering those.
+      So every society answers the same three questions: what to produce, how, and who gets it. The rest of
+      the course is machinery for answering those.
     </p>
     <h4>Two splits you will be asked to make</h4>
     <div class="tbl-wrap"><table class="tbl">
@@ -574,15 +539,13 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 <section id="c2">
   <div class="sec-head"><span class="idx">02</span><h2>Foundation 2 — Trade-offs</h2><span class="count">chunk 3 of 6</span></div>
   <p class="sec-intro">
-    Short chunk, because the idea is short. Scarcity forces choice, and choice means giving something up.
-    The reason it gets its own foundation is that students routinely collapse it into opportunity cost,
-    and the exam distinguishes them.
+    Scarcity forces choice, and choice means giving something up. It gets its own foundation because
+    students collapse it into opportunity cost, and the exam distinguishes them.
   </p>
   <div class="sec-body">
     <p>
-      <strong>There is no such thing as a free lunch.</strong> Every choice costs you the alternatives.
-      Not "most choices" — every choice, including the ones that feel free. A free concert costs you the
-      three hours. A free app costs you attention and data.
+      <strong>There is no such thing as a free lunch.</strong> Every choice costs you the alternatives —
+      including the ones that feel free. A free concert costs you the three hours.
     </p>
     <div class="card accent">
       <div class="label">Trade-off vs opportunity cost — the distinction</div>
@@ -619,8 +582,7 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 <section id="c3">
   <div class="sec-head"><span class="idx">03</span><h2>Foundation 3 — Opportunity cost</h2><span class="count">chunk 4 of 6</span></div>
   <p class="sec-intro">
-    The single most tested idea in the chapter, and the one with the most reliable wrong answers. Three
-    rules and one model will cover every version of it you will see.
+    The most tested idea in the chapter. Three rules cover every version of it you will see.
   </p>
   <div class="sec-body">
     <p>
@@ -713,8 +675,8 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 <section id="c4">
   <div class="sec-head"><span class="idx">04</span><h2>Foundation 4 — Marginal thinking</h2><span class="count">chunk 5 of 6</span></div>
   <p class="sec-intro">
-    Economic decisions are almost never all-or-nothing. They are "a bit more or a bit less," and the rule
-    for finding the right amount is the most reusable tool in the course.
+    Decisions are rarely all-or-nothing. They are "a bit more or a bit less," and the rule for finding the
+    right amount is the most reusable tool in the course.
   </p>
   <div class="sec-body">
     <p>
@@ -790,8 +752,7 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 <section id="c5">
   <div class="sec-head"><span class="idx">05</span><h2>Foundation 5 — Trade creates value</h2><span class="count">chunk 6 of 6</span></div>
   <p class="sec-intro">
-    The least intuitive foundation, because ordinary language treats deals as win–lose. Voluntary trade is
-    not win–lose, and the model below shows exactly where the winnings come from.
+    The least intuitive foundation, because ordinary language treats deals as win–lose. They aren't.
   </p>
   <div class="sec-body">
     <p>
@@ -861,11 +822,10 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 
 <!-- ============================ quiz ============================ -->
 <section id="quiz">
-  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">15 questions</span></div>
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
   <p class="sec-intro">
-    Interleaved on purpose — the five foundations are shuffled rather than blocked, because mixing topics
-    within a quiz beats grouping them (d ≈ 0.35) even though it feels harder while you do it. Feeling
-    fluent is not the goal; being right in week 10 is.
+    Shuffled, not blocked — mixing topics beats grouping them (d ≈ 0.35) even though it feels harder.
+    Feeling fluent is not the goal; being right in week 10 is.
   </p>
   <div class="sec-body">
     <div class="check" id="bigquiz" style="border-color:var(--slate)">
@@ -882,9 +842,8 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 <section id="ledger">
   <div class="sec-head"><span class="idx">✱</span><h2>What's computed, and what isn't</h2></div>
   <p class="sec-intro">
-    Half the value of a model is knowing which of its numbers to trust. Every figure in this chapter comes
-    out of arithmetic you can read in the page source — none of it is a lookup table or a tween between
-    pre-baked answers. Here is the honest boundary.
+    Half the value of a model is knowing which numbers to trust. Everything here is computed, not looked
+    up. The honest boundary:
   </p>
   <div class="sec-body ledger">
     <div class="tbl-wrap"><table class="tbl">
@@ -944,6 +903,7 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
     </div>
   </div>
 </section>
+
 
 <footer>
   <div class="foot-grid">
@@ -1059,6 +1019,7 @@ function Stepper(host, defs, recompute) {
 }
 </script>
 <script>
+'use strict';
 'use strict';
 /* =================================================================
  * MODEL 1 — the bag fee. A negative incentive with an indirect one
@@ -1471,8 +1432,9 @@ function Stepper(host, defs, recompute) {
   render();
 })();
 </script>
-
 <script>
+'use strict';
+var CHAPTER = {"id": "ch01", "title": "Chapter 01 \u2014 The Five Foundations of Economics", "anchors": ["c2", "c3", "c4", "c5", "quiz"], "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3, "#c4": 4, "#c5": 5}};
 'use strict';
 /* =================================================================
  * THE ITEM BANK
@@ -1636,14 +1598,6 @@ var QUIZ = [
       { t: 'An opportunity cost of the policy', why: 'Loosely, yes — but opportunity cost names the best forgone alternative to a choice. The question asks what produced the shrinkage, and that is landlords responding to incentives.' },
       { t: 'Evidence that trade does not create value in housing', why: 'Nothing here bears on whether trade creates value. The cap restricts which trades may occur; it does not show that the trades were valueless.' }
     ] },
-  { id: 'q3', fnd: 1, type: 'mcq', short: 'Micro vs macro',
-    stem: 'Which question is <em>microeconomic</em>?',
-    opts: [
-      { t: 'How a drought in Brazil affects the price of coffee in Davis', ok: true },
-      { t: 'Why national unemployment rose from 4% to 6% last year', why: 'Unemployment for a whole economy is a macro aggregate.' },
-      { t: 'Whether the Fed should raise interest rates', why: 'Economy-wide monetary policy is macro (and "should" makes it normative too).' },
-      { t: 'What causes inflation to accelerate', why: 'Inflation is an economy-wide price-level phenomenon — macro.' }
-    ] },
   { id: 'q4', fnd: 5, type: 'numeric', short: 'Marginal optimum',
     stem: 'A food truck\'s marginal benefit from the <em>q</em>-th hour open is MB = 120 − 10q; marginal cost is MC = 20 + 10q. How many whole hours should it stay open?',
     pre: '', answer: 5, tol: 0,
@@ -1663,14 +1617,6 @@ var QUIZ = [
       { t: 'Abandon it, since $50M of total cost exceeds $25M of revenue', why: 'The $40M is sunk — it is lost under both options. Comparing total spend against revenue leads you to abandon a project that will return $25M for a further $10M.' },
       { t: 'Finish it only if the total eventually exceeds $50M', why: 'That treats the sunk $40M as recoverable. It never is. The only live comparison is $10M more against $25M in.' },
       { t: 'Abandon it to avoid throwing good money after bad', why: 'The phrase describes the opposite error. Here the extra $10M returns $25M — that is good money after a good marginal bet, on top of a loss that exists regardless.' }
-    ] },
-  { id: 'q7', fnd: 1, type: 'mcq', short: 'Positive but false',
-    stem: '"Raising the state sales tax by 1 point will increase state revenue by exactly 4%." Suppose this turns out to be false. The statement is:',
-    opts: [
-      { t: 'Positive, because evidence could settle it — being wrong does not make it normative', ok: true },
-      { t: 'Normative, because it turned out to be untrue', why: 'Truth and the positive/normative split are different axes. A positive statement is one that evidence <em>could</em> decide; it is free to be false.' },
-      { t: 'Neither, since it is a prediction rather than a fact', why: 'Predictions are positive statements — they are testable in principle, which is the whole criterion.' },
-      { t: 'Normative, because tax policy involves value judgements', why: 'The subject matter can be politically charged while the statement itself stays purely factual. This one makes no claim about what <em>should</em> happen.' }
     ] },
   { id: 'q8', fnd: 3, type: 'mcq', short: 'Opportunity cost of a gift',
     stem: 'You receive a non-transferable, non-refundable ticket to a Saturday game. You would otherwise have worked a $120 shift, or studied (worth about $60 to you). The opportunity cost of attending is:',
@@ -1709,31 +1655,11 @@ var QUIZ = [
       { t: 'Because governments need to plan production', why: 'Market economies answer the three questions too — through prices rather than plans. The questions arise from scarcity, not from the existence of a planner.' },
       { t: 'Because some goods are rare', why: 'Rarity of particular goods is not the driver. Even with abundant resources of every kind, unlimited wants would still force allocation choices.' },
       { t: 'Because people have unequal incomes', why: 'Inequality shapes <em>who gets what</em>, but the three questions would still need answering in a perfectly equal society with scarce resources.' }
-    ] },
-  { id: 'q13', fnd: 3, type: 'mcq', short: 'Trade-offs vs scarcity',
-    stem: 'A student has 20 hours this week to split between a paid job and exam revision. The existence of this constraint is most directly an illustration of:',
-    opts: [
-      { t: 'Scarcity producing a trade-off — a limited resource that must be divided', ok: true },
-      { t: 'Opportunity cost, because hours spent revising are hours not earning', why: 'Opportunity cost appears once she <em>chooses</em> and we price the best forgone alternative. The question asks about the constraint itself, which is scarcity giving rise to a trade-off.' },
-      { t: 'Marginal thinking, because she will add hours one at a time', why: 'Marginal thinking is the method for <em>solving</em> the problem. The constraint existing is the trade-off.' },
-      { t: 'Incentives, because the job pays and revision does not', why: 'Pay will influence her choice, but the 20-hour limit is there regardless of what anything pays.' }
-    ] },
-  { id: 'q14', fnd: 6, type: 'mcq', short: 'Voluntary means both gain',
-    stem: 'Why can we normally infer that <em>both</em> parties to a voluntary trade expected to gain?',
-    opts: [
-      { t: 'Because either side could have refused, so agreeing reveals each expected to be better off', ok: true },
-      { t: 'Because the price is always set at the midpoint of their valuations', why: 'Prices land anywhere in the bargaining range depending on bargaining power. Both can gain at any price inside the range — the midpoint is not required.' },
-      { t: 'Because trades are regulated to protect both sides', why: 'Regulation is not what makes voluntary trade mutually beneficial. The ability to walk away is.' },
-      { t: 'Because both parties always have the same information', why: 'They often do not, which is why the inference is about <em>expected</em> gain. Symmetric information is not what the argument rests on.' }
-    ] },
-  { id: 'q15', fnd: 4, type: 'numeric', short: 'Opportunity cost with a wage change',
-    stem: 'Theo turns down 15 hours of overtime at $28/hour to attend a weekend workshop costing $190. Entry also requires $40 of materials he would not otherwise buy. What is the economic cost of the workshop?',
-    pre: '$', answer: 650, tol: 0,
-    why: 'Explicit: $190 + $40 = $230. Implicit: 15 × $28 = $420 of forgone wages. Total = <strong>$650</strong>. Answering $230 drops the implicit cost; answering $420 drops the explicit.' }
+    ] }
 ];
 </script>
-
 <script>
+'use strict';
 'use strict';
 /* =================================================================
  * STORE + ENGINE
@@ -1746,7 +1672,7 @@ var QUIZ = [
  * count, so the schedule just makes sure they happen, spaced.
  * ================================================================= */
 var Store = (function () {
-  var KEY = 'econ1a.ch01.v1', db;
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
   try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
   if (!db.items) db.items = {};
   function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
@@ -1968,7 +1894,7 @@ function mountCheckpoint(ckId, tick) {
     lab.addEventListener('click', function () { node.classList.remove('settled'); });
   });
 }
-function nextAnchor(tick) { return ['c2', 'c3', 'c4', 'c5', 'quiz'][tick - 1] || 'quiz'; }
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
 
 /* ---------- the chapter quiz ------------------------------------- */
 (function mountQuiz() {
@@ -2050,7 +1976,7 @@ function railUpdate() {
   el('railbar').style.width = (m * 100).toFixed(1) + '%';
   el('railval').textContent = Math.round(m * 100) + '%';
   document.querySelectorAll('nav.toc a').forEach(function (a) {
-    var t = {'#c1':1,'#c2':2,'#c3':3,'#c4':4,'#c5':5}[a.getAttribute('href')];
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
     if (!t) return;
     var set = BANK.filter(function (q) { return q.home === t; });
     var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
@@ -2058,7 +1984,7 @@ function railUpdate() {
   });
 }
 
-[1, 2, 3, 4, 5].forEach(function (t) { mountCheckpoint('ck' + t, t); });
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
 railUpdate();
 
 /* The export pattern from the HTML-effectiveness post: turn what the page
@@ -2066,7 +1992,7 @@ railUpdate();
 el('btn-export').addEventListener('click', function () {
   var m = Store.missed();
   var txt = m.length
-    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), Chapter 1 — the five foundations of economics.\n' +
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
       'I got these specific items wrong and have not yet re-earned them:\n\n' +
       m.map(function (q, i) {
         return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
@@ -2074,8 +2000,8 @@ el('btn-export').addEventListener('click', function () {
       }).join('\n\n') +
       '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
       'Do not re-explain the parts I got right.'
-    : 'I am studying ECN 1A Chapter 1 (the five foundations) and currently have no outstanding missed items. ' +
-      'Quiz me on the hardest applications of opportunity cost, marginal thinking and tax-incidence-style reasoning.';
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
   navigator.clipboard.writeText(txt).then(function () {
     el('export-note').textContent = m.length
       ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'

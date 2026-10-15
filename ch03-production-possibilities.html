@@ -1,0 +1,1435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 03 — Production Possibilities · ECN 1A study guide</title>
+<meta name="description" content="The PPC, why it bows outward, efficient vs attainable points, and what shifts the whole frontier — two live models and a chapter quiz.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 03 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 03</div>
+      <h1>The curve that draws <em>scarcity</em></h1>
+      <p class="intro">One picture holds scarcity, trade-offs, opportunity cost and efficiency at once — which is why it keeps coming back all quarter. The marks are in reading points off it correctly and knowing what moves the curve versus what moves you along it.</p>
+      <div class="meta">4 chunks · 2 live models · 3 checkpoints · 10-question quiz</div>
+      <nav class="toc"><a href="#c0">Reading the curve <span class="n">00</span></a><a href="#c1">Why it bows <span class="n">01</span></a><a href="#c2">What shifts it <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">the frontier</span>
+      <div class="fig-h">why it bows outward</div>
+      <svg viewBox="0 0 280 180"><line x1="30" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="30" y1="150" x2="30" y2="20" stroke="#D1CFC5" stroke-width="1.5"/><path d="M30 24 Q 170 42 246 150" fill="none" stroke="#D97757" stroke-width="2.5"/><circle cx="124" cy="58" r="4" fill="#141413"/><text x="132" y="56" font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A">efficient</text><circle cx="96" cy="112" r="4" fill="#87867F"/><text x="104" y="116" font-family="ui-monospace,monospace" font-size="8.5" fill="#87867F">idle</text><circle cx="214" cy="46" r="4" fill="#788C5D"/><text x="222" y="44" font-family="ui-monospace,monospace" font-size="8.5" fill="#5A6B45">out of</text><text x="222" y="54" font-family="ui-monospace,monospace" font-size="8.5" fill="#5A6B45">reach</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Four kinds of point</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    The <strong>production possibilities curve</strong> shows every combination of two goods an economy can
+    make with all its resources and current technology. Most marks come from classifying a point correctly.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Where the point sits</th><th>Called</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td><strong>On the curve</strong></td><td>Efficient &amp; attainable</td>
+            <td>Every resource is used and used well. More of one good requires less of the other.</td></tr>
+        <tr><td><strong>Inside the curve</strong></td><td>Inefficient but attainable</td>
+            <td>Something is idle — unemployment, an unused factory. More of <em>both</em> is possible.</td></tr>
+        <tr><td><strong>Outside the curve</strong></td><td>Unattainable</td>
+            <td>Not reachable today. It needs the curve itself to move.</td></tr>
+        <tr><td><strong>On an axis</strong></td><td>Complete specialisation</td>
+            <td>All resources in one good. Efficient, and usually a terrible idea.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Efficient ≠ best</div>
+      <p style="margin-bottom:0">
+        Every point on the curve is efficient, and the curve has infinitely many points. Economics cannot
+        tell you <em>which</em> one to pick — that needs preferences, and preferring one is a normative
+        claim. "Efficient" means no waste, not "right."
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Why the curve bows outward</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    A straight PPC means constant opportunity cost. A bowed one means it <em>rises</em> — and the reason is
+    worth a sentence in any written answer.
+  </p>
+  <div class="sec-body">
+    <p>
+      Resources are <strong>not equally suited to both goods</strong>. Move the first workers from bread to
+      laptops and you move the ones who were bad at baking anyway — cheap. Keep going and you start
+      conscripting your best bakers, who give up a lot of bread per laptop gained. Each extra laptop costs
+      more bread than the last. That is <strong>increasing opportunity cost</strong>, and it is what bends
+      the line into a curve.
+    </p>
+    <p>
+      Drag along the frontier below. The slope <em>is</em> the opportunity cost, and it steepens as you go.
+    </p>
+
+    <div class="applet" id="ap-ppc">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Walking along the frontier</div>
+      <div class="ap-sub">bowed PPC · opportunity cost of the next laptop, computed at your point</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="ppc-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Laptops produced</span><span class="cv" id="ppc-a-v">40</span></div>
+            <input type="range" id="ppc-a" min="0" max="100" step="1" value="40">
+            <div class="ch">Slides you along the curve. Watch the cost of the next one.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Bread actually produced</span><span class="cv" id="ppc-b-v">on the curve</span></div>
+            <input type="range" id="ppc-b" min="-2" max="200" step="2" value="-2">
+            <div class="ch">Drop below the frontier to see idle resources; push above it to see what is out of reach.</div>
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="ppc-lin">
+            <label for="ppc-lin">Make resources perfectly interchangeable <em>(straightens the curve — constant opportunity cost)</em></label>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Max bread at that point</div><div class="rv" id="ppc-ro-max">—</div></div>
+            <div class="ro hero"><div class="rl">Next laptop costs</div><div class="rv" id="ppc-ro-oc">—</div></div>
+            <div class="ro"><div class="rl">Cost of the 1st laptop</div><div class="rv" id="ppc-ro-first">—</div></div>
+            <div class="ro"><div class="rl">Cost of the 100th</div><div class="rv" id="ppc-ro-last">—</div></div>
+            <div class="ro good"><div class="rl">Your point is</div><div class="rv" id="ppc-ro-cls">—</div></div>
+            <div class="ro"><div class="rl">Bread wasted</div><div class="rv" id="ppc-ro-idle">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="ppc-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Reading the curve · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>What moves the whole curve</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    Moving <em>along</em> the curve is a choice. Moving <em>the curve</em> is growth. Exams test the
+    difference constantly, and they love technology that only helps one good.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>More resources</strong> — workers, capital, discovered reserves. Shifts the whole curve out.</li>
+      <li><strong>Better technology</strong> — may shift <em>both</em> intercepts or just one. A better oven
+        moves the bread axis and leaves the laptop axis exactly where it was.</li>
+      <li><strong>Trade</strong> — does <em>not</em> shift your PPC. It lets you <em>consume</em> beyond it,
+        which is a different claim and a frequent exam trap.</li>
+    </ul>
+    <p>
+      The second model separates balanced growth from one-sided growth, which is where the marks hide.
+    </p>
+
+    <div class="applet" id="ap-grow">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Growth, and growth that only helps one good</div>
+      <div class="ap-sub">old frontier kept on screen for comparison</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="grow-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>More resources (both goods)</span><span class="cv" id="grow-r-v">0%</span></div>
+            <input type="range" id="grow-r" min="-30" max="60" step="5" value="0">
+            <div class="ch">Workers, capital, land. Negative models a war or a disaster.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Laptop-only technology</span><span class="cv" id="grow-t-v">0%</span></div>
+            <input type="range" id="grow-t" min="0" max="80" step="5" value="0">
+            <div class="ch">Moves one intercept only. Note what happens to the <em>other</em> axis.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Max laptops</div><div class="rv" id="grow-ro-l">—</div></div>
+            <div class="ro"><div class="rl">Max bread</div><div class="rv" id="grow-ro-b">—</div></div>
+            <div class="ro hero"><div class="rl">Shift type</div><div class="rv" id="grow-ro-k">—</div></div>
+            <div class="ro good"><div class="rl">Previously unreachable point</div><div class="rv" id="grow-ro-p">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="grow-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Shifts vs movements · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Four shapes, and the error each is hunting for.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Classify point Z"</td><td>On / inside / outside. Say what each implies.</td>
+            <td>Calling an inside point "unattainable" — it is attainable and wasteful.</td></tr>
+        <tr><td>"Opportunity cost of moving A→B"</td><td>Subtract: how much of the other good was lost.</td>
+            <td>Giving the new total rather than the <em>change</em>.</td></tr>
+        <tr><td>"Does this shift the curve?"</td><td>New resources or technology → yes. A different choice → no.</td>
+            <td>Treating trade as a shift. It moves consumption, not production possibilities.</td></tr>
+        <tr><td>"Why is it bowed?"</td><td>Resources are not equally suited to both goods.</td>
+            <td>Answering "because of scarcity" — true of the whole curve, not its shape.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">Carry this into Chapter 4</div>
+      <p style="margin-bottom:0">
+        Shift-versus-movement is the exact distinction that decides supply-and-demand questions next
+        chapter. There, a change in the good's own price moves you <em>along</em> a curve; anything else
+        shifts it. Same logic, new axes.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Exam patterns · plus callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled, not blocked. Several items give you only a described point and ask you to classify it.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 3, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>The frontier</td>
+            <td>The curve itself, the maximum bread at any laptop count, the opportunity cost of the next unit by differencing the frontier, and the classification of your point.</td>
+            <td>A quarter-ellipse stands in for the real frontier. Real economies have kinked, lumpy ones.</td></tr>
+        <tr><td>Growth</td>
+            <td>Both intercepts after resource and technology changes, the shift type, and whether a fixed previously-unreachable point is now inside the new frontier.</td>
+            <td>Resource growth scales both goods equally; technology here affects one good only.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 03 of 07</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div>Next: <strong>Chapter 04 — Supply and demand</strong></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* =================================================================
+ * MODEL 1 — the frontier. A quarter-ellipse gives genuine increasing
+ * opportunity cost; the cost of the next laptop is computed by
+ * differencing the frontier, not asserted.
+ * ================================================================= */
+(function () {
+  var LMAX = 100, BMAX = 200;
+
+  function frontier(a, linear) {
+    if (a >= LMAX) return 0;
+    if (linear) return BMAX * (1 - a / LMAX);
+    return BMAX * Math.sqrt(Math.max(0, 1 - (a / LMAX) * (a / LMAX)));
+  }
+  function compute(p) {
+    var max = frontier(p.a, p.linear);
+    var next = p.a < LMAX ? max - frontier(p.a + 1, p.linear) : Infinity;
+    var actual = p.b < 0 ? max : p.b;          // -1 means "sit on the curve"
+    var cls = Math.abs(actual - max) < 1.5 ? 'efficient'
+            : actual < max ? 'inefficient' : 'unattainable';
+    return {
+      max: max, next: next, actual: actual, cls: cls,
+      idle: cls === 'inefficient' ? max - actual : 0,
+      first: frontier(0, p.linear) - frontier(1, p.linear),
+      last: frontier(LMAX - 1, p.linear) - frontier(LMAX, p.linear)
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, LMAX * 1.12, 44, 340), y = scale(0, BMAX * 1.12, 232, 24);
+    b.push(line(44, 232, 344, 232, AX), line(44, 232, 44, 20, AX));
+    b.push(txt(44, 250, 'LAPTOPS →', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(txt(40, 18, 'BREAD', { a: 'end', s: 8, f: FAINT, ls: 0.8 }));
+    var pts = [], a;
+    for (a = 0; a <= LMAX; a += 1) pts.push(x(a).toFixed(1) + ',' + y(frontier(a, p.linear)).toFixed(1));
+    b.push('<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + CLAY + '" stroke-width="2.5"/>');
+    // the tangent-ish slope at the chosen point, drawn as the actual next-unit step
+    if (p.a < LMAX) {
+      var x0 = x(p.a), y0 = y(m.max), x1 = x(p.a + 1), y1 = y(frontier(p.a + 1, p.linear));
+      b.push(line(x0, y0, x1, y0, INK, 1.5));
+      b.push(line(x1, y0, x1, y1, OLIVE, 2.5));
+      b.push(txt(Math.min(x1 + 7, 300), (y0 + y1) / 2 + 3, '−' + m.next.toFixed(1) + ' bread', { s: 9, f: '#5A6B45' }));
+    }
+    b.push(line(x(p.a), 232, x(p.a), y(m.max), AX, 1.5, '3 3'));
+    // the reader's actual point
+    var col = m.cls === 'efficient' ? INK : m.cls === 'inefficient' ? FAINT : OLIVE;
+    b.push('<circle cx="' + x(p.a) + '" cy="' + y(m.actual) + '" r="5.5" fill="' + col + '"/>');
+    b.push(txt(clamp(x(p.a) + 10, 0, 250), y(m.actual) - 8, m.cls, { s: 9.5, f: col }));
+    if (m.idle > 1) {
+      b.push(line(x(p.a), y(m.actual), x(p.a), y(m.max), FAINT, 1.5, '2 3'));
+      b.push(txt(clamp(x(p.a) + 10, 0, 240), (y(m.actual) + y(m.max)) / 2 + 3,
+        Math.round(m.idle) + ' bread wasted', { s: 8.5, f: FAINT }));
+    }
+    return svg('0 0 360 258', b.join(''));
+  }
+
+  function params() {
+    return { a: +el('ppc-a').value, b: +el('ppc-b').value, linear: el('ppc-lin').checked };
+  }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('ppc-a-v').textContent = p.a;
+    el('ppc-b-v').textContent = p.b < 0 ? 'on the curve' : p.b;
+    el('ppc-fig').innerHTML = draw(p, m);
+    el('ppc-ro-max').textContent = m.max.toFixed(0) + ' bread';
+    el('ppc-ro-oc').textContent = isFinite(m.next) ? m.next.toFixed(1) + ' bread' : '—';
+    el('ppc-ro-first').textContent = m.first.toFixed(2) + ' bread';
+    el('ppc-ro-last').textContent = m.last.toFixed(1) + ' bread';
+    el('ppc-ro-cls').textContent = m.cls;
+    el('ppc-ro-idle').textContent = m.idle > 0 ? Math.round(m.idle) : '0';
+    var note;
+    if (p.linear) {
+      note = '<strong>Straight line, constant opportunity cost.</strong> Every laptop costs exactly ' +
+        m.first.toFixed(1) + ' bread, the first and the hundredth alike. That is what "resources are ' +
+        'perfectly interchangeable" means — and it is the assumption behind Chapter 2\'s comparative-advantage ' +
+        'tables. Switch it off and the cost starts to climb.';
+    } else if (m.cls === 'inefficient') {
+      note = '<strong>Inside the curve — attainable, but wasteful.</strong> ' + Math.round(m.idle) +
+        ' loaves of bread are simply not being made, with no gain in laptops to show for it. From here you ' +
+        'can have more of <em>both</em> goods, which is never true on the frontier. This is what unemployment ' +
+        'looks like on the diagram.';
+    } else if (m.cls === 'unattainable') {
+      note = '<strong>Outside the curve — not reachable today.</strong> No allocation of current resources ' +
+        'gets you here. Only growth moves the frontier, which is the next chunk. (Trade can let you ' +
+        '<em>consume</em> outside it — but that is consumption, not production.)';
+    } else {
+      note = '<strong>Efficient.</strong> The next laptop costs ' + m.next.toFixed(1) +
+        ' bread. Compare the ends: the first laptop costs just ' + m.first.toFixed(2) +
+        ' bread, the hundredth costs ' + m.last.toFixed(1) +
+        '. The resources good at baking get conscripted last, and that rising cost <em>is</em> the bow in the curve.';
+    }
+    el('ppc-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['a', 'b'].forEach(function (k) { el('ppc-' + k).addEventListener('input', render); });
+  el('ppc-lin').addEventListener('change', render);
+  st = Stepper(el('ap-ppc'), [
+    { t: 'The curve is every combination you could make using <strong>all</strong> your resources. Pick a number of laptops and it tells you the most bread still possible.', lit: ['ppc-ro-max'], v: function (m) { return m.max.toFixed(0) + ' bread alongside them'; } },
+    { t: 'Now ask for <em>one more</em> laptop. The bread you lose to get it is the opportunity cost — the green step on the figure.', lit: ['ppc-ro-oc'], v: function (m) { return isFinite(m.next) ? m.next.toFixed(1) + ' bread for the next laptop' : 'no laptops left to add'; } },
+    { t: 'Compare the two ends of the curve. The cost of a laptop is tiny at the start and brutal at the finish — that <strong>rise</strong> is what bends the line.', lit: ['ppc-ro-first', 'ppc-ro-last'], v: function (m) { return m.first.toFixed(2) + ' → ' + m.last.toFixed(1) + ' bread'; } },
+    { t: 'Finally, where does your actual output sit? On the curve is efficient; inside wastes resources; outside is simply not available today.', lit: ['ppc-ro-cls', 'ppc-ro-idle'], v: function (m) { return m.cls + (m.idle > 1 ? ' — ' + Math.round(m.idle) + ' bread wasted' : ''); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — growth. Resources scale both intercepts; technology here
+ * scales one. The test point is fixed so "now reachable" is a real
+ * computed verdict, not a label.
+ * ================================================================= */
+(function () {
+  var LMAX = 100, BMAX = 200, TEST_L = 85, TEST_B = 130;
+
+  function compute(p) {
+    var l = LMAX * (1 + p.r / 100) * (1 + p.t / 100);
+    var b = BMAX * (1 + p.r / 100);
+    var onNew = (TEST_L / l) * (TEST_L / l) + (TEST_B / b) * (TEST_B / b);
+    return {
+      l: l, b: b,
+      reach: onNew <= 1,
+      kind: p.r === 0 && p.t === 0 ? 'no change'
+        : p.r < 0 ? 'contraction'
+        : p.t > 0 && p.r > 0 ? 'both, laptop-biased'
+        : p.t > 0 ? 'laptops only'
+        : 'balanced growth'
+    };
+  }
+  function curve(l, b, x, y) {
+    var pts = [];
+    for (var i = 0; i <= 60; i++) {
+      var a = l * i / 60;
+      pts.push(x(a).toFixed(1) + ',' + y(b * Math.sqrt(Math.max(0, 1 - (a / l) * (a / l)))).toFixed(1));
+    }
+    return pts.join(' ');
+  }
+
+  function draw(p, m) {
+    var b = [], xm = Math.max(LMAX, m.l) * 1.12, ym = Math.max(BMAX, m.b) * 1.12;
+    var x = scale(0, xm, 44, 340), y = scale(0, ym, 222, 24);
+    b.push(line(44, 222, 344, 222, AX), line(44, 222, 44, 20, AX));
+    b.push(txt(44, 240, 'LAPTOPS →', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push('<polyline points="' + curve(LMAX, BMAX, x, y) + '" fill="none" stroke="' + AX + '" stroke-width="2" stroke-dasharray="4 3"/>');
+    b.push('<polyline points="' + curve(m.l, m.b, x, y) + '" fill="none" stroke="' + CLAY + '" stroke-width="2.5"/>');
+    b.push(txt(x(LMAX) + 2, y(0) - 6, 'before', { s: 8.5, f: FAINT }));
+    b.push(txt(x(m.l) + 2, y(0) - 20, 'after', { s: 8.5, f: CLAYD }));
+    b.push('<circle cx="' + x(TEST_L) + '" cy="' + y(TEST_B) + '" r="5" fill="' + (m.reach ? OLIVE : FAINT) + '"/>');
+    b.push(txt(x(TEST_L) - 8, y(TEST_B) - 8, m.reach ? 'now reachable' : 'still out of reach',
+      { a: 'end', s: 9, f: m.reach ? '#5A6B45' : FAINT }));
+    return svg('0 0 360 248', b.join(''));
+  }
+
+  function params() { return { r: +el('grow-r').value, t: +el('grow-t').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('grow-r-v').textContent = p.r + '%';
+    el('grow-t-v').textContent = p.t + '%';
+    el('grow-fig').innerHTML = draw(p, m);
+    el('grow-ro-l').textContent = m.l.toFixed(0);
+    el('grow-ro-b').textContent = m.b.toFixed(0);
+    el('grow-ro-k').textContent = m.kind;
+    el('grow-ro-p').textContent = m.reach ? 'reachable' : 'out of reach';
+    var note;
+    if (p.r === 0 && p.t === 0) note = 'Move a slider. Nothing shifts a frontier except more resources or better technology — <em>choosing</em> a different point only moves you along it.';
+    else if (p.r < 0) note = '<strong>The frontier moved inward.</strong> Fewer resources means combinations that were efficient yesterday are now impossible. Points do not become inefficient — they become unattainable.';
+    else if (p.t > 0 && p.r === 0) note = '<strong>One-sided growth.</strong> Laptop technology moved the laptop intercept to ' + m.l.toFixed(0) + ' and left bread at ' + m.b.toFixed(0) + ' — exactly where it was. The economy can make more laptops, and not one more loaf if it makes no laptops at all. Exams love this asymmetry.';
+    else note = '<strong>' + (p.t > 0 ? 'Growth in both, tilted toward laptops.' : 'Balanced growth.') + '</strong> More resources push both intercepts out together; the laptop-only slider then tilts the curve. Either way, points that were out of reach can become attainable — check the dot.';
+    el('grow-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['r', 't'].forEach(function (k) { el('grow-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-grow'), [
+    { t: 'More resources scale <strong>both</strong> intercepts. The whole curve moves out and keeps its shape.', lit: ['grow-ro-l', 'grow-ro-b'], v: function (m) { return m.l.toFixed(0) + ' laptops / ' + m.b.toFixed(0) + ' bread'; } },
+    { t: 'Technology need not be even-handed. A laptop-only improvement moves one intercept and leaves the other untouched — the curve tilts rather than expanding.', lit: ['grow-ro-k'], v: function (m) { return m.kind; } },
+    { t: 'The test is whether a specific out-of-reach combination has come inside the new frontier. That is what growth buys you.', lit: ['grow-ro-p'], v: function (m) { return m.reach ? '85 laptops + 130 bread is now possible' : 'still beyond the frontier'; } },
+    { t: 'Trade belongs to neither slider. It never shifts your production frontier — it lets you <strong>consume</strong> outside it, which is a different sentence and a graded distinction.', lit: [], v: function () { return 'trade shifts consumption, not production'; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch03", "title": "Chapter 03 \u2014 Production Possibilities", "anchors": ["c2", "c3", "quiz"], "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3}};
+var FND = ['Reading the curve', 'Opportunity cost', 'Increasing cost', 'Shifts vs movements', 'Growth'];
+
+var BANK = [
+  { id: 'pc1', home: 1, fnd: 1, type: 'mcq', short: 'A point inside the curve',
+    stem: 'An economy is producing at a point <em>inside</em> its PPC. What does that tell you?',
+    opts: [
+      { t: 'Resources are idle, so more of both goods is possible', ok: true },
+      { t: 'The combination is impossible with current resources', why: 'That describes a point <em>outside</em> the curve. Inside points are perfectly attainable — that is the problem with them.' },
+      { t: 'The economy is efficient but has chosen a poor mix', why: 'Efficiency means being <em>on</em> the curve. Inside the curve is the definition of inefficient, whatever the mix.' },
+      { t: 'Opportunity cost is zero everywhere on the curve', why: 'Opportunity cost is zero only while moving <em>out of</em> an inside point toward the frontier. Along the curve it is always positive.' }
+    ] },
+  { id: 'pc2', home: 1, fnd: 1, type: 'mcq', short: 'Efficient vs best',
+    stem: 'Two points, X and Y, both sit on the PPC. Which can economics tell you?',
+    opts: [
+      { t: 'Both are efficient; choosing between them needs values, not economics', ok: true },
+      { t: 'The one with more total units of output is better', why: 'Adding laptops to loaves is adding unlike things. And even if you could, "more units" is not a welfare ranking.' },
+      { t: 'The more balanced point is better', why: 'Balance is a preference, not an efficiency criterion. Both points use every resource fully.' },
+      { t: 'Whichever has lower opportunity cost is better', why: 'Opportunity cost differs <em>along</em> the curve, but every point on it is efficient. Lower cost at a point does not make it the right choice.' }
+    ] },
+  { id: 'pc3', home: 1, fnd: 2, type: 'numeric', short: 'Cost of moving along',
+    stem: 'An economy moves from (20 laptops, 180 loaves) to (40 laptops, 150 loaves). What is the opportunity cost of those extra 20 laptops, in loaves?',
+    pre: '', answer: 30, tol: 0,
+    why: '180 − 150 = <strong>30</strong> loaves given up. Answering 150 gives the new total rather than the change — opportunity cost is always what you <em>lost</em>, not what you are left holding.' },
+
+  { id: 'sh1', home: 2, fnd: 4, type: 'mcq', short: 'What shifts the curve',
+    stem: 'Which of these shifts the production possibilities curve outward?',
+    opts: [
+      { t: 'A rise in the number of trained workers', ok: true },
+      { t: 'Deciding to produce more laptops and less bread', why: 'That is a movement <em>along</em> the curve — a different choice from the same possibilities. Nothing about what is possible has changed.' },
+      { t: 'A fall in unemployment', why: 'Falling unemployment moves you from <em>inside</em> the curve toward it. The frontier itself does not move.' },
+      { t: 'Consumers preferring bread to laptops', why: 'Preferences decide which point gets chosen. They have no effect on what the economy is capable of producing.' }
+    ] },
+  { id: 'sh2', home: 2, fnd: 4, type: 'mcq', short: 'Trade and the frontier',
+    stem: 'A country opens to trade and ends up consuming a combination that lies outside its PPC. Has its PPC shifted?',
+    opts: [
+      { t: 'No — trade moves what it can consume, not what it can produce', ok: true },
+      { t: 'Yes, because it now has access to more goods', why: 'Access is about consumption. The PPC is a <em>production</em> frontier, fixed by this country\'s own resources and technology.' },
+      { t: 'Yes, because trade counts as a technology improvement', why: 'Trade is often described as being "like" a technology, but it does not change what the country itself can make. The distinction is graded.' },
+      { t: 'No, and consuming outside the PPC is impossible anyway', why: 'It is entirely possible — that is precisely the gain from trade shown in Chapter 2. What is impossible is <em>producing</em> outside it.' }
+    ] },
+  { id: 'sh3', home: 2, fnd: 5, type: 'mcq', short: 'One-sided technology',
+    stem: 'A breakthrough doubles laptop output per worker but does nothing for bread. What happens to the PPC?',
+    opts: [
+      { t: 'The laptop intercept moves out; the bread intercept stays put', ok: true },
+      { t: 'The whole curve shifts out evenly', why: 'An even shift needs something that helps both goods, like more workers. A laptop-only advance tilts the curve rather than expanding it.' },
+      { t: 'Nothing, until the economy decides to make more laptops', why: 'The frontier describes what is <em>possible</em>. It moves the moment the technology exists, whatever is chosen.' },
+      { t: 'The bread intercept falls, since resources move to laptops', why: 'The bread intercept is what you could make devoting <em>everything</em> to bread. That capability is untouched.' }
+    ] },
+
+  { id: 'ex1', home: 3, fnd: 3, type: 'mcq', short: 'Why it bows',
+    stem: 'Why is a typical PPC bowed outward rather than straight?',
+    opts: [
+      { t: 'Resources are not equally suited to both goods, so cost rises as you specialise', ok: true },
+      { t: 'Because resources are scarce', why: 'Scarcity is why a frontier exists at all — why there is a boundary. It does not explain the boundary\'s <em>shape</em>. A straight PPC also reflects scarcity.' },
+      { t: 'Because of diminishing returns to consumption', why: 'The PPC is about production. Consumer satisfaction plays no part in its shape.' },
+      { t: 'Because technology improves over time', why: 'Technological change shifts the curve. The bow exists at a single moment with technology held fixed.' }
+    ] },
+  { id: 'ex2', home: 3, fnd: 3, type: 'mcq', short: 'A straight frontier',
+    stem: 'What does a perfectly straight PPC imply?',
+    opts: [
+      { t: 'Constant opportunity cost — resources are equally good at both goods', ok: true },
+      { t: 'There is no opportunity cost', why: 'There is: the line still slopes down, so more of one still costs some of the other. It just costs the <em>same</em> amount every time.' },
+      { t: 'The economy is inefficient', why: 'Every point on any PPC, straight or bowed, is efficient. The shape says nothing about efficiency.' },
+      { t: 'The two goods must be identical', why: 'They need only use resources in the same proportions, or use resources that are equally productive in both. They can be entirely different goods.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 1, type: 'classify', short: 'Classify each point',
+    stem: 'An economy\'s PPC runs between 100 laptops and 200 loaves. Classify each combination.',
+    cats: ['On the curve', 'Inside the curve', 'Outside the curve'],
+    rows: [
+      { t: '0 laptops and 200 loaves', cat: 'On the curve' },
+      { t: '50 laptops and 40 loaves, when 173 loaves were possible', cat: 'Inside the curve' },
+      { t: '100 laptops and 80 loaves', cat: 'Outside the curve' },
+      { t: '100 laptops and 0 loaves', cat: 'On the curve' }
+    ],
+    why: 'The axis points are on the curve — complete specialisation is efficient, if usually unwise. A combination well below the attainable maximum is inside it. And 100 laptops already uses every resource, so any bread alongside them is out of reach.' },
+  { id: 'q2', fnd: 2, type: 'numeric', short: 'Opportunity cost from a table',
+    stem: 'Moving from (10 boats, 90 houses) to (25 boats, 60 houses), what is the opportunity cost <em>per boat</em>, in houses?',
+    pre: '', answer: 2, tol: 0.01,
+    why: '30 houses given up ÷ 15 extra boats = <strong>2</strong> houses per boat. Answering 30 gives the total cost rather than the per-unit cost the question asked for.' },
+  { id: 'q3', fnd: 4, type: 'mcq', short: 'Movement vs shift',
+    stem: 'A country shifts workers from agriculture into manufacturing. On its PPC this is:',
+    opts: [
+      { t: 'A movement along the existing curve', ok: true },
+      { t: 'An outward shift of the curve', why: 'No new resources or technology appeared. The same workers are simply doing something else — the set of possibilities is unchanged.' },
+      { t: 'An inward shift of the curve', why: 'Nothing was lost. Reallocation moves the chosen point, never the frontier.' },
+      { t: 'A move from inside the curve to the curve', why: 'That would require previously idle resources. These workers were already employed, just elsewhere.' }
+    ] },
+  { id: 'q4', fnd: 5, type: 'mcq', short: 'Disaster on the diagram',
+    stem: 'An earthquake destroys a third of a country\'s capital stock. The PPC:',
+    opts: [
+      { t: 'Shifts inward, so some formerly efficient points are now unattainable', ok: true },
+      { t: 'Stays put, but the country produces inside it', why: 'Producing inside the curve means resources are idle. Here the resources are <em>gone</em>, which moves the frontier itself.' },
+      { t: 'Becomes straighter', why: 'Losing capital reduces how much can be made; it does not make the remaining resources equally suited to both goods.' },
+      { t: 'Is unaffected, since the PPC shows potential rather than actual output', why: 'Potential is exactly what fell. The frontier reflects available resources, and a third of the capital no longer exists.' }
+    ] },
+  { id: 'q5', fnd: 3, type: 'mcq', short: 'Where cost is lowest',
+    stem: 'On a bowed-outward PPC with laptops on the horizontal axis, where is the opportunity cost of an extra laptop <em>lowest</em>?',
+    opts: [
+      { t: 'Near the vertical axis, where few laptops are being made', ok: true },
+      { t: 'Near the horizontal axis, where many laptops are being made', why: 'That is where it is <em>highest</em> — you are conscripting the resources that are worst at making laptops and best at bread.' },
+      { t: 'Exactly at the midpoint of the curve', why: 'The midpoint has an intermediate cost, not a minimum. Cost rises steadily from left to right.' },
+      { t: 'It is the same everywhere, by definition', why: 'That is true of a <em>straight</em> PPC. A bowed one has cost rising as you move toward the good on the horizontal axis.' }
+    ] },
+  { id: 'q6', fnd: 1, type: 'mcq', short: 'Unemployment on the diagram',
+    stem: 'Unemployment rises sharply. Where does the economy sit?',
+    opts: [
+      { t: 'Inside the curve, since usable resources are sitting idle', ok: true },
+      { t: 'On the curve, at a different point', why: 'Every point on the curve uses all resources. Idle workers are by definition unused resources.' },
+      { t: 'Outside the curve', why: 'Outside points are unattainable. Unemployment does not make the impossible possible.' },
+      { t: 'The curve shifts inward', why: 'The workers still exist and could be re-employed tomorrow. The frontier is unchanged; the economy has merely fallen inside it.' }
+    ] },
+  { id: 'q7', fnd: 5, type: 'mcq', short: 'Investment and future curves',
+    stem: 'A country moves along its current PPC toward more capital goods and fewer consumer goods. The likely effect on <em>next year\'s</em> PPC is:',
+    opts: [
+      { t: 'It shifts outward, because more capital means more resources later', ok: true },
+      { t: 'No effect — moving along a curve never shifts it', why: 'True this year. But capital goods are themselves a resource next year, so today\'s choice of point changes tomorrow\'s frontier.' },
+      { t: 'It shifts inward, because consumption fell', why: 'Lower consumption is the cost paid now. It reduces current welfare, not future productive capacity.' },
+      { t: 'It becomes straighter', why: 'More capital expands the frontier; it does not make resources equally suited to both goods.' }
+    ] },
+  { id: 'q8', fnd: 4, type: 'mcq', short: 'Preferences and the frontier',
+    stem: 'Consumer tastes swing strongly toward laptops. What happens to the PPC?',
+    opts: [
+      { t: 'Nothing — preferences choose a point, they do not change what is possible', ok: true },
+      { t: 'It shifts outward in the laptop direction', why: 'Wanting more of something does not make more of it possible. Only resources and technology move the frontier.' },
+      { t: 'It becomes steeper', why: 'The slope is set by the relative productivity of resources, not by what people want.' },
+      { t: 'It shifts inward for bread', why: 'The bread intercept is what the economy <em>could</em> make devoting everything to bread. Nobody wanting bread does not reduce that capability.' }
+    ] },
+  { id: 'q9', fnd: 2, type: 'mcq', short: 'Free lunch on the diagram',
+    stem: 'Which single move gets an economy more of <em>both</em> goods at no cost?',
+    opts: [
+      { t: 'Moving from a point inside the curve onto the curve', ok: true },
+      { t: 'Moving along the curve toward the laptop axis', why: 'Along the curve, more laptops always costs bread. That is what the downward slope means.' },
+      { t: 'Choosing the midpoint of the curve', why: 'The midpoint is one efficient point among many. Arriving there from another point on the curve still involves a trade-off.' },
+      { t: 'No move ever can — scarcity forbids it', why: 'Scarcity makes the <em>frontier</em> binding, but an economy sitting inside it has slack. Eliminating waste really is a free lunch, and it is the only one in the course.' }
+    ] },
+  { id: 'q10', fnd: 3, type: 'mcq', short: 'Linking back to trade',
+    stem: 'Chapter 2\'s comparative-advantage tables assumed each country\'s opportunity cost was the same at every output level. On a PPC that assumption looks like:',
+    opts: [
+      { t: 'A straight-line frontier', ok: true },
+      { t: 'A bowed-outward frontier', why: 'A bow means the cost changes as you specialise. The constant-cost tables in Chapter 2 correspond to a straight line.' },
+      { t: 'A frontier that shifts outward over time', why: 'That is growth, which is about different years rather than different points in one year.' },
+      { t: 'A point inside the frontier', why: 'Inside points are about waste. The assumption concerns the <em>shape</em> of the boundary, not where production sits.' }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>

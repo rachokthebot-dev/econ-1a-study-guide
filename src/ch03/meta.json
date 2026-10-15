@@ -1,0 +1,17 @@
+{
+  "id": "ch03",
+  "file": "ch03-production-possibilities.html",
+  "num": "Chapter 03",
+  "title": "Chapter 03 — Production Possibilities",
+  "desc": "The PPC, why it bows outward, efficient vs attainable points, and what shifts the whole frontier — two live models and a chapter quiz.",
+  "h1": "The curve that draws <em>scarcity</em>",
+  "intro": "One picture holds scarcity, trade-offs, opportunity cost and efficiency at once — which is why it keeps coming back all quarter. The marks are in reading points off it correctly and knowing what moves the curve versus what moves you along it.",
+  "stats": "4 chunks · 2 live models · 3 checkpoints · 10-question quiz",
+  "herotag": "the frontier",
+  "herosub": "why it bows outward",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"30\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"20\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><path d=\"M30 24 Q 170 42 246 150\" fill=\"none\" stroke=\"#D97757\" stroke-width=\"2.5\"/><circle cx=\"124\" cy=\"58\" r=\"4\" fill=\"#141413\"/><text x=\"132\" y=\"56\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#3D3D3A\">efficient</text><circle cx=\"96\" cy=\"112\" r=\"4\" fill=\"#87867F\"/><text x=\"104\" y=\"116\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#87867F\">idle</text><circle cx=\"214\" cy=\"46\" r=\"4\" fill=\"#788C5D\"/><text x=\"222\" y=\"44\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#5A6B45\">out of</text><text x=\"222\" y=\"54\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#5A6B45\">reach</text></svg>",
+  "next": "Next: <strong>Chapter 04 — Supply and demand</strong>",
+  "anchors": ["c2", "c3", "quiz"],
+  "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3},
+  "toc": [["c0", "Reading the curve", "00"], ["c1", "Why it bows", "01"], ["c2", "What shifts it", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Chapter quiz", "▸"]]
+}

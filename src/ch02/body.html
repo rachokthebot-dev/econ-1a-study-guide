@@ -1,0 +1,255 @@
+<!-- ============================ chunk 0 ============================ -->
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Two different advantages</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Nearly every lost mark in this chapter comes from confusing these two. Get the distinction solid here
+    and the rest is arithmetic.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Term</th><th>Means</th><th>Measured by</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Absolute advantage</strong></td>
+            <td>Producing <em>more</em> of a good with the same resources</td>
+            <td>Output per worker-hour. Just compare the two numbers.</td></tr>
+        <tr><td><strong>Comparative advantage</strong></td>
+            <td>Producing a good at a <em>lower opportunity cost</em></td>
+            <td>What you give up of the other good. Requires a ratio, not a comparison.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">The result that decides the chapter</div>
+      <p style="margin-bottom:0">
+        One party can hold <strong>absolute advantage in everything</strong>. No party can hold
+        <strong>comparative advantage in everything</strong> — it is arithmetically impossible, because
+        opportunity costs are reciprocals. If you are the cheaper producer of laptops in forgone avocados,
+        you are necessarily the <em>dearer</em> producer of avocados in forgone laptops. Trade follows
+        comparative advantage, so there is always something for each side to do.
+      </p>
+    </div>
+    <p>
+      A surgeon may be the fastest typist in the hospital. She still does not type her own notes, because
+      an hour of her typing costs an hour of surgery. Absolute advantage in typing, comparative advantage
+      in surgery — and the slower typist gets the work.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ chunk 1 ============================ -->
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Computing opportunity cost from a table</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    This is the mechanical skill the exam actually grades. Two goods, two producers, four numbers — and a
+    division you must do in the right direction.
+  </p>
+  <div class="sec-body">
+    <div class="card accent">
+      <div class="label">The rule, and how to not invert it</div>
+      <p style="margin-bottom:0">
+        For the opportunity cost of <strong>one laptop</strong>, put laptops <em>underneath</em>:
+        <code>avocados ÷ laptops</code>. The good you are pricing goes on the bottom. Say it out loud —
+        "cost of one laptop, so laptops on the bottom" — because inverting this is the single most common
+        error in the chapter, and it flips which country should specialise in what.
+      </p>
+    </div>
+    <p>
+      Push the four production numbers below. Notice you can give one country absolute advantage in both
+      goods and <em>still</em> get a clean division of labour out of the opportunity costs.
+    </p>
+
+    <div class="applet" id="ap-ca">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Who should make what</div>
+      <div class="ap-sub">output per day · opportunity costs computed both directions</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="ca-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Ridge — laptops/day</span><span class="cv" id="ca-al-v">100</span></div>
+            <input type="range" id="ca-al" min="10" max="200" step="10" value="100">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Ridge — avocados/day</span><span class="cv" id="ca-aa-v">200</span></div>
+            <input type="range" id="ca-aa" min="10" max="400" step="10" value="200">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Vale — laptops/day</span><span class="cv" id="ca-bl-v">40</span></div>
+            <input type="range" id="ca-bl" min="10" max="200" step="10" value="40">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Vale — avocados/day</span><span class="cv" id="ca-ba-v">160</span></div>
+            <input type="range" id="ca-ba" min="10" max="400" step="10" value="160">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Ridge: 1 laptop costs</div><div class="rv" id="ca-ro-a1">—</div></div>
+            <div class="ro"><div class="rl">Vale: 1 laptop costs</div><div class="rv" id="ca-ro-b1">—</div></div>
+            <div class="ro"><div class="rl">Absolute adv.</div><div class="rv" id="ca-ro-abs">—</div></div>
+            <div class="ro hero"><div class="rl">Laptops made by</div><div class="rv" id="ca-ro-cmp">—</div></div>
+            <div class="ro good"><div class="rl">Avocados made by</div><div class="rv" id="ca-ro-cmp2">—</div></div>
+            <div class="ro"><div class="rl">Terms of trade</div><div class="rv" id="ca-ro-tot">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="ca-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Advantages &amp; opportunity cost · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 2 ============================ -->
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Specialise, then trade</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    Knowing who should make what is half the answer. The other half is the exchange rate between the two
+    goods, and the fact that only a band of rates leaves both sides better off.
+  </p>
+  <div class="sec-body">
+    <p>
+      Each side specialises where its opportunity cost is lower, then swaps. The exchange rate — how many
+      avocados buy one laptop — is the <strong>terms of trade</strong>, and it must sit
+      <em>between the two opportunity costs</em>. Outside that band one side would rather make the good
+      itself, so it refuses, exactly like the price slider in Chapter 1.
+    </p>
+    <div class="card">
+      <div class="label">Why the band is where it is</div>
+      <p style="margin-bottom:0">
+        Ridge gives up 2 avocados to make a laptop, so it will not sell one for less than 2. Vale gives up
+        4, so it will not pay more than 4. Any rate strictly between 2 and 4 beats self-sufficiency for
+        both. The two opportunity costs are the floor and the ceiling — that is <em>all</em> the band is.
+      </p>
+    </div>
+    <p>
+      But a rate inside the band is necessary, not sufficient: the <em>volume</em> matters too. Move both
+      sliders and watch the "both gain" verdict flip.
+    </p>
+
+    <div class="applet" id="ap-tot">
+      <span class="tag">model · live</span>
+      <div class="ap-title">The deal, and whether it is actually a deal</div>
+      <div class="ap-sub">Ridge 100L or 200A · Vale 40L or 160A · consumption vs going it alone</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tot-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Terms of trade — avocados per laptop</span><span class="cv" id="tot-t-v">3.0</span></div>
+            <input type="range" id="tot-t" min="1" max="5" step="0.1" value="3">
+            <div class="ch">Must land between the two opportunity costs, 2 and 4.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Laptops Ridge exports</span><span class="cv" id="tot-e-v">25</span></div>
+            <input type="range" id="tot-e" min="5" max="60" step="1" value="25">
+            <div class="ch">The volume. A fair rate on the wrong volume still fails someone.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Ridge consumes</div><div class="rv" id="tot-ro-a">—</div></div>
+            <div class="ro"><div class="rl">Alone, Ridge had</div><div class="rv" id="tot-ro-a0">70L 60A</div></div>
+            <div class="ro"><div class="rl">Vale consumes</div><div class="rv" id="tot-ro-b">—</div></div>
+            <div class="ro"><div class="rl">Alone, Vale had</div><div class="rv" id="tot-ro-b0">20L 80A</div></div>
+            <div class="ro hero"><div class="rl">Verdict</div><div class="rv" id="tot-ro-v">—</div></div>
+            <div class="ro good"><div class="rl">World output gain</div><div class="rv" id="tot-ro-w">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tot-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Specialisation &amp; terms of trade · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ chunk 3 ============================ -->
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">
+    Four recurring question shapes, and the error each one is hunting for.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap being set</th></tr></thead>
+      <tbody>
+        <tr><td>"Who has absolute advantage?"</td>
+            <td>Compare raw output. No division.</td>
+            <td>Students divide anyway and answer the comparative question.</td></tr>
+        <tr><td>"Who has comparative advantage in X?"</td>
+            <td><code>other ÷ X</code> for both. Lower wins.</td>
+            <td>Inverting the ratio, which reverses the answer.</td></tr>
+        <tr><td>"Give an acceptable terms of trade"</td>
+            <td>Any number strictly between the two opportunity costs.</td>
+            <td>Quoting a rate equal to one cost — that side is indifferent, so it isn't a gain.</td></tr>
+        <tr><td>"Can both gain if one is better at everything?"</td>
+            <td>Yes. Say <em>why</em>: comparative advantage cannot be held in both goods.</td>
+            <td>Answering "no" from intuition.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Three more things that cost marks</div>
+      <ul style="margin-bottom:0">
+        <li><strong>Units.</strong> "2 avocados per laptop" and "0.5 laptops per avocado" are the same fact.
+          State which good you are pricing or the answer is unmarkable.</li>
+        <li><strong>Identical opportunity costs.</strong> If both sides give up the same amount, there is
+          <em>no</em> comparative advantage and no gain from trade. This case appears on exams specifically
+          to see whether you noticed.</li>
+        <li><strong>More output ≠ gains from trade.</strong> Gains come from reallocating production toward
+          lower-cost producers, not from anyone working harder.</li>
+      </ul>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Exam patterns · plus callbacks from across the chapter</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ quiz ============================ -->
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">
+    Shuffled rather than blocked. Several items give you a production table and nothing else — that is the
+    exam's favourite shape.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 2, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<!-- ============================ ledger ============================ -->
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Who makes what</td>
+            <td>Both opportunity costs in both directions, absolute advantage, comparative advantage, and the terms-of-trade band — all from the four output numbers.</td>
+            <td>Constant opportunity cost (straight-line PPCs). Chapter 3 bends them.</td></tr>
+        <tr><td>The deal</td>
+            <td>Specialised output, the swap at your terms of trade, each side's final consumption, the comparison against going it alone, and the change in world output.</td>
+            <td>Two goods, two parties, no transport cost, and a fixed self-sufficiency baseline (Ridge 70L+60A, Vale 20L+80A).</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
