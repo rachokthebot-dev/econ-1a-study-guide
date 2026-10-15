@@ -1702,7 +1702,7 @@ var Store = (function () {
       return done / BANK.length;
     },
     missed: function () {
-      return BANK.concat(QUIZ).filter(function (q) {
+      return BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).filter(function (q) {
         var it = db.items[q.id]; return it && it.box === 1;
       });
     },
@@ -1899,6 +1899,7 @@ function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
 /* ---------- the chapter quiz ------------------------------------- */
 (function mountQuiz() {
   var host = $('#bigquiz .ck-body');
+  if (!host || typeof QUIZ === 'undefined' || !QUIZ.length) return;   // chapter built without a quiz
   host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
     '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
     '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
