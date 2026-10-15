@@ -1,0 +1,17 @@
+{
+  "id": "ch04",
+  "file": "ch04-supply-and-demand.html",
+  "num": "Chapter 04",
+  "title": "Chapter 04 — Supply and Demand",
+  "desc": "Shifts vs movements, the five shifters of each curve, equilibrium, and shortages and surpluses — two live models and a chapter quiz.",
+  "h1": "The model the rest of the course <em>runs on</em>",
+  "intro": "Almost every remaining question is this diagram with a twist. The whole chapter reduces to two disciplines: knowing whether a change moves the curve or moves you along it, and working the new equilibrium out in a fixed order rather than guessing.",
+  "stats": "4 chunks · 2 live models · 3 checkpoints · 10-question quiz",
+  "herotag": "equilibrium",
+  "herosub": "where the two curves meet",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"34\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"34\" y1=\"150\" x2=\"34\" y2=\"18\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"44\" y1=\"28\" x2=\"248\" y2=\"142\" stroke=\"#D97757\" stroke-width=\"2.5\"/><line x1=\"44\" y1=\"142\" x2=\"248\" y2=\"28\" stroke=\"#788C5D\" stroke-width=\"2.5\"/><circle cx=\"146\" cy=\"85\" r=\"5\" fill=\"#141413\"/><text x=\"252\" y=\"146\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#B85C3E\">D</text><text x=\"252\" y=\"26\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#5A6B45\">S</text><text x=\"154\" y=\"80\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#3D3D3A\">P*, Q*</text></svg>",
+  "next": "Next: <strong>Chapter 05 — Elasticity</strong>",
+  "anchors": ["c2", "c3", "quiz"],
+  "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3},
+  "toc": [["c0", "Shift vs movement", "00"], ["c1", "The shifters", "01"], ["c2", "Equilibrium", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Chapter quiz", "▸"]]
+}

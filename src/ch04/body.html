@@ -1,0 +1,251 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>The one distinction that decides everything</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    If you only retain one thing from this chapter, retain this. It is worth more marks than the rest of
+    the material combined, and it is the same shift-versus-movement logic you just met on the PPC.
+  </p>
+  <div class="sec-body">
+    <div class="card accent">
+      <div class="label">The rule</div>
+      <p style="margin-bottom:0">
+        A change in <strong>the good's own price</strong> moves you <em>along</em> the curve — a change in
+        quantity demanded or quantity supplied. <strong>Anything else</strong> shifts the whole curve — a
+        change in demand or supply. There is no third case.
+      </p>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Wording you'll see</th><th>Means</th><th>On the diagram</th></tr></thead>
+      <tbody>
+        <tr><td>"quantity demanded falls"</td><td>Own price rose</td><td>Movement <em>along</em> D</td></tr>
+        <tr><td>"demand falls"</td><td>Something other than price changed</td><td>The whole D curve shifts left</td></tr>
+        <tr><td>"quantity supplied rises"</td><td>Own price rose</td><td>Movement <em>along</em> S</td></tr>
+        <tr><td>"supply rises"</td><td>Something other than price changed</td><td>The whole S curve shifts right</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">The circular trap</div>
+      <p style="margin-bottom:0">
+        "The price of coffee rose, so demand for coffee fell, so the price fell again…" — this loop is
+        wrong at the second step. A price rise reduces <em>quantity demanded</em>, which is a movement, not
+        a shift. Only a non-price factor can shift demand. Getting this wrong turns every later question
+        into nonsense, which is exactly why it is tested so hard.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>What actually shifts each curve</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    Five shifters each. You need to recall the list, and — harder — get the <em>direction</em> right.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Shifts DEMAND</th><th>Right (more) when…</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Income</strong></td><td>Income rises, for a <em>normal</em> good. For an <em>inferior</em> good it goes the other way — this reversal is a favourite.</td></tr>
+        <tr><td><strong>Price of related goods</strong></td><td>A <em>substitute</em> gets dearer, or a <em>complement</em> gets cheaper.</td></tr>
+        <tr><td><strong>Tastes</strong></td><td>The good becomes more fashionable or better regarded.</td></tr>
+        <tr><td><strong>Expectations</strong></td><td>Buyers expect a <em>higher</em> price later, so they buy now.</td></tr>
+        <tr><td><strong>Number of buyers</strong></td><td>The market gains buyers.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Shifts SUPPLY</th><th>Right (more) when…</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Input costs</strong></td><td>Inputs get <em>cheaper</em>.</td></tr>
+        <tr><td><strong>Technology</strong></td><td>Production gets more efficient.</td></tr>
+        <tr><td><strong>Taxes &amp; subsidies</strong></td><td>A subsidy arrives, or a tax is lifted.</td></tr>
+        <tr><td><strong>Expectations</strong></td><td>Sellers expect a <em>lower</em> price later, so they sell now. Note this is the opposite sign to the buyers' version.</td></tr>
+        <tr><td><strong>Number of sellers</strong></td><td>The market gains sellers.</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      Work the model below with one slider at a time. Watch which curve moves and which stays pinned — the
+      curve that does <em>not</em> move still changes its quantity, and that is a movement along it.
+    </p>
+
+    <div class="applet" id="ap-sd">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Shift one thing, find the new equilibrium</div>
+      <div class="ap-sub">Qd = 120 − 2P + shifters · Qs = −30 + 4P + shifters</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="sd-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Buyer income <em>(normal good)</em></span><span class="cv" id="sd-inc-v">0</span></div>
+            <input type="range" id="sd-inc" min="-30" max="30" step="5" value="0">
+            <div class="ch">Shifts <strong>demand</strong>. Reverse the sign in your head for an inferior good.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Price of a substitute</span><span class="cv" id="sd-sub-v">0</span></div>
+            <input type="range" id="sd-sub" min="-30" max="30" step="5" value="0">
+            <div class="ch">Shifts <strong>demand</strong> the same way it moves: dearer substitute, more demand here.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Input cost</span><span class="cv" id="sd-in-v">0</span></div>
+            <input type="range" id="sd-in" min="-30" max="30" step="5" value="0">
+            <div class="ch">Shifts <strong>supply</strong>, in the opposite direction: costlier inputs, less supply.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Production technology</span><span class="cv" id="sd-tec-v">0</span></div>
+            <input type="range" id="sd-tec" min="0" max="40" step="5" value="0">
+            <div class="ch">Shifts <strong>supply</strong> right.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro hero"><div class="rl">New price</div><div class="rv" id="sd-ro-p">—</div></div>
+            <div class="ro good"><div class="rl">New quantity</div><div class="rv" id="sd-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Demand curve</div><div class="rv" id="sd-ro-d">—</div></div>
+            <div class="ro"><div class="rl">Supply curve</div><div class="rv" id="sd-ro-s">—</div></div>
+            <div class="ro"><div class="rl">Price change</div><div class="rv" id="sd-ro-dp">—</div></div>
+            <div class="ro"><div class="rl">Quantity change</div><div class="rv" id="sd-ro-dq">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="sd-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Shifts, movements and directions · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Equilibrium, and what happens away from it</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    Equilibrium is the price where quantity demanded equals quantity supplied. Everywhere else the market
+    is pushing itself back, and the direction of that push is examinable.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Price above equilibrium → surplus.</strong> Sellers want to sell more than buyers want to
+        buy. Unsold stock piles up and sellers cut the price.</li>
+      <li><strong>Price below equilibrium → shortage.</strong> Buyers want more than sellers will provide.
+        Queues form and sellers raise the price.</li>
+    </ul>
+    <div class="card">
+      <div class="label">Say it precisely</div>
+      <p style="margin-bottom:0">
+        A shortage is <em>not</em> "not much of it about." Scarcity is permanent and applies to everything;
+        a <strong>shortage</strong> is a specific, temporary gap between quantity demanded and quantity
+        supplied <em>at a particular price</em>, and it is measured in units. Writing "there is a shortage
+        of oil" without a price attached is the sloppy version that loses marks.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-eq">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Set a price the market didn't choose</div>
+      <div class="ap-sub">gap measured in units at your price · equilibrium P* = 25, Q* = 70</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="eq-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Price</span><span class="cv" id="eq-p-v">$25</span></div>
+            <input type="range" id="eq-p" min="8" max="45" step="1" value="25">
+            <div class="ch">Drag away from $25 and watch which side of the market is disappointed.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Quantity demanded</div><div class="rv" id="eq-ro-qd">—</div></div>
+            <div class="ro"><div class="rl">Quantity supplied</div><div class="rv" id="eq-ro-qs">—</div></div>
+            <div class="ro hero"><div class="rl">Gap</div><div class="rv" id="eq-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Units actually traded</div><div class="rv" id="eq-ro-tr">—</div></div>
+            <div class="ro good"><div class="rl">Price pressure</div><div class="rv" id="eq-ro-dir">—</div></div>
+            <div class="ro"><div class="rl">Distance from P*</div><div class="rv" id="eq-ro-off">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="eq-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Equilibrium &amp; disequilibrium · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>Working a question in a fixed order</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">
+    Do not eyeball these. Four steps, same order every time, and the double-shift case has a known answer:
+    one of the two outcomes is simply indeterminate.
+  </p>
+  <div class="sec-body">
+    <ol>
+      <li><strong>Which curve?</strong> Does the event touch buyers or sellers?</li>
+      <li><strong>Which direction?</strong> More or less at every price.</li>
+      <li><strong>Read the new crossing.</strong> Price and quantity, together.</li>
+      <li><strong>State both.</strong> Answers naming only the price lose half the marks.</li>
+    </ol>
+    <div class="card trap">
+      <div class="label">When both curves move</div>
+      <p>
+        If demand and supply both shift, one of price and quantity is <strong>determinate</strong> and the
+        other is <strong>ambiguous</strong> — it depends on which shift is larger, which the question
+        usually does not tell you. The correct answer names the ambiguity rather than guessing.
+      </p>
+      <div class="tbl-wrap" style="margin-bottom:0"><table class="tbl">
+        <thead><tr><th>Both shift</th><th>Price</th><th>Quantity</th></tr></thead>
+        <tbody>
+          <tr><td>D right, S right</td><td><strong>Ambiguous</strong></td><td>Rises</td></tr>
+          <tr><td>D left, S left</td><td><strong>Ambiguous</strong></td><td>Falls</td></tr>
+          <tr><td>D right, S left</td><td>Rises</td><td><strong>Ambiguous</strong></td></tr>
+          <tr><td>D left, S right</td><td>Falls</td><td><strong>Ambiguous</strong></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <p>
+      The pattern is worth noticing rather than memorising: when the curves shift the <em>same</em>
+      direction, quantity is certain; when they shift <em>opposite</em> directions, price is certain.
+    </p>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Double shifts &amp; method · plus callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled. Watch the wording on every stem — "demand" and "quantity demanded" are different claims.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 4, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Shift &amp; equilibrium</td>
+            <td>Both curves after your shifters, the new equilibrium by solving Qd = Qs, and the signed change in price and quantity against the starting point.</td>
+            <td>Both curves are linear with fixed slopes, so only the intercepts move. Shifters are parallel shifts.</td></tr>
+        <tr><td>Disequilibrium</td>
+            <td>Quantity demanded and supplied at your price, the gap in units, the short side that caps actual trade, and the direction of price pressure.</td>
+            <td>No adjustment dynamics — the model shows the gap, not how many weeks it takes to close.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>

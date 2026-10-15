@@ -1,0 +1,1473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 04 — Supply and Demand · ECN 1A study guide</title>
+<meta name="description" content="Shifts vs movements, the five shifters of each curve, equilibrium, and shortages and surpluses — two live models and a chapter quiz.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 04 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 04</div>
+      <h1>The model the rest of the course <em>runs on</em></h1>
+      <p class="intro">Almost every remaining question is this diagram with a twist. The whole chapter reduces to two disciplines: knowing whether a change moves the curve or moves you along it, and working the new equilibrium out in a fixed order rather than guessing.</p>
+      <div class="meta">4 chunks · 2 live models · 3 checkpoints · 10-question quiz</div>
+      <nav class="toc"><a href="#c0">Shift vs movement <span class="n">00</span></a><a href="#c1">The shifters <span class="n">01</span></a><a href="#c2">Equilibrium <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">equilibrium</span>
+      <div class="fig-h">where the two curves meet</div>
+      <svg viewBox="0 0 280 180"><line x1="34" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="34" y1="150" x2="34" y2="18" stroke="#D1CFC5" stroke-width="1.5"/><line x1="44" y1="28" x2="248" y2="142" stroke="#D97757" stroke-width="2.5"/><line x1="44" y1="142" x2="248" y2="28" stroke="#788C5D" stroke-width="2.5"/><circle cx="146" cy="85" r="5" fill="#141413"/><text x="252" y="146" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#B85C3E">D</text><text x="252" y="26" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#5A6B45">S</text><text x="154" y="80" font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A">P*, Q*</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>The one distinction that decides everything</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    If you only retain one thing from this chapter, retain this. It is worth more marks than the rest of
+    the material combined, and it is the same shift-versus-movement logic you just met on the PPC.
+  </p>
+  <div class="sec-body">
+    <div class="card accent">
+      <div class="label">The rule</div>
+      <p style="margin-bottom:0">
+        A change in <strong>the good's own price</strong> moves you <em>along</em> the curve — a change in
+        quantity demanded or quantity supplied. <strong>Anything else</strong> shifts the whole curve — a
+        change in demand or supply. There is no third case.
+      </p>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Wording you'll see</th><th>Means</th><th>On the diagram</th></tr></thead>
+      <tbody>
+        <tr><td>"quantity demanded falls"</td><td>Own price rose</td><td>Movement <em>along</em> D</td></tr>
+        <tr><td>"demand falls"</td><td>Something other than price changed</td><td>The whole D curve shifts left</td></tr>
+        <tr><td>"quantity supplied rises"</td><td>Own price rose</td><td>Movement <em>along</em> S</td></tr>
+        <tr><td>"supply rises"</td><td>Something other than price changed</td><td>The whole S curve shifts right</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">The circular trap</div>
+      <p style="margin-bottom:0">
+        "The price of coffee rose, so demand for coffee fell, so the price fell again…" — this loop is
+        wrong at the second step. A price rise reduces <em>quantity demanded</em>, which is a movement, not
+        a shift. Only a non-price factor can shift demand. Getting this wrong turns every later question
+        into nonsense, which is exactly why it is tested so hard.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>What actually shifts each curve</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    Five shifters each. You need to recall the list, and — harder — get the <em>direction</em> right.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Shifts DEMAND</th><th>Right (more) when…</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Income</strong></td><td>Income rises, for a <em>normal</em> good. For an <em>inferior</em> good it goes the other way — this reversal is a favourite.</td></tr>
+        <tr><td><strong>Price of related goods</strong></td><td>A <em>substitute</em> gets dearer, or a <em>complement</em> gets cheaper.</td></tr>
+        <tr><td><strong>Tastes</strong></td><td>The good becomes more fashionable or better regarded.</td></tr>
+        <tr><td><strong>Expectations</strong></td><td>Buyers expect a <em>higher</em> price later, so they buy now.</td></tr>
+        <tr><td><strong>Number of buyers</strong></td><td>The market gains buyers.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Shifts SUPPLY</th><th>Right (more) when…</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Input costs</strong></td><td>Inputs get <em>cheaper</em>.</td></tr>
+        <tr><td><strong>Technology</strong></td><td>Production gets more efficient.</td></tr>
+        <tr><td><strong>Taxes &amp; subsidies</strong></td><td>A subsidy arrives, or a tax is lifted.</td></tr>
+        <tr><td><strong>Expectations</strong></td><td>Sellers expect a <em>lower</em> price later, so they sell now. Note this is the opposite sign to the buyers' version.</td></tr>
+        <tr><td><strong>Number of sellers</strong></td><td>The market gains sellers.</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      Work the model below with one slider at a time. Watch which curve moves and which stays pinned — the
+      curve that does <em>not</em> move still changes its quantity, and that is a movement along it.
+    </p>
+
+    <div class="applet" id="ap-sd">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Shift one thing, find the new equilibrium</div>
+      <div class="ap-sub">Qd = 120 − 2P + shifters · Qs = −30 + 4P + shifters</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="sd-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Buyer income <em>(normal good)</em></span><span class="cv" id="sd-inc-v">0</span></div>
+            <input type="range" id="sd-inc" min="-30" max="30" step="5" value="0">
+            <div class="ch">Shifts <strong>demand</strong>. Reverse the sign in your head for an inferior good.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Price of a substitute</span><span class="cv" id="sd-sub-v">0</span></div>
+            <input type="range" id="sd-sub" min="-30" max="30" step="5" value="0">
+            <div class="ch">Shifts <strong>demand</strong> the same way it moves: dearer substitute, more demand here.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Input cost</span><span class="cv" id="sd-in-v">0</span></div>
+            <input type="range" id="sd-in" min="-30" max="30" step="5" value="0">
+            <div class="ch">Shifts <strong>supply</strong>, in the opposite direction: costlier inputs, less supply.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Production technology</span><span class="cv" id="sd-tec-v">0</span></div>
+            <input type="range" id="sd-tec" min="0" max="40" step="5" value="0">
+            <div class="ch">Shifts <strong>supply</strong> right.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro hero"><div class="rl">New price</div><div class="rv" id="sd-ro-p">—</div></div>
+            <div class="ro good"><div class="rl">New quantity</div><div class="rv" id="sd-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Demand curve</div><div class="rv" id="sd-ro-d">—</div></div>
+            <div class="ro"><div class="rl">Supply curve</div><div class="rv" id="sd-ro-s">—</div></div>
+            <div class="ro"><div class="rl">Price change</div><div class="rv" id="sd-ro-dp">—</div></div>
+            <div class="ro"><div class="rl">Quantity change</div><div class="rv" id="sd-ro-dq">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="sd-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Shifts, movements and directions · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Equilibrium, and what happens away from it</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    Equilibrium is the price where quantity demanded equals quantity supplied. Everywhere else the market
+    is pushing itself back, and the direction of that push is examinable.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Price above equilibrium → surplus.</strong> Sellers want to sell more than buyers want to
+        buy. Unsold stock piles up and sellers cut the price.</li>
+      <li><strong>Price below equilibrium → shortage.</strong> Buyers want more than sellers will provide.
+        Queues form and sellers raise the price.</li>
+    </ul>
+    <div class="card">
+      <div class="label">Say it precisely</div>
+      <p style="margin-bottom:0">
+        A shortage is <em>not</em> "not much of it about." Scarcity is permanent and applies to everything;
+        a <strong>shortage</strong> is a specific, temporary gap between quantity demanded and quantity
+        supplied <em>at a particular price</em>, and it is measured in units. Writing "there is a shortage
+        of oil" without a price attached is the sloppy version that loses marks.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-eq">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Set a price the market didn't choose</div>
+      <div class="ap-sub">gap measured in units at your price · equilibrium P* = 25, Q* = 70</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="eq-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Price</span><span class="cv" id="eq-p-v">$25</span></div>
+            <input type="range" id="eq-p" min="8" max="45" step="1" value="25">
+            <div class="ch">Drag away from $25 and watch which side of the market is disappointed.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Quantity demanded</div><div class="rv" id="eq-ro-qd">—</div></div>
+            <div class="ro"><div class="rl">Quantity supplied</div><div class="rv" id="eq-ro-qs">—</div></div>
+            <div class="ro hero"><div class="rl">Gap</div><div class="rv" id="eq-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Units actually traded</div><div class="rv" id="eq-ro-tr">—</div></div>
+            <div class="ro good"><div class="rl">Price pressure</div><div class="rv" id="eq-ro-dir">—</div></div>
+            <div class="ro"><div class="rl">Distance from P*</div><div class="rv" id="eq-ro-off">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="eq-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Equilibrium &amp; disequilibrium · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>Working a question in a fixed order</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">
+    Do not eyeball these. Four steps, same order every time, and the double-shift case has a known answer:
+    one of the two outcomes is simply indeterminate.
+  </p>
+  <div class="sec-body">
+    <ol>
+      <li><strong>Which curve?</strong> Does the event touch buyers or sellers?</li>
+      <li><strong>Which direction?</strong> More or less at every price.</li>
+      <li><strong>Read the new crossing.</strong> Price and quantity, together.</li>
+      <li><strong>State both.</strong> Answers naming only the price lose half the marks.</li>
+    </ol>
+    <div class="card trap">
+      <div class="label">When both curves move</div>
+      <p>
+        If demand and supply both shift, one of price and quantity is <strong>determinate</strong> and the
+        other is <strong>ambiguous</strong> — it depends on which shift is larger, which the question
+        usually does not tell you. The correct answer names the ambiguity rather than guessing.
+      </p>
+      <div class="tbl-wrap" style="margin-bottom:0"><table class="tbl">
+        <thead><tr><th>Both shift</th><th>Price</th><th>Quantity</th></tr></thead>
+        <tbody>
+          <tr><td>D right, S right</td><td><strong>Ambiguous</strong></td><td>Rises</td></tr>
+          <tr><td>D left, S left</td><td><strong>Ambiguous</strong></td><td>Falls</td></tr>
+          <tr><td>D right, S left</td><td>Rises</td><td><strong>Ambiguous</strong></td></tr>
+          <tr><td>D left, S right</td><td>Falls</td><td><strong>Ambiguous</strong></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <p>
+      The pattern is worth noticing rather than memorising: when the curves shift the <em>same</em>
+      direction, quantity is certain; when they shift <em>opposite</em> directions, price is certain.
+    </p>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Double shifts &amp; method · plus callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled. Watch the wording on every stem — "demand" and "quantity demanded" are different claims.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 4, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Shift &amp; equilibrium</td>
+            <td>Both curves after your shifters, the new equilibrium by solving Qd = Qs, and the signed change in price and quantity against the starting point.</td>
+            <td>Both curves are linear with fixed slopes, so only the intercepts move. Shifters are parallel shifts.</td></tr>
+        <tr><td>Disequilibrium</td>
+            <td>Quantity demanded and supplied at your price, the gap in units, the short side that caps actual trade, and the direction of price pressure.</td>
+            <td>No adjustment dynamics — the model shows the gap, not how many weeks it takes to close.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 04 of 07</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div>Next: <strong>Chapter 05 — Elasticity</strong></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* Shared market: Qd = A - 2P, Qs = -30 + 4P + C. Baseline A = 120, C = 0
+ * gives P* = 25, Q* = 70. Both models below solve the same linear system. */
+var MKT = { A: 120, B: 2, C: -30, D: 4 };
+function mktEq(a, c) {
+  var p = (a - c) / (MKT.B + MKT.D);
+  return { p: p, q: a - MKT.B * p };
+}
+
+/* =================================================================
+ * MODEL 1 — one shifter at a time, and the new crossing.
+ * ================================================================= */
+(function () {
+  var BASE = mktEq(MKT.A, MKT.C);
+
+  function compute(p) {
+    var dShift = p.inc + p.sub;            // demand shifters, net
+    var sShift = p.tec - p.in;             // supply shifters, net
+    var a = MKT.A + dShift, c = MKT.C + sShift;
+    var e = mktEq(a, c);
+    return {
+      a: a, c: c, dShift: dShift, sShift: sShift, p: e.p, q: e.q,
+      dp: e.p - BASE.p, dq: e.q - BASE.q,
+      dLab: dShift === 0 ? 'unmoved' : dShift > 0 ? 'shifted right' : 'shifted left',
+      sLab: sShift === 0 ? 'unmoved' : sShift > 0 ? 'shifted right' : 'shifted left',
+      both: dShift !== 0 && sShift !== 0
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, 150, 46, 338), y = scale(0, 50, 228, 24);
+    b.push(line(46, 228, 344, 228, AX), line(46, 228, 46, 20, AX));
+    b.push(txt(46, 246, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(txt(42, 18, 'PRICE', { a: 'end', s: 8, f: FAINT, ls: 0.8 }));
+    function dline(a, c, dash, col, w) {
+      // demand: Q = a - BP  -> P from 0..50 ; supply: Q = c + DP
+      var p0 = 0, p1 = 50;
+      var d = [x(a - MKT.B * p0) + ',' + y(p0), x(a - MKT.B * p1) + ',' + y(p1)];
+      var s = [x(c + MKT.D * p0) + ',' + y(p0), x(c + MKT.D * p1) + ',' + y(p1)];
+      return '<polyline points="' + d.join(' ') + '" fill="none" stroke="' + col[0] + '" stroke-width="' + w + '"' + dash + '/>' +
+             '<polyline points="' + s.join(' ') + '" fill="none" stroke="' + col[1] + '" stroke-width="' + w + '"' + dash + '/>';
+    }
+    if (m.dShift || m.sShift) b.push(dline(MKT.A, MKT.C, ' stroke-dasharray="4 3"', [AX, AX], 1.8));
+    b.push(dline(m.a, m.c, '', [CLAY, OLIVE], 2.5));
+    b.push(line(46, y(m.p), x(m.q), y(m.p), INK, 1.2, '3 3'));
+    b.push(line(x(m.q), 228, x(m.q), y(m.p), INK, 1.2, '3 3'));
+    b.push('<circle cx="' + x(m.q) + '" cy="' + y(m.p) + '" r="5" fill="' + INK + '"/>');
+    b.push(txt(x(m.q) + 9, y(m.p) - 7, '$' + m.p.toFixed(1) + ', ' + m.q.toFixed(0), { s: 9.5, f: INK }));
+    if (m.dShift || m.sShift) {
+      b.push('<circle cx="' + x(BASE.q) + '" cy="' + y(BASE.p) + '" r="4" fill="none" stroke="' + FAINT + '" stroke-width="1.5"/>');
+      b.push(txt(x(BASE.q) - 8, y(BASE.p) + 14, 'was', { a: 'end', s: 8.5, f: FAINT }));
+    }
+    b.push(txt(338, y(48), 'D', { a: 'end', s: 10, f: CLAYD }));
+    b.push(txt(338, y(2) - 4, 'S', { a: 'end', s: 10, f: '#5A6B45' }));
+    return svg('0 0 360 254', b.join(''));
+  }
+
+  function params() {
+    return { inc: +el('sd-inc').value, sub: +el('sd-sub').value, in: +el('sd-in').value, tec: +el('sd-tec').value };
+  }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    ['inc', 'sub', 'in', 'tec'].forEach(function (k) {
+      el('sd-' + k + '-v').textContent = (p[k] > 0 ? '+' : '') + p[k];
+    });
+    el('sd-fig').innerHTML = draw(p, m);
+    el('sd-ro-p').textContent = '$' + m.p.toFixed(1);
+    el('sd-ro-q').textContent = m.q.toFixed(0);
+    el('sd-ro-d').textContent = m.dLab;
+    el('sd-ro-s').textContent = m.sLab;
+    el('sd-ro-dp').textContent = (m.dp >= 0 ? '+' : '') + m.dp.toFixed(1);
+    el('sd-ro-dq').textContent = (m.dq >= 0 ? '+' : '') + m.dq.toFixed(0);
+    var note;
+    if (!m.dShift && !m.sShift) {
+      note = 'Baseline: <strong>$25 and 70 units</strong>. Move one slider at a time first — the point is to see which curve answers and which one merely slides along itself.';
+    } else if (!m.both) {
+      var moved = m.dShift ? 'Demand' : 'Supply', still = m.dShift ? 'supply' : 'demand';
+      note = '<strong>' + moved + ' ' + (m.dShift ? m.dLab : m.sLab) + ' — and only that curve moved.</strong> ' +
+        'The ' + still + ' curve is exactly where it was, yet the quantity ' + (m.dq >= 0 ? 'supplied rose' : 'supplied fell') +
+        ' anyway. That is a <em>movement along</em> the ' + still + ' curve, caused by the new price. Name it that way in an answer: one curve shifted, the other was travelled along.';
+    } else {
+      var sameDir = (m.dShift > 0) === (m.sShift > 0);
+      note = '<strong>Both curves moved.</strong> ' + (sameDir
+        ? 'They shifted the same way, so <em>quantity</em> is determinate and the price change depends on which shift was bigger.'
+        : 'They shifted opposite ways, so <em>price</em> is determinate and the quantity change depends on which shift was bigger.') +
+        ' This model happens to know both magnitudes, so it can show you an answer — an exam question usually will not, and the correct response there is to name which variable is ambiguous.';
+    }
+    el('sd-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['inc', 'sub', 'in', 'tec'].forEach(function (k) { el('sd-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-sd'), [
+    { t: 'First ask <strong>which curve</strong>. Income and the price of a substitute reach buyers, so they move demand. Input costs and technology reach sellers, so they move supply.', lit: ['sd-ro-d', 'sd-ro-s'], v: function (m) { return 'D ' + m.dLab + ' · S ' + m.sLab; } },
+    { t: 'Then <strong>which direction</strong> — more or less at every price. Watch the dashed original stay put for comparison.', lit: [], v: function (m) { return 'demand ' + (m.dShift > 0 ? '+' : '') + m.dShift + ' · supply ' + (m.sShift > 0 ? '+' : '') + m.sShift; } },
+    { t: 'Now read the <strong>new crossing</strong>. Solve Qd = Qs rather than eyeballing it: the price that clears the market is where the two expressions are equal.', lit: ['sd-ro-p', 'sd-ro-q'], v: function (m) { return '$' + m.p.toFixed(1) + ' and ' + m.q.toFixed(0) + ' units'; } },
+    { t: 'Finally state <strong>both</strong> changes. An answer that gives the new price and forgets the quantity throws away half the marks.', lit: ['sd-ro-dp', 'sd-ro-dq'], v: function (m) { return 'price ' + (m.dp >= 0 ? '+' : '') + m.dp.toFixed(1) + ', quantity ' + (m.dq >= 0 ? '+' : '') + m.dq.toFixed(0); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — away from equilibrium. The gap is computed in units, and
+ * trade is capped by the short side of the market.
+ * ================================================================= */
+(function () {
+  var E = mktEq(MKT.A, MKT.C);
+
+  function compute(p) {
+    var qd = MKT.A - MKT.B * p.p, qs = MKT.C + MKT.D * p.p;
+    var gap = qd - qs;
+    return {
+      qd: qd, qs: qs, gap: gap,
+      kind: Math.abs(gap) < 0.5 ? 'equilibrium' : gap > 0 ? 'shortage' : 'surplus',
+      traded: Math.min(qd, qs), off: p.p - E.p
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, 150, 46, 338), y = scale(0, 50, 228, 24);
+    b.push(line(46, 228, 344, 228, AX), line(46, 228, 46, 20, AX));
+    b.push(txt(46, 246, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    var d0 = x(MKT.A), d1 = x(MKT.A - MKT.B * 50);
+    b.push('<polyline points="' + d0 + ',' + y(0) + ' ' + d1 + ',' + y(50) + '" fill="none" stroke="' + CLAY + '" stroke-width="2.5"/>');
+    b.push('<polyline points="' + x(MKT.C) + ',' + y(0) + ' ' + x(MKT.C + MKT.D * 50) + ',' + y(50) + '" fill="none" stroke="' + OLIVE + '" stroke-width="2.5"/>');
+    b.push('<circle cx="' + x(E.q) + '" cy="' + y(E.p) + '" r="4" fill="none" stroke="' + FAINT + '" stroke-width="1.5"/>');
+    // the price line and the gap it opens
+    b.push(line(46, y(p.p), 338, y(p.p), INK, 2));
+    b.push(txt(50, y(p.p) - 6, '$' + p.p, { s: 9.5, f: INK }));
+    if (m.kind !== 'equilibrium') {
+      var lo = Math.min(x(m.qd), x(m.qs)), hi = Math.max(x(m.qd), x(m.qs));
+      b.push(rect(lo, y(p.p) - 7, hi - lo, 14, m.gap > 0 ? '#FCEEE3' : '#F2F5EE', 2));
+      b.push(line(lo, y(p.p), hi, y(p.p), m.gap > 0 ? CLAY : OLIVE, 3));
+      b.push(txt((lo + hi) / 2, y(p.p) - 12, m.kind + ' ' + Math.abs(m.gap).toFixed(0),
+        { a: 'middle', s: 9.5, f: m.gap > 0 ? CLAYD : '#5A6B45' }));
+      // which way price is pushed
+      var ay = y(p.p), dir = m.gap > 0 ? -1 : 1;
+      b.push(line(320, ay, 320, ay + dir * 22, INK, 2));
+      b.push('<polygon points="320,' + (ay + dir * 28) + ' 315,' + (ay + dir * 20) + ' 325,' + (ay + dir * 20) + '" fill="' + INK + '"/>');
+    }
+    b.push('<circle cx="' + x(m.qd) + '" cy="' + y(p.p) + '" r="4" fill="' + CLAYD + '"/>');
+    b.push('<circle cx="' + x(m.qs) + '" cy="' + y(p.p) + '" r="4" fill="#5A6B45"/>');
+    b.push(txt(338, y(48), 'D', { a: 'end', s: 10, f: CLAYD }));
+    b.push(txt(338, y(2) - 4, 'S', { a: 'end', s: 10, f: '#5A6B45' }));
+    return svg('0 0 360 254', b.join(''));
+  }
+
+  function params() { return { p: +el('eq-p').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('eq-p-v').textContent = '$' + p.p;
+    el('eq-fig').innerHTML = draw(p, m);
+    el('eq-ro-qd').textContent = m.qd.toFixed(0);
+    el('eq-ro-qs').textContent = m.qs.toFixed(0);
+    el('eq-ro-gap').textContent = m.kind === 'equilibrium' ? 'none' : m.kind + ' ' + Math.abs(m.gap).toFixed(0);
+    el('eq-ro-tr').textContent = m.traded.toFixed(0);
+    el('eq-ro-dir').textContent = m.kind === 'equilibrium' ? 'at rest' : m.gap > 0 ? 'upward' : 'downward';
+    el('eq-ro-off').textContent = (m.off >= 0 ? '+$' : '−$') + Math.abs(m.off).toFixed(0);
+    var note;
+    if (m.kind === 'equilibrium') {
+      note = '<strong>The market clears.</strong> Every buyer willing to pay $25 finds a seller and every seller willing to accept $25 finds a buyer, so nothing pushes the price either way. Quantity demanded equals quantity supplied — that equality <em>is</em> the definition.';
+    } else if (m.gap > 0) {
+      note = '<strong>Shortage of ' + m.gap.toFixed(0) + ' units.</strong> At $' + p.p + ' buyers want ' +
+        m.qd.toFixed(0) + ' but sellers offer only ' + m.qs.toFixed(0) + ', so just ' + m.traded.toFixed(0) +
+        ' units change hands — trade is capped by the <em>short</em> side. Disappointed buyers bid the price up, and the gap closes as the price climbs toward $25.';
+    } else {
+      note = '<strong>Surplus of ' + (-m.gap).toFixed(0) + ' units.</strong> At $' + p.p + ' sellers offer ' +
+        m.qs.toFixed(0) + ' but buyers take only ' + m.qd.toFixed(0) + ', so ' + m.traded.toFixed(0) +
+        ' units sell and the rest sits unsold. Sellers cut the price, and the gap closes as the price falls toward $25.';
+    }
+    el('eq-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  el('eq-p').addEventListener('input', render);
+  st = Stepper(el('ap-eq'), [
+    { t: 'Pick any price and read <strong>both</strong> curves at it. These are quantity demanded and quantity supplied — two different numbers unless you are at equilibrium.', lit: ['eq-ro-qd', 'eq-ro-qs'], v: function (m) { return m.qd.toFixed(0) + ' wanted vs ' + m.qs.toFixed(0) + ' offered'; } },
+    { t: 'The difference is the shortage or surplus, <strong>measured in units at that price</strong>. A gap with no price attached is not an answer.', lit: ['eq-ro-gap'], v: function (m) { return m.kind === 'equilibrium' ? 'no gap' : Math.abs(m.gap).toFixed(0) + ' units of ' + m.kind; } },
+    { t: 'Trade is limited by whichever side is smaller — nobody can buy what is not offered, and nobody can sell what is not wanted.', lit: ['eq-ro-tr'], v: function (m) { return m.traded.toFixed(0) + ' units actually trade'; } },
+    { t: 'The disappointed side pushes the price. Shortage pushes it <strong>up</strong>, surplus pushes it <strong>down</strong>, and both move toward the crossing.', lit: ['eq-ro-dir'], v: function (m) { return m.kind === 'equilibrium' ? 'no pressure' : 'price pushed ' + (m.gap > 0 ? 'up' : 'down'); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch04", "title": "Chapter 04 \u2014 Supply and Demand", "anchors": ["c2", "c3", "quiz"], "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3}};
+var FND = ['Shift vs movement', 'Demand shifters', 'Supply shifters', 'Equilibrium', 'Disequilibrium'];
+
+var BANK = [
+  { id: 'sm1', home: 1, fnd: 1, type: 'mcq', short: 'Shift or movement',
+    stem: 'A frost destroys much of the orange crop and the price of oranges rises. What happens on the <em>demand</em> diagram for oranges?',
+    opts: [
+      { t: 'A movement along demand — quantity demanded falls because the price rose', ok: true },
+      { t: 'Demand shifts left, because people buy fewer oranges', why: 'They buy fewer because the <em>price</em> rose, and a price change never shifts that good\'s own demand curve. Demand would shift only if something other than price changed buyers\' willingness.' },
+      { t: 'Demand shifts right, because oranges are now scarcer', why: 'Scarcity on the supply side does not change what buyers want at each price. The frost shifts <em>supply</em> left.' },
+      { t: 'Nothing — the frost only affects supply', why: 'Supply shifting is indeed the cause, but the demand diagram still shows a response: buyers slide up along the demand curve to the new price.' }
+    ] },
+  { id: 'ds1', home: 1, fnd: 2, type: 'mcq', short: 'Income and inferior goods',
+    stem: 'Incomes in a city rise sharply, and demand for bus travel falls. What does this tell you about bus travel?',
+    opts: [
+      { t: 'It is an inferior good — demand moves opposite to income', ok: true },
+      { t: 'It is a normal good with weak demand', why: 'A normal good\'s demand rises with income. Demand here <em>fell</em>, which is the definition of an inferior good.' },
+      { t: 'Buses must be a complement to cars', why: 'Complements move together in price, not in response to income. Nothing here is about another good\'s price.' },
+      { t: 'The supply of bus travel fell', why: 'The question says demand fell, not supply. And a supply change would not be caused by buyers\' incomes.' }
+    ] },
+  { id: 'ss1', home: 1, fnd: 3, type: 'mcq', short: 'Input costs',
+    stem: 'The wage paid to bakery workers doubles. On the market for bread:',
+    opts: [
+      { t: 'Supply shifts left — at every price, less is worth producing', ok: true },
+      { t: 'Supply shifts right, since bakeries need more revenue', why: 'Needing revenue is not the test. Higher costs make each loaf less profitable, so fewer are worth making at any given price — the curve moves left.' },
+      { t: 'Demand shifts left, because bread will cost more', why: 'Bread costing more moves buyers <em>along</em> demand. The wage change reaches sellers, so it is a supply shifter.' },
+      { t: 'Both curves shift left', why: 'Only sellers face the higher wage. Buyers\' willingness to pay at each price is unchanged.' }
+    ] },
+
+  { id: 'eq1', home: 2, fnd: 5, type: 'mcq', short: 'What a shortage is',
+    stem: 'Which statement describes a <em>shortage</em> precisely?',
+    opts: [
+      { t: 'At the current price, quantity demanded exceeds quantity supplied by a specific number of units', ok: true },
+      { t: 'There is not very much of the good available', why: 'That is closer to scarcity, which is permanent and applies to every good. A shortage is a gap at a <em>stated price</em>, measured in units.' },
+      { t: 'The good is expensive relative to incomes', why: 'Expense is not a shortage. A shortage arises when the price is <em>too low</em> to clear the market, not too high.' },
+      { t: 'Producers have chosen to make less of it', why: 'A shortage is a gap between two quantities at a price, not a statement about producers\' intentions.' }
+    ] },
+  { id: 'eq2', home: 2, fnd: 4, type: 'numeric', short: 'Solving for equilibrium',
+    stem: 'Qd = 90 − 3P and Qs = 10 + 2P. What is the equilibrium <em>price</em>?',
+    pre: '$', answer: 16, tol: 0,
+    why: 'Set Qd = Qs: 90 − 3P = 10 + 2P → 80 = 5P → P = <strong>16</strong>. (Quantity is then 90 − 48 = 42, which many questions ask for next — compute it from either equation as a check.)' },
+  { id: 'eq3', home: 2, fnd: 5, type: 'mcq', short: 'Price above equilibrium',
+    stem: 'A market\'s price sits above equilibrium. What follows?',
+    opts: [
+      { t: 'A surplus, and sellers cut the price', ok: true },
+      { t: 'A shortage, and sellers raise the price', why: 'Reversed. High prices attract sellers and deter buyers, so the unsold goods pile up — that is a surplus.' },
+      { t: 'A surplus, and sellers raise the price further', why: 'The surplus is right, but unsold stock gives sellers a reason to <em>cut</em>, not raise. Price pressure always points back toward equilibrium.' },
+      { t: 'Nothing — the market can sit anywhere', why: 'Away from equilibrium one side is disappointed, and that side pushes the price. Only the crossing is at rest.' }
+    ] },
+
+  { id: 'db1', home: 3, fnd: 4, type: 'mcq', short: 'Both curves shift',
+    stem: 'Demand shifts right and supply shifts left. What can you say for certain?',
+    opts: [
+      { t: 'Price rises; the change in quantity is ambiguous', ok: true },
+      { t: 'Both price and quantity rise', why: 'Demand pushes quantity up and supply pushes it down, so the net depends on which shift is larger — information the question has not given you.' },
+      { t: 'Price rises and quantity falls', why: 'Quantity falls only if the supply shift dominates. State the ambiguity rather than picking a side.' },
+      { t: 'Both are ambiguous', why: 'Price is determinate here: both shifts push it up. When the curves move in <em>opposite</em> directions, price is certain.' }
+    ] },
+  { id: 'db2', home: 3, fnd: 1, type: 'mcq', short: 'The four-step method',
+    stem: 'What is the correct first question when working a supply-and-demand problem?',
+    opts: [
+      { t: 'Which curve does this event touch — buyers or sellers?', ok: true },
+      { t: 'Does the price rise or fall?', why: 'The price is the <em>output</em> of the analysis, not the input. Deciding it first is guessing, and it is how students get the direction backwards.' },
+      { t: 'Is the good normal or inferior?', why: 'Only relevant once you know an income change is involved. The first cut is always which side of the market the event reaches.' },
+      { t: 'What is the elasticity?', why: 'Elasticity tells you how <em>far</em> things move, which is next chapter. Direction comes first.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 1, type: 'classify', short: 'Shift or movement',
+    stem: 'For the market in <em>coffee</em>, classify each event.',
+    cats: ['Shifts the demand curve', 'Shifts the supply curve', 'Movement along a curve'],
+    rows: [
+      { t: 'The price of coffee falls, so people buy more of it', cat: 'Movement along a curve' },
+      { t: 'A study reports health benefits of coffee', cat: 'Shifts the demand curve' },
+      { t: 'A drought damages the Brazilian harvest', cat: 'Shifts the supply curve' },
+      { t: 'The price of tea rises sharply', cat: 'Shifts the demand curve' }
+    ],
+    why: 'Only a change in <strong>coffee\'s own price</strong> gives a movement. Health news changes what buyers want at every price; the drought changes what sellers can offer at every price; and tea is a substitute, so its price reaches coffee <em>buyers</em> — demand, not supply.' },
+  { id: 'q2', fnd: 4, type: 'numeric', short: 'Equilibrium quantity',
+    stem: 'Qd = 200 − 4P and Qs = 50 + 2P. What is the equilibrium <em>quantity</em>?',
+    pre: '', answer: 100, tol: 0,
+    why: '200 − 4P = 50 + 2P → 150 = 6P → P = 25. Then Q = 50 + 2(25) = <strong>100</strong> (check: 200 − 100 = 100 ✓). Answering 25 gives the price, which is the most common slip on this item.' },
+  { id: 'q3', fnd: 2, type: 'mcq', short: 'Complements',
+    stem: 'The price of printers falls sharply. In the market for printer ink:',
+    opts: [
+      { t: 'Demand shifts right — ink and printers are complements', ok: true },
+      { t: 'Demand shifts left, since buyers spend their money on printers', why: 'Complements are used together. Cheaper printers mean more printers in use, and every one of them needs ink.' },
+      { t: 'Supply shifts right, because printers are an input to ink', why: 'Printers are not an input to making ink. The link runs through buyers, so it is a demand shifter.' },
+      { t: 'Nothing happens until the ink price itself changes', why: 'Related-goods prices are one of the five demand shifters precisely because they act without the good\'s own price moving.' }
+    ] },
+  { id: 'q4', fnd: 5, type: 'mcq', short: 'Who trades in a shortage',
+    stem: 'At a price below equilibrium, quantity demanded is 90 and quantity supplied is 50. How many units actually change hands?',
+    opts: [
+      { t: '50 — trade is capped by the short side of the market', ok: true },
+      { t: '90, because that is what buyers want', why: 'Wanting is not buying. You cannot purchase units nobody has produced.' },
+      { t: '70, the average of the two', why: 'There is no averaging. The binding constraint is whichever quantity is smaller.' },
+      { t: '140, the sum of both', why: 'The two numbers describe the same market from each side, so adding them is double counting.' }
+    ] },
+  { id: 'q5', fnd: 3, type: 'mcq', short: 'Sellers\' expectations',
+    stem: 'Farmers expect wheat prices to be much <em>lower</em> next season. What happens to the supply of wheat today?',
+    opts: [
+      { t: 'It shifts right — sellers would rather sell now than later', ok: true },
+      { t: 'It shifts left, as they hold stock back', why: 'Holding back makes sense when they expect a <em>higher</em> future price. Expecting a fall is a reason to sell before it arrives.' },
+      { t: 'It does not move until the future actually arrives', why: 'Expectations are one of the five supply shifters and act immediately on today\'s decisions.' },
+      { t: 'Demand shifts instead', why: 'These are sellers\' expectations, so they reach the supply curve. Note that buyers\' expectations work with the opposite sign.' }
+    ] },
+  { id: 'q6', fnd: 4, type: 'mcq', short: 'Both shift, same direction',
+    stem: 'Both demand and supply shift right. What is certain?',
+    opts: [
+      { t: 'Quantity rises; the price change is ambiguous', ok: true },
+      { t: 'Price falls and quantity rises', why: 'Price falls only if the supply shift dominates. Demand shifting right pushes price up, so the two effects fight.' },
+      { t: 'Price rises and quantity rises', why: 'Same problem in the other direction. With both curves moving the same way, price is the ambiguous one.' },
+      { t: 'Both are ambiguous', why: 'Quantity is determinate: both shifts push it up. Same direction → quantity certain.' }
+    ] },
+  { id: 'q7', fnd: 1, type: 'mcq', short: 'Wording discipline',
+    stem: '"An increase in demand" and "an increase in quantity demanded" differ because:',
+    opts: [
+      { t: 'The first is a shift of the whole curve; the second is a movement caused by a lower price', ok: true },
+      { t: 'They mean the same thing in different words', why: 'They are different claims with different causes and different diagrams. Exams use the wording to test whether you know which.' },
+      { t: 'The first applies to individuals and the second to markets', why: 'Both apply at either level. The distinction is shift versus movement, not individual versus market.' },
+      { t: 'The second only happens in the long run', why: 'Time horizon is not the difference. The difference is what caused the change.' }
+    ] },
+  { id: 'q8', fnd: 2, type: 'mcq', short: 'Number of buyers',
+    stem: 'A large new student population arrives in a town. In the local market for rental flats:',
+    opts: [
+      { t: 'Demand shifts right, raising both the equilibrium rent and the quantity rented', ok: true },
+      { t: 'Demand shifts right, raising rent and lowering quantity', why: 'Quantity falls only when supply shifts left. Here the supply curve is unmoved, so the market slides <em>up along</em> it: higher rent and more flats rented.' },
+      { t: 'Supply shifts left, since flats are scarcer per person', why: 'The number of flats offered at each rent has not changed. More people wanting them is a demand shifter.' },
+      { t: 'Both curves shift right', why: 'New students are buyers, not landlords. Only demand moves.' }
+    ] },
+  { id: 'q9', fnd: 5, type: 'mcq', short: 'Why equilibrium persists',
+    stem: 'Why does a market tend to return to equilibrium after a disturbance?',
+    opts: [
+      { t: 'Away from it someone is disappointed, and that side changes the price', ok: true },
+      { t: 'Because governments adjust prices toward it', why: 'No authority is needed. The pressure comes from buyers who cannot buy or sellers who cannot sell.' },
+      { t: 'Because supply and demand curves move toward each other', why: 'The curves do not move at all. The <em>price</em> moves along them until the two quantities match.' },
+      { t: 'Because quantity demanded always equals quantity supplied', why: 'That holds only <em>at</em> equilibrium. Away from it the two differ, and the gap is what drives the adjustment.' }
+    ] },
+  { id: 'q10', fnd: 3, type: 'mcq', short: 'Subsidy on sellers',
+    stem: 'The government pays producers $2 for every unit they make. The supply curve:',
+    opts: [
+      { t: 'Shifts right — each unit is now worth producing at a lower market price', ok: true },
+      { t: 'Shifts left, because the market is distorted', why: '"Distorted" is not a direction. A payment per unit makes production more attractive, so more is offered at every price.' },
+      { t: 'Does not move; only the price changes', why: 'The subsidy changes what sellers will offer at each market price, which is the definition of a supply shift.' },
+      { t: 'Demand shifts right instead', why: 'The payment goes to producers, so it reaches the supply side. Buyers\' willingness to pay is unchanged.' }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>
