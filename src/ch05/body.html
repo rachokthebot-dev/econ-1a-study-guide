@@ -1,0 +1,255 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Responsiveness, in one number</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    <strong>Price elasticity of demand</strong> is how much quantity responds to price — expressed as a
+    ratio of percentage changes, so the units cancel and the number is comparable across any two goods.
+  </p>
+  <div class="sec-body">
+    <div class="card accent">
+      <div class="label">The definition</div>
+      <p style="margin-bottom:0">
+        <code>Ed = %Δ quantity demanded ÷ %Δ price</code>. Because demand slopes down, this is always
+        negative — so by convention we discuss the <strong>absolute value</strong>. Write |Ed| and the sign
+        stops causing trouble.
+      </p>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>|Ed|</th><th>Called</th><th>Means</th></tr></thead>
+      <tbody>
+        <tr><td><strong>&gt; 1</strong></td><td>Elastic</td><td>Quantity responds more than proportionally. Buyers are sensitive.</td></tr>
+        <tr><td><strong>&lt; 1</strong></td><td>Inelastic</td><td>Quantity barely moves. Buyers are stuck.</td></tr>
+        <tr><td><strong>= 1</strong></td><td>Unit elastic</td><td>Proportional. The knife edge where revenue peaks.</td></tr>
+        <tr><td><strong>0</strong></td><td>Perfectly inelastic</td><td>Vertical curve. Quantity never changes.</td></tr>
+        <tr><td><strong>∞</strong></td><td>Perfectly elastic</td><td>Horizontal curve. Any price rise kills all sales.</td></tr>
+      </tbody>
+    </table></div>
+    <h4>What makes demand elastic</h4>
+    <ul>
+      <li><strong>Close substitutes available</strong> — the single biggest driver. One brand of cereal is
+        elastic; cereal as a category is not.</li>
+      <li><strong>Luxury rather than necessity</strong> — insulin is inelastic at almost any price.</li>
+      <li><strong>Large share of the budget</strong> — nobody shops around over salt.</li>
+      <li><strong>More time to adjust</strong> — petrol is inelastic this week and far more elastic over
+        five years, once people can move house or change car.</li>
+      <li><strong>Narrower market definition</strong> — "Honda Civics" is elastic, "cars" much less so,
+        "transport" less still.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>The midpoint method</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    Ordinary percentage changes give you a different answer depending on which end you start from. The
+    midpoint formula removes that, and it is the one the exam wants.
+  </p>
+  <div class="sec-body">
+    <div class="card">
+      <div class="label">The formula</div>
+      <p style="margin-bottom:0">
+        Divide each change by the <em>average</em> of the two values rather than by the starting value:
+        <code>%ΔQ = (Q₂−Q₁) ÷ ((Q₁+Q₂)/2)</code>, and the same for price. Then divide. Because both ends
+        use the same denominator, going up and coming back down give the identical elasticity — which the
+        naïve method does not.
+      </p>
+    </div>
+    <p>
+      Set two points below. The panel shows the naïve answer alongside the midpoint one so you can see how
+      far apart they get.
+    </p>
+
+    <div class="applet" id="ap-mid">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Elasticity between two points</div>
+      <div class="ap-sub">midpoint method · with the naïve calculation shown for contrast</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="mid-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Starting price</span><span class="cv" id="mid-p1-v">$10</span></div>
+            <input type="range" id="mid-p1" min="2" max="40" step="1" value="10">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Starting quantity</span><span class="cv" id="mid-q1-v">100</span></div>
+            <input type="range" id="mid-q1" min="10" max="200" step="5" value="100">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>New price</span><span class="cv" id="mid-p2-v">$14</span></div>
+            <input type="range" id="mid-p2" min="2" max="40" step="1" value="14">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>New quantity</span><span class="cv" id="mid-q2-v">80</span></div>
+            <input type="range" id="mid-q2" min="10" max="200" step="5" value="80">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">%Δ quantity</div><div class="rv" id="mid-ro-dq">—</div></div>
+            <div class="ro"><div class="rl">%Δ price</div><div class="rv" id="mid-ro-dp">—</div></div>
+            <div class="ro hero"><div class="rl">|Ed| midpoint</div><div class="rv" id="mid-ro-e">—</div></div>
+            <div class="ro"><div class="rl">Verdict</div><div class="rv" id="mid-ro-cls">—</div></div>
+            <div class="ro"><div class="rl">Naïve, from start</div><div class="rv" id="mid-ro-naive">—</div></div>
+            <div class="ro good"><div class="rl">Revenue change</div><div class="rv" id="mid-ro-tr">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="mid-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Definition &amp; midpoint method · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Elasticity changes as you move, and revenue follows</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    The most misunderstood fact in the chapter: a straight demand curve has a <em>constant slope</em> but a
+    <em>changing elasticity</em>. Those are different things.
+  </p>
+  <div class="sec-body">
+    <p>
+      High up a linear demand curve the price is large and the quantity small, so a given dollar change is
+      a small percentage of price and a large percentage of quantity — demand is <strong>elastic</strong>.
+      Low down the reverse holds and it is <strong>inelastic</strong>. Exactly halfway it is unit elastic.
+    </p>
+    <div class="card accent">
+      <div class="label">The revenue test — worth memorising cold</div>
+      <div class="tbl-wrap" style="margin:10px 0 0"><table class="tbl">
+        <thead><tr><th>If demand is…</th><th>Raise the price</th><th>Cut the price</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Elastic</strong> (|Ed| &gt; 1)</td><td>Revenue <em>falls</em></td><td>Revenue rises</td></tr>
+          <tr><td><strong>Inelastic</strong> (|Ed| &lt; 1)</td><td>Revenue <em>rises</em></td><td>Revenue falls</td></tr>
+          <tr><td><strong>Unit elastic</strong></td><td>No change</td><td>No change</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <p>
+      One sentence to remember it by: <strong>revenue moves with whichever is less responsive.</strong> If
+      quantity barely budges, price wins. Drag along the curve below and watch total revenue peak exactly
+      where elasticity equals one.
+    </p>
+
+    <div class="applet" id="ap-tr">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Walking down a demand curve</div>
+      <div class="ap-sub">P = a − 0.5Q · point elasticity and total revenue computed at every quantity</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tr-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Quantity sold</span><span class="cv" id="tr-q-v">30</span></div>
+            <input type="range" id="tr-q" min="2" max="98" step="1" value="30">
+            <div class="ch">Slides along the demand curve. Watch elasticity and revenue together.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Choke price (vertical intercept)</span><span class="cv" id="tr-a-v">$50</span></div>
+            <input type="range" id="tr-a" min="30" max="80" step="5" value="50">
+            <div class="ch">The price at which nobody buys. Moves the whole curve.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Price here</div><div class="rv" id="tr-ro-p">—</div></div>
+            <div class="ro hero"><div class="rl">|Ed| here</div><div class="rv" id="tr-ro-e">—</div></div>
+            <div class="ro"><div class="rl">Verdict</div><div class="rv" id="tr-ro-cls">—</div></div>
+            <div class="ro"><div class="rl">Total revenue</div><div class="rv" id="tr-ro-tr">—</div></div>
+            <div class="ro good"><div class="rl">Revenue peaks at</div><div class="rv" id="tr-ro-peak">—</div></div>
+            <div class="ro"><div class="rl">To raise revenue</div><div class="rv" id="tr-ro-advice">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tr-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Revenue test &amp; variation along the curve · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>The other three elasticities</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">
+    Same ratio, different numerator or denominator. Here the <em>sign</em> carries the meaning, so do not
+    discard it as you did for price elasticity of demand.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Elasticity</th><th>Formula</th><th>What the sign tells you</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Income</strong></td><td>%ΔQ ÷ %Δ income</td>
+            <td><strong>Positive</strong> → normal good. <strong>Negative</strong> → inferior good. Above +1 → luxury.</td></tr>
+        <tr><td><strong>Cross-price</strong></td><td>%ΔQ of A ÷ %ΔP of B</td>
+            <td><strong>Positive</strong> → substitutes. <strong>Negative</strong> → complements. Near zero → unrelated.</td></tr>
+        <tr><td><strong>Price elasticity of supply</strong></td><td>%ΔQ supplied ÷ %ΔP</td>
+            <td>Positive throughout. Larger with more time and spare capacity.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Four things that cost marks</div>
+      <ul style="margin-bottom:0">
+        <li><strong>Slope is not elasticity.</strong> A straight line has one slope and every elasticity
+          from ∞ down to 0 along its length.</li>
+        <li><strong>Dropping the sign on cross-price or income elasticity.</strong> There the sign <em>is</em>
+          the answer — it is only price elasticity of demand where we take the absolute value.</li>
+        <li><strong>"Elastic" is not "big demand."</strong> It is about responsiveness, not volume.</li>
+        <li><strong>Using the naïve formula.</strong> If the question says midpoint, averaging is required,
+          and the two methods give visibly different numbers.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="label">Carry this into Chapter 7</div>
+      <p style="margin-bottom:0">
+        Tax incidence is this chapter with a wedge: whichever side is <em>less</em> elastic ends up paying
+        more of a tax, for exactly the reason the revenue test works — the side that cannot easily walk
+        away absorbs the change.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Income, cross-price &amp; traps · plus callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled. Several items turn on a sign, and several on which formula was asked for.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 5, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Two-point elasticity</td>
+            <td>Both percentage changes by the midpoint formula, the elasticity, its classification, the naïve from-the-start figure for contrast, and the revenue change between the two points.</td>
+            <td>Two points only — no curve is fitted between them.</td></tr>
+        <tr><td>Along the curve</td>
+            <td>Price from the linear demand curve, <em>point</em> elasticity as (1/slope)(P/Q), total revenue at every quantity, and the revenue-maximising point found from the curve itself.</td>
+            <td>Linear demand. A constant-elasticity curve would look different, and real demand curves are neither.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>

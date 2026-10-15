@@ -1,0 +1,1477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 05 — Elasticity · ECN 1A study guide</title>
+<meta name="description" content="Price elasticity of demand by the midpoint method, the total revenue test, how elasticity varies along a linear curve, and income and cross-price elasticity.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 05 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 05</div>
+      <h1>How <em>much</em>, not just which way</h1>
+      <p class="intro">Chapter 4 told you the direction. Elasticity puts a number on the size, and that number decides whether a price rise makes you richer or poorer — which is why this chapter owns the revenue test and, later, who really pays a tax.</p>
+      <div class="meta">4 chunks · 2 live models · 3 checkpoints · 10-question quiz</div>
+      <nav class="toc"><a href="#c0">What it measures <span class="n">00</span></a><a href="#c1">The midpoint method <span class="n">01</span></a><a href="#c2">Revenue test <span class="n">02</span></a><a href="#c3">Other elasticities <span class="n">03</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">revenue test</span>
+      <div class="fig-h">where total revenue peaks</div>
+      <svg viewBox="0 0 280 180"><line x1="30" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="30" y1="150" x2="30" y2="18" stroke="#D1CFC5" stroke-width="1.5"/><path d="M30 148 Q 146 22 262 148" fill="none" stroke="#D97757" stroke-width="2.5"/><line x1="146" y1="150" x2="146" y2="62" stroke="#141413" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="146" cy="62" r="4.5" fill="#141413"/><text x="146" y="52" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8.5" fill="#141413">|E| = 1</text><text x="36" y="34" font-family="ui-monospace,monospace" font-size="8.5" fill="#87867F">TOTAL REVENUE</text><text x="60" y="166" font-family="ui-monospace,monospace" font-size="8" fill="#5A6B45">elastic</text><text x="196" y="166" font-family="ui-monospace,monospace" font-size="8" fill="#B85C3E">inelastic</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Responsiveness, in one number</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    <strong>Price elasticity of demand</strong> is how much quantity responds to price — expressed as a
+    ratio of percentage changes, so the units cancel and the number is comparable across any two goods.
+  </p>
+  <div class="sec-body">
+    <div class="card accent">
+      <div class="label">The definition</div>
+      <p style="margin-bottom:0">
+        <code>Ed = %Δ quantity demanded ÷ %Δ price</code>. Because demand slopes down, this is always
+        negative — so by convention we discuss the <strong>absolute value</strong>. Write |Ed| and the sign
+        stops causing trouble.
+      </p>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>|Ed|</th><th>Called</th><th>Means</th></tr></thead>
+      <tbody>
+        <tr><td><strong>&gt; 1</strong></td><td>Elastic</td><td>Quantity responds more than proportionally. Buyers are sensitive.</td></tr>
+        <tr><td><strong>&lt; 1</strong></td><td>Inelastic</td><td>Quantity barely moves. Buyers are stuck.</td></tr>
+        <tr><td><strong>= 1</strong></td><td>Unit elastic</td><td>Proportional. The knife edge where revenue peaks.</td></tr>
+        <tr><td><strong>0</strong></td><td>Perfectly inelastic</td><td>Vertical curve. Quantity never changes.</td></tr>
+        <tr><td><strong>∞</strong></td><td>Perfectly elastic</td><td>Horizontal curve. Any price rise kills all sales.</td></tr>
+      </tbody>
+    </table></div>
+    <h4>What makes demand elastic</h4>
+    <ul>
+      <li><strong>Close substitutes available</strong> — the single biggest driver. One brand of cereal is
+        elastic; cereal as a category is not.</li>
+      <li><strong>Luxury rather than necessity</strong> — insulin is inelastic at almost any price.</li>
+      <li><strong>Large share of the budget</strong> — nobody shops around over salt.</li>
+      <li><strong>More time to adjust</strong> — petrol is inelastic this week and far more elastic over
+        five years, once people can move house or change car.</li>
+      <li><strong>Narrower market definition</strong> — "Honda Civics" is elastic, "cars" much less so,
+        "transport" less still.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>The midpoint method</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    Ordinary percentage changes give you a different answer depending on which end you start from. The
+    midpoint formula removes that, and it is the one the exam wants.
+  </p>
+  <div class="sec-body">
+    <div class="card">
+      <div class="label">The formula</div>
+      <p style="margin-bottom:0">
+        Divide each change by the <em>average</em> of the two values rather than by the starting value:
+        <code>%ΔQ = (Q₂−Q₁) ÷ ((Q₁+Q₂)/2)</code>, and the same for price. Then divide. Because both ends
+        use the same denominator, going up and coming back down give the identical elasticity — which the
+        naïve method does not.
+      </p>
+    </div>
+    <p>
+      Set two points below. The panel shows the naïve answer alongside the midpoint one so you can see how
+      far apart they get.
+    </p>
+
+    <div class="applet" id="ap-mid">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Elasticity between two points</div>
+      <div class="ap-sub">midpoint method · with the naïve calculation shown for contrast</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="mid-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Starting price</span><span class="cv" id="mid-p1-v">$10</span></div>
+            <input type="range" id="mid-p1" min="2" max="40" step="1" value="10">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Starting quantity</span><span class="cv" id="mid-q1-v">100</span></div>
+            <input type="range" id="mid-q1" min="10" max="200" step="5" value="100">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>New price</span><span class="cv" id="mid-p2-v">$14</span></div>
+            <input type="range" id="mid-p2" min="2" max="40" step="1" value="14">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>New quantity</span><span class="cv" id="mid-q2-v">80</span></div>
+            <input type="range" id="mid-q2" min="10" max="200" step="5" value="80">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">%Δ quantity</div><div class="rv" id="mid-ro-dq">—</div></div>
+            <div class="ro"><div class="rl">%Δ price</div><div class="rv" id="mid-ro-dp">—</div></div>
+            <div class="ro hero"><div class="rl">|Ed| midpoint</div><div class="rv" id="mid-ro-e">—</div></div>
+            <div class="ro"><div class="rl">Verdict</div><div class="rv" id="mid-ro-cls">—</div></div>
+            <div class="ro"><div class="rl">Naïve, from start</div><div class="rv" id="mid-ro-naive">—</div></div>
+            <div class="ro good"><div class="rl">Revenue change</div><div class="rv" id="mid-ro-tr">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="mid-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Definition &amp; midpoint method · answer from memory</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Elasticity changes as you move, and revenue follows</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    The most misunderstood fact in the chapter: a straight demand curve has a <em>constant slope</em> but a
+    <em>changing elasticity</em>. Those are different things.
+  </p>
+  <div class="sec-body">
+    <p>
+      High up a linear demand curve the price is large and the quantity small, so a given dollar change is
+      a small percentage of price and a large percentage of quantity — demand is <strong>elastic</strong>.
+      Low down the reverse holds and it is <strong>inelastic</strong>. Exactly halfway it is unit elastic.
+    </p>
+    <div class="card accent">
+      <div class="label">The revenue test — worth memorising cold</div>
+      <div class="tbl-wrap" style="margin:10px 0 0"><table class="tbl">
+        <thead><tr><th>If demand is…</th><th>Raise the price</th><th>Cut the price</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Elastic</strong> (|Ed| &gt; 1)</td><td>Revenue <em>falls</em></td><td>Revenue rises</td></tr>
+          <tr><td><strong>Inelastic</strong> (|Ed| &lt; 1)</td><td>Revenue <em>rises</em></td><td>Revenue falls</td></tr>
+          <tr><td><strong>Unit elastic</strong></td><td>No change</td><td>No change</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <p>
+      One sentence to remember it by: <strong>revenue moves with whichever is less responsive.</strong> If
+      quantity barely budges, price wins. Drag along the curve below and watch total revenue peak exactly
+      where elasticity equals one.
+    </p>
+
+    <div class="applet" id="ap-tr">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Walking down a demand curve</div>
+      <div class="ap-sub">P = a − 0.5Q · point elasticity and total revenue computed at every quantity</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="tr-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Quantity sold</span><span class="cv" id="tr-q-v">30</span></div>
+            <input type="range" id="tr-q" min="2" max="98" step="1" value="30">
+            <div class="ch">Slides along the demand curve. Watch elasticity and revenue together.</div>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Choke price (vertical intercept)</span><span class="cv" id="tr-a-v">$50</span></div>
+            <input type="range" id="tr-a" min="30" max="80" step="5" value="50">
+            <div class="ch">The price at which nobody buys. Moves the whole curve.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Price here</div><div class="rv" id="tr-ro-p">—</div></div>
+            <div class="ro hero"><div class="rl">|Ed| here</div><div class="rv" id="tr-ro-e">—</div></div>
+            <div class="ro"><div class="rl">Verdict</div><div class="rv" id="tr-ro-cls">—</div></div>
+            <div class="ro"><div class="rl">Total revenue</div><div class="rv" id="tr-ro-tr">—</div></div>
+            <div class="ro good"><div class="rl">Revenue peaks at</div><div class="rv" id="tr-ro-peak">—</div></div>
+            <div class="ro"><div class="rl">To raise revenue</div><div class="rv" id="tr-ro-advice">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="tr-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Revenue test &amp; variation along the curve · plus a callback</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>The other three elasticities</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">
+    Same ratio, different numerator or denominator. Here the <em>sign</em> carries the meaning, so do not
+    discard it as you did for price elasticity of demand.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Elasticity</th><th>Formula</th><th>What the sign tells you</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Income</strong></td><td>%ΔQ ÷ %Δ income</td>
+            <td><strong>Positive</strong> → normal good. <strong>Negative</strong> → inferior good. Above +1 → luxury.</td></tr>
+        <tr><td><strong>Cross-price</strong></td><td>%ΔQ of A ÷ %ΔP of B</td>
+            <td><strong>Positive</strong> → substitutes. <strong>Negative</strong> → complements. Near zero → unrelated.</td></tr>
+        <tr><td><strong>Price elasticity of supply</strong></td><td>%ΔQ supplied ÷ %ΔP</td>
+            <td>Positive throughout. Larger with more time and spare capacity.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Four things that cost marks</div>
+      <ul style="margin-bottom:0">
+        <li><strong>Slope is not elasticity.</strong> A straight line has one slope and every elasticity
+          from ∞ down to 0 along its length.</li>
+        <li><strong>Dropping the sign on cross-price or income elasticity.</strong> There the sign <em>is</em>
+          the answer — it is only price elasticity of demand where we take the absolute value.</li>
+        <li><strong>"Elastic" is not "big demand."</strong> It is about responsiveness, not volume.</li>
+        <li><strong>Using the naïve formula.</strong> If the question says midpoint, averaging is required,
+          and the two methods give visibly different numbers.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="label">Carry this into Chapter 7</div>
+      <p style="margin-bottom:0">
+        Tax incidence is this chapter with a wedge: whichever side is <em>less</em> elastic ends up paying
+        more of a tax, for exactly the reason the revenue test works — the side that cannot easily walk
+        away absorbs the change.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Income, cross-price &amp; traps · plus callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Chapter quiz</h2><span class="count">10 questions</span></div>
+  <p class="sec-intro">Shuffled. Several items turn on a sign, and several on which formula was asked for.</p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">graded</span>
+      <div class="ck-h">All of Chapter 5, shuffled</div>
+      <div class="ck-s">no feedback until you submit</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Two-point elasticity</td>
+            <td>Both percentage changes by the midpoint formula, the elasticity, its classification, the naïve from-the-start figure for contrast, and the revenue change between the two points.</td>
+            <td>Two points only — no curve is fitted between them.</td></tr>
+        <tr><td>Along the curve</td>
+            <td>Price from the linear demand curve, <em>point</em> elasticity as (1/slope)(P/Q), total revenue at every quantity, and the revenue-maximising point found from the curve itself.</td>
+            <td>Linear demand. A constant-elasticity curve would look different, and real demand curves are neither.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 05 of 07</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div>Next: <strong>Chapter 06 — Market outcomes</strong></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* =================================================================
+ * MODEL 1 — elasticity between two points, by the midpoint method,
+ * with the naive from-the-start figure alongside so the difference
+ * is visible rather than asserted.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var dq = p.q2 - p.q1, dp = p.p2 - p.p1;
+    var mq = (p.q1 + p.q2) / 2, mp = (p.p1 + p.p2) / 2;
+    var pcq = dq / mq, pcp = dp / mp;
+    var e = pcp === 0 ? Infinity : Math.abs(pcq / pcp);
+    var naive = p.p1 === 0 || dp === 0 ? Infinity : Math.abs((dq / p.q1) / (dp / p.p1));
+    var tr1 = p.p1 * p.q1, tr2 = p.p2 * p.q2;
+    return {
+      pcq: pcq, pcp: pcp, e: e, naive: naive, tr1: tr1, tr2: tr2, dtr: tr2 - tr1,
+      cls: !isFinite(e) ? 'no price change' : e > 1.001 ? 'elastic' : e < 0.999 ? 'inelastic' : 'unit elastic',
+      wrongWay: dq !== 0 && dp !== 0 && (dq > 0) === (dp > 0)
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], x = scale(0, 220, 48, 338), y = scale(0, 44, 196, 24);
+    b.push(line(48, 196, 344, 196, AX), line(48, 196, 48, 20, AX));
+    b.push(txt(48, 214, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    b.push(txt(44, 18, 'PRICE', { a: 'end', s: 8, f: FAINT, ls: 0.8 }));
+    b.push(line(x(p.q1), y(p.p1), x(p.q2), y(p.p2), m.wrongWay ? FAINT : CLAY, 2.5));
+    // the midpoint the formula divides by
+    b.push('<circle cx="' + x((p.q1 + p.q2) / 2) + '" cy="' + y((p.p1 + p.p2) / 2) + '" r="3.5" fill="none" stroke="' + INK + '" stroke-width="1.5" stroke-dasharray="2 2"/>');
+    [[p.q1, p.p1, 'A', OLIVE], [p.q2, p.p2, 'B', CLAYD]].forEach(function (pt) {
+      b.push('<circle cx="' + x(pt[0]) + '" cy="' + y(pt[1]) + '" r="5" fill="' + pt[3] + '"/>');
+      b.push(txt(x(pt[0]) + 9, y(pt[1]) - 6, pt[2] + ' ($' + pt[1] + ', ' + pt[0] + ')', { s: 9, f: pt[3] }));
+    });
+    // revenue rectangles, drawn to scale under each point
+    b.push(txt(48, 240, 'TOTAL REVENUE = PRICE × QUANTITY', { s: 8, f: FAINT, ls: 0.8 }));
+    var mx = Math.max(m.tr1, m.tr2, 1), rx = scale(0, mx, 96, 338);
+    [['at A', m.tr1, OLIVE], ['at B', m.tr2, CLAYD]].forEach(function (r, i) {
+      var yy = 250 + i * 26;
+      b.push(txt(92, yy + 13, r[0], { a: 'end', s: 8.5, f: INK }));
+      b.push(rect(96, yy, 242, 17, G100, 3));
+      b.push(rect(96, yy, rx(r[1]) - 96, 17, r[2], 3));
+      b.push(txt(334, yy + 13, '$' + Math.round(r[1]).toLocaleString('en-US'), { a: 'end', s: 9, f: '#fff' }));
+    });
+    return svg('0 0 360 306', b.join(''));
+  }
+
+  function params() {
+    return { p1: +el('mid-p1').value, q1: +el('mid-q1').value, p2: +el('mid-p2').value, q2: +el('mid-q2').value };
+  }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('mid-p1-v').textContent = '$' + p.p1;
+    el('mid-q1-v').textContent = p.q1;
+    el('mid-p2-v').textContent = '$' + p.p2;
+    el('mid-q2-v').textContent = p.q2;
+    el('mid-fig').innerHTML = draw(p, m);
+    el('mid-ro-dq').textContent = (m.pcq * 100).toFixed(1) + '%';
+    el('mid-ro-dp').textContent = (m.pcp * 100).toFixed(1) + '%';
+    el('mid-ro-e').textContent = isFinite(m.e) ? m.e.toFixed(2) : '—';
+    el('mid-ro-cls').textContent = m.cls;
+    el('mid-ro-naive').textContent = isFinite(m.naive) ? m.naive.toFixed(2) : '—';
+    el('mid-ro-tr').textContent = (m.dtr >= 0 ? '+$' : '−$') + Math.abs(Math.round(m.dtr)).toLocaleString('en-US');
+    var note;
+    if (!isFinite(m.e)) {
+      note = '<strong>No price change, so elasticity is undefined.</strong> You cannot divide by a zero percentage change in price. Move one of the price sliders.';
+    } else if (m.wrongWay) {
+      note = '<strong>Price and quantity moved the same way.</strong> That is not a demand curve — along a demand curve they always move in opposite directions. The arithmetic still runs, but what you have drawn is two points on two <em>different</em> demand curves, which is how a shift gets mistaken for a slope.';
+    } else {
+      var gap = Math.abs(m.naive - m.e);
+      note = '<strong>|Ed| = ' + m.e.toFixed(2) + ' — ' + m.cls + '.</strong> ' +
+        (m.cls === 'elastic'
+          ? 'Quantity moved proportionally more than price, so revenue follows <em>quantity</em>: it ' + (m.dtr >= 0 ? 'rose' : 'fell') + ' by $' + Math.abs(Math.round(m.dtr)).toLocaleString('en-US') + '.'
+          : m.cls === 'inelastic'
+            ? 'Quantity barely budged, so revenue follows <em>price</em>: it ' + (m.dtr >= 0 ? 'rose' : 'fell') + ' by $' + Math.abs(Math.round(m.dtr)).toLocaleString('en-US') + '.'
+            : 'The two percentage changes cancel exactly, so revenue is essentially unchanged — this is the knife edge.') +
+        ' The naïve calculation gives ' + m.naive.toFixed(2) + (gap > 0.08 ? ', which is ' + gap.toFixed(2) + ' away — large enough to flip a verdict near 1.' : ', close here because the change is small.');
+    }
+    el('mid-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['p1', 'q1', 'p2', 'q2'].forEach(function (k) { el('mid-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-mid'), [
+    { t: 'Percentage change in quantity, divided by the <strong>average</strong> of the two quantities — not by the starting one.', lit: ['mid-ro-dq'], v: function (m) { return (m.pcq * 100).toFixed(1) + '%'; } },
+    { t: 'Same again for price. Using the average at both ends is what makes the answer identical whichever direction you travel.', lit: ['mid-ro-dp'], v: function (m) { return (m.pcp * 100).toFixed(1) + '%'; } },
+    { t: 'Divide one by the other and take the absolute value. Above 1 is elastic, below 1 inelastic.', lit: ['mid-ro-e', 'mid-ro-cls'], v: function (m) { return isFinite(m.e) ? '|Ed| = ' + m.e.toFixed(2) + ' — ' + m.cls : 'undefined'; } },
+    { t: 'Compare against dividing by the <em>starting</em> values instead. The gap is why the midpoint method exists.', lit: ['mid-ro-naive'], v: function (m) { return isFinite(m.naive) ? 'naïve gives ' + m.naive.toFixed(2) : '—'; } },
+    { t: 'Now check revenue. Elastic demand means a price rise loses money; inelastic means it makes money. The elasticity predicted this before you multiplied.', lit: ['mid-ro-tr'], v: function (m) { return (m.dtr >= 0 ? '+$' : '−$') + Math.abs(Math.round(m.dtr)).toLocaleString('en-US'); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — along a linear demand curve. Point elasticity is
+ * (1/slope)(P/Q); revenue is computed at every quantity and its peak
+ * is found from the curve, not asserted to be the midpoint.
+ * ================================================================= */
+(function () {
+  var B = 0.5;                                    // P = a - B*Q
+
+  function priceAt(q, a) { return a - B * q; }
+  function compute(p) {
+    var price = priceAt(p.q, p.a);
+    var e = price <= 0 ? 0 : (1 / B) * (price / p.q);
+    var tr = price * p.q;
+    // revenue-maximising quantity, found by scanning the curve
+    var best = 0, bestTr = -1;
+    for (var q = 1; q <= p.a / B - 1; q++) {
+      var t = priceAt(q, p.a) * q;
+      if (t > bestTr) { bestTr = t; best = q; }
+    }
+    return {
+      price: price, e: e, tr: tr, best: best, bestTr: bestTr,
+      cls: e > 1.02 ? 'elastic' : e < 0.98 ? 'inelastic' : 'unit elastic',
+      advice: e > 1.02 ? 'cut the price' : e < 0.98 ? 'raise the price' : 'already at the peak'
+    };
+  }
+
+  function draw(p, m) {
+    var b = [], qmax = p.a / B, x = scale(0, qmax * 1.08, 46, 340), y = scale(0, p.a * 1.1, 160, 24);
+    b.push(line(46, 160, 344, 160, AX), line(46, 160, 46, 20, AX));
+    b.push(txt(44, 18, 'PRICE', { a: 'end', s: 8, f: FAINT, ls: 0.8 }));
+    // demand, coloured by region
+    var mid = qmax / 2;
+    b.push(line(x(0), y(p.a), x(mid), y(priceAt(mid, p.a)), OLIVE, 3));
+    b.push(line(x(mid), y(priceAt(mid, p.a)), x(qmax), y(0), CLAY, 3));
+    b.push(txt(x(mid * 0.45), y(priceAt(mid * 0.45, p.a)) - 9, 'elastic', { s: 8.5, f: '#5A6B45' }));
+    b.push(txt(x(mid * 1.55), y(priceAt(mid * 1.55, p.a)) - 9, 'inelastic', { s: 8.5, f: CLAYD }));
+    b.push('<circle cx="' + x(mid) + '" cy="' + y(priceAt(mid, p.a)) + '" r="4" fill="' + INK + '"/>');
+    b.push(txt(x(mid) + 8, y(priceAt(mid, p.a)) - 6, '|E| = 1', { s: 8.5, f: INK }));
+    // the reader's point, with its revenue rectangle
+    b.push(rect(x(0), y(m.price), x(p.q) - x(0), 160 - y(m.price), '#FBF0E9', 0));
+    b.push(line(x(p.q), 160, x(p.q), y(m.price), INK, 1.5, '3 3'));
+    b.push('<circle cx="' + x(p.q) + '" cy="' + y(m.price) + '" r="5.5" fill="' + INK + '"/>');
+    b.push(txt(clamp(x(p.q) + 9, 0, 280), y(m.price) - 8, '$' + m.price.toFixed(1), { s: 9.5, f: INK }));
+    // revenue curve underneath
+    b.push(txt(46, 186, 'TOTAL REVENUE AT EACH QUANTITY', { s: 8, f: FAINT, ls: 0.8 }));
+    var ry = scale(0, m.bestTr * 1.12, 272, 198), pts = [];
+    for (var q = 0; q <= qmax; q += 1) pts.push(x(q).toFixed(1) + ',' + ry(priceAt(q, p.a) * q).toFixed(1));
+    b.push(line(46, 272, 344, 272, AX));
+    b.push('<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + CLAY + '" stroke-width="2.5"/>');
+    b.push(line(x(m.best), 272, x(m.best), ry(m.bestTr), OLIVE, 1.5, '3 3'));
+    b.push(txt(clamp(x(m.best), 60, 300), ry(m.bestTr) - 7, 'peak $' + Math.round(m.bestTr), { a: 'middle', s: 9, f: '#5A6B45' }));
+    b.push('<circle cx="' + x(p.q) + '" cy="' + ry(m.tr) + '" r="4.5" fill="' + INK + '"/>');
+    b.push(txt(46, 288, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    return svg('0 0 360 296', b.join(''));
+  }
+
+  function params() { return { q: +el('tr-q').value, a: +el('tr-a').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('tr-q-v').textContent = p.q;
+    el('tr-a-v').textContent = '$' + p.a;
+    el('tr-fig').innerHTML = draw(p, m);
+    el('tr-ro-p').textContent = '$' + m.price.toFixed(1);
+    el('tr-ro-e').textContent = m.e.toFixed(2);
+    el('tr-ro-cls').textContent = m.cls;
+    el('tr-ro-tr').textContent = '$' + Math.round(m.tr).toLocaleString('en-US');
+    el('tr-ro-peak').textContent = 'Q = ' + m.best;
+    el('tr-ro-advice').textContent = m.advice;
+    var note;
+    if (m.cls === 'unit elastic') {
+      note = '<strong>Unit elastic, and revenue is at its maximum ($' + Math.round(m.bestTr).toLocaleString('en-US') +
+        ').</strong> Moving either way costs you money: the percentage gain on one side exactly offsets the loss on the other. ' +
+        'Note this sits at the <em>midpoint</em> of the curve — half the choke price, half the maximum quantity — which is true of every linear demand curve.';
+    } else if (m.cls === 'elastic') {
+      note = '<strong>Elastic (|Ed| = ' + m.e.toFixed(2) + ').</strong> Buyers are responsive here, so a price <em>cut</em> raises revenue — ' +
+        'the extra units more than pay for the lower margin. You are on the upper half of the curve, and revenue is still climbing toward its peak at Q = ' + m.best + '.';
+    } else {
+      note = '<strong>Inelastic (|Ed| = ' + m.e.toFixed(2) + ').</strong> Buyers are stuck, so a price <em>rise</em> raises revenue — ' +
+        'you lose few sales and gain on every remaining one. You are past the peak at Q = ' + m.best +
+        ', which means you are selling too many units too cheaply. Notice the slope never changed: only the elasticity did.';
+    }
+    el('tr-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['q', 'a'].forEach(function (k) { el('tr-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-tr'), [
+    { t: 'Pick a quantity and the curve gives you the price. The <strong>slope is the same everywhere</strong> on this line — hold on to that.', lit: ['tr-ro-p'], v: function (m) { return '$' + m.price.toFixed(1); } },
+    { t: 'Elasticity is <em>not</em> the slope: it is (1/slope) × (P/Q). High up, P is big and Q small, so the ratio is large.', lit: ['tr-ro-e', 'tr-ro-cls'], v: function (m) { return '|Ed| = ' + m.e.toFixed(2) + ' — ' + m.cls; } },
+    { t: 'Total revenue is the shaded rectangle: price times quantity. Watch its area as you drag.', lit: ['tr-ro-tr'], v: function (m) { return '$' + Math.round(m.tr).toLocaleString('en-US'); } },
+    { t: 'Revenue peaks exactly where |Ed| = 1 — found here by scanning the curve, not assumed. Above it demand is elastic, below it inelastic.', lit: ['tr-ro-peak'], v: function (m) { return 'Q = ' + m.best + ', revenue $' + Math.round(m.bestTr).toLocaleString('en-US'); } },
+    { t: 'So the advice follows from the number alone: elastic → cut, inelastic → raise. You never need to guess which way revenue moves.', lit: ['tr-ro-advice'], v: function (m) { return m.advice; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch05", "title": "Chapter 05 \u2014 Elasticity", "anchors": ["c2", "c3", "quiz"], "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3}};
+var FND = ['What elasticity is', 'Midpoint method', 'Revenue test', 'Along the curve', 'Income & cross-price'];
+
+var BANK = [
+  { id: 'el1', home: 1, fnd: 1, type: 'mcq', short: 'What elastic means',
+    stem: 'Demand for a good is described as "highly elastic." This means:',
+    opts: [
+      { t: 'Quantity demanded responds strongly to a change in price', ok: true },
+      { t: 'A great many units are sold', why: 'Elasticity is about <em>responsiveness</em>, not volume. A niche product with many close substitutes can be highly elastic while selling very little.' },
+      { t: 'The demand curve is steep', why: 'Backwards, and the link is unreliable anyway: elastic regions are the <em>flatter</em> ones, and on a straight line elasticity changes while slope does not.' },
+      { t: 'Buyers will pay almost anything for it', why: 'That describes <em>inelastic</em> demand — buyers who cannot walk away.' }
+    ] },
+  { id: 'el2', home: 1, fnd: 2, type: 'numeric', short: 'Midpoint elasticity',
+    stem: 'Price rises from $8 to $12 and quantity falls from 120 to 80. Using the midpoint method, what is |Ed|? Give two decimal places.',
+    pre: '', answer: 1, tol: 0.01,
+    why: '%ΔQ = −40 ÷ 100 = −40%. %ΔP = 4 ÷ 10 = +40%. |Ed| = 40/40 = <strong>1.00</strong> — unit elastic. The naïve method from the starting values gives (−40/120)/(4/8) = 0.67, a different verdict entirely, which is exactly why the midpoint formula exists.' },
+  { id: 'el3', home: 1, fnd: 2, type: 'mcq', short: 'Why midpoint',
+    stem: 'Why does the midpoint method divide by the average of the two values?',
+    opts: [
+      { t: 'So the elasticity is the same whether the price rose or fell', ok: true },
+      { t: 'Because averages are more accurate than endpoints', why: 'Accuracy is not the issue — the problem is <em>consistency</em>. Starting values give one answer going up and a different one coming back down between the same two points.' },
+      { t: 'To make the result positive', why: 'The sign comes from the curve sloping down, and we take absolute value separately. Averaging does nothing to the sign.' },
+      { t: 'To correct for inflation', why: 'Nothing here involves the price level over time. Both points are observed in the same market at the same moment.' }
+    ] },
+
+  { id: 'rv1', home: 2, fnd: 3, type: 'mcq', short: 'Revenue test',
+    stem: 'A cinema raises ticket prices and total revenue <em>falls</em>. Demand must be:',
+    opts: [
+      { t: 'Elastic — the drop in attendance outweighed the higher price', ok: true },
+      { t: 'Inelastic, since people still came', why: 'If demand were inelastic, a price rise would have <em>raised</em> revenue. Falling revenue is the signature of elastic demand.' },
+      { t: 'Unit elastic', why: 'Unit elastic means revenue does not change. Here it fell.' },
+      { t: 'Perfectly inelastic', why: 'Then quantity would not have moved at all and revenue would have risen in proportion to the price.' }
+    ] },
+  { id: 'rv2', home: 2, fnd: 4, type: 'mcq', short: 'Slope vs elasticity',
+    stem: 'On a single straight-line demand curve, as you move down and to the right, elasticity:',
+    opts: [
+      { t: 'Falls continuously, from very elastic to very inelastic', ok: true },
+      { t: 'Stays constant, because the slope is constant', why: 'This is the chapter\'s headline trap. Slope is Δ P over Δ Q in units; elasticity is a ratio of <em>percentages</em>, and it depends on P/Q, which changes at every point.' },
+      { t: 'Rises, because quantity is getting larger', why: 'A larger Q with a smaller P makes P/Q smaller, so elasticity falls. The direction is the other way.' },
+      { t: 'Stays at 1 throughout', why: 'Unit elasticity holds at exactly one point — the midpoint — not along the whole line.' }
+    ] },
+  { id: 'rv3', home: 2, fnd: 3, type: 'mcq', short: 'Raising revenue',
+    stem: 'A bus company finds |Ed| = 0.4 for its fares. To raise total revenue it should:',
+    opts: [
+      { t: 'Raise fares — few riders will leave', ok: true },
+      { t: 'Cut fares to attract more riders', why: 'Cutting works when demand is <em>elastic</em>. At 0.4 a 10% fare cut gains only about 4% more riders, so revenue falls.' },
+      { t: 'Leave fares unchanged; revenue is already maximised', why: 'Revenue is maximised only where |Ed| = 1. At 0.4 the company is on the inelastic stretch and has room to raise fares.' },
+      { t: 'It cannot be determined without knowing costs', why: 'Costs matter for <em>profit</em>. The question asks about revenue, which elasticity alone settles.' }
+    ] },
+
+  { id: 'ic1', home: 3, fnd: 5, type: 'mcq', short: 'Income elasticity sign',
+    stem: 'A good has income elasticity of −0.6. The good is:',
+    opts: [
+      { t: 'Inferior — demand falls as income rises', ok: true },
+      { t: 'Normal but inelastic', why: 'Normal goods have <em>positive</em> income elasticity. The minus sign is the whole answer here, which is why you must not discard it.' },
+      { t: 'A luxury', why: 'Luxuries have income elasticity above +1. This is the opposite end of the scale.' },
+      { t: 'A complement to another good', why: 'Complements are identified by <em>cross-price</em> elasticity, a different formula. Income elasticity says nothing about other goods.' }
+    ] },
+  { id: 'ic2', home: 3, fnd: 5, type: 'mcq', short: 'Cross-price sign',
+    stem: 'The cross-price elasticity between tea and coffee is +1.4. They are:',
+    opts: [
+      { t: 'Substitutes — a dearer coffee sends buyers to tea', ok: true },
+      { t: 'Complements', why: 'Complements give a <em>negative</em> cross-price elasticity: dearer printers mean less ink demanded. Positive means substitutes.' },
+      { t: 'Unrelated goods', why: 'Unrelated goods give a cross-price elasticity near zero. +1.4 is a strong relationship.' },
+      { t: 'Both inferior goods', why: 'Inferior and normal are about <em>income</em> elasticity. Cross-price elasticity identifies substitutes and complements.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 2, type: 'numeric', short: 'Midpoint elasticity',
+    stem: 'Price falls from $20 to $16 and quantity rises from 50 to 70. Using the midpoint method, what is |Ed|? Two decimal places.',
+    pre: '', answer: 1.5, tol: 0.02,
+    why: '%ΔQ = 20 ÷ 60 = 33.3%. %ΔP = −4 ÷ 18 = −22.2%. |Ed| = 33.3 / 22.2 = <strong>1.50</strong> — elastic, so the price cut should have raised revenue. Check: $1,000 → $1,120 ✓.' },
+  { id: 'q2', fnd: 3, type: 'mcq', short: 'Revenue direction',
+    stem: 'Demand for a product is inelastic. The firm cuts its price. Total revenue:',
+    opts: [
+      { t: 'Falls', ok: true },
+      { t: 'Rises', why: 'Rising revenue from a price cut is the <em>elastic</em> case. With inelastic demand the extra units gained are too few to cover the lower price.' },
+      { t: 'Stays the same', why: 'Revenue is unchanged only at unit elasticity.' },
+      { t: 'Cannot be determined without the costs', why: 'Revenue needs only price and quantity. Costs would matter if the question asked about profit.' }
+    ] },
+  { id: 'q3', fnd: 1, type: 'classify', short: 'Elastic or inelastic',
+    stem: 'Classify the likely price elasticity of demand for each.',
+    cats: ['Relatively elastic', 'Relatively inelastic'],
+    rows: [
+      { t: 'Insulin for a diabetic patient', cat: 'Relatively inelastic' },
+      { t: 'One particular brand of bottled water', cat: 'Relatively elastic' },
+      { t: 'Petrol, measured over the next week', cat: 'Relatively inelastic' },
+      { t: 'Overseas holidays', cat: 'Relatively elastic' }
+    ],
+    why: 'Run the checklist: close substitutes available (a single water brand has many; insulin has none), necessity versus luxury (holidays are postponable, insulin is not), and time to adjust (petrol is inelastic this week and far more elastic over years, once people can change car or move).' },
+  { id: 'q4', fnd: 4, type: 'mcq', short: 'Where revenue peaks',
+    stem: 'On a linear demand curve, total revenue is maximised:',
+    opts: [
+      { t: 'At the midpoint, where |Ed| = 1', ok: true },
+      { t: 'At the highest price on the curve', why: 'At the top of the curve quantity approaches zero, so revenue does too. Revenue is a product, not a price.' },
+      { t: 'At the largest quantity', why: 'At the bottom price approaches zero, so revenue approaches zero again. The maximum sits between the two extremes.' },
+      { t: 'Wherever the curve is steepest', why: 'A straight line has the same steepness everywhere, yet revenue clearly varies along it — which is the point of the distinction.' }
+    ] },
+  { id: 'q5', fnd: 5, type: 'numeric', short: 'Income elasticity',
+    stem: 'Income rises 10% and a household\'s quantity demanded of a good rises 25%. What is the income elasticity? One decimal place, with the sign if negative.',
+    pre: '', answer: 2.5, tol: 0.05,
+    why: '25% ÷ 10% = <strong>2.5</strong>. Positive, so a normal good; above +1, so a luxury. This is one of the three elasticities where the sign carries meaning — do not take an absolute value here.' },
+  { id: 'q6', fnd: 1, type: 'mcq', short: 'Market definition',
+    stem: 'Which has the <em>most</em> elastic demand?',
+    opts: [
+      { t: 'Kellogg\'s Corn Flakes', ok: true },
+      { t: 'Breakfast cereal', why: 'Broader than one brand, so fewer substitutes and less elastic. Narrower market definitions are always more elastic.' },
+      { t: 'Food', why: 'The broadest category here, with essentially no substitute. Food in general is highly inelastic.' },
+      { t: 'Groceries', why: 'Still a broad category. The narrower the definition, the easier it is to switch away, and the more elastic demand becomes.' }
+    ] },
+  { id: 'q7', fnd: 5, type: 'mcq', short: 'Reading a cross-price number',
+    stem: 'The cross-price elasticity of demand between tennis rackets and tennis balls is −0.8. This means:',
+    opts: [
+      { t: 'They are complements — dearer rackets reduce demand for balls', ok: true },
+      { t: 'They are substitutes with weak demand', why: 'Substitutes give a positive number. The negative sign is the identification.' },
+      { t: 'Balls are an inferior good', why: 'Inferior is about income elasticity. Cross-price elasticity concerns another good\'s price.' },
+      { t: 'Demand for balls is inelastic', why: 'That would be a statement about the balls\' <em>own</em> price. This figure is a cross-price elasticity.' }
+    ] },
+  { id: 'q8', fnd: 4, type: 'mcq', short: 'Steep is not inelastic',
+    stem: 'Two demand curves cross at a point. At that exact point, which is more elastic?',
+    opts: [
+      { t: 'The flatter one, since the same price change moves quantity further', ok: true },
+      { t: 'The steeper one', why: 'Steeper means quantity responds <em>less</em> to price, which is inelastic. The comparison works only at a shared point, because there P and Q are equal for both.' },
+      { t: 'They are equally elastic, since they share a point', why: 'Sharing P and Q fixes the P/Q part of the formula, so the remaining difference is the slope — and the two slopes differ.' },
+      { t: 'It depends on total revenue at that point', why: 'Revenue is identical at a shared point (same P, same Q), so it cannot distinguish them.' }
+    ] },
+  { id: 'q9', fnd: 3, type: 'mcq', short: 'Unit elastic revenue',
+    stem: 'Demand is exactly unit elastic over a range. A firm raises its price within that range. Total revenue:',
+    opts: [
+      { t: 'Does not change', ok: true },
+      { t: 'Rises slightly', why: 'At unit elasticity the percentage fall in quantity exactly matches the percentage rise in price, so the product is unchanged.' },
+      { t: 'Falls slightly', why: 'Same reasoning — the two percentage changes cancel exactly, in both directions.' },
+      { t: 'Doubles', why: 'Nothing in the revenue test produces a doubling. Unit elasticity is the no-change case.' }
+    ] },
+  { id: 'q10', fnd: 1, type: 'mcq', short: 'Time and elasticity',
+    stem: 'Why is demand for electricity more elastic over five years than over one month?',
+    opts: [
+      { t: 'Given time, households can switch appliances, insulate, or change supplier', ok: true },
+      { t: 'Because prices change more over five years', why: 'How much price moves is separate from how responsive quantity is. Elasticity is the ratio, not the size of either change.' },
+      { t: 'Because electricity becomes a luxury over time', why: 'It stays a necessity. What changes is the number of available adjustments, not the good\'s character.' },
+      { t: 'Because incomes rise over five years', why: 'Income affects the position of demand, not its price responsiveness. The driver here is time to substitute.' }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it) done += it.box === 3 ? 1 : it.box === 2 ? 0.5 : 0;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    tagEl.textContent = it.box === 3 ? 'retired' : ok ? 'returns later' : 'due again';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box === 3; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>

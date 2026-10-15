@@ -1,0 +1,17 @@
+{
+  "id": "ch05",
+  "file": "ch05-elasticity.html",
+  "num": "Chapter 05",
+  "title": "Chapter 05 — Elasticity",
+  "desc": "Price elasticity of demand by the midpoint method, the total revenue test, how elasticity varies along a linear curve, and income and cross-price elasticity.",
+  "h1": "How <em>much</em>, not just which way",
+  "intro": "Chapter 4 told you the direction. Elasticity puts a number on the size, and that number decides whether a price rise makes you richer or poorer — which is why this chapter owns the revenue test and, later, who really pays a tax.",
+  "stats": "4 chunks · 2 live models · 3 checkpoints · 10-question quiz",
+  "herotag": "revenue test",
+  "herosub": "where total revenue peaks",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"30\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"18\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><path d=\"M30 148 Q 146 22 262 148\" fill=\"none\" stroke=\"#D97757\" stroke-width=\"2.5\"/><line x1=\"146\" y1=\"150\" x2=\"146\" y2=\"62\" stroke=\"#141413\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/><circle cx=\"146\" cy=\"62\" r=\"4.5\" fill=\"#141413\"/><text x=\"146\" y=\"52\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#141413\">|E| = 1</text><text x=\"36\" y=\"34\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#87867F\">TOTAL REVENUE</text><text x=\"60\" y=\"166\" font-family=\"ui-monospace,monospace\" font-size=\"8\" fill=\"#5A6B45\">elastic</text><text x=\"196\" y=\"166\" font-family=\"ui-monospace,monospace\" font-size=\"8\" fill=\"#B85C3E\">inelastic</text></svg>",
+  "next": "Next: <strong>Chapter 06 — Market outcomes</strong>",
+  "anchors": ["c2", "c3", "quiz"],
+  "navTicks": {"#c1": 1, "#c2": 2, "#c3": 3},
+  "toc": [["c0", "What it measures", "00"], ["c1", "The midpoint method", "01"], ["c2", "Revenue test", "02"], ["c3", "Other elasticities", "03"], ["quiz", "Chapter quiz", "▸"]]
+}
