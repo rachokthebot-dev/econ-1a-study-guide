@@ -23,6 +23,11 @@ smoke.mjs                      headless check: console errors + model arithmetic
   breakdown of where to revise.
 - **Export** — copies your outstanding missed items as a ready-to-paste prompt.
 
+The mastery bar counts the checkpoint items you have answered correctly, so answering every
+checkpoint in a chapter reads 100%; an item you missed and have not yet re-earned holds it back
+until it comes round again. Multiple-choice options are permuted on load, balanced across the four
+positions, so no single letter is worth guessing.
+
 Progress is saved in `localStorage`, so it survives a reload but does not follow you to another
 device or browser.
 
