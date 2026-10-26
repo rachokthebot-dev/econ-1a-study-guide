@@ -1,0 +1,1828 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 09 — Externalities and Public Goods · ECN 1A study guide</title>
+<meta name="description" content="Negative and positive externalities, Pigouvian taxes and subsidies, the Coase theorem, the four kinds of goods, free riders and the tragedy of the commons.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+
+/* ── exam-format free response ────────── */
+.q.frq { max-height: none; padding: 24px 0; }
+.frq-h { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 12px; }
+.frq-t { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--slate); }
+.frq-p { font-family: var(--mono); font-size: 12px; color: var(--g500); white-space: nowrap; }
+.frq-part { font-size: 15px; color: var(--g700); margin: 0 0 10px; }
+.frq-part b { color: var(--slate); }
+.q.frq textarea {
+  width: 100%; margin: 8px 0 12px; padding: 13px 15px; font-family: var(--sans); font-size: 14.5px; line-height: 1.5;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate); resize: vertical;
+}
+.q.frq textarea:focus { outline: none; border-color: var(--slate); }
+.frq-key { margin-top: 16px; border-top: 1.5px dashed var(--g300); padding-top: 14px; animation: fbIn 300ms var(--ease-out) both; }
+.frq-ans { background: #F2F5EE; border-left: 3px solid var(--olive); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+.frq-al { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--olive-d); margin-bottom: 5px; }
+.frq-ans p { font-size: 14px; color: var(--g700); margin: 0 0 8px; }
+.rub { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--g700); padding: 4px 0; cursor: pointer; }
+.rub input { accent-color: var(--olive); margin-top: 3px; flex-shrink: 0; }
+.rub b { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--olive-d); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 09 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 09</div>
+      <h1>When the market gets the <em>quantity</em> wrong</h1>
+      <p class="intro">A competitive market is efficient only if every cost and benefit falls on the buyer or the seller. When some of it falls on bystanders, or when people can't be made to pay, the market produces the wrong amount.</p>
+      <div class="meta">4 chunks · 2 live models · 4 checkpoints · 10-question practice exam</div>
+      <div class="meta" style="margin-top:4px">Updated Oct 25, 2026</div>
+      <nav class="toc"><a href="#c0">Externalities <span class="n">00</span></a><a href="#c1">Fixes <span class="n">01</span></a><a href="#c2">Kinds of goods <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Practice exam <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">the spillover</span>
+      <div class="fig-h">private cost vs social cost</div>
+      <svg viewBox="0 0 280 180"><line x1="30" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="30" y1="150" x2="30" y2="18" stroke="#D1CFC5" stroke-width="1.5"/><line x1="38" y1="26" x2="250" y2="142" stroke="#B85C3E" stroke-width="2"/><line x1="38" y1="138" x2="250" y2="34" stroke="#5A6B45" stroke-width="2"/><line x1="38" y1="104" x2="230" y2="10" stroke="#141413" stroke-width="1.6" stroke-dasharray="5 4"/><polygon points="112,67 144,84 144,52" fill="#D97757" opacity="0.6"/><text x="226" y="26" text-anchor="end" font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A">social cost</text><text x="246" y="52" text-anchor="end" font-family="ui-monospace,monospace" font-size="8.5" fill="#5A6B45">private</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Costs and benefits that land on someone else</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Chapter 6 showed that a competitive market maximises surplus. That result has a condition attached:
+    every cost and every benefit has to fall on the buyer or the seller. When some of it falls on
+    bystanders, the market gets the quantity wrong.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th></th><th>Negative externality</th><th>Positive externality</th></tr></thead>
+      <tbody>
+        <tr><td><strong>What spills over</strong></td><td>a cost: pollution, noise, congestion</td><td>a benefit: vaccination, education, a restored façade</td></tr>
+        <tr><td><strong>Which curve is wrong</strong></td><td>social cost = private cost + external cost</td><td>social benefit = private benefit + external benefit</td></tr>
+        <tr><td><strong>Market produces</strong></td><td><strong>too much</strong>: Q<sub>market</sub> &gt; Q<sub>optimal</sub></td><td><strong>too little</strong>: Q<sub>market</sub> &lt; Q<sub>optimal</sub></td></tr>
+        <tr><td><strong>Classic fix</strong></td><td>a tax equal to the external cost</td><td>a subsidy equal to the external benefit</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">"Pollution should be zero"</div>
+      <p style="margin-bottom:0">
+        The efficient amount of a negative externality is almost never zero. It is the amount at which the
+        <em>social</em> cost of the last unit equals its benefit. Banning a good with an external cost
+        throws away all the units that were worth making even after the damage is counted.
+        The aim is the right quantity, not none at all.
+      </p>
+    </div>
+    <p>
+      Use the model below in two passes. First leave the policy at $0 and raise the externality, and watch the
+      market move away from the optimum. Then raise the tax or subsidy until it closes the gap.
+    </p>
+
+    <div class="applet" id="ap-ex">
+      <span class="tag">model · live</span>
+      <div class="ap-title">An externality, and the tax that fixes it</div>
+      <div class="ap-sub">private D: P = 100 − Q · private S: P = 10 + 0.5Q · unregulated market Q = 60</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="ex-fig"></div>
+        <div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="ex-pos">
+            <label for="ex-pos">Make it a <strong>positive</strong> externality (a spillover benefit)</label>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span id="ex-el">External cost per unit</span><span class="cv" id="ex-e-v">$15</span></div>
+            <input type="range" id="ex-e" min="0" max="30" step="1" value="15">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span id="ex-tl">Corrective tax per unit</span><span class="cv" id="ex-t-v">$0</span></div>
+            <input type="range" id="ex-t" min="0" max="30" step="1" value="0">
+            <div class="ch">Try to land the market exactly on the optimum.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Market quantity</div><div class="rv" id="ex-ro-qm">—</div></div>
+            <div class="ro good"><div class="rl">Efficient quantity</div><div class="rv" id="ex-ro-qs">—</div></div>
+            <div class="ro hero"><div class="rl" id="ex-rl-gap">Overproduction</div><div class="rv" id="ex-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Deadweight loss</div><div class="rv" id="ex-ro-dwl">—</div></div>
+            <div class="ro"><div class="rl">Price buyers pay</div><div class="rv" id="ex-ro-pb">—</div></div>
+            <div class="ro"><div class="rl" id="ex-rl-money">Tax revenue</div><div class="rv" id="ex-ro-money">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="ex-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Negative &amp; positive externalities</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Making people pay for what they cause</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    The fix is called <strong>internalising</strong> the externality: making the people who decide how much to buy or produce feel the
+    whole cost or benefit. There are three main ways to do it.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Corrective (Pigouvian) tax or subsidy.</strong> Set it equal to the external cost or benefit
+        per unit. The market then reaches the efficient quantity without anyone choosing that quantity directly. You can check this
+        in the model above.</li>
+      <li><strong>Regulation.</strong> Mandate a quantity, a technology or an emissions cap. This works when the
+        harm is severe or easy to measure. It is usually more expensive than a tax, because it doesn't let the firms that can cut cheaply
+        do most of the cutting.</li>
+      <li><strong>Private bargaining (the Coase theorem).</strong> If property rights are clear and bargaining is cheap,
+        the parties will negotiate to the efficient outcome on their own. That happens <em>whichever side holds the right</em>. The
+        assignment of rights decides who pays whom. It doesn't decide the quantity.</li>
+    </ul>
+    <div class="card accent">
+      <div class="label">When Coase fails</div>
+      <p style="margin-bottom:0">
+        Bargaining breaks down when transaction costs are high. That happens when there are many parties (a city breathing the same air),
+        when it's hard to identify who caused what, or when property rights are unclear. Two neighbours arguing over a
+        barking dog can settle it privately. Millions of people affected by a power plant can't.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">Over-correcting is also a mistake</div>
+      <p style="margin-bottom:0">
+        A tax larger than the external cost pushes quantity <em>below</em> the optimum and creates a new
+        deadweight loss. Set the externality to $15 and the tax to $30 in the model to see it. The right tax is the one that
+        equals the externality, not the biggest one.
+      </p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Pigouvian taxes · regulation · Coase</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Four kinds of goods, and the two that markets struggle with</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    Two questions sort every good. <strong>Rival:</strong> does my using it leave less for you?
+    <strong>Excludable:</strong> can someone who didn't pay be kept from using it?
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th></th><th>Excludable</th><th>Non-excludable</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Rival</strong></td><td><strong>Private goods</strong>: a sandwich, a pair of jeans</td><td><strong>Common resources</strong>: ocean fish, groundwater, a free public road at rush hour</td></tr>
+        <tr><td><strong>Non-rival</strong></td><td><strong>Club goods</strong>: streaming services, cable TV, a toll road with no traffic</td><td><strong>Public goods</strong>: national defence, fireworks displays, lighthouses</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Public goods → the free-rider problem.</strong> Nobody can be excluded, so each person hopes someone else
+        pays. The good isn't provided even when it is worth far more than it costs.</li>
+      <li><strong>Common resources → the tragedy of the commons.</strong> Each user takes as much as they want, but each unit taken
+        leaves less for everyone else. That cost is a negative externality on the other users, so the resource is overused until it runs out.
+        The fixes are the ones you'd expect: quotas, user fees, or turning it into private property.</li>
+    </ul>
+    <div class="card trap">
+      <div class="label">"Provided by the government" doesn't make something a public good</div>
+      <p style="margin-bottom:0">
+        Public schools, the post office and public housing are provided by government, but they are rival and
+        excludable. The classification is about the <em>properties</em> of the good, not about who supplies it.
+        A road can even switch categories: it is a public good when it's empty and a common resource when it's jammed.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-pg">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A neighbourhood streetlight and the free-rider problem</div>
+      <div class="ap-sub">non-rival: value to society = the sum of every household's value</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pg-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Households</span><span class="cv" id="pg-n-v">50</span></div>
+            <input type="range" id="pg-n" min="1" max="100" step="1" value="50">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Value to each household</span><span class="cv" id="pg-v-v">$60</span></div>
+            <input type="range" id="pg-v" min="10" max="2500" step="10" value="60">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Cost to build</span><span class="cv" id="pg-c-v">$2,000</span></div>
+            <input type="range" id="pg-c" min="500" max="6000" step="100" value="2000">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Total value</div><div class="rv" id="pg-ro-total">—</div></div>
+            <div class="ro good"><div class="rl">Worth building?</div><div class="rv" id="pg-ro-eff">—</div></div>
+            <div class="ro"><div class="rl">Built privately?</div><div class="rv" id="pg-ro-mkt">—</div></div>
+            <div class="ro hero"><div class="rl">Surplus lost</div><div class="rv" id="pg-ro-lost">—</div></div>
+            <div class="ro"><div class="rl">Tax per household</div><div class="rv" id="pg-ro-share">—</div></div>
+            <div class="ro"><div class="rl">Net gain each, if taxed</div><div class="rv" id="pg-ro-net">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pg-note"></p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Classifying goods · free riders · commons</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Exam questions on this chapter follow a few fixed patterns. Each has a trap that graders watch for.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Does the market produce too much or too little?"</td><td>Negative → too much. Positive → too little. Say <em>which curve</em> the market ignores.</td>
+            <td>Saying the market "can't find equilibrium". It finds one fine. It's just the wrong one.</td></tr>
+        <tr><td>"Find the efficient quantity"</td><td>Add the externality to the right curve, then set social benefit = social cost.</td>
+            <td>Adding an external cost to <em>demand</em>. External costs belong on the cost side.</td></tr>
+        <tr><td>"What tax would fix it?"</td><td>A per-unit tax equal to the external cost <em>per unit</em>.</td>
+            <td>Proposing a ban, or a tax equal to the total damage.</td></tr>
+        <tr><td>"Classify the good"</td><td>Ask both questions: rival? excludable? Then name the box.</td>
+            <td>Classifying by who provides it.</td></tr>
+        <tr><td>"Why won't the market provide it?"</td><td>Non-excludable → free riders → too little private funding.</td>
+            <td>Saying "because it's too expensive". Cost isn't the problem. Collecting payment is.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">The idea that ties it together</div>
+      <p style="margin-bottom:0">
+        Externalities, public goods and common resources are all the same failure: some cost or benefit doesn't
+        reach the person making the decision. A free rider receives a positive externality from whoever pays.
+        An overfisher imposes a negative externality on the other fishers. When you're stuck on a question, ask whose cost or benefit is being left out.
+      </p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Method &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Practice exam</h2><span class="count">10 questions · 100 points</span></div>
+  <p class="sec-intro">
+    Written questions in the same format as the midterm. Write your full answer <em>before</em> you open the model answer.
+    Then tick only the rubric points you actually earned. Your answers are saved in this browser.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">exam format</span>
+      <div class="ck-h">All of Chapter 9, interleaved</div>
+      <div class="ck-s">write first · then mark yourself against the rubric</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Externality</td>
+            <td>The market quantity with the tax or subsidy applied, the social optimum where social benefit equals social cost, the gap between them, the deadweight loss as the exact area between the social curves, the price buyers pay, and the tax revenue or subsidy cost.</td>
+            <td>Linear curves and a constant external cost or benefit per unit. Real damage often rises with quantity. Perfect enforcement, and the regulator knows the external cost exactly.</td></tr>
+        <tr><td>Public good</td>
+            <td>Total value as the sum of every household's value, whether the good is worth building, whether a single household would fund it alone, the surplus lost to free riding, and the equal-share tax with each household's net gain.</td>
+            <td>Identical households. A good that is all-or-nothing (one streetlight, not a quantity). No partial voluntary contributions: households either pay the full cost alone or wait for someone else.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 09 of 11</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div><strong>Next:</strong> <a href="ch10-business-costs.html">Chapter 10 — Business Costs and Production</a></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* Private curves are the Chapter 8 market: demand (private benefit)
+ * P = 100 - Q, supply (private cost) P = 10 + 0.5Q, so the unregulated
+ * market sits at Q = 60, P = $40. The externality adds a constant
+ * per-unit gap between private and social. */
+var EXA = 100, EXB = 1, EXC = 10, EXD = 0.5;
+
+/* =================================================================
+ * MODEL 1 — an externality, and a corrective tax or subsidy.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var neg = !p.pos, sgn = neg ? -1 : 1;
+    // market with the policy: a tax shifts private cost up, a subsidy down
+    var qm = (EXA - EXC - sgn * p.t) / (EXB + EXD);
+    // social optimum: social benefit = social cost
+    var qs = (EXA - EXC + sgn * p.e) / (EXB + EXD);
+    var q0 = (EXA - EXC) / (EXB + EXD);
+    qm = Math.max(0, qm); qs = Math.max(0, qs);
+    var pb = EXA - EXB * qm;                       // price buyers pay
+    // the gap between social cost and social benefit is linear in Q with slope (b + d)
+    var dwl = 0.5 * (EXB + EXD) * Math.pow(qm - qs, 2);
+    var dwl0 = 0.5 * (EXB + EXD) * Math.pow(q0 - qs, 2);
+    return { neg: neg, qm: qm, qs: qs, q0: q0, pb: pb, gap: qm - qs, dwl: dwl, dwl0: dwl0, money: p.t * qm };
+  }
+
+  function draw(p, m) {
+    var bx = [], qm = 120, pm = 105;
+    var x = scale(0, qm, 48, 340), y = scale(0, pm, 230, 20);
+    bx.push(line(48, 230, 344, 230, AX), line(48, 230, 48, 16, AX));
+    bx.push(txt(48, 248, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    var dE = EXA / EXB, sE = Math.min(qm, (pm - EXC) / EXD);
+    bx.push(line(x(0), y(EXA), x(dE), y(0), CLAYD, 2.2));
+    bx.push(line(x(0), y(EXC), x(sE), y(EXC + EXD * sE), '#5A6B45', 2.2));
+    bx.push(txt(x(dE - 22) - 6, y(22) + 4, m.neg ? 'D' : 'private benefit', { a: 'end', s: 8.5, f: CLAYD }));
+    bx.push(txt(x(sE) - 4, y(EXC + EXD * sE) + 14, m.neg ? 'private cost' : 'S', { a: 'end', s: 8.5, f: '#5A6B45' }));
+    if (p.e > 0) {
+      if (m.neg) {
+        var sE2 = Math.min(qm, (pm - EXC - p.e) / EXD);
+        bx.push(line(x(0), y(EXC + p.e), x(sE2), y(EXC + p.e + EXD * sE2), INK, 1.8, '5 4'));
+        bx.push(txt(x(sE2) - 4, y(EXC + p.e + EXD * sE2) - 6, 'social cost', { a: 'end', s: 8.5, f: INK }));
+      } else {
+        var sb0 = Math.max(0, (EXA + p.e - pm) / EXB), sbE = Math.min(qm, (EXA + p.e) / EXB);
+        bx.push(line(x(sb0), y(EXA + p.e - EXB * sb0), x(sbE), y(EXA + p.e - EXB * sbE), INK, 1.8, '5 4'));
+        bx.push(txt(x(sb0 + 6) + 8, y(EXA + p.e - EXB * (sb0 + 6)), 'social benefit', { s: 8.5, f: INK }));
+      }
+    }
+    // deadweight triangle between market and optimum, bounded by the social curves
+    if (Math.abs(m.gap) > 0.05) {
+      var SB = function (q) { return EXA - EXB * q + (m.neg ? 0 : p.e); };
+      var SC = function (q) { return EXC + EXD * q + (m.neg ? p.e : 0); };
+      bx.push('<polygon points="' + x(m.qs) + ',' + y(SB(m.qs)) + ' ' + x(m.qm) + ',' + y(SB(m.qm)) + ' ' +
+        x(m.qm) + ',' + y(SC(m.qm)) + '" fill="' + CLAY + '" opacity="0.55"/>');
+    }
+    bx.push(line(x(m.qs), 230, x(m.qs), 30, OLIVE, 1.4, '2 3'));
+    bx.push(txt(x(m.qs), 242, 'optimum ' + Math.round(m.qs), { a: 'middle', s: 8.5, f: '#5A6B45' }));
+    bx.push(line(x(m.qm), 230, x(m.qm), y(m.pb), CLAYD, 1.4));
+    bx.push(txt(x(m.qm), 254, 'market ' + Math.round(m.qm), { a: 'middle', s: 8.5, f: CLAYD }));
+    return svg('0 0 360 262', bx.join(''));
+  }
+
+  function fq(v) { return String(+v.toFixed(1)); }
+  function params() { return { pos: el('ex-pos').checked, e: +el('ex-e').value, t: +el('ex-t').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('ex-e-v').textContent = '$' + p.e;
+    el('ex-t-v').textContent = '$' + p.t;
+    el('ex-tl').textContent = m.neg ? 'Corrective tax per unit' : 'Corrective subsidy per unit';
+    el('ex-el').textContent = m.neg ? 'External cost per unit (borne by bystanders)' : 'External benefit per unit (enjoyed by bystanders)';
+    el('ex-fig').innerHTML = draw(p, m);
+    el('ex-ro-qm').textContent = fq(m.qm);
+    el('ex-ro-qs').textContent = fq(m.qs);
+    el('ex-rl-gap').textContent = m.gap >= 0 ? 'Overproduction' : 'Underproduction';
+    el('ex-ro-gap').textContent = fq(Math.abs(m.gap));
+    el('ex-ro-dwl').textContent = money(m.dwl);
+    el('ex-ro-pb').textContent = '$' + m.pb.toFixed(2);
+    el('ex-rl-money').textContent = m.neg ? 'Tax revenue' : 'Subsidy cost';
+    el('ex-ro-money').textContent = money(m.money);
+    var note, what = m.neg ? 'tax' : 'subsidy';
+    if (p.e === 0) {
+      note = 'No externality: private and social curves coincide, and the market\'s ' + fq(m.q0) + ' units are already efficient.' +
+        (p.t > 0 ? ' Adding a ' + what + ' here only <em>creates</em> a deadweight loss — of ' + money(m.dwl) + '.' : '');
+    } else if (p.t === 0) {
+      note = m.neg
+        ? '<strong>The market overproduces by ' + fq(m.gap) + ' units.</strong> Sellers ignore the $' + p.e + ' each unit costs bystanders, so they produce every unit whose <em>private</em> cost is covered — including ones whose full social cost is not. Deadweight loss: ' + money(m.dwl) + '. Now set the tax to $' + p.e + '.'
+        : '<strong>The market underproduces by ' + fq(-m.gap) + ' units.</strong> Buyers ignore the $' + p.e + ' of benefit each unit gives others, so units worth more to society than they cost go unmade. Deadweight loss: ' + money(m.dwl) + '. Now set the subsidy to $' + p.e + '.';
+    } else if (Math.abs(p.t - p.e) < 0.001) {
+      note = '<strong>Internalised.</strong> A ' + what + ' equal to the external ' + (m.neg ? 'cost' : 'benefit') + ' — $' + p.e +
+        ' — makes market participants face the full social ' + (m.neg ? 'cost' : 'benefit') + ', so the market lands exactly on the optimum of ' + fq(m.qs) + ' units and the deadweight loss is gone. That is a Pigouvian ' + what + '.';
+    } else {
+      note = (p.t < p.e ? 'Too small' : 'Too large') + ': a $' + p.t + ' ' + what + ' against a $' + p.e + ' externality leaves the market at ' + fq(m.qm) +
+        ' instead of ' + fq(m.qs) + ', with ' + money(m.dwl) + ' of deadweight loss (it was ' + money(m.dwl0) + ' with no policy). ' +
+        (p.t > p.e ? 'Overcorrecting is a mistake too — it swaps one inefficiency for another.' : 'Closer — keep going until the ' + what + ' matches the externality.');
+    }
+    el('ex-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['e', 't'].forEach(function (k) { el('ex-' + k).addEventListener('input', render); });
+  el('ex-pos').addEventListener('change', render);
+  st = Stepper(el('ap-ex'), [
+    { t: 'The market finds where <strong>private</strong> benefit meets <strong>private</strong> cost. That is all buyers and sellers see.', lit: ['ex-ro-qm'], v: function (m) { return fq(m.qm) + ' units traded'; } },
+    { t: 'Society wants the quantity where <strong>social</strong> benefit meets <strong>social</strong> cost — counting the bystanders.', lit: ['ex-ro-qs'], v: function (m) { return fq(m.qs) + ' units is efficient'; } },
+    { t: 'Negative externality → too much. Positive → too little. The gap is the misallocation.', lit: ['ex-ro-gap'], v: function (m) { return fq(Math.abs(m.gap)) + (m.gap >= 0 ? ' too many' : ' too few'); } },
+    { t: 'Each unit in the gap is worth less to society than it costs (or vice versa). Those losses add up to the triangle.', lit: ['ex-ro-dwl'], v: function (m) { return money(m.dwl) + ' deadweight loss'; } },
+    { t: 'Set the tax or subsidy equal to the external cost or benefit per unit and the market finds the optimum on its own.', lit: ['ex-ro-money'], v: function (m) { return m.neg ? 'tax revenue ' + money(m.money) : 'subsidy cost ' + money(m.money); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — a public good and the free-rider problem. N identical
+ * households each value the good at v; it costs C to provide once.
+ * Efficiency compares the SUM of values with C; private provision
+ * happens only if a single household values it at C or more.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var total = p.n * p.v, share = p.c / p.n;
+    var efficient = total >= p.c, privately = p.v >= p.c;
+    return {
+      total: total, share: share, efficient: efficient, privately: privately,
+      net: p.v - share, lost: efficient && !privately ? total - p.c : 0,
+      minN: Math.ceil(p.c / p.v)
+    };
+  }
+
+  function draw(p, m) {
+    var bx = [], top = Math.max(m.total, p.c) * 1.15;
+    var y = scale(0, top, 200, 30);
+    bx.push(line(48, 200, 344, 200, AX));
+    // stacked household values, drawn as N slices of one bar
+    var bw = 70, x1 = 90;
+    var slices = Math.min(p.n, 60);
+    for (var i = 0; i < slices; i++) {
+      var y0 = y(m.total * i / slices), y1 = y(m.total * (i + 1) / slices);
+      bx.push('<rect x="' + x1 + '" y="' + y1 + '" width="' + bw + '" height="' + Math.max(0.5, y0 - y1 - (slices < 25 ? 1 : 0)) + '" fill="' + (i % 2 ? OLIVE : '#8FA274') + '"/>');
+    }
+    bx.push(txt(x1 + bw / 2, 216, 'total value', { a: 'middle', s: 9, f: '#5A6B45' }));
+    bx.push(txt(x1 + bw / 2, y(m.total) - 6, money(m.total), { a: 'middle', s: 9.5, f: INK }));
+    bx.push(rect(220, y(p.c), bw, 200 - y(p.c), CLAY, 0));
+    bx.push(txt(220 + bw / 2, 216, 'cost', { a: 'middle', s: 9, f: CLAYD }));
+    bx.push(txt(220 + bw / 2, y(p.c) - 6, money(p.c), { a: 'middle', s: 9.5, f: INK }));
+    // one household's own value against the cost
+    bx.push(line(56, y(p.v), 344, y(p.v), INK, 1.2, '3 3'));
+    bx.push(txt(340, y(p.v) - 4, 'one household: ' + money(p.v), { a: 'end', s: 8.5, f: INK }));
+    bx.push(txt(48, 236, p.n + ' households, each one slice of the green bar', { s: 8.5, f: FAINT }));
+    return svg('0 0 360 246', bx.join(''));
+  }
+
+  function params() { return { n: +el('pg-n').value, v: +el('pg-v').value, c: +el('pg-c').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('pg-n-v').textContent = p.n;
+    el('pg-v-v').textContent = money(p.v);
+    el('pg-c-v').textContent = money(p.c);
+    el('pg-fig').innerHTML = draw(p, m);
+    el('pg-ro-total').textContent = money(m.total);
+    el('pg-ro-eff').textContent = m.efficient ? 'Yes' : 'No';
+    el('pg-ro-mkt').textContent = m.privately ? 'Yes' : 'No';
+    el('pg-ro-lost').textContent = money(m.lost);
+    el('pg-ro-share').textContent = money(m.share);
+    el('pg-ro-net').textContent = (m.net < 0 ? '−' : '') + money(Math.abs(m.net));
+    var note;
+    if (!m.efficient) {
+      note = '<strong>Not worth building.</strong> Even added up across all ' + p.n + ' households, the good is worth ' + money(m.total) +
+        ', less than its ' + money(p.c) + ' cost. Here nobody providing it is the right outcome — public goods are not automatically worth funding. It would take ' + m.minN + ' households to justify it.';
+    } else if (m.privately) {
+      note = '<strong>Provided anyway.</strong> One household values it at ' + money(p.v) + ' — enough to pay the whole ' + money(p.c) +
+        ' alone — so it gets built and everyone else rides free. Free riding still happens; it just doesn\'t stop provision.';
+    } else {
+      note = '<strong>The free-rider problem.</strong> Together the households value it at ' + money(m.total) + ', more than the ' + money(p.c) +
+        ' cost, so building it creates ' + money(m.lost) + ' of surplus. But no single household will pay ' + money(p.c) + ' for something worth ' +
+        money(p.v) + ' to them, and none can be excluded from enjoying it if someone else pays — so each waits for the others, and it never gets built. ' +
+        'A tax of ' + money(m.share) + ' each funds it and leaves every household ' + money(m.net) + ' better off.';
+    }
+    el('pg-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['n', 'v', 'c'].forEach(function (k) { el('pg-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-pg'), [
+    { t: 'A public good is non-rival: everyone enjoys the same unit. So its value to society is the <strong>sum</strong> of every household\'s value.', lit: ['pg-ro-total'], v: function (m) { return money(m.total) + ' in total'; } },
+    { t: 'It is worth providing when that total covers the cost.', lit: ['pg-ro-eff'], v: function (m) { return m.efficient ? 'worth it' : 'not worth it'; } },
+    { t: 'But it is non-excludable too, so each household can enjoy it without paying. A household pays only if the good is worth the <em>whole</em> cost to it alone.', lit: ['pg-ro-mkt'], v: function (m) { return m.privately ? 'someone builds it alone' : 'nobody builds it alone'; } },
+    { t: 'When it is worth it but nobody provides it, the surplus is lost: that is the free-rider problem in dollars.', lit: ['pg-ro-lost'], v: function (m) { return money(m.lost) + ' never created'; } },
+    { t: 'Compulsory funding fixes it: split the cost through taxes and compare each share with each household\'s value.', lit: ['pg-ro-share', 'pg-ro-net'], v: function (m) { return money(m.share) + ' tax each, net ' + (m.net < 0 ? '−' : '') + money(Math.abs(m.net)); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch09", "title": "Chapter 09 \u2014 Externalities and Public Goods", "anchors": ["c1", "c2", "c3", "quiz"], "navTicks": {"#c0": 1, "#c1": 2, "#c2": 3, "#c3": 4}};
+var FND = ['Negative externalities', 'Positive externalities', 'Fixing externalities', 'Classifying goods', 'Free riders & commons'];
+
+var BANK = [
+  { id: 'n1', home: 1, fnd: 1, type: 'mcq', short: 'Pollution and quantity',
+    stem: 'A paper mill dumps waste into a river and pays nothing for the harm it does downstream. Compared with the efficient level, the market produces:',
+    opts: [
+      { t: 'Too much paper, because the mill ignores part of the cost of each unit', ok: true },
+      { t: 'Too little paper, because pollution makes paper less valuable', why: 'The pollution doesn\'t change what buyers will pay for paper. It adds a cost that the mill doesn\'t pay, so private cost is too low and output is too high.' },
+      { t: 'The efficient amount, since buyers and sellers both agree to trade', why: 'Both sides agreeing makes the trade efficient only if nobody else is affected. The people downstream never agreed to anything.' },
+      { t: 'No paper at all, because the harm outweighs the benefit', why: 'The efficient quantity is lower than the market quantity, but it is usually not zero. Many units are still worth making after the damage is counted.' }
+    ] },
+  { id: 'n2', home: 1, fnd: 2, type: 'mcq', short: 'Vaccination and quantity',
+    stem: 'Getting a flu shot protects the people around you as well as yourself. Without intervention, the number of flu shots will be:',
+    opts: [
+      { t: 'Below the efficient level, because individuals don\'t count the benefit to others', ok: true },
+      { t: 'Above the efficient level, because people over-value their own health', why: 'The question is about benefit that goes to <em>other</em> people. That benefit is left out of each person\'s decision, so too few shots are bought.' },
+      { t: 'At the efficient level, since people choose what is best for them', why: 'Each person chooses what is best for <em>them</em>. The benefit to people around them doesn\'t enter that choice.' },
+      { t: 'Above the efficient level, because there is an externality', why: 'Positive and negative externalities point in opposite directions. Too much goes with a spillover <em>cost</em>. A spillover benefit means too little.' }
+    ] },
+  { id: 'n3', home: 1, fnd: 1, type: 'numeric', short: 'Efficient quantity with damage',
+    stem: 'Demand is P = 100 − Q and private supply is P = 10 + 0.5Q. Each unit causes $30 of harm to bystanders. What is the efficient quantity?',
+    answer: 40, tol: 0,
+    why: 'Social cost = 10 + 30 + 0.5Q = 40 + 0.5Q. Set it equal to demand: 100 − Q = 40 + 0.5Q, so 1.5Q = 60 and Q = <strong>40</strong>. The market produces 60. Adding the $30 to demand (100 + 30 − Q) puts it on the wrong curve and gives 80.' },
+
+  { id: 'f1', home: 2, fnd: 3, type: 'mcq', short: 'The right corrective tax',
+    stem: 'Each ton of a chemical causes $12 of harm to bystanders. The efficient corrective tax is:',
+    opts: [
+      { t: '$12 per ton, equal to the external cost per unit', ok: true },
+      { t: 'The total damage across all tons, charged as a single lump sum', why: 'A lump sum doesn\'t change the cost of producing one more ton, so it doesn\'t change the quantity. The tax has to be per unit to change behaviour at the margin.' },
+      { t: 'As high as possible, to minimise pollution', why: 'A tax above $12 pushes output below the optimum and creates a new deadweight loss. The aim is the efficient quantity, not the lowest one.' },
+      { t: 'Whatever amount covers the cost of cleaning up', why: 'Clean-up cost is a different number from the harm caused by each ton. A Pigouvian tax is set equal to the external cost per unit.' }
+    ] },
+  { id: 'f2', home: 2, fnd: 3, type: 'mcq', short: 'Coase and who pays',
+    stem: 'A factory and one neighbouring farm can bargain cheaply. The law changes so that the farm, instead of the factory, now holds the right to clean air. According to the Coase theorem:',
+    opts: [
+      { t: 'The amount of pollution stays the same; only who pays whom changes', ok: true },
+      { t: 'Pollution falls to zero, because the farm can now forbid it', why: 'The farm can forbid it, but it will accept payment to allow pollution whenever the factory values polluting more than the farm is harmed by it. The two still bargain to the same efficient amount.' },
+      { t: 'Pollution rises, because the factory must now pay', why: 'Having to pay doesn\'t change the efficient amount. Under Coase, the bargaining always ends at the outcome that maximises their combined surplus.' },
+      { t: 'Bargaining stops working, because rights now favour the farm', why: 'Coase only requires clear rights and low transaction costs. Which side holds the right doesn\'t matter for whether bargaining works.' }
+    ] },
+  { id: 'f3', home: 2, fnd: 3, type: 'mcq', short: 'When Coase fails',
+    stem: 'Why is private bargaining unlikely to solve air pollution from a large city\'s traffic?',
+    opts: [
+      { t: 'Too many parties are involved, so the costs of bargaining are prohibitive', ok: true },
+      { t: 'Because the drivers have no property rights', why: 'Rights could be assigned to either side, and Coase says that wouldn\'t change the outcome. The obstacle is the cost of getting millions of people to bargain.' },
+      { t: 'Because pollution is a positive externality', why: 'It is a negative externality. In any case the type of externality isn\'t why bargaining fails.' },
+      { t: 'Because the efficient level of pollution is zero', why: 'It rarely is. Bargaining fails here because of transaction costs, not because of where the efficient level lies.' }
+    ] },
+
+  { id: 'g1', home: 3, fnd: 4, type: 'classify', short: 'Four kinds of goods',
+    stem: 'Classify each good.',
+    cats: ['Private', 'Club', 'Common resource', 'Public'],
+    rows: [
+      { t: 'Fish in the open ocean', cat: 'Common resource' },
+      { t: 'A Netflix subscription', cat: 'Club' },
+      { t: 'A tsunami warning siren', cat: 'Public' },
+      { t: 'A slice of pizza', cat: 'Private' }
+    ],
+    why: 'Ask both questions. Ocean fish are rival but you can\'t keep anyone from catching them, so they are a common resource. Netflix is excludable but one more viewer costs others nothing, so it is a club good. A siren is neither rival nor excludable, so it is a public good. Pizza is both rival and excludable, so it is a private good.' },
+  { id: 'g2', home: 3, fnd: 5, type: 'mcq', short: 'Why markets underprovide',
+    stem: 'A fireworks show is worth $50,000 to a town in total and costs $20,000. Why might a private firm still fail to put it on?',
+    opts: [
+      { t: 'It can\'t stop people who don\'t pay from watching, so too few will pay', ok: true },
+      { t: 'Because the show costs more than it is worth', why: 'It is worth $50,000 and costs $20,000, so it is worth doing. The problem is collecting the money.' },
+      { t: 'Because each extra viewer uses up some of the show', why: 'That is the opposite of the truth. A fireworks show is non-rival: one more viewer costs nothing.' },
+      { t: 'Because there is a negative externality', why: 'There is a spillover, but it is a <em>benefit</em> to people who don\'t pay. That is the free-rider problem.' }
+    ] },
+  { id: 'g3', home: 3, fnd: 5, type: 'mcq', short: 'Tragedy of the commons',
+    stem: 'Ranchers share an open pasture with no rules. Each rancher adds cows until the pasture is ruined. The underlying reason is:',
+    opts: [
+      { t: 'Each rancher gets the full gain from another cow but bears only part of the cost of overgrazing', ok: true },
+      { t: 'The pasture is a public good', why: 'Grass is <em>rival</em>: what one cow eats, another can\'t. A rival, non-excludable good is a common resource, not a public good.' },
+      { t: 'The ranchers are irrational', why: 'Each rancher is being perfectly rational. The problem is that individually rational choices add up to a bad result because the cost falls on the others.' },
+      { t: 'Grass is too cheap', why: 'The grass is free. That is a symptom, not the mechanism: the cost of overgrazing falls on other people.' }
+    ] },
+
+  { id: 'x1', home: 4, fnd: 2, type: 'numeric', short: 'Efficient subsidy quantity',
+    stem: 'Demand (private benefit) is P = 100 − Q and supply is P = 10 + 0.5Q. Each unit gives $15 of benefit to bystanders. What is the efficient quantity?',
+    answer: 70, tol: 0,
+    why: 'Social benefit = 115 − Q. Set it equal to supply: 115 − Q = 10 + 0.5Q, so 1.5Q = 105 and Q = <strong>70</strong>. The market stops at 60. A $15 per-unit subsidy gets it to 70.' },
+  { id: 'x2', home: 4, fnd: 4, type: 'mcq', short: 'Government ≠ public good',
+    stem: 'A city runs a public swimming pool that charges admission and gets crowded in summer. Economically the pool is:',
+    opts: [
+      { t: 'Not a public good: entry can be restricted and space is rival when crowded', ok: true },
+      { t: 'A public good, because the government provides it', why: 'Who provides a good doesn\'t decide its category. Its properties do, and an admission fee means it is excludable.' },
+      { t: 'A common resource, because it is publicly owned', why: 'Common resources are <em>non-excludable</em>. A pool that charges at the gate is excludable.' },
+      { t: 'A public good, because many people use it at once', why: 'Many people using something at once doesn\'t make it non-rival. Once it is crowded, each swimmer takes up space someone else could use.' }
+    ] },
+  { id: 'x3', home: 4, fnd: 1, type: 'mcq', short: 'Tax revenue vs DWL',
+    stem: 'A Pigouvian tax set equal to the external cost is imposed. Compared with no tax, the deadweight loss:',
+    opts: [
+      { t: 'Falls to zero, because the market now produces the efficient quantity', ok: true },
+      { t: 'Rises, because all taxes create deadweight loss', why: 'Chapter 7\'s taxes created DWL because the market <em>started</em> efficient. Here the market starts inefficient, and the tax moves it to the efficient quantity.' },
+      { t: 'Stays the same, since the tax is just a transfer', why: 'The revenue is a transfer, but the tax also changes the <em>quantity</em>, and that removes the overproduction.' },
+      { t: 'Falls, but never all the way to zero', why: 'If the tax exactly equals the external cost per unit, the market lands on the optimum and the deadweight loss is zero.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 1, type: 'frq', title: 'Pollution from a Factory', short: 'Factory pollution',
+    stem: 'A steel plant releases smoke that damages the health of nearby residents. The plant does not pay for this damage.',
+    parts: [
+      { q: 'Identify the type of externality and explain why it exists.', pts: 2,
+        model: 'A negative externality. Part of the cost of producing steel (the health damage) falls on residents who aren\'t part of the transaction, so the plant\'s private cost is lower than the social cost.',
+        rub: [['Negative externality', 1], ['The cost falls on third parties, so private cost < social cost', 1]] },
+      { q: 'Compare the market quantity of steel with the socially efficient quantity. Explain.', pts: 3,
+        model: 'The market produces more than is efficient. The plant produces where demand meets its private cost, which lies below social cost. Social cost meets demand at a lower quantity, so the units in between cost society more than they are worth.',
+        rub: [['Market quantity > efficient quantity', 1], ['The market uses private cost, which lies below social cost', 1], ['The extra units have social cost above their value', 1]] },
+      { q: 'Explain the deadweight loss in this market.', pts: 3,
+        model: 'For each unit between the efficient and the market quantity, social cost is higher than the benefit to buyers. Adding up those net losses gives the deadweight loss triangle, between the social-cost curve and demand.',
+        rub: [['It arises on units between the efficient and market quantities', 1], ['On those units social cost exceeds benefit', 1], ['Locates it as the triangle between social cost and demand', 1]] },
+      { q: 'Propose a policy that would lead to the efficient quantity, and say how large it should be.', pts: 2,
+        model: 'A per-unit (Pigouvian) tax on steel equal to the external cost per unit. This raises the plant\'s private cost to the social cost.',
+        rub: [['Names a per-unit corrective tax (or tradable permits)', 1], ['Sets it equal to the external cost per unit', 1]] }
+    ] },
+
+  { id: 'q2', fnd: 4, type: 'frq', title: 'Classifying Goods', short: 'Rival / excludable table',
+    stem: 'Economists classify goods by whether they are <strong>rival</strong> and whether they are <strong>excludable</strong>.',
+    parts: [
+      { q: 'Define rival and excludable.', pts: 2,
+        model: 'Rival: one person\'s use reduces how much is available for others. Excludable: people who don\'t pay can be prevented from using it.',
+        rub: [['Correct definition of rival', 1], ['Correct definition of excludable', 1]] },
+      { q: 'Classify each: (i) national defence, (ii) a toll road with no traffic, (iii) tuna in international waters, (iv) a cup of coffee.', pts: 4,
+        model: '(i) Public good: non-rival, non-excludable. (ii) Club good: excludable, non-rival while empty. (iii) Common resource: rival, non-excludable. (iv) Private good: rival and excludable.',
+        rub: [['National defence: public good', 1], ['Empty toll road: club good', 1], ['Ocean tuna: common resource', 1], ['Coffee: private good', 1]] },
+      { q: 'A free highway is congested at rush hour. Which category is it in at that time, and why?', pts: 2,
+        model: 'A common resource. It is non-excludable because there is no toll, and when it\'s congested it becomes rival, because each extra car slows everyone else down.',
+        rub: [['Common resource', 1], ['Non-excludable and rival because of congestion', 1]] },
+      { q: 'Why do markets tend to under-provide public goods?', pts: 2,
+        model: 'Because they are non-excludable, people can benefit without paying, so they free ride. Private firms can\'t collect enough revenue even when the total value is more than the cost.',
+        rub: [['Non-excludability leads to free riding', 1], ['So private revenue falls short even when the good is worth providing', 1]] }
+    ] },
+
+  { id: 'q3', fnd: 2, type: 'frq', title: 'Education Spillovers', short: 'College and positive externality',
+    stem: 'A more educated population commits less crime, votes more knowledgeably, and creates ideas that others use. Students pay tuition based only on the benefit they personally expect.',
+    parts: [
+      { q: 'What kind of externality is this? Which curve does it affect?', pts: 2,
+        model: 'A positive externality on the benefit side. Social benefit equals private benefit (demand) plus the external benefit, so the social-benefit curve lies above demand.',
+        rub: [['Positive externality', 1], ['Social benefit lies above private demand', 1]] },
+      { q: 'Without intervention, how does the quantity of education compare with the efficient level? Explain.', pts: 3,
+        model: 'There is too little. Students buy education until their private benefit equals the cost, and they ignore the benefit to others. The efficient quantity, where social benefit equals cost, is higher.',
+        rub: [['Market quantity < efficient quantity', 1], ['Students ignore the external benefit', 1], ['The efficient quantity is where social benefit = cost', 1]] },
+      { q: 'What policy would correct this, and how should it be sized?', pts: 3,
+        model: 'A per-unit subsidy, such as grants or tuition aid, equal to the external benefit per unit. It lowers the cost students face, which raises the quantity to the efficient level.',
+        rub: [['A subsidy, or public provision or support', 1], ['Equal to the external benefit per unit', 1], ['It raises quantity to the efficient level', 1]] },
+      { q: 'What happens if the subsidy is set larger than the external benefit?', pts: 2,
+        model: 'Quantity rises above the efficient level, so units are produced that cost more than their full social benefit. That is a new deadweight loss from over-correcting.',
+        rub: [['Quantity overshoots the efficient level', 1], ['This creates a new deadweight loss', 1]] }
+    ] },
+
+  { id: 'q4', fnd: 3, type: 'frq', title: 'Calculating a Pigouvian Tax', short: 'Computing optimum and tax',
+    stem: 'In a market, demand is <strong>P = 120 − 2Q</strong> and private supply is <strong>P = 20 + 2Q</strong>. Each unit causes <strong>$20</strong> of harm to bystanders.',
+    parts: [
+      { q: 'Find the market (unregulated) quantity and price.', pts: 2,
+        model: '120 − 2Q = 20 + 2Q → Q = 25, P = $70.',
+        rub: [['Q = 25', 1], ['P = $70', 1]] },
+      { q: 'Find the socially efficient quantity.', pts: 3,
+        model: 'Social cost = 20 + 20 + 2Q = 40 + 2Q. Set it equal to demand: 120 − 2Q = 40 + 2Q → 4Q = 80 → Q = 20.',
+        rub: [['Adds the $20 external cost to supply', 1], ['Sets social cost equal to demand', 1], ['Q = 20', 1]] },
+      { q: 'Calculate the deadweight loss of the unregulated market.', pts: 3,
+        model: 'At Q = 25, social cost = 40 + 50 = $90 and demand = $70, a gap of $20. At Q = 20 the gap is 0. DWL = ½ × 20 × (25 − 20) = $50.',
+        rub: [['Height = $20, the gap at Q = 25', 1], ['Base = 5 units', 1], ['DWL = $50', 1]] },
+      { q: 'What per-unit tax achieves efficiency, and how much revenue does it raise?', pts: 2,
+        model: 'A $20 tax per unit. Quantity falls to 20, so revenue = $20 × 20 = $400.',
+        rub: [['Tax = $20 per unit', 1], ['Revenue = $400 (using the new Q of 20)', 1]] }
+    ] },
+
+  { id: 'q5', fnd: 5, type: 'frq', title: 'The Free-Rider Problem', short: 'Mosquito spraying',
+    stem: 'A town of <strong>1,000</strong> households is considering mosquito spraying that costs <strong>$30,000</strong>. Each household values it at <strong>$50</strong>. Once the town is sprayed, nobody can be excluded from the benefit.',
+    parts: [
+      { q: 'Is spraying efficient? Show your reasoning.', pts: 2,
+        model: 'Yes. Total value = 1,000 × $50 = $50,000, which is more than the $30,000 cost, so net surplus is $20,000.',
+        rub: [['Sums the values: $50,000', 1], ['Compares with the cost and concludes it is efficient', 1]] },
+      { q: 'Will a private firm selling spraying "subscriptions" succeed? Explain.', pts: 3,
+        model: 'Unlikely. Spraying is non-excludable: once the area is sprayed, everyone benefits whether they paid or not. Each household has an incentive to free ride, so the firm can\'t raise $30,000.',
+        rub: [['Unlikely to succeed', 1], ['Because the good is non-excludable', 1], ['Households free ride, so revenue falls short', 1]] },
+      { q: 'Is spraying rival? Why does that matter for how it should be priced?', pts: 2,
+        model: 'No, it is non-rival: one household\'s protection doesn\'t reduce another\'s. The marginal cost of serving one more household is zero, so excluding anyone would waste value even if it were possible.',
+        rub: [['Non-rival', 1], ['The marginal cost of an extra user is zero, so excluding people wastes value', 1]] },
+      { q: 'How could the town provide it, and what would each household pay and gain?', pts: 3,
+        model: 'Fund it with a tax: $30,000 / 1,000 = $30 per household. Each household gets $50 of value for $30, a net gain of $20, and the town gains $20,000 in total.',
+        rub: [['Government provision funded by taxes', 1], ['$30 per household', 1], ['Net gain of $20 each ($20,000 total)', 1]] }
+    ] },
+
+  { id: 'q6', fnd: 3, type: 'frq', title: 'The Coase Theorem', short: 'Bakery and doctor bargain',
+    stem: 'A bakery\'s mixer makes noise that disturbs a doctor\'s office next door. Soundproofing costs the bakery <strong>$800</strong>. The noise costs the doctor <strong>$1,000</strong> in lost business. They can bargain at no cost.',
+    parts: [
+      { q: 'What is the efficient outcome? Why?', pts: 2,
+        model: 'The bakery soundproofs. Removing the noise costs $800, which is less than the $1,000 of damage, so soundproofing saves $200 in total.',
+        rub: [['The bakery soundproofs', 1], ['Because $800 < $1,000', 1]] },
+      { q: 'If the doctor has the right to quiet, what happens?', pts: 2,
+        model: 'The bakery must stop the noise or pay the doctor at least $1,000. Soundproofing for $800 is cheaper, so it soundproofs.',
+        rub: [['The bakery must compensate or abate', 1], ['It soundproofs, which is cheaper than paying $1,000', 1]] },
+      { q: 'If the bakery has the right to make noise, what happens?', pts: 3,
+        model: 'The doctor would pay up to $1,000 to end the noise, and the bakery accepts anything above $800. They agree on a payment between $800 and $1,000, and the bakery soundproofs. The outcome is the same and only the payment changes direction.',
+        rub: [['The doctor pays the bakery', 1], ['The payment is between $800 and $1,000', 1], ['The outcome is the same: the bakery soundproofs', 1]] },
+      { q: 'Why would this reasoning fail if the bakery disturbed 500 households?', pts: 3,
+        model: 'Transaction costs would be high. Organising 500 parties, agreeing how to split payments, and dealing with households that free ride on the deal would make bargaining impractical. Coase needs low transaction costs and few parties.',
+        rub: [['High transaction costs', 1], ['Coordination problems or free riding among many parties', 1], ['Coase requires low bargaining costs and few parties', 1]] }
+    ] },
+
+  { id: 'q7', fnd: 1, type: 'frq', title: 'Taxing Gasoline', short: 'Gas tax and congestion',
+    stem: 'Driving causes air pollution and congestion. Estimates put these external costs at about <strong>$1.00 per gallon</strong>, and current gasoline taxes are about $0.50 per gallon.',
+    parts: [
+      { q: 'Is the current quantity of driving efficient, too high, or too low? Explain.', pts: 3,
+        model: 'Too high. The tax internalises only $0.50 of the $1.00 external cost, so drivers still face a private cost below the social cost and buy more gasoline than is efficient.',
+        rub: [['Too high', 1], ['The tax covers only part of the external cost', 1], ['Private cost is still below social cost', 1]] },
+      { q: 'What does economic theory suggest the tax should be?', pts: 2,
+        model: 'About $1.00 per gallon, equal to the external cost per gallon.',
+        rub: [['$1.00 per gallon', 1], ['Equal to the external cost per unit', 1]] },
+      { q: 'Why might a tax be better than a rule limiting each person to a fixed number of gallons?', pts: 3,
+        model: 'A tax lets each driver decide whether a trip is worth its full social cost. Drivers who value driving least cut back most, so the reduction is achieved at the lowest total cost. A fixed limit ignores differences in how much people value driving. The tax also raises revenue.',
+        rub: [['A tax lets people with low value cut back most', 1], ['So the reduction happens at lower total cost', 1], ['A fixed limit ignores differences in value, or the tax raises revenue', 1]] },
+      { q: 'Who bears the burden of a higher gas tax in the short run? (Connect to Chapter 7.)', pts: 2,
+        model: 'Mostly drivers. Short-run demand for gasoline is inelastic, and the less elastic side bears more of a tax.',
+        rub: [['Mostly buyers (drivers)', 1], ['Because short-run demand is inelastic', 1]] }
+    ] },
+
+  { id: 'q8', fnd: 5, type: 'frq', title: 'Tragedy of the Commons', short: 'Overfishing a lake',
+    stem: 'A large lake has no rules on fishing. Over twenty years the fish population has collapsed.',
+    parts: [
+      { q: 'Classify the fish in the lake as a type of good. Explain.', pts: 2,
+        model: 'A common resource. The fish are rival, because a fish caught by one person can\'t be caught by another, and non-excludable, because anyone can fish.',
+        rub: [['Common resource', 1], ['Rival and non-excludable', 1]] },
+      { q: 'Explain why rational individual fishers overfish.', pts: 3,
+        model: 'Each fisher gets the full benefit of each extra fish but bears only a small share of the cost of depleting the stock. That cost is spread over all fishers. Ignoring the cost to others is a negative externality, so total catch goes above the sustainable, efficient level.',
+        rub: [['Each fisher keeps the full private benefit of a catch', 1], ['The cost of depletion is spread over everyone', 1], ['This is a negative externality and leads to overuse', 1]] },
+      { q: 'Propose two policies to fix the problem.', pts: 3,
+        model: 'Any two, with a brief reason: catch limits or quotas (possibly tradable), fishing licences or fees, assigning property rights (private ownership gives the owner a reason to conserve), or seasonal closures.',
+        rub: [['First valid policy', 1], ['Second valid policy', 1], ['Explains how one of them internalises the cost', 1]] },
+      { q: 'Why are privately owned fish farms not overfished?', pts: 2,
+        model: 'The owner can exclude others and keeps the future value of the stock, so they bear the full cost of depleting it and have a reason to harvest sustainably.',
+        rub: [['The owner can exclude others', 1], ['The owner bears the cost of depletion or keeps the future value', 1]] }
+    ] },
+
+  { id: 'q9', fnd: 2, type: 'frq', title: 'Beekeepers and Orchards', short: 'Bees pollinating orchards',
+    stem: 'A beekeeper\'s bees pollinate the apple orchards next to the hives, which raises apple yields. The beekeeper is not paid for this.',
+    parts: [
+      { q: 'Identify the externality and who receives it.', pts: 2,
+        model: 'A positive externality. The orchard owners receive the benefit of pollination without paying for it.',
+        rub: [['Positive externality', 1], ['Orchard owners receive the benefit', 1]] },
+      { q: 'Will the beekeeper keep the efficient number of hives? Explain.', pts: 3,
+        model: 'No. The beekeeper counts only the private benefit (honey) and ignores the value of pollination, so they keep fewer hives than is efficient.',
+        rub: [['No, too few hives', 1], ['The beekeeper ignores the pollination benefit', 1], ['The efficient number counts the social benefit, honey plus pollination', 1]] },
+      { q: 'Describe a private solution that could fix this.', pts: 3,
+        model: 'Contracts. The orchard owners pay the beekeeper for pollination services, or the orchard keeps its own bees, which merges the two businesses. With few parties and clear rights, Coase bargaining can reach the efficient number of hives.',
+        rub: [['Payment or a contract from orchards to the beekeeper', 1], ['Or merging the businesses so the benefit is internalised', 1], ['Linked to low transaction costs and few parties (Coase)', 1]] },
+      { q: 'Why is a private solution more likely here than for air pollution?', pts: 2,
+        model: 'Only a few parties are involved, they are easy to identify, and they are next to each other, so transaction costs are low. Air pollution affects millions of people.',
+        rub: [['Few, identifiable parties', 1], ['So transaction costs are low', 1]] }
+    ] },
+
+  { id: 'q10', fnd: 4, type: 'frq', title: 'When Roads Change Category', short: 'Road: club, public, common',
+    stem: 'Consider a highway at three different times: (1) a free road at 3 a.m., (2) the same free road at 5 p.m. rush hour, (3) the same road at rush hour after a toll is added.',
+    parts: [
+      { q: 'Classify the road in each case.', pts: 3,
+        model: '(1) Public good: non-rival when empty and non-excludable when free. (2) Common resource: rival because of congestion, and non-excludable. (3) Private good: excludable because of the toll, and rival because of congestion.',
+        rub: [['3 a.m. free road: public good', 1], ['Rush-hour free road: common resource', 1], ['Rush hour with toll: private good', 1]] },
+      { q: 'What problem arises in case (2)? Explain using externalities.', pts: 3,
+        model: 'Overuse, which is the tragedy of the commons. Each driver who enters slows everyone else, a negative externality they don\'t pay for, so more drivers use the road at rush hour than is efficient.',
+        rub: [['Overuse / congestion (tragedy of the commons)', 1], ['Each driver imposes delay on others', 1], ['This is an unpriced negative externality, so there is too much driving', 1]] },
+      { q: 'How does a rush-hour toll fix the problem?', pts: 2,
+        model: 'A toll equal to the congestion cost each driver imposes makes drivers pay for that external cost. Drivers whose trips are worth less than the toll switch times or routes, and traffic falls toward the efficient level.',
+        rub: [['The toll internalises the congestion cost', 1], ['Low-value trips shift or drop, so traffic falls to the efficient level', 1]] },
+      { q: 'Why would charging a toll at 3 a.m. be inefficient?', pts: 2,
+        model: 'At 3 a.m. the road is non-rival, so an extra driver costs nobody anything. A toll would discourage trips that have value and zero social cost, which is a deadweight loss.',
+        rub: [['Non-rival at 3 a.m.: an extra driver has zero marginal cost', 1], ['A toll would deter valuable trips and create a deadweight loss', 1]] }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+/* ---------- answer-position scrambling ---------------------------
+ * Items are authored with the correct option first — easy to read in the
+ * source, and a free pass if it ships that way: a learner who notices can
+ * score full marks by always picking A.
+ *
+ * Two properties are wanted at once. The correct answer must land in each
+ * position about equally often across the chapter, so no single letter is
+ * worth guessing; and the sequence of positions must not be guessable
+ * either, so a round-robin A, B, C, D is out. So: deal out a balanced
+ * multiset of target slots, shuffle THAT, and give each item the slot it
+ * draws. Everything is seeded off the chapter and item ids, so a learner
+ * sees the same layout on every reload and when an item returns later.
+ * ================================================================= */
+(function scramble() {
+  function rng(seed) {
+    var h = 2166136261, n = 0;                      // FNV-1a over the seed
+    for (var i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return function () {                            // splitmix32: each draw mixed on its own,
+      var z = (h + Math.imul(++n, 0x9E3779B9)) | 0; // so short, similar ids don't correlate
+      z = Math.imul(z ^ (z >>> 16), 0x21F0AAAD);
+      z = Math.imul(z ^ (z >>> 15), 0x735A2D97);
+      return ((z ^ (z >>> 15)) >>> 0) / 4294967296;
+    };
+  }
+  function shuffle(a, r) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  /* Group by option count first: a three-option item cannot take slot 3,
+   * and folding it back with % would bias position 0. */
+  var groups = {};
+  BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).forEach(function (q) {
+    if (q.type !== 'mcq') return;
+    (groups[q.opts.length] = groups[q.opts.length] || []).push(q);
+  });
+
+  Object.keys(groups).forEach(function (key) {
+    var n = +key, group = groups[key];
+    var slots = group.map(function (_, i) { return i % n; });
+    shuffle(slots, rng(CHAPTER.id + ':slots:' + n));
+    group.forEach(function (q, k) {
+      var right = null, rest = [];
+      q.opts.forEach(function (o) { if (o.ok && !right) right = o; else rest.push(o); });
+      if (!right) return;                           // malformed item; the verifier reports it
+      shuffle(rest, rng(q.id));
+      rest.splice(slots[k], 0, right);
+      q.opts = rest;
+    });
+  });
+})();
+
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    /* Fraction of the bank answered correctly and not outstanding.
+     * This used to need box 3 — two successful recalls — which no item
+     * homed at the last two checkpoints can ever reach, because there is
+     * no later checkpoint to bring it back. A flawless run topped out at
+     * 69%. Box 2 and box 3 both mean "got it right and nothing is owed";
+     * the schedule still uses the distinction, the bar no longer does. */
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it && it.box >= 2) done += 1;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    /* free-response state: { txt, open, marks: ['partIdx.rubIdx', ...] } per item */
+    frq: function (id, v) {
+      db.frq = db.frq || {};
+      if (v !== undefined) { db.frq[id] = v; save(); }
+      return db.frq[id] || { txt: '', open: false, marks: [] };
+    },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    var canReturn = it.last + 2 <= CHAPTER.anchors.length;
+    tagEl.textContent = !ok ? 'due again' : (it.box === 3 || !canReturn) ? 'retired' : 'returns later';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- exam-format free response ---------------------------
+ * A chapter whose QUIZ is type 'frq' gets the written-exam layout:
+ * scenario, lettered parts with points, one answer box. Prose can't be
+ * marked offline, so the learner writes first, then opens a model answer
+ * and a points rubric and ticks what they earned. Drafts and marks
+ * persist; under 70% counts as a miss for the export prompt. */
+function frqPts(q) { return q.parts.reduce(function (s, p) { return s + p.pts; }, 0); }
+function frqScore(q) {
+  return Store.frq(q.id).marks.reduce(function (s, k) {
+    var ij = k.split('.'); return s + q.parts[+ij[0]].rub[+ij[1]][1];
+  }, 0);
+}
+function mountFRQ(host) {
+  var total = QUIZ.reduce(function (s, q) { return s + frqPts(q); }, 0);
+  host.innerHTML = QUIZ.map(function (q, i) {
+    return '<div class="q frq" data-id="' + q.id + '">' +
+      '<div class="frq-h"><span class="frq-t">Question ' + (i + 1) + ': ' + q.title + '</span>' +
+      '<span class="frq-p">' + frqPts(q) + ' points</span></div>' +
+      '<div class="stem">' + q.stem + '</div>' +
+      q.parts.map(function (p, j) {
+        return '<p class="frq-part"><b>' + 'ABCDEF'[j] + '.</b> ' + p.q + ' (' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + ')</p>';
+      }).join('') +
+      '<textarea rows="7" placeholder="Type your answer to Question ' + (i + 1) + ' here..." aria-label="answer to question ' + (i + 1) + '"></textarea>' +
+      '<div class="numrow"><button class="btn" data-a="open">Check against model answer</button>' +
+      '<span class="ck-score" data-k="sc"></span></div>' +
+      '<div class="frq-key" hidden>' + q.parts.map(function (p, j) {
+        return '<div class="frq-ans"><div class="frq-al">' + 'ABCDEF'[j] + ' · model answer · ' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + '</div>' +
+          '<p>' + p.model + '</p>' + p.rub.map(function (r, k) {
+            return '<label class="rub"><input type="checkbox" data-m="' + j + '.' + k + '"><span>' + r[0] + '</span><b>+' + r[1] + '</b></label>';
+          }).join('') + '</div>';
+      }).join('') + '</div></div>';
+  }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog"></span>' +
+    '<span><button class="btn ghost" data-a="copy">Copy answers for Claude to grade</button> ' +
+    '<button class="btn" data-a="submit">Show my breakdown</button></span></div>' +
+    '<p class="ck-score" data-k="copied" style="margin:10px 0 0"></p>';
+
+  function node(q) { return $('[data-id="' + q.id + '"]', host); }
+  function paint(q) {
+    var n = node(q), s = Store.frq(q.id), key = $('.frq-key', n);
+    key.hidden = !s.open;
+    $('[data-a=open]', n).hidden = s.open;
+    $('[data-k=sc]', n).textContent = s.open ? frqScore(q) + ' / ' + frqPts(q) + ' points' : '';
+    prog();
+  }
+  function prog() {
+    var marked = QUIZ.filter(function (q) { return Store.frq(q.id).open; });
+    var got = marked.reduce(function (s, q) { return s + frqScore(q); }, 0);
+    $('[data-k=prog]', host).textContent = got + ' / ' + total + ' points · ' + marked.length + ' of ' + QUIZ.length + ' marked';
+  }
+  QUIZ.forEach(function (q) {
+    var n = node(q), s = Store.frq(q.id), ta = $('textarea', n);
+    ta.value = s.txt;
+    s.marks.forEach(function (k) { var c = $('[data-m="' + k + '"]', n); if (c) c.checked = true; });
+    ta.addEventListener('input', function () { var v = Store.frq(q.id); v.txt = ta.value; Store.frq(q.id, v); });
+    $('[data-a=open]', n).addEventListener('click', function () {
+      if (!ta.value.trim()) {     // retrieval first: the rubric is worth little if read before writing
+        this.textContent = 'Write your answer first';
+        var b = this; setTimeout(function () { b.textContent = 'Check against model answer'; }, 1400);
+        return;
+      }
+      var v = Store.frq(q.id); v.open = true; Store.frq(q.id, v);
+      Store.record(q.id, false, 99);
+      paint(q);
+    });
+    n.querySelectorAll('[data-m]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var v = Store.frq(q.id);
+        v.marks = Array.prototype.map.call(n.querySelectorAll('[data-m]:checked'), function (x) { return x.dataset.m; });
+        Store.frq(q.id, v);
+        Store.record(q.id, frqScore(q) >= 0.7 * frqPts(q), 99);
+        paint(q);
+      });
+    });
+    paint(q);
+  });
+
+  $('[data-a=copy]', host).addEventListener('click', function () {
+    var plain = function (h) { return h.replace(/<[^>]+>/g, ''); };
+    var txt = 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '. Grade my written answers ' +
+      'like a strict exam grader, using ONLY the rubric points listed. For each question give the score per part, ' +
+      'which rubric points I missed, and one sentence on how to earn them.\n\n' +
+      QUIZ.map(function (q, i) {
+        return 'QUESTION ' + (i + 1) + ': ' + q.title + ' (' + frqPts(q) + ' pts)\n' + plain(q.stem) + '\n' +
+          q.parts.map(function (p, j) {
+            return 'ABCDEF'[j] + '. ' + plain(p.q) + ' (' + p.pts + ')\n   Rubric: ' +
+              p.rub.map(function (r) { return r[0] + ' [+' + r[1] + ']'; }).join('; ');
+          }).join('\n') + '\nMY ANSWER:\n' + (Store.frq(q.id).txt.trim() || '(left blank)');
+      }).join('\n\n');
+    var note = $('[data-k=copied]', host);
+    navigator.clipboard.writeText(txt).then(function () {
+      note.textContent = 'Copied — paste into Claude for a second opinion on your marking.';
+    }, function () { note.textContent = 'Clipboard blocked by the browser.'; });
+  });
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, got = 0;
+    QUIZ.forEach(function (q) {
+      var f = FND[q.fnd - 1], sc = Store.frq(q.id).open ? frqScore(q) : 0;
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n += frqPts(q); byFnd[f].k += sc; got += sc;
+    });
+    var unmarked = QUIZ.filter(function (q) { return !Store.frq(q.id).open; }).length;
+    Store.quizResult({ right: got, of: total, at: Date.now() });
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < 0.7 * byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + got + ' of ' + total + ' points — ' + Math.round(got / total * 100) + '%</div>' +
+      (unmarked ? '<p><strong>' + unmarked + ' question' + (unmarked > 1 ? 's' : '') + ' not marked yet</strong> and counted as zero.</p>' : '') +
+      '<p>Points you missed usually come from a missing <em>because</em> rather than a wrong claim. Reread the model answers ' +
+      'for those parts, then try this practice exam again in two or three days without looking.</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by topic</div>' +
+      '<div class="ch-sub">points earned of points available</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    railUpdate();
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  if (!host || typeof QUIZ === 'undefined' || !QUIZ.length) return;   // chapter built without a quiz
+  if (QUIZ[0].type === 'frq') return mountFRQ(host);
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box >= 2; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>

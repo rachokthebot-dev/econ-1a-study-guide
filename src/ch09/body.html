@@ -1,0 +1,261 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Costs and benefits that land on someone else</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Chapter 6 showed that a competitive market maximises surplus. That result has a condition attached:
+    every cost and every benefit has to fall on the buyer or the seller. When some of it falls on
+    bystanders, the market gets the quantity wrong.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th></th><th>Negative externality</th><th>Positive externality</th></tr></thead>
+      <tbody>
+        <tr><td><strong>What spills over</strong></td><td>a cost: pollution, noise, congestion</td><td>a benefit: vaccination, education, a restored façade</td></tr>
+        <tr><td><strong>Which curve is wrong</strong></td><td>social cost = private cost + external cost</td><td>social benefit = private benefit + external benefit</td></tr>
+        <tr><td><strong>Market produces</strong></td><td><strong>too much</strong>: Q<sub>market</sub> &gt; Q<sub>optimal</sub></td><td><strong>too little</strong>: Q<sub>market</sub> &lt; Q<sub>optimal</sub></td></tr>
+        <tr><td><strong>Classic fix</strong></td><td>a tax equal to the external cost</td><td>a subsidy equal to the external benefit</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">"Pollution should be zero"</div>
+      <p style="margin-bottom:0">
+        The efficient amount of a negative externality is almost never zero. It is the amount at which the
+        <em>social</em> cost of the last unit equals its benefit. Banning a good with an external cost
+        throws away all the units that were worth making even after the damage is counted.
+        The aim is the right quantity, not none at all.
+      </p>
+    </div>
+    <p>
+      Use the model below in two passes. First leave the policy at $0 and raise the externality, and watch the
+      market move away from the optimum. Then raise the tax or subsidy until it closes the gap.
+    </p>
+
+    <div class="applet" id="ap-ex">
+      <span class="tag">model · live</span>
+      <div class="ap-title">An externality, and the tax that fixes it</div>
+      <div class="ap-sub">private D: P = 100 − Q · private S: P = 10 + 0.5Q · unregulated market Q = 60</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="ex-fig"></div>
+        <div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="ex-pos">
+            <label for="ex-pos">Make it a <strong>positive</strong> externality (a spillover benefit)</label>
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span id="ex-el">External cost per unit</span><span class="cv" id="ex-e-v">$15</span></div>
+            <input type="range" id="ex-e" min="0" max="30" step="1" value="15">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span id="ex-tl">Corrective tax per unit</span><span class="cv" id="ex-t-v">$0</span></div>
+            <input type="range" id="ex-t" min="0" max="30" step="1" value="0">
+            <div class="ch">Try to land the market exactly on the optimum.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Market quantity</div><div class="rv" id="ex-ro-qm">—</div></div>
+            <div class="ro good"><div class="rl">Efficient quantity</div><div class="rv" id="ex-ro-qs">—</div></div>
+            <div class="ro hero"><div class="rl" id="ex-rl-gap">Overproduction</div><div class="rv" id="ex-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Deadweight loss</div><div class="rv" id="ex-ro-dwl">—</div></div>
+            <div class="ro"><div class="rl">Price buyers pay</div><div class="rv" id="ex-ro-pb">—</div></div>
+            <div class="ro"><div class="rl" id="ex-rl-money">Tax revenue</div><div class="rv" id="ex-ro-money">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="ex-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Negative &amp; positive externalities</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Making people pay for what they cause</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    The fix is called <strong>internalising</strong> the externality: making the people who decide how much to buy or produce feel the
+    whole cost or benefit. There are three main ways to do it.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Corrective (Pigouvian) tax or subsidy.</strong> Set it equal to the external cost or benefit
+        per unit. The market then reaches the efficient quantity without anyone choosing that quantity directly. You can check this
+        in the model above.</li>
+      <li><strong>Regulation.</strong> Mandate a quantity, a technology or an emissions cap. This works when the
+        harm is severe or easy to measure. It is usually more expensive than a tax, because it doesn't let the firms that can cut cheaply
+        do most of the cutting.</li>
+      <li><strong>Private bargaining (the Coase theorem).</strong> If property rights are clear and bargaining is cheap,
+        the parties will negotiate to the efficient outcome on their own. That happens <em>whichever side holds the right</em>. The
+        assignment of rights decides who pays whom. It doesn't decide the quantity.</li>
+    </ul>
+    <div class="card accent">
+      <div class="label">When Coase fails</div>
+      <p style="margin-bottom:0">
+        Bargaining breaks down when transaction costs are high. That happens when there are many parties (a city breathing the same air),
+        when it's hard to identify who caused what, or when property rights are unclear. Two neighbours arguing over a
+        barking dog can settle it privately. Millions of people affected by a power plant can't.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">Over-correcting is also a mistake</div>
+      <p style="margin-bottom:0">
+        A tax larger than the external cost pushes quantity <em>below</em> the optimum and creates a new
+        deadweight loss. Set the externality to $15 and the tax to $30 in the model to see it. The right tax is the one that
+        equals the externality, not the biggest one.
+      </p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Pigouvian taxes · regulation · Coase</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Four kinds of goods, and the two that markets struggle with</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    Two questions sort every good. <strong>Rival:</strong> does my using it leave less for you?
+    <strong>Excludable:</strong> can someone who didn't pay be kept from using it?
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th></th><th>Excludable</th><th>Non-excludable</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Rival</strong></td><td><strong>Private goods</strong>: a sandwich, a pair of jeans</td><td><strong>Common resources</strong>: ocean fish, groundwater, a free public road at rush hour</td></tr>
+        <tr><td><strong>Non-rival</strong></td><td><strong>Club goods</strong>: streaming services, cable TV, a toll road with no traffic</td><td><strong>Public goods</strong>: national defence, fireworks displays, lighthouses</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Public goods → the free-rider problem.</strong> Nobody can be excluded, so each person hopes someone else
+        pays. The good isn't provided even when it is worth far more than it costs.</li>
+      <li><strong>Common resources → the tragedy of the commons.</strong> Each user takes as much as they want, but each unit taken
+        leaves less for everyone else. That cost is a negative externality on the other users, so the resource is overused until it runs out.
+        The fixes are the ones you'd expect: quotas, user fees, or turning it into private property.</li>
+    </ul>
+    <div class="card trap">
+      <div class="label">"Provided by the government" doesn't make something a public good</div>
+      <p style="margin-bottom:0">
+        Public schools, the post office and public housing are provided by government, but they are rival and
+        excludable. The classification is about the <em>properties</em> of the good, not about who supplies it.
+        A road can even switch categories: it is a public good when it's empty and a common resource when it's jammed.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-pg">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A neighbourhood streetlight and the free-rider problem</div>
+      <div class="ap-sub">non-rival: value to society = the sum of every household's value</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pg-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Households</span><span class="cv" id="pg-n-v">50</span></div>
+            <input type="range" id="pg-n" min="1" max="100" step="1" value="50">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Value to each household</span><span class="cv" id="pg-v-v">$60</span></div>
+            <input type="range" id="pg-v" min="10" max="2500" step="10" value="60">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Cost to build</span><span class="cv" id="pg-c-v">$2,000</span></div>
+            <input type="range" id="pg-c" min="500" max="6000" step="100" value="2000">
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Total value</div><div class="rv" id="pg-ro-total">—</div></div>
+            <div class="ro good"><div class="rl">Worth building?</div><div class="rv" id="pg-ro-eff">—</div></div>
+            <div class="ro"><div class="rl">Built privately?</div><div class="rv" id="pg-ro-mkt">—</div></div>
+            <div class="ro hero"><div class="rl">Surplus lost</div><div class="rv" id="pg-ro-lost">—</div></div>
+            <div class="ro"><div class="rl">Tax per household</div><div class="rv" id="pg-ro-share">—</div></div>
+            <div class="ro"><div class="rl">Net gain each, if taxed</div><div class="rv" id="pg-ro-net">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pg-note"></p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Classifying goods · free riders · commons</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Exam questions on this chapter follow a few fixed patterns. Each has a trap that graders watch for.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Does the market produce too much or too little?"</td><td>Negative → too much. Positive → too little. Say <em>which curve</em> the market ignores.</td>
+            <td>Saying the market "can't find equilibrium". It finds one fine. It's just the wrong one.</td></tr>
+        <tr><td>"Find the efficient quantity"</td><td>Add the externality to the right curve, then set social benefit = social cost.</td>
+            <td>Adding an external cost to <em>demand</em>. External costs belong on the cost side.</td></tr>
+        <tr><td>"What tax would fix it?"</td><td>A per-unit tax equal to the external cost <em>per unit</em>.</td>
+            <td>Proposing a ban, or a tax equal to the total damage.</td></tr>
+        <tr><td>"Classify the good"</td><td>Ask both questions: rival? excludable? Then name the box.</td>
+            <td>Classifying by who provides it.</td></tr>
+        <tr><td>"Why won't the market provide it?"</td><td>Non-excludable → free riders → too little private funding.</td>
+            <td>Saying "because it's too expensive". Cost isn't the problem. Collecting payment is.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">The idea that ties it together</div>
+      <p style="margin-bottom:0">
+        Externalities, public goods and common resources are all the same failure: some cost or benefit doesn't
+        reach the person making the decision. A free rider receives a positive externality from whoever pays.
+        An overfisher imposes a negative externality on the other fishers. When you're stuck on a question, ask whose cost or benefit is being left out.
+      </p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Method &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Practice exam</h2><span class="count">10 questions · 100 points</span></div>
+  <p class="sec-intro">
+    Written questions in the same format as the midterm. Write your full answer <em>before</em> you open the model answer.
+    Then tick only the rubric points you actually earned. Your answers are saved in this browser.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">exam format</span>
+      <div class="ck-h">All of Chapter 9, interleaved</div>
+      <div class="ck-s">write first · then mark yourself against the rubric</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Externality</td>
+            <td>The market quantity with the tax or subsidy applied, the social optimum where social benefit equals social cost, the gap between them, the deadweight loss as the exact area between the social curves, the price buyers pay, and the tax revenue or subsidy cost.</td>
+            <td>Linear curves and a constant external cost or benefit per unit. Real damage often rises with quantity. Perfect enforcement, and the regulator knows the external cost exactly.</td></tr>
+        <tr><td>Public good</td>
+            <td>Total value as the sum of every household's value, whether the good is worth building, whether a single household would fund it alone, the surplus lost to free riding, and the equal-share tax with each household's net gain.</td>
+            <td>Identical households. A good that is all-or-nothing (one streetlight, not a quantity). No partial voluntary contributions: households either pay the full cost alone or wait for someone else.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>

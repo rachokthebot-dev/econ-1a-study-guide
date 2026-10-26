@@ -1,0 +1,244 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Two kinds of profit</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    This is Chapter 1's opportunity-cost foundation applied to a business. An accountant counts the cheques the business writes.
+    An economist also counts what the owner gave up to run it.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Explicit costs</strong> are payments actually made: wages, rent, ingredients, utilities.</li>
+      <li><strong>Implicit costs</strong> are opportunity costs with no payment attached: the salary the owner could
+        earn elsewhere, and the interest or return their own capital could earn elsewhere.</li>
+      <li><strong>Accounting profit</strong> = total revenue − explicit costs.</li>
+      <li><strong>Economic profit</strong> = total revenue − explicit costs − implicit costs.</li>
+    </ul>
+    <div class="card accent">
+      <div class="label">Zero economic profit is not failure</div>
+      <p style="margin-bottom:0">
+        Zero economic profit means the business earns exactly what the owner's time and money would earn in their
+        next-best use. This is called a <em>normal profit</em>. The accounting profit is still positive, because it is the payment for
+        those inputs. This idea is the key to Chapter 11's long run.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-pr">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A bakery's two bottom lines</div>
+      <div class="ap-sub">all figures per year, in thousands of dollars</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pr-fig"></div>
+        <div>
+          <div class="ctrl"><div class="cl"><span>Total revenue</span><span class="cv" id="pr-rev-v">$200k</span></div>
+            <input type="range" id="pr-rev" min="0" max="300" step="5" value="200"></div>
+          <div class="ctrl"><div class="cl"><span>Explicit costs</span><span class="cv" id="pr-exp-v">$120k</span></div>
+            <input type="range" id="pr-exp" min="0" max="250" step="5" value="120"></div>
+          <div class="ctrl"><div class="cl"><span>Salary given up</span><span class="cv" id="pr-sal-v">$60k</span></div>
+            <input type="range" id="pr-sal" min="0" max="150" step="5" value="60"></div>
+          <div class="ctrl"><div class="cl"><span>Own savings invested</span><span class="cv" id="pr-k-v">$100k</span></div>
+            <input type="range" id="pr-k" min="0" max="500" step="10" value="100"></div>
+          <div class="ctrl"><div class="cl"><span>Interest those savings could earn</span><span class="cv" id="pr-r-v">5%</span></div>
+            <input type="range" id="pr-r" min="0" max="12" step="1" value="5"></div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Accounting profit</div><div class="rv" id="pr-ro-acct">—</div></div>
+            <div class="ro"><div class="rl">Interest forgone</div><div class="rv" id="pr-ro-int">—</div></div>
+            <div class="ro"><div class="rl">Implicit costs</div><div class="rv" id="pr-ro-imp">—</div></div>
+            <div class="ro hero"><div class="rl">Economic profit</div><div class="rv" id="pr-ro-econ">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pr-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Explicit vs implicit · accounting vs economic</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Diminishing marginal product, and where cost curves come from</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    In the <strong>short run</strong> at least one input is fixed. For a bakery that is the oven and the kitchen. The firm can add
+    workers but can't add ovens. That one fact decides the shape of every cost curve.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Marginal product (MP)</strong> = the change in output from one more worker. The first few workers raise each
+        other's productivity by specialising. After that, each new worker has less of the fixed oven to work with, and MP
+        falls. This is the <strong>law of diminishing marginal product</strong>.</li>
+      <li><strong>Marginal cost (MC)</strong> = the change in total cost ÷ the change in output = wage ÷ MP. MC is the
+        mirror image of MP. When MP falls, MC rises.</li>
+    </ul>
+    <div class="card trap">
+      <div class="label">Diminishing ≠ negative</div>
+      <p style="margin-bottom:0">
+        Diminishing marginal product means each extra worker adds <em>less</em> output, not that output falls.
+        Total output keeps rising as long as MP is positive. A falling total requires a <em>negative</em> MP, which
+        is a different and much rarer situation.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-bk">
+      <span class="tag">model · live</span>
+      <div class="ap-title">One oven, more and more bakers</div>
+      <div class="ap-sub">output Q = 30L + 6L² − L³ loaves per day · every cost computed from that table</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="bk-fig"></div>
+        <div>
+          <div class="ctrl"><div class="cl"><span>Workers hired</span><span class="cv" id="bk-L-v">4</span></div>
+            <input type="range" id="bk-L" min="1" max="6" step="1" value="4"></div>
+          <div class="ctrl"><div class="cl"><span>Fixed cost (oven lease) per day</span><span class="cv" id="bk-fc-v">$100</span></div>
+            <input type="range" id="bk-fc" min="0" max="300" step="10" value="100"></div>
+          <div class="ctrl"><div class="cl"><span>Wage per worker per day</span><span class="cv" id="bk-w-v">$50</span></div>
+            <input type="range" id="bk-w" min="20" max="120" step="5" value="50"></div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Loaves</div><div class="rv" id="bk-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Marginal product</div><div class="rv" id="bk-ro-mp">—</div></div>
+            <div class="ro hero"><div class="rl">Marginal cost</div><div class="rv" id="bk-ro-mc">—</div></div>
+            <div class="ro"><div class="rl">AFC</div><div class="rv" id="bk-ro-afc">—</div></div>
+            <div class="ro"><div class="rl">AVC</div><div class="rv" id="bk-ro-avc">—</div></div>
+            <div class="ro"><div class="rl">ATC</div><div class="rv" id="bk-ro-atc">—</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tbl-wrap" style="margin-top:18px"><table class="tbl" id="bk-tbl"></table></div>
+      <p class="ap-note" id="bk-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Marginal product · marginal cost</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>The family of cost curves, and the long run</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">Most questions on this chapter come down to six definitions and one relationship.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Curve</th><th>Formula</th><th>Shape and why</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fixed cost (FC)</strong></td><td>doesn't vary with Q</td><td>flat: paid even at zero output</td></tr>
+        <tr><td><strong>Variable cost (VC)</strong></td><td>rises with Q</td><td>zero at Q = 0</td></tr>
+        <tr><td><strong>Total cost (TC)</strong></td><td>FC + VC</td><td>starts at FC, not at zero</td></tr>
+        <tr><td><strong>AFC</strong></td><td>FC ÷ Q</td><td>always falling: the same fixed cost spread thinner</td></tr>
+        <tr><td><strong>AVC, ATC</strong></td><td>VC ÷ Q, TC ÷ Q</td><td>U-shaped. The gap between them is AFC, which shrinks as Q grows</td></tr>
+        <tr><td><strong>MC</strong></td><td>ΔTC ÷ ΔQ</td><td>rises because of diminishing marginal product</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card accent">
+      <div class="label">The one relationship to know cold</div>
+      <p style="margin-bottom:0">
+        <strong>MC crosses AVC and ATC at their minimum points.</strong> It's the same as your GPA. If this quarter's grade
+        (the marginal one) is below your average, the average falls. If it's above, the average rises. So the average is lowest
+        exactly where the marginal equals it.
+      </p>
+    </div>
+    <p>
+      <strong>In the long run every input is variable.</strong> The bakery can build a second oven or a whole factory. The
+      long-run average total cost (LRATC) curve traces the lowest-cost plant size for each output level:
+    </p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Region of LRATC</th><th>What's happening</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Economies of scale</strong></td><td>LRATC falls as output grows</td><td>specialisation, bulk buying, spreading big fixed investments</td></tr>
+        <tr><td><strong>Constant returns</strong></td><td>LRATC flat</td><td>doubling all inputs doubles output</td></tr>
+        <tr><td><strong>Diseconomies of scale</strong></td><td>LRATC rises</td><td>coordination and management problems in very large firms</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Two different causes</div>
+      <p style="margin-bottom:0">
+        <em>Diminishing marginal product</em> is a <strong>short-run</strong> idea: one input changes while another is fixed.
+        <em>Diseconomies of scale</em> is a <strong>long-run</strong> idea: every input grows together. Exam questions often use one
+        to bait an answer about the other.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Cost curves · MC vs ATC · scale</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Most questions on this chapter ask you to fill in a cost table or explain the shape of a curve.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Compute economic profit"</td><td>Revenue − explicit − <em>every</em> implicit cost: forgone salary and forgone return on capital.</td>
+            <td>Counting the owner's living expenses, or forgetting the forgone interest.</td></tr>
+        <tr><td>"Fill in the cost table"</td><td>TC = FC + VC first, then divide by Q for the averages. MC = ΔTC ÷ ΔQ between rows.</td>
+            <td>Computing MC as TC ÷ Q. That's ATC.</td></tr>
+        <tr><td>"Why does MC rise?"</td><td>Diminishing marginal product of the variable input, with another input fixed.</td>
+            <td>Answering "diseconomies of scale". That's the long run.</td></tr>
+        <tr><td>"Why is ATC U-shaped?"</td><td>Falling AFC pulls it down at first. Rising AVC from diminishing MP pulls it up later.</td>
+            <td>Forgetting that AFC falls the whole way.</td></tr>
+        <tr><td>"Where does MC cross ATC?"</td><td>At the minimum of ATC. Explain it with the average-and-marginal (GPA) logic.</td>
+            <td>Saying MC crosses at ATC's maximum, or that the two never meet.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">Fixed costs and decisions</div>
+      <p style="margin-bottom:0">
+        Fixed costs are already committed in the short run, so they shouldn't change how much the firm produces today. That depends only on
+        marginal cost. This sunk-cost logic comes from Chapter 1, and it is what Chapter 11's shutdown rule is built on.
+      </p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Method &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Practice exam</h2><span class="count">10 questions · 100 points</span></div>
+  <p class="sec-intro">
+    Written questions in the same format as the midterm. Write your full answer <em>before</em> you open the model answer.
+    Then tick only the rubric points you actually earned. Your answers are saved in this browser.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">exam format</span>
+      <div class="ck-h">All of Chapter 10, interleaved</div>
+      <div class="ck-s">write first · then mark yourself against the rubric</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Two profits</td>
+            <td>Accounting profit, forgone interest, total implicit cost and economic profit, from the five inputs.</td>
+            <td>One year, no taxes, no depreciation. The forgone return is treated as a safe interest rate.</td></tr>
+        <tr><td>Bakery costs</td>
+            <td>The whole table, row by row: output from the production function, marginal product, TC, AFC, AVC, ATC and MC (wage ÷ MP). The minimum ATC and AVC are found by scanning the rows.</td>
+            <td>Whole workers only, so MC is the cost per extra loaf between rows and not a smooth curve. The production function is an illustrative cubic, not data from a real bakery. Only labour varies.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>

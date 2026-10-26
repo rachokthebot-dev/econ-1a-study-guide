@@ -360,3 +360,23 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 
 /* figure highlight layer */
 .ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+
+/* ── exam-format free response ────────── */
+.q.frq { max-height: none; padding: 24px 0; }
+.frq-h { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 12px; }
+.frq-t { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--slate); }
+.frq-p { font-family: var(--mono); font-size: 12px; color: var(--g500); white-space: nowrap; }
+.frq-part { font-size: 15px; color: var(--g700); margin: 0 0 10px; }
+.frq-part b { color: var(--slate); }
+.q.frq textarea {
+  width: 100%; margin: 8px 0 12px; padding: 13px 15px; font-family: var(--sans); font-size: 14.5px; line-height: 1.5;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate); resize: vertical;
+}
+.q.frq textarea:focus { outline: none; border-color: var(--slate); }
+.frq-key { margin-top: 16px; border-top: 1.5px dashed var(--g300); padding-top: 14px; animation: fbIn 300ms var(--ease-out) both; }
+.frq-ans { background: #F2F5EE; border-left: 3px solid var(--olive); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+.frq-al { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--olive-d); margin-bottom: 5px; }
+.frq-ans p { font-size: 14px; color: var(--g700); margin: 0 0 8px; }
+.rub { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--g700); padding: 4px 0; cursor: pointer; }
+.rub input { accent-color: var(--olive); margin-top: 3px; flex-shrink: 0; }
+.rub b { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--olive-d); }

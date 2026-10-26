@@ -1,0 +1,17 @@
+{
+  "id": "ch09",
+  "file": "ch09-externalities-public-goods.html",
+  "num": "Chapter 09",
+  "title": "Chapter 09 — Externalities and Public Goods",
+  "desc": "Negative and positive externalities, Pigouvian taxes and subsidies, the Coase theorem, the four kinds of goods, free riders and the tragedy of the commons.",
+  "h1": "When the market gets the <em>quantity</em> wrong",
+  "intro": "A competitive market is efficient only if every cost and benefit falls on the buyer or the seller. When some of it falls on bystanders, or when people can't be made to pay, the market produces the wrong amount.",
+  "stats": "4 chunks · 2 live models · 4 checkpoints · 10-question practice exam",
+  "herotag": "the spillover",
+  "herosub": "private cost vs social cost",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"30\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"18\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"38\" y1=\"26\" x2=\"250\" y2=\"142\" stroke=\"#B85C3E\" stroke-width=\"2\"/><line x1=\"38\" y1=\"138\" x2=\"250\" y2=\"34\" stroke=\"#5A6B45\" stroke-width=\"2\"/><line x1=\"38\" y1=\"104\" x2=\"230\" y2=\"10\" stroke=\"#141413\" stroke-width=\"1.6\" stroke-dasharray=\"5 4\"/><polygon points=\"112,67 144,84 144,52\" fill=\"#D97757\" opacity=\"0.6\"/><text x=\"226\" y=\"26\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#3D3D3A\">social cost</text><text x=\"246\" y=\"52\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#5A6B45\">private</text></svg>",
+  "next": "<strong>Next:</strong> <a href=\"ch10-business-costs.html\">Chapter 10 — Business Costs and Production</a>",
+  "anchors": ["c1", "c2", "c3", "quiz"],
+  "navTicks": {"#c0": 1, "#c1": 2, "#c2": 3, "#c3": 4},
+  "toc": [["c0", "Externalities", "00"], ["c1", "Fixes", "01"], ["c2", "Kinds of goods", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Practice exam", "▸"]]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "ch10",
+  "file": "ch10-business-costs.html",
+  "num": "Chapter 10",
+  "title": "Chapter 10 — Business Costs and Production",
+  "desc": "Explicit and implicit costs, accounting vs economic profit, diminishing marginal product, the family of cost curves, why MC crosses ATC at its minimum, and economies of scale.",
+  "h1": "What it really <em>costs</em> to produce",
+  "intro": "Economic profit counts the owner's opportunity costs as well as the bills. One fixed oven then explains the shape of every cost curve on the exam.",
+  "stats": "4 chunks · 2 live models · 4 checkpoints · 10-question practice exam",
+  "herotag": "the U",
+  "herosub": "MC crosses ATC at its minimum",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"30\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"18\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><path d=\"M45,40 Q140,150 250,48\" fill=\"none\" stroke=\"#B85C3E\" stroke-width=\"2\"/><path d=\"M45,70 Q120,150 250,70\" fill=\"none\" stroke=\"#5A6B45\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/><path d=\"M50,110 Q95,150 230,22\" fill=\"none\" stroke=\"#141413\" stroke-width=\"2\"/><text x=\"250\" y=\"42\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#B85C3E\">ATC</text><text x=\"256\" y=\"84\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#5A6B45\">AVC</text><text x=\"214\" y=\"22\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#141413\">MC</text></svg>",
+  "next": "<strong>Next:</strong> <a href=\"ch11-competitive-firms.html\">Chapter 11 — Firms in a Competitive Market</a>",
+  "anchors": ["c1", "c2", "c3", "quiz"],
+  "navTicks": {"#c0": 1, "#c1": 2, "#c2": 3, "#c3": 4},
+  "toc": [["c0", "Two profits", "00"], ["c1", "Marginal product", "01"], ["c2", "Cost curves", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Practice exam", "▸"]]
+}

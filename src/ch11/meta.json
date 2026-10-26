@@ -1,0 +1,17 @@
+{
+  "id": "ch11",
+  "file": "ch11-competitive-firms.html",
+  "num": "Chapter 11",
+  "title": "Chapter 11 — Firms in a Competitive Market",
+  "desc": "Price takers, P = MR = MC, profit and loss rectangles, the shutdown rule versus exit, and how entry and exit drive the long-run price to minimum ATC.",
+  "h1": "Competing until <em>profit</em> disappears",
+  "intro": "A price taker chooses only its quantity. That choice, plus whether to stay open and whether to stay in the industry, decides where the market ends up: at minimum ATC with zero economic profit.",
+  "stats": "4 chunks · 2 live models · 4 checkpoints · 10-question practice exam",
+  "herotag": "P = MC",
+  "herosub": "the price line meets marginal cost",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"30\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"18\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><rect x=\"30\" y=\"58\" width=\"150\" height=\"30\" fill=\"#788C5D\" opacity=\"0.3\"/><path d=\"M45,30 Q130,140 250,40\" fill=\"none\" stroke=\"#B85C3E\" stroke-width=\"2\"/><path d=\"M50,110 Q100,150 220,20\" fill=\"none\" stroke=\"#141413\" stroke-width=\"2\"/><line x1=\"30\" y1=\"58\" x2=\"262\" y2=\"58\" stroke=\"#D97757\" stroke-width=\"2\"/><text x=\"258\" y=\"52\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#B85C3E\">P = MR</text><text x=\"105\" y=\"77\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#3D3D3A\">profit</text></svg>",
+  "next": "<strong>That's every chapter so far.</strong> Come back to the practice exams in a few days, without the notes.",
+  "anchors": ["c1", "c2", "c3", "quiz"],
+  "navTicks": {"#c0": 1, "#c1": 2, "#c2": 3, "#c3": 4},
+  "toc": [["c0", "Price takers", "00"], ["c1", "Shutdown", "01"], ["c2", "Long run", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Practice exam", "▸"]]
+}

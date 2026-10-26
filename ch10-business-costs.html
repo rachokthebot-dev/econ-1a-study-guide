@@ -1,0 +1,1785 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 10 — Business Costs and Production · ECN 1A study guide</title>
+<meta name="description" content="Explicit and implicit costs, accounting vs economic profit, diminishing marginal product, the family of cost curves, why MC crosses ATC at its minimum, and economies of scale.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+
+/* ── exam-format free response ────────── */
+.q.frq { max-height: none; padding: 24px 0; }
+.frq-h { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 12px; }
+.frq-t { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--slate); }
+.frq-p { font-family: var(--mono); font-size: 12px; color: var(--g500); white-space: nowrap; }
+.frq-part { font-size: 15px; color: var(--g700); margin: 0 0 10px; }
+.frq-part b { color: var(--slate); }
+.q.frq textarea {
+  width: 100%; margin: 8px 0 12px; padding: 13px 15px; font-family: var(--sans); font-size: 14.5px; line-height: 1.5;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate); resize: vertical;
+}
+.q.frq textarea:focus { outline: none; border-color: var(--slate); }
+.frq-key { margin-top: 16px; border-top: 1.5px dashed var(--g300); padding-top: 14px; animation: fbIn 300ms var(--ease-out) both; }
+.frq-ans { background: #F2F5EE; border-left: 3px solid var(--olive); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+.frq-al { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--olive-d); margin-bottom: 5px; }
+.frq-ans p { font-size: 14px; color: var(--g700); margin: 0 0 8px; }
+.rub { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--g700); padding: 4px 0; cursor: pointer; }
+.rub input { accent-color: var(--olive); margin-top: 3px; flex-shrink: 0; }
+.rub b { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--olive-d); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 10 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 10</div>
+      <h1>What it really <em>costs</em> to produce</h1>
+      <p class="intro">Economic profit counts the owner's opportunity costs as well as the bills. One fixed oven then explains the shape of every cost curve on the exam.</p>
+      <div class="meta">4 chunks · 2 live models · 4 checkpoints · 10-question practice exam</div>
+      <div class="meta" style="margin-top:4px">Updated Oct 25, 2026</div>
+      <nav class="toc"><a href="#c0">Two profits <span class="n">00</span></a><a href="#c1">Marginal product <span class="n">01</span></a><a href="#c2">Cost curves <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Practice exam <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">the U</span>
+      <div class="fig-h">MC crosses ATC at its minimum</div>
+      <svg viewBox="0 0 280 180"><line x1="30" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="30" y1="150" x2="30" y2="18" stroke="#D1CFC5" stroke-width="1.5"/><path d="M45,40 Q140,150 250,48" fill="none" stroke="#B85C3E" stroke-width="2"/><path d="M45,70 Q120,150 250,70" fill="none" stroke="#5A6B45" stroke-width="2" stroke-dasharray="5 4"/><path d="M50,110 Q95,150 230,22" fill="none" stroke="#141413" stroke-width="2"/><text x="250" y="42" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#B85C3E">ATC</text><text x="256" y="84" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#5A6B45">AVC</text><text x="214" y="22" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#141413">MC</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>Two kinds of profit</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    This is Chapter 1's opportunity-cost foundation applied to a business. An accountant counts the cheques the business writes.
+    An economist also counts what the owner gave up to run it.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Explicit costs</strong> are payments actually made: wages, rent, ingredients, utilities.</li>
+      <li><strong>Implicit costs</strong> are opportunity costs with no payment attached: the salary the owner could
+        earn elsewhere, and the interest or return their own capital could earn elsewhere.</li>
+      <li><strong>Accounting profit</strong> = total revenue − explicit costs.</li>
+      <li><strong>Economic profit</strong> = total revenue − explicit costs − implicit costs.</li>
+    </ul>
+    <div class="card accent">
+      <div class="label">Zero economic profit is not failure</div>
+      <p style="margin-bottom:0">
+        Zero economic profit means the business earns exactly what the owner's time and money would earn in their
+        next-best use. This is called a <em>normal profit</em>. The accounting profit is still positive, because it is the payment for
+        those inputs. This idea is the key to Chapter 11's long run.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-pr">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A bakery's two bottom lines</div>
+      <div class="ap-sub">all figures per year, in thousands of dollars</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pr-fig"></div>
+        <div>
+          <div class="ctrl"><div class="cl"><span>Total revenue</span><span class="cv" id="pr-rev-v">$200k</span></div>
+            <input type="range" id="pr-rev" min="0" max="300" step="5" value="200"></div>
+          <div class="ctrl"><div class="cl"><span>Explicit costs</span><span class="cv" id="pr-exp-v">$120k</span></div>
+            <input type="range" id="pr-exp" min="0" max="250" step="5" value="120"></div>
+          <div class="ctrl"><div class="cl"><span>Salary given up</span><span class="cv" id="pr-sal-v">$60k</span></div>
+            <input type="range" id="pr-sal" min="0" max="150" step="5" value="60"></div>
+          <div class="ctrl"><div class="cl"><span>Own savings invested</span><span class="cv" id="pr-k-v">$100k</span></div>
+            <input type="range" id="pr-k" min="0" max="500" step="10" value="100"></div>
+          <div class="ctrl"><div class="cl"><span>Interest those savings could earn</span><span class="cv" id="pr-r-v">5%</span></div>
+            <input type="range" id="pr-r" min="0" max="12" step="1" value="5"></div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Accounting profit</div><div class="rv" id="pr-ro-acct">—</div></div>
+            <div class="ro"><div class="rl">Interest forgone</div><div class="rv" id="pr-ro-int">—</div></div>
+            <div class="ro"><div class="rl">Implicit costs</div><div class="rv" id="pr-ro-imp">—</div></div>
+            <div class="ro hero"><div class="rl">Economic profit</div><div class="rv" id="pr-ro-econ">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pr-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Explicit vs implicit · accounting vs economic</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Diminishing marginal product, and where cost curves come from</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    In the <strong>short run</strong> at least one input is fixed. For a bakery that is the oven and the kitchen. The firm can add
+    workers but can't add ovens. That one fact decides the shape of every cost curve.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Marginal product (MP)</strong> = the change in output from one more worker. The first few workers raise each
+        other's productivity by specialising. After that, each new worker has less of the fixed oven to work with, and MP
+        falls. This is the <strong>law of diminishing marginal product</strong>.</li>
+      <li><strong>Marginal cost (MC)</strong> = the change in total cost ÷ the change in output = wage ÷ MP. MC is the
+        mirror image of MP. When MP falls, MC rises.</li>
+    </ul>
+    <div class="card trap">
+      <div class="label">Diminishing ≠ negative</div>
+      <p style="margin-bottom:0">
+        Diminishing marginal product means each extra worker adds <em>less</em> output, not that output falls.
+        Total output keeps rising as long as MP is positive. A falling total requires a <em>negative</em> MP, which
+        is a different and much rarer situation.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-bk">
+      <span class="tag">model · live</span>
+      <div class="ap-title">One oven, more and more bakers</div>
+      <div class="ap-sub">output Q = 30L + 6L² − L³ loaves per day · every cost computed from that table</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="bk-fig"></div>
+        <div>
+          <div class="ctrl"><div class="cl"><span>Workers hired</span><span class="cv" id="bk-L-v">4</span></div>
+            <input type="range" id="bk-L" min="1" max="6" step="1" value="4"></div>
+          <div class="ctrl"><div class="cl"><span>Fixed cost (oven lease) per day</span><span class="cv" id="bk-fc-v">$100</span></div>
+            <input type="range" id="bk-fc" min="0" max="300" step="10" value="100"></div>
+          <div class="ctrl"><div class="cl"><span>Wage per worker per day</span><span class="cv" id="bk-w-v">$50</span></div>
+            <input type="range" id="bk-w" min="20" max="120" step="5" value="50"></div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Loaves</div><div class="rv" id="bk-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Marginal product</div><div class="rv" id="bk-ro-mp">—</div></div>
+            <div class="ro hero"><div class="rl">Marginal cost</div><div class="rv" id="bk-ro-mc">—</div></div>
+            <div class="ro"><div class="rl">AFC</div><div class="rv" id="bk-ro-afc">—</div></div>
+            <div class="ro"><div class="rl">AVC</div><div class="rv" id="bk-ro-avc">—</div></div>
+            <div class="ro"><div class="rl">ATC</div><div class="rv" id="bk-ro-atc">—</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tbl-wrap" style="margin-top:18px"><table class="tbl" id="bk-tbl"></table></div>
+      <p class="ap-note" id="bk-note"></p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Marginal product · marginal cost</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>The family of cost curves, and the long run</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">Most questions on this chapter come down to six definitions and one relationship.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Curve</th><th>Formula</th><th>Shape and why</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fixed cost (FC)</strong></td><td>doesn't vary with Q</td><td>flat: paid even at zero output</td></tr>
+        <tr><td><strong>Variable cost (VC)</strong></td><td>rises with Q</td><td>zero at Q = 0</td></tr>
+        <tr><td><strong>Total cost (TC)</strong></td><td>FC + VC</td><td>starts at FC, not at zero</td></tr>
+        <tr><td><strong>AFC</strong></td><td>FC ÷ Q</td><td>always falling: the same fixed cost spread thinner</td></tr>
+        <tr><td><strong>AVC, ATC</strong></td><td>VC ÷ Q, TC ÷ Q</td><td>U-shaped. The gap between them is AFC, which shrinks as Q grows</td></tr>
+        <tr><td><strong>MC</strong></td><td>ΔTC ÷ ΔQ</td><td>rises because of diminishing marginal product</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card accent">
+      <div class="label">The one relationship to know cold</div>
+      <p style="margin-bottom:0">
+        <strong>MC crosses AVC and ATC at their minimum points.</strong> It's the same as your GPA. If this quarter's grade
+        (the marginal one) is below your average, the average falls. If it's above, the average rises. So the average is lowest
+        exactly where the marginal equals it.
+      </p>
+    </div>
+    <p>
+      <strong>In the long run every input is variable.</strong> The bakery can build a second oven or a whole factory. The
+      long-run average total cost (LRATC) curve traces the lowest-cost plant size for each output level:
+    </p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Region of LRATC</th><th>What's happening</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Economies of scale</strong></td><td>LRATC falls as output grows</td><td>specialisation, bulk buying, spreading big fixed investments</td></tr>
+        <tr><td><strong>Constant returns</strong></td><td>LRATC flat</td><td>doubling all inputs doubles output</td></tr>
+        <tr><td><strong>Diseconomies of scale</strong></td><td>LRATC rises</td><td>coordination and management problems in very large firms</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Two different causes</div>
+      <p style="margin-bottom:0">
+        <em>Diminishing marginal product</em> is a <strong>short-run</strong> idea: one input changes while another is fixed.
+        <em>Diseconomies of scale</em> is a <strong>long-run</strong> idea: every input grows together. Exam questions often use one
+        to bait an answer about the other.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Cost curves · MC vs ATC · scale</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Most questions on this chapter ask you to fill in a cost table or explain the shape of a curve.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Compute economic profit"</td><td>Revenue − explicit − <em>every</em> implicit cost: forgone salary and forgone return on capital.</td>
+            <td>Counting the owner's living expenses, or forgetting the forgone interest.</td></tr>
+        <tr><td>"Fill in the cost table"</td><td>TC = FC + VC first, then divide by Q for the averages. MC = ΔTC ÷ ΔQ between rows.</td>
+            <td>Computing MC as TC ÷ Q. That's ATC.</td></tr>
+        <tr><td>"Why does MC rise?"</td><td>Diminishing marginal product of the variable input, with another input fixed.</td>
+            <td>Answering "diseconomies of scale". That's the long run.</td></tr>
+        <tr><td>"Why is ATC U-shaped?"</td><td>Falling AFC pulls it down at first. Rising AVC from diminishing MP pulls it up later.</td>
+            <td>Forgetting that AFC falls the whole way.</td></tr>
+        <tr><td>"Where does MC cross ATC?"</td><td>At the minimum of ATC. Explain it with the average-and-marginal (GPA) logic.</td>
+            <td>Saying MC crosses at ATC's maximum, or that the two never meet.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">Fixed costs and decisions</div>
+      <p style="margin-bottom:0">
+        Fixed costs are already committed in the short run, so they shouldn't change how much the firm produces today. That depends only on
+        marginal cost. This sunk-cost logic comes from Chapter 1, and it is what Chapter 11's shutdown rule is built on.
+      </p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Method &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Practice exam</h2><span class="count">10 questions · 100 points</span></div>
+  <p class="sec-intro">
+    Written questions in the same format as the midterm. Write your full answer <em>before</em> you open the model answer.
+    Then tick only the rubric points you actually earned. Your answers are saved in this browser.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">exam format</span>
+      <div class="ck-h">All of Chapter 10, interleaved</div>
+      <div class="ck-s">write first · then mark yourself against the rubric</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Two profits</td>
+            <td>Accounting profit, forgone interest, total implicit cost and economic profit, from the five inputs.</td>
+            <td>One year, no taxes, no depreciation. The forgone return is treated as a safe interest rate.</td></tr>
+        <tr><td>Bakery costs</td>
+            <td>The whole table, row by row: output from the production function, marginal product, TC, AFC, AVC, ATC and MC (wage ÷ MP). The minimum ATC and AVC are found by scanning the rows.</td>
+            <td>Whole workers only, so MC is the cost per extra loaf between rows and not a smooth curve. The production function is an illustrative cubic, not data from a real bakery. Only labour varies.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 10 of 11</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div><strong>Next:</strong> <a href="ch11-competitive-firms.html">Chapter 11 — Firms in a Competitive Market</a></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* =================================================================
+ * MODEL 1 — accounting vs economic profit for a small business.
+ * Implicit costs = the owner's forgone salary + forgone interest on
+ * the capital they put in.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var forgoneInt = p.k * p.r / 100, implicit = p.sal + forgoneInt;
+    var acct = p.rev - p.exp, econ = acct - implicit;
+    return { forgoneInt: forgoneInt, implicit: implicit, acct: acct, econ: econ };
+  }
+  function k(n) { return (n < 0 ? '−$' : '$') + Math.round(Math.abs(n)).toLocaleString('en-US') + 'k'; }
+
+  function draw(p, m) {
+    var bx = [], top = Math.max(p.rev, p.exp + m.implicit, 1) * 1.1;
+    var y = scale(0, top, 200, 24);
+    bx.push(line(40, 200, 344, 200, AX));
+    // revenue bar
+    bx.push(rect(70, y(p.rev), 80, 200 - y(p.rev), OLIVE, 0));
+    bx.push(txt(110, 216, 'revenue', { a: 'middle', s: 9, f: '#5A6B45' }));
+    bx.push(txt(110, y(p.rev) - 6, k(p.rev), { a: 'middle', s: 9, f: INK }));
+    // stacked cost bar: explicit, then implicit
+    bx.push(rect(210, y(p.exp), 80, 200 - y(p.exp), CLAY, 0));
+    bx.push(rect(210, y(p.exp + m.implicit), 80, y(p.exp) - y(p.exp + m.implicit), OAT, 0));
+    bx.push(txt(250, 216, 'costs', { a: 'middle', s: 9, f: CLAYD }));
+    if (200 - y(p.exp) > 14) bx.push(txt(250, (200 + y(p.exp)) / 2 + 3, 'explicit', { a: 'middle', s: 8.5, f: '#fff' }));
+    if (y(p.exp) - y(p.exp + m.implicit) > 14) bx.push(txt(250, (y(p.exp) + y(p.exp + m.implicit)) / 2 + 3, 'implicit', { a: 'middle', s: 8.5, f: INK }));
+    // the two profit lines, measured from the revenue level
+    bx.push(line(150, y(p.rev), 210, y(p.rev), INK, 1, '3 3'));
+    bx.push(line(300, y(p.exp), 330, y(p.exp), FAINT, 1));
+    bx.push(line(300, y(p.exp + m.implicit), 330, y(p.exp + m.implicit), FAINT, 1));
+    bx.push(txt(48, 236, 'accounting profit ' + k(m.acct) + ' · economic profit ' + k(m.econ), { s: 9, f: INK }));
+    return svg('0 0 360 246', bx.join(''));
+  }
+
+  function params() {
+    return { rev: +el('pr-rev').value, exp: +el('pr-exp').value, sal: +el('pr-sal').value, k: +el('pr-k').value, r: +el('pr-r').value };
+  }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('pr-rev-v').textContent = k(p.rev);
+    el('pr-exp-v').textContent = k(p.exp);
+    el('pr-sal-v').textContent = k(p.sal);
+    el('pr-k-v').textContent = k(p.k);
+    el('pr-r-v').textContent = p.r + '%';
+    el('pr-fig').innerHTML = draw(p, m);
+    el('pr-ro-acct').textContent = k(m.acct);
+    el('pr-ro-int').textContent = k(m.forgoneInt);
+    el('pr-ro-imp').textContent = k(m.implicit);
+    el('pr-ro-econ').textContent = k(m.econ);
+    var note;
+    if (m.acct > 0 && m.econ < 0) {
+      note = '<strong>Profitable on paper, losing in economic terms.</strong> The accountant reports ' + k(m.acct) +
+        ', but the owner gives up ' + k(m.implicit) + ' by not taking the next-best job and not investing the capital elsewhere. ' +
+        'They would be ' + k(-m.econ) + ' a year better off closing up. This gap between the two numbers is what the exam tests.';
+    } else if (Math.abs(m.econ) < 0.5) {
+      note = '<strong>Zero economic profit — and that is fine.</strong> The business earns exactly what the owner\'s time and money could earn elsewhere: a <em>normal</em> profit. The accounting profit of ' + k(m.acct) + ' is precisely the return on what the owner put in.';
+    } else if (m.econ > 0) {
+      note = '<strong>Economic profit of ' + k(m.econ) + '.</strong> Revenue covers the explicit costs <em>and</em> everything the owner gave up to run it. ' +
+        'That is a signal: other people will want in, which is where Chapter 11 picks up.';
+    } else {
+      note = '<strong>Losing money by either measure.</strong> Revenue doesn\'t even cover the explicit costs, so accounting profit is ' + k(m.acct) + ' too.';
+    }
+    el('pr-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['rev', 'exp', 'sal', 'k', 'r'].forEach(function (n) { el('pr-' + n).addEventListener('input', render); });
+  st = Stepper(el('ap-pr'), [
+    { t: '<strong>Accounting profit</strong> = revenue − explicit costs. Only money actually paid out is subtracted.', lit: ['pr-ro-acct'], v: function (m) { return k(m.acct); } },
+    { t: 'The capital the owner put in could have earned interest elsewhere. That is an implicit cost.', lit: ['pr-ro-int'], v: function (m) { return k(m.forgoneInt) + ' of interest forgone'; } },
+    { t: 'Add the salary they gave up to get <strong>total implicit cost</strong>. These are opportunity costs: no cheque is written.', lit: ['pr-ro-imp'], v: function (m) { return k(m.implicit) + ' implicit'; } },
+    { t: '<strong>Economic profit</strong> = accounting profit − implicit costs. It decides whether staying in business is worth it.', lit: ['pr-ro-econ'], v: function (m) { return k(m.econ); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — a bakery's production function and the cost curves it
+ * generates. Output Q(L) = 30L + 6L^2 - L^3 (loaves/day), so the
+ * marginal product rises, then diminishes. Every cost below is
+ * computed from that table and the two prices.
+ * ================================================================= */
+var BKMAX = 6;
+function bakeryQ(L) { return 30 * L + 6 * L * L - L * L * L; }
+(function () {
+  function table(fc, w) {
+    var rows = [];
+    for (var L = 0; L <= BKMAX; L++) {
+      var q = bakeryQ(L), mp = L ? q - bakeryQ(L - 1) : null, tc = fc + w * L;
+      rows.push({ L: L, q: q, mp: mp, vc: w * L, tc: tc,
+        afc: q ? fc / q : null, avc: q ? w * L / q : null, atc: q ? tc / q : null, mc: mp ? w / mp : null });
+    }
+    return rows;
+  }
+  function compute(p) {
+    var t = table(p.fc, p.w), r = t[p.L], minAtc = 1, minAvc = 1;
+    for (var i = 2; i <= BKMAX; i++) {
+      if (t[i].atc < t[minAtc].atc) minAtc = i;
+      if (t[i].avc < t[minAvc].avc) minAvc = i;
+    }
+    return { t: t, r: r, minAtc: minAtc, minAvc: minAvc };
+  }
+
+  function draw(p, m) {
+    var bx = [], t = m.t, qmax = 200, cmax = 0;
+    for (var i = 1; i <= BKMAX; i++) cmax = Math.max(cmax, Math.min(t[i].atc, 8), t[i].mc);
+    cmax = Math.min(cmax * 1.1, 9);
+    var x = scale(0, qmax, 48, 340), y = scale(0, cmax, 210, 24);
+    bx.push(line(48, 210, 344, 210, AX), line(48, 210, 48, 18, AX));
+    bx.push(txt(48, 228, 'LOAVES PER DAY →', { s: 8, f: FAINT, ls: 0.8 }));
+    bx.push(txt(52, 28, '$ PER LOAF', { s: 8, f: FAINT, ls: 0.8 }));
+    function poly(key, col, dash, from) {
+      var pts = [];
+      for (var i = from; i <= BKMAX; i++) {
+        var v = t[i][key];
+        if (v !== null && v <= cmax) pts.push(x(t[i].q).toFixed(1) + ',' + y(v).toFixed(1));
+      }
+      bx.push('<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + col + '" stroke-width="2.2"' + (dash ? ' stroke-dasharray="' + dash + '"' : '') + '/>');
+      pts.forEach(function (s) { var xy = s.split(','); bx.push('<circle cx="' + xy[0] + '" cy="' + xy[1] + '" r="2.6" fill="' + col + '"/>'); });
+    }
+    poly('atc', CLAYD, null, 1);
+    poly('avc', '#5A6B45', '5 4', 1);
+    poly('mc', INK, null, 1);
+    bx.push(txt(x(t[BKMAX].q) + 6, y(Math.min(t[BKMAX].atc, cmax)) - 2, 'ATC', { s: 9, f: CLAYD }));
+    bx.push(txt(x(t[BKMAX].q) + 6, y(t[BKMAX].avc) + 10, 'AVC', { s: 9, f: '#5A6B45' }));
+    bx.push(txt(x(t[5].q) - 6, y(Math.min(t[5].mc, cmax)) - 6, 'MC', { a: 'end', s: 9, f: INK }));
+    // the selected worker
+    bx.push(line(x(m.r.q), 210, x(m.r.q), 24, CLAY, 1.4, '3 3'));
+    bx.push(txt(x(m.r.q), 240, 'L = ' + p.L + ', Q = ' + m.r.q, { a: 'middle', s: 9, f: CLAYD }));
+    return svg('0 0 360 250', bx.join(''));
+  }
+
+  function d2(v) { return v === null ? '—' : '$' + v.toFixed(2); }
+  function params() { return { L: +el('bk-L').value, fc: +el('bk-fc').value, w: +el('bk-w').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p), r = m.r;
+    el('bk-L-v').textContent = p.L;
+    el('bk-fc-v').textContent = money(p.fc);
+    el('bk-w-v').textContent = money(p.w);
+    el('bk-fig').innerHTML = draw(p, m);
+    el('bk-ro-q').textContent = r.q;
+    el('bk-ro-mp').textContent = r.mp;
+    el('bk-ro-mc').textContent = d2(r.mc);
+    el('bk-ro-afc').textContent = d2(r.afc);
+    el('bk-ro-avc').textContent = d2(r.avc);
+    el('bk-ro-atc').textContent = d2(r.atc);
+    el('bk-tbl').innerHTML = '<thead><tr><th>Workers</th><th>Loaves</th><th>MP</th><th>TC</th><th>AVC</th><th>ATC</th><th>MC</th></tr></thead><tbody>' +
+      m.t.map(function (row) {
+        var on = row.L === p.L ? ' style="background:#FCEEE3"' : '';
+        return '<tr' + on + '><td>' + row.L + '</td><td>' + row.q + '</td><td>' + (row.mp === null ? '—' : row.mp) + '</td><td>' + money(row.tc) +
+          '</td><td>' + d2(row.avc) + '</td><td>' + d2(row.atc) + (row.L === m.minAtc ? ' ◂ min' : '') + '</td><td>' + d2(row.mc) + '</td></tr>';
+      }).join('') + '</tbody>';
+    var note, rel = r.mc < r.atc ? 'below' : 'above';
+    if (p.L === 1 || r.mp >= m.t[p.L - 1].mp) {
+      note = '<strong>Increasing marginal product.</strong> Worker ' + p.L + ' adds ' + r.mp + ' loaves — at least as many as the worker before — because workers can specialise around the one oven. ' +
+        'So each extra loaf costs less: marginal cost is ' + d2(r.mc) + ' and falling.';
+    } else {
+      note = '<strong>Diminishing marginal product.</strong> Worker ' + p.L + ' adds only ' + r.mp + ' loaves: the oven and the kitchen are fixed, so each extra worker has less to work with. ' +
+        'Marginal cost climbs to ' + d2(r.mc) + ' per loaf. Diminishing returns are <em>why</em> the MC curve slopes up.';
+    }
+    note += ' MC is ' + rel + ' ATC (' + d2(r.atc) + '), so ATC is ' + (r.mc < r.atc ? 'still falling' : 'rising') + ' — it bottoms out at ' + m.minAtc + ' workers.';
+    el('bk-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['L', 'fc', 'w'].forEach(function (k) { el('bk-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-bk'), [
+    { t: '<strong>Marginal product</strong> = the extra output from one more worker. It rises at first, then diminishes because the oven is fixed.', lit: ['bk-ro-mp', 'bk-ro-q'], v: function (m) { return 'worker adds ' + m.r.mp + ' loaves'; } },
+    { t: '<strong>Marginal cost</strong> = wage ÷ marginal product. When each worker adds less, each extra loaf costs more.', lit: ['bk-ro-mc'], v: function (m) { return d2(m.r.mc) + ' per extra loaf'; } },
+    { t: '<strong>AFC</strong> = FC ÷ Q falls forever, because the fixed cost is spread over more loaves.', lit: ['bk-ro-afc'], v: function (m) { return d2(m.r.afc); } },
+    { t: '<strong>ATC</strong> = AFC + AVC. Compare MC with it: if the marginal loaf costs less than the average, the average falls.', lit: ['bk-ro-avc', 'bk-ro-atc'], v: function (m) { return 'AVC ' + d2(m.r.avc) + ', ATC ' + d2(m.r.atc); } },
+    { t: 'So <strong>MC crosses ATC (and AVC) at their minimum</strong>. Scrub the worker slider past the bottom and check.', lit: ['bk-ro-mc', 'bk-ro-atc'], v: function (m) { return 'ATC lowest at ' + m.minAtc + ' workers, AVC at ' + m.minAvc; } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch10", "title": "Chapter 10 \u2014 Business Costs and Production", "anchors": ["c1", "c2", "c3", "quiz"], "navTicks": {"#c0": 1, "#c1": 2, "#c2": 3, "#c3": 4}};
+var FND = ['Accounting vs economic profit', 'Diminishing marginal product', 'Cost curves', 'MC and average cost', 'Long run & scale'];
+
+var BANK = [
+  { id: 'p1', home: 1, fnd: 1, type: 'numeric', short: 'Computing economic profit',
+    stem: 'Maya quits a $70,000 job to open a café. She invests $50,000 of her savings, which were earning 4%. In year one the café takes in $210,000 and pays $150,000 in rent, wages and supplies. What is her <em>economic</em> profit?',
+    pre: '$', answer: -12000, tol: 0,
+    why: 'Accounting profit = 210,000 − 150,000 = 60,000. Implicit costs = 70,000 forgone salary + 2,000 forgone interest (4% of 50,000) = 72,000. Economic profit = 60,000 − 72,000 = <strong>−$12,000</strong>. Answering $60,000 counts only the explicit costs. Answering −$10,000 forgets the interest.' },
+  { id: 'p2', home: 1, fnd: 1, type: 'mcq', short: 'Which is an implicit cost',
+    stem: 'Which of these is an <em>implicit</em> cost for a farmer who owns her land?',
+    opts: [
+      { t: 'The rent she could collect by leasing the land to a neighbour', ok: true },
+      { t: 'The property tax she pays on the land', why: 'A tax bill is a payment actually made, so it is an explicit cost.' },
+      { t: 'The wages she pays her seasonal workers', why: 'Wages are written cheques, so they are explicit. Implicit costs have no payment attached.' },
+      { t: 'The price she originally paid for the land', why: 'That is a sunk cost from the past. The opportunity cost of using the land <em>now</em> is what it could earn now, which is the forgone rent.' }
+    ] },
+  { id: 'p3', home: 1, fnd: 1, type: 'mcq', short: 'Zero economic profit',
+    stem: 'A firm earns zero economic profit. This means:',
+    opts: [
+      { t: 'Its owners earn exactly what they could in their next-best alternative', ok: true },
+      { t: 'The firm is losing money and should close', why: 'Zero economic profit means every cost is covered, including the owner\'s opportunity costs. There is no reason to leave.' },
+      { t: 'Its accounting profit is also zero', why: 'Accounting profit is <em>positive</em> here, by exactly the amount of the implicit costs.' },
+      { t: 'It has no implicit costs', why: 'It has implicit costs, and revenue covers them exactly. That is what zero means here.' }
+    ] },
+
+  { id: 'd1', home: 2, fnd: 2, type: 'mcq', short: 'What diminishing MP means',
+    stem: 'A pizzeria adds a sixth cook and total output rises from 140 to 150 pizzas, after the fifth cook raised it from 120 to 140. This shows:',
+    opts: [
+      { t: 'Diminishing marginal product: the sixth cook adds less than the fifth', ok: true },
+      { t: 'Negative marginal product, because output is growing more slowly', why: 'Output still <em>rose</em>, by 10. Marginal product is negative only if total output falls.' },
+      { t: 'Diseconomies of scale', why: 'Only one input changed and the kitchen stayed fixed, so this is a short-run idea. Diseconomies of scale need <em>all</em> inputs to grow together.' },
+      { t: 'The sixth cook is less skilled than the fifth', why: 'The law assumes identical workers. Their MP falls because the fixed kitchen gets crowded, not because of who they are.' }
+    ] },
+  { id: 'd2', home: 2, fnd: 2, type: 'numeric', short: 'Marginal cost from MP',
+    stem: 'Workers earn $120 a day. Adding one more worker raises output from 200 to 230 units. What is the marginal cost per unit of those extra units?',
+    pre: '$', answer: 4, tol: 0.001,
+    why: 'MC = ΔTC ÷ ΔQ = 120 ÷ 30 = <strong>$4</strong>. Dividing the wage by total output (120 ÷ 230 ≈ $0.52) gives an average, not a marginal cost.' },
+  { id: 'd3', home: 2, fnd: 4, type: 'mcq', short: 'Why MC rises',
+    stem: 'In the short run, the main reason a firm\'s marginal cost curve slopes upward is:',
+    opts: [
+      { t: 'Diminishing marginal product of the variable input', ok: true },
+      { t: 'Rising fixed costs', why: 'Fixed costs don\'t change with output, so they can\'t affect <em>marginal</em> cost at all.' },
+      { t: 'Diseconomies of scale', why: 'That is the long-run reason LRATC rises. In the short run, with an input fixed, the explanation is diminishing marginal product.' },
+      { t: 'Workers demanding higher wages as output rises', why: 'The model holds the wage constant. MC rises because each worker adds less output, not because each worker costs more.' }
+    ] },
+
+  { id: 'c1', home: 3, fnd: 3, type: 'numeric', short: 'Computing ATC',
+    stem: 'A firm has fixed costs of $400 and variable costs of $1,100 when it produces 250 units. What is average total cost?',
+    pre: '$', answer: 6, tol: 0.001,
+    why: 'TC = 400 + 1,100 = 1,500, and ATC = 1,500 ÷ 250 = <strong>$6</strong>. Using only variable cost gives $4.40, which is AVC. The gap between the two, $1.60, is AFC.' },
+  { id: 'c2', home: 3, fnd: 4, type: 'mcq', short: 'MC below ATC',
+    stem: 'At the current output, marginal cost is $8 and average total cost is $10. If the firm produces one more unit, ATC will:',
+    opts: [
+      { t: 'Fall, because the extra unit costs less than the current average', ok: true },
+      { t: 'Rise, because marginal cost is positive', why: 'What matters is whether the marginal unit costs more or less than the <em>average</em>. Any cost is positive.' },
+      { t: 'Stay the same until MC reaches zero', why: 'The average moves whenever the marginal is different from it. Here MC is below ATC, so ATC falls.' },
+      { t: 'Rise, because MC is rising', why: 'MC may well be rising, but while it is still below ATC it keeps pulling the average down.' }
+    ] },
+  { id: 'c3', home: 3, fnd: 5, type: 'mcq', short: 'Economies of scale',
+    stem: 'A car maker doubles every input (plants, workers, machines) and output more than doubles. This is:',
+    opts: [
+      { t: 'Economies of scale, so long-run average cost is falling', ok: true },
+      { t: 'Increasing marginal product of labour', why: 'Marginal product is a short-run idea, with one input changing and the others fixed. Here every input changes.' },
+      { t: 'Diseconomies of scale', why: 'That is the reverse: output growing by <em>less</em> than the inputs, so LRATC rises.' },
+      { t: 'Constant returns to scale', why: 'Constant returns means output exactly doubles. It more than doubled here.' }
+    ] },
+
+  { id: 'e1', home: 4, fnd: 3, type: 'mcq', short: 'AFC always falls',
+    stem: 'As output rises, which cost curve <em>always</em> falls?',
+    opts: [
+      { t: 'Average fixed cost', ok: true },
+      { t: 'Average total cost', why: 'ATC is U-shaped. Rising AVC eventually outweighs falling AFC.' },
+      { t: 'Marginal cost', why: 'MC may dip at first, but it rises once diminishing marginal product sets in.' },
+      { t: 'Average variable cost', why: 'AVC is U-shaped too, for the same diminishing-returns reason as MC.' }
+    ] },
+  { id: 'e2', home: 4, fnd: 4, type: 'numeric', short: 'Marginal cost from a table',
+    stem: 'Total cost is $300 at 20 units and $380 at 25 units. What is the marginal cost per unit over that range?',
+    pre: '$', answer: 16, tol: 0.001,
+    why: 'MC = ΔTC ÷ ΔQ = (380 − 300) ÷ (25 − 20) = 80 ÷ 5 = <strong>$16</strong>. Dividing 380 by 25 gives $15.20, which is ATC.' },
+  { id: 'e3', home: 4, fnd: 1, type: 'mcq', short: 'Fixed costs and today\'s output',
+    stem: 'A restaurant\'s landlord raises its monthly rent, which is a fixed cost. In the short run, its profit-maximising quantity of meals:',
+    opts: [
+      { t: 'Doesn\'t change, because fixed costs don\'t affect marginal cost', ok: true },
+      { t: 'Falls, because costs are higher', why: 'Total and average costs rise, but the cost of producing one <em>more</em> meal doesn\'t change, so the best quantity stays the same.' },
+      { t: 'Rises, to spread the rent over more meals', why: 'Spreading a fixed cost lowers AFC but doesn\'t change marginal cost, and output decisions are made at the margin.' },
+      { t: 'Drops to zero, because the restaurant must shut down', why: 'Shutting down doesn\'t avoid rent in the short run. Chapter 11\'s shutdown rule compares price with AVC, not ATC.' }
+    ] }
+];
+
+var QUIZ = [
+  { id: 'q1', fnd: 1, type: 'frq', title: 'Accounting vs Economic Profit', short: 'Dentist opens practice',
+    stem: 'Dr. Lee leaves a job paying <strong>$150,000</strong> to open her own practice. She uses <strong>$200,000</strong> of her savings, which were earning <strong>5%</strong>. In the first year the practice earns <strong>$400,000</strong> in revenue and pays <strong>$220,000</strong> in staff wages, rent and supplies.',
+    parts: [
+      { q: 'Calculate her accounting profit.', pts: 2,
+        model: '$400,000 − $220,000 = $180,000.',
+        rub: [['Revenue − explicit costs', 1], ['$180,000', 1]] },
+      { q: 'Identify her implicit costs and calculate their total.', pts: 3,
+        model: 'Forgone salary of $150,000, plus forgone interest of 5% × $200,000 = $10,000. Total implicit cost = $160,000.',
+        rub: [['Forgone salary $150,000', 1], ['Forgone interest $10,000', 1], ['Total $160,000', 1]] },
+      { q: 'Calculate her economic profit.', pts: 2,
+        model: '$180,000 − $160,000 = $20,000.',
+        rub: [['Accounting profit − implicit costs', 1], ['$20,000', 1]] },
+      { q: 'Should she stay in private practice? Explain using economic profit.', pts: 3,
+        model: 'Yes. Economic profit is positive, so the practice earns $20,000 more than her next-best use of her time and money. She is better off staying than going back to her old job and keeping her savings in the bank.',
+        rub: [['Yes', 1], ['Positive economic profit', 1], ['Means she beats her next-best alternative', 1]] }
+    ] },
+
+  { id: 'q2', fnd: 2, type: 'frq', title: 'Diminishing Marginal Product', short: 'Car wash workers',
+    stem: 'A car wash with one washing bay hires workers. With 1, 2, 3, 4 and 5 workers it washes <strong>10, 24, 34, 40 and 42</strong> cars per hour.',
+    parts: [
+      { q: 'Calculate the marginal product of each worker.', pts: 3,
+        model: 'Worker 1: 10. Worker 2: 14. Worker 3: 10. Worker 4: 6. Worker 5: 2.',
+        rub: [['MP of workers 1–2 correct (10, 14)', 1], ['MP of workers 3–4 correct (10, 6)', 1], ['MP of worker 5 correct (2)', 1]] },
+      { q: 'After which worker does diminishing marginal product begin? Why?', pts: 3,
+        model: 'After the second worker: MP falls from 14 to 10 with the third. The first two can specialise, one washing and one drying, but with only one bay each extra worker has less equipment to work with.',
+        rub: [['Begins with the 3rd worker (after the 2nd)', 1], ['Early gains come from specialisation', 1], ['The fixed bay is why MP then falls', 1]] },
+      { q: 'Is output falling with the fifth worker? Explain the difference between diminishing and negative MP.', pts: 2,
+        model: 'No. Output still rises, from 40 to 42. Diminishing MP means each worker adds less. Negative MP would mean total output actually falls.',
+        rub: [['Output still rises', 1], ['Correctly distinguishes diminishing from negative MP', 1]] },
+      { q: 'If each worker is paid $20 an hour, what is the marginal cost of a car wash when the 4th worker is hired?', pts: 2,
+        model: 'MC = wage ÷ MP = $20 ÷ 6 ≈ $3.33 per car.',
+        rub: [['Uses wage ÷ MP (or ΔTC ÷ ΔQ)', 1], ['≈ $3.33', 1]] }
+    ] },
+
+  { id: 'q3', fnd: 3, type: 'frq', title: 'Completing a Cost Table', short: 'Cost table calculations',
+    stem: 'A firm has fixed cost of <strong>$60</strong>. Its variable cost is <strong>$40</strong> at Q = 10, <strong>$70</strong> at Q = 20, and <strong>$120</strong> at Q = 30.',
+    parts: [
+      { q: 'Compute total cost at each quantity.', pts: 2,
+        model: 'TC = FC + VC: $100 at 10, $130 at 20, $180 at 30.',
+        rub: [['TC = FC + VC', 1], ['$100, $130, $180', 1]] },
+      { q: 'Compute AFC, AVC and ATC at Q = 20.', pts: 3,
+        model: 'AFC = 60 ÷ 20 = $3. AVC = 70 ÷ 20 = $3.50. ATC = 130 ÷ 20 = $6.50.',
+        rub: [['AFC = $3', 1], ['AVC = $3.50', 1], ['ATC = $6.50', 1]] },
+      { q: 'Compute marginal cost per unit from Q = 10 to 20 and from Q = 20 to 30.', pts: 3,
+        model: 'From 10 to 20: (130 − 100) ÷ 10 = $3. From 20 to 30: (180 − 130) ÷ 10 = $5.',
+        rub: [['Uses ΔTC ÷ ΔQ', 1], ['$3 from 10 to 20', 1], ['$5 from 20 to 30', 1]] },
+      { q: 'Is ATC rising or falling between Q = 20 and 30? Use MC to explain.', pts: 2,
+        model: 'ATC is $6.50 at Q = 20 and $6.00 at Q = 30, so it is falling. MC over that range ($5) is below ATC, which pulls the average down.',
+        rub: [['ATC falls ($6.50 → $6.00)', 1], ['Because MC is below ATC', 1]] }
+    ] },
+
+  { id: 'q4', fnd: 4, type: 'frq', title: 'Marginal and Average Cost', short: 'Why MC crosses ATC at min',
+    stem: 'On a firm\'s cost diagram, the marginal cost curve passes through the lowest point of both the AVC and ATC curves.',
+    parts: [
+      { q: 'Explain why MC crosses ATC at the minimum of ATC.', pts: 4,
+        model: 'When MC is below ATC, each extra unit costs less than the average, so the average falls. When MC is above ATC, the average rises. ATC stops falling and starts rising exactly where MC equals it, which is its minimum.',
+        rub: [['MC below ATC → ATC falls', 1], ['MC above ATC → ATC rises', 1], ['So they meet at ATC\'s minimum', 1], ['Uses an average-and-marginal analogy or clear reasoning', 1]] },
+      { q: 'Why does the minimum of AVC occur at a lower output than the minimum of ATC?', pts: 3,
+        model: 'ATC = AVC + AFC, and AFC keeps falling as output rises. Even after AVC starts to rise, falling AFC keeps pulling ATC down for a while. So ATC reaches its minimum later, where MC is higher and crosses it.',
+        rub: [['ATC = AVC + AFC', 1], ['AFC keeps falling', 1], ['So ATC bottoms out later than AVC', 1]] },
+      { q: 'Why does the gap between ATC and AVC narrow as output rises?', pts: 3,
+        model: 'The vertical gap is AFC = FC ÷ Q. Fixed cost is spread over more and more units, so AFC shrinks toward zero and the two curves get closer.',
+        rub: [['The gap equals AFC', 1], ['AFC = FC ÷ Q', 1], ['Falls as Q rises', 1]] }
+    ] },
+
+  { id: 'q5', fnd: 5, type: 'frq', title: 'Economies of Scale', short: 'Long-run average cost',
+    stem: 'A small brewery is deciding whether to build a much larger plant. Its estimates show long-run average cost falling up to about 1 million barrels a year, flat to 3 million, and rising beyond that.',
+    parts: [
+      { q: 'Name the three regions of the LRATC curve described.', pts: 3,
+        model: 'Economies of scale (falling, up to 1M), constant returns to scale (flat, 1M–3M), and diseconomies of scale (rising, above 3M).',
+        rub: [['Economies of scale', 1], ['Constant returns to scale', 1], ['Diseconomies of scale', 1]] },
+      { q: 'Give two reasons for economies of scale in brewing.', pts: 2,
+        model: 'Any two: specialised workers and equipment, discounts from buying inputs in bulk, spreading large fixed investments such as automated bottling lines over more output, and cheaper shipping or advertising per unit.',
+        rub: [['First valid reason', 1], ['Second valid reason', 1]] },
+      { q: 'Why might a very large brewery experience diseconomies of scale?', pts: 2,
+        model: 'Coordination and management problems: more layers of management, slower decisions, and harder monitoring of workers, which raise cost per unit.',
+        rub: [['Coordination or management problems', 1], ['These raise per-unit cost at very large size', 1]] },
+      { q: 'How do diseconomies of scale differ from diminishing marginal product?', pts: 3,
+        model: 'Diminishing MP is short-run: one input increases while at least one is fixed. Diseconomies of scale are long-run: all inputs increase together and output grows by proportionally less, which raises LRATC.',
+        rub: [['Diminishing MP = short run, one input fixed', 1], ['Diseconomies = long run, all inputs variable', 1], ['States the effect of each (MC rises vs LRATC rises)', 1]] }
+    ] },
+
+  { id: 'q6', fnd: 1, type: 'frq', title: 'Should the Farmer Keep Farming?', short: 'Farm with owned land',
+    stem: 'A farmer owns her land outright. Last year her farm had revenue of <strong>$300,000</strong> and explicit costs of <strong>$180,000</strong>. She could lease the land to a neighbour for <strong>$70,000</strong> a year and work as a farm manager for <strong>$65,000</strong>.',
+    parts: [
+      { q: 'Calculate accounting profit.', pts: 2,
+        model: '$300,000 − $180,000 = $120,000.',
+        rub: [['Revenue − explicit costs', 1], ['$120,000', 1]] },
+      { q: 'Calculate economic profit.', pts: 3,
+        model: 'Implicit costs = $70,000 forgone rent + $65,000 forgone salary = $135,000. Economic profit = $120,000 − $135,000 = −$15,000.',
+        rub: [['Includes forgone rent', 1], ['Includes forgone salary', 1], ['−$15,000', 1]] },
+      { q: 'Her accountant says the farm is "very profitable." Is the accountant right? Explain.', pts: 3,
+        model: 'Only in accounting terms. The accountant ignores the opportunity cost of her land and her time. Leasing the land and taking the manager job would bring in $135,000, which is $15,000 more than farming.',
+        rub: [['Accounting profit is positive but economic profit is negative', 1], ['The accountant ignores implicit costs', 1], ['Leasing and working elsewhere earns $15,000 more', 1]] },
+      { q: 'Why is the price she paid for the land years ago irrelevant to this decision?', pts: 2,
+        model: 'It is a sunk cost and can\'t be recovered whatever she decides. What matters is what the land could earn now: the $70,000 lease.',
+        rub: [['The purchase price is sunk', 1], ['The relevant cost is the land\'s current opportunity cost (the lease)', 1]] }
+    ] },
+
+  { id: 'q7', fnd: 3, type: 'frq', title: 'Fixed and Variable Costs', short: 'Classify bakery costs',
+    stem: 'A food truck has these monthly costs: a truck loan payment, ingredients, a parking permit, gas for driving to events, the cook\'s hourly wages, and insurance.',
+    parts: [
+      { q: 'Classify each cost as fixed or variable in the short run.', pts: 3,
+        model: 'Fixed: loan payment, parking permit, insurance. Variable: ingredients, gas, the cook\'s hourly wages.',
+        rub: [['Loan, permit and insurance as fixed', 1], ['Ingredients and hourly wages as variable', 1], ['Gas as variable', 1]] },
+      { q: 'Explain why average fixed cost falls as the truck sells more meals.', pts: 2,
+        model: 'AFC = FC ÷ Q. The same fixed total is divided over more meals, so the fixed cost per meal falls.',
+        rub: [['AFC = FC ÷ Q', 1], ['The same total is spread over more units', 1]] },
+      { q: 'If the parking permit fee doubles, what happens to MC, AVC and ATC?', pts: 3,
+        model: 'MC and AVC are unchanged, because the permit is fixed and doesn\'t vary with output. ATC rises at every quantity because AFC rises.',
+        rub: [['MC unchanged', 1], ['AVC unchanged', 1], ['ATC rises (through AFC)', 1]] },
+      { q: 'In the long run, is the truck loan still a fixed cost? Explain.', pts: 2,
+        model: 'No. In the long run all costs are variable: the owner can sell the truck, buy a second one, or leave the business.',
+        rub: [['No', 1], ['In the long run all inputs are variable', 1]] }
+    ] },
+
+  { id: 'q8', fnd: 2, type: 'frq', title: 'From Product to Cost', short: 'MP and MC mirror images',
+    stem: 'A t-shirt printer pays each worker <strong>$100</strong> a day. Workers 1, 2 and 3 add <strong>50, 40 and 25</strong> shirts per day respectively.',
+    parts: [
+      { q: 'Compute the marginal cost per shirt for each worker.', pts: 3,
+        model: 'Worker 1: 100 ÷ 50 = $2.00. Worker 2: 100 ÷ 40 = $2.50. Worker 3: 100 ÷ 25 = $4.00.',
+        rub: [['$2.00', 1], ['$2.50', 1], ['$4.00', 1]] },
+      { q: 'Describe the relationship between marginal product and marginal cost.', pts: 3,
+        model: 'They are inverses: MC = wage ÷ MP. When MP falls, each extra shirt needs more labour time, so MC rises.',
+        rub: [['MC = wage ÷ MP', 1], ['Falling MP → rising MC', 1], ['Explains the intuition: more labour per extra unit', 1]] },
+      { q: 'What input is likely fixed here, and why does that matter?', pts: 2,
+        model: 'The printing press or the shop space. Because it is fixed, adding workers eventually crowds it, so marginal product diminishes.',
+        rub: [['Names a plausible fixed input (press or space)', 1], ['Links it to diminishing MP', 1]] },
+      { q: 'If the wage rises to $120, what happens to the MC curve?', pts: 2,
+        model: 'MC rises at every output level. It shifts up by 20%, because MC = wage ÷ MP and MP is unchanged.',
+        rub: [['MC shifts up', 1], ['Because the wage is in the numerator and MP is unchanged', 1]] }
+    ] },
+
+  { id: 'q9', fnd: 4, type: 'frq', title: 'Reading the Cost Curves', short: 'Interpreting MC vs ATC',
+    stem: 'A firm is producing <strong>500</strong> units. At that output, MC = <strong>$12</strong>, ATC = <strong>$15</strong> and AVC = <strong>$9</strong>.',
+    parts: [
+      { q: 'Calculate total cost, variable cost and fixed cost.', pts: 3,
+        model: 'TC = 15 × 500 = $7,500. VC = 9 × 500 = $4,500. FC = $7,500 − $4,500 = $3,000.',
+        rub: [['TC = $7,500', 1], ['VC = $4,500', 1], ['FC = $3,000', 1]] },
+      { q: 'Is ATC rising or falling at this output? Explain.', pts: 2,
+        model: 'Falling, because MC ($12) is below ATC ($15), so each extra unit pulls the average down.',
+        rub: [['Falling', 1], ['Because MC < ATC', 1]] },
+      { q: 'Is AVC rising or falling at this output? Explain.', pts: 2,
+        model: 'Rising, because MC ($12) is above AVC ($9).',
+        rub: [['Rising', 1], ['Because MC > AVC', 1]] },
+      { q: 'Is the firm producing more or less than the output that minimises ATC? Explain.', pts: 3,
+        model: 'Less. ATC is still falling, so its minimum, where MC = ATC, is at a higher output. The firm is past AVC\'s minimum but hasn\'t yet reached ATC\'s.',
+        rub: [['Less than ATC-minimising output', 1], ['Because ATC is still falling', 1], ['Notes the output lies between the AVC and ATC minimums', 1]] }
+    ] },
+
+  { id: 'q10', fnd: 5, type: 'frq', title: 'Short Run vs Long Run', short: 'Expanding a restaurant',
+    stem: 'A popular restaurant is always full. In the short run it can only add servers. In the long run it can also move to a bigger building.',
+    parts: [
+      { q: 'Define the short run and the long run in production.', pts: 2,
+        model: 'Short run: at least one input (here the building) is fixed. Long run: every input can be changed.',
+        rub: [['Short run: at least one fixed input', 1], ['Long run: all inputs variable', 1]] },
+      { q: 'What happens to the marginal product of servers as more are added in the current building? Why?', pts: 3,
+        model: 'It eventually diminishes. The building, kitchen and tables are fixed, so each extra server has fewer tables to serve and gets in the others\' way.',
+        rub: [['MP diminishes', 1], ['Because the space is fixed', 1], ['Gives a concrete crowding mechanism', 1]] },
+      { q: 'How does moving to a bigger building change the restaurant\'s short-run cost curves?', pts: 3,
+        model: 'It moves to a new set of short-run curves. Fixed costs are higher (more rent), but diminishing returns set in at a larger output, so ATC reaches its minimum at a higher quantity. If there are economies of scale, that minimum is also lower.',
+        rub: [['New short-run curves at a larger scale', 1], ['Higher fixed cost', 1], ['Minimum ATC at higher output, and lower if there are economies of scale', 1]] },
+      { q: 'What does the long-run ATC curve represent?', pts: 2,
+        model: 'The lowest average cost of producing each output when the firm can choose its plant size freely. It is the lower envelope of all the short-run ATC curves.',
+        rub: [['Lowest average cost at each output with all inputs variable', 1], ['The lower envelope of short-run ATC curves', 1]] }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+/* ---------- answer-position scrambling ---------------------------
+ * Items are authored with the correct option first — easy to read in the
+ * source, and a free pass if it ships that way: a learner who notices can
+ * score full marks by always picking A.
+ *
+ * Two properties are wanted at once. The correct answer must land in each
+ * position about equally often across the chapter, so no single letter is
+ * worth guessing; and the sequence of positions must not be guessable
+ * either, so a round-robin A, B, C, D is out. So: deal out a balanced
+ * multiset of target slots, shuffle THAT, and give each item the slot it
+ * draws. Everything is seeded off the chapter and item ids, so a learner
+ * sees the same layout on every reload and when an item returns later.
+ * ================================================================= */
+(function scramble() {
+  function rng(seed) {
+    var h = 2166136261, n = 0;                      // FNV-1a over the seed
+    for (var i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return function () {                            // splitmix32: each draw mixed on its own,
+      var z = (h + Math.imul(++n, 0x9E3779B9)) | 0; // so short, similar ids don't correlate
+      z = Math.imul(z ^ (z >>> 16), 0x21F0AAAD);
+      z = Math.imul(z ^ (z >>> 15), 0x735A2D97);
+      return ((z ^ (z >>> 15)) >>> 0) / 4294967296;
+    };
+  }
+  function shuffle(a, r) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  /* Group by option count first: a three-option item cannot take slot 3,
+   * and folding it back with % would bias position 0. */
+  var groups = {};
+  BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).forEach(function (q) {
+    if (q.type !== 'mcq') return;
+    (groups[q.opts.length] = groups[q.opts.length] || []).push(q);
+  });
+
+  Object.keys(groups).forEach(function (key) {
+    var n = +key, group = groups[key];
+    var slots = group.map(function (_, i) { return i % n; });
+    shuffle(slots, rng(CHAPTER.id + ':slots:' + n));
+    group.forEach(function (q, k) {
+      var right = null, rest = [];
+      q.opts.forEach(function (o) { if (o.ok && !right) right = o; else rest.push(o); });
+      if (!right) return;                           // malformed item; the verifier reports it
+      shuffle(rest, rng(q.id));
+      rest.splice(slots[k], 0, right);
+      q.opts = rest;
+    });
+  });
+})();
+
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    /* Fraction of the bank answered correctly and not outstanding.
+     * This used to need box 3 — two successful recalls — which no item
+     * homed at the last two checkpoints can ever reach, because there is
+     * no later checkpoint to bring it back. A flawless run topped out at
+     * 69%. Box 2 and box 3 both mean "got it right and nothing is owed";
+     * the schedule still uses the distinction, the bar no longer does. */
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it && it.box >= 2) done += 1;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    /* free-response state: { txt, open, marks: ['partIdx.rubIdx', ...] } per item */
+    frq: function (id, v) {
+      db.frq = db.frq || {};
+      if (v !== undefined) { db.frq[id] = v; save(); }
+      return db.frq[id] || { txt: '', open: false, marks: [] };
+    },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    var canReturn = it.last + 2 <= CHAPTER.anchors.length;
+    tagEl.textContent = !ok ? 'due again' : (it.box === 3 || !canReturn) ? 'retired' : 'returns later';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- exam-format free response ---------------------------
+ * A chapter whose QUIZ is type 'frq' gets the written-exam layout:
+ * scenario, lettered parts with points, one answer box. Prose can't be
+ * marked offline, so the learner writes first, then opens a model answer
+ * and a points rubric and ticks what they earned. Drafts and marks
+ * persist; under 70% counts as a miss for the export prompt. */
+function frqPts(q) { return q.parts.reduce(function (s, p) { return s + p.pts; }, 0); }
+function frqScore(q) {
+  return Store.frq(q.id).marks.reduce(function (s, k) {
+    var ij = k.split('.'); return s + q.parts[+ij[0]].rub[+ij[1]][1];
+  }, 0);
+}
+function mountFRQ(host) {
+  var total = QUIZ.reduce(function (s, q) { return s + frqPts(q); }, 0);
+  host.innerHTML = QUIZ.map(function (q, i) {
+    return '<div class="q frq" data-id="' + q.id + '">' +
+      '<div class="frq-h"><span class="frq-t">Question ' + (i + 1) + ': ' + q.title + '</span>' +
+      '<span class="frq-p">' + frqPts(q) + ' points</span></div>' +
+      '<div class="stem">' + q.stem + '</div>' +
+      q.parts.map(function (p, j) {
+        return '<p class="frq-part"><b>' + 'ABCDEF'[j] + '.</b> ' + p.q + ' (' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + ')</p>';
+      }).join('') +
+      '<textarea rows="7" placeholder="Type your answer to Question ' + (i + 1) + ' here..." aria-label="answer to question ' + (i + 1) + '"></textarea>' +
+      '<div class="numrow"><button class="btn" data-a="open">Check against model answer</button>' +
+      '<span class="ck-score" data-k="sc"></span></div>' +
+      '<div class="frq-key" hidden>' + q.parts.map(function (p, j) {
+        return '<div class="frq-ans"><div class="frq-al">' + 'ABCDEF'[j] + ' · model answer · ' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + '</div>' +
+          '<p>' + p.model + '</p>' + p.rub.map(function (r, k) {
+            return '<label class="rub"><input type="checkbox" data-m="' + j + '.' + k + '"><span>' + r[0] + '</span><b>+' + r[1] + '</b></label>';
+          }).join('') + '</div>';
+      }).join('') + '</div></div>';
+  }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog"></span>' +
+    '<span><button class="btn ghost" data-a="copy">Copy answers for Claude to grade</button> ' +
+    '<button class="btn" data-a="submit">Show my breakdown</button></span></div>' +
+    '<p class="ck-score" data-k="copied" style="margin:10px 0 0"></p>';
+
+  function node(q) { return $('[data-id="' + q.id + '"]', host); }
+  function paint(q) {
+    var n = node(q), s = Store.frq(q.id), key = $('.frq-key', n);
+    key.hidden = !s.open;
+    $('[data-a=open]', n).hidden = s.open;
+    $('[data-k=sc]', n).textContent = s.open ? frqScore(q) + ' / ' + frqPts(q) + ' points' : '';
+    prog();
+  }
+  function prog() {
+    var marked = QUIZ.filter(function (q) { return Store.frq(q.id).open; });
+    var got = marked.reduce(function (s, q) { return s + frqScore(q); }, 0);
+    $('[data-k=prog]', host).textContent = got + ' / ' + total + ' points · ' + marked.length + ' of ' + QUIZ.length + ' marked';
+  }
+  QUIZ.forEach(function (q) {
+    var n = node(q), s = Store.frq(q.id), ta = $('textarea', n);
+    ta.value = s.txt;
+    s.marks.forEach(function (k) { var c = $('[data-m="' + k + '"]', n); if (c) c.checked = true; });
+    ta.addEventListener('input', function () { var v = Store.frq(q.id); v.txt = ta.value; Store.frq(q.id, v); });
+    $('[data-a=open]', n).addEventListener('click', function () {
+      if (!ta.value.trim()) {     // retrieval first: the rubric is worth little if read before writing
+        this.textContent = 'Write your answer first';
+        var b = this; setTimeout(function () { b.textContent = 'Check against model answer'; }, 1400);
+        return;
+      }
+      var v = Store.frq(q.id); v.open = true; Store.frq(q.id, v);
+      Store.record(q.id, false, 99);
+      paint(q);
+    });
+    n.querySelectorAll('[data-m]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var v = Store.frq(q.id);
+        v.marks = Array.prototype.map.call(n.querySelectorAll('[data-m]:checked'), function (x) { return x.dataset.m; });
+        Store.frq(q.id, v);
+        Store.record(q.id, frqScore(q) >= 0.7 * frqPts(q), 99);
+        paint(q);
+      });
+    });
+    paint(q);
+  });
+
+  $('[data-a=copy]', host).addEventListener('click', function () {
+    var plain = function (h) { return h.replace(/<[^>]+>/g, ''); };
+    var txt = 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '. Grade my written answers ' +
+      'like a strict exam grader, using ONLY the rubric points listed. For each question give the score per part, ' +
+      'which rubric points I missed, and one sentence on how to earn them.\n\n' +
+      QUIZ.map(function (q, i) {
+        return 'QUESTION ' + (i + 1) + ': ' + q.title + ' (' + frqPts(q) + ' pts)\n' + plain(q.stem) + '\n' +
+          q.parts.map(function (p, j) {
+            return 'ABCDEF'[j] + '. ' + plain(p.q) + ' (' + p.pts + ')\n   Rubric: ' +
+              p.rub.map(function (r) { return r[0] + ' [+' + r[1] + ']'; }).join('; ');
+          }).join('\n') + '\nMY ANSWER:\n' + (Store.frq(q.id).txt.trim() || '(left blank)');
+      }).join('\n\n');
+    var note = $('[data-k=copied]', host);
+    navigator.clipboard.writeText(txt).then(function () {
+      note.textContent = 'Copied — paste into Claude for a second opinion on your marking.';
+    }, function () { note.textContent = 'Clipboard blocked by the browser.'; });
+  });
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, got = 0;
+    QUIZ.forEach(function (q) {
+      var f = FND[q.fnd - 1], sc = Store.frq(q.id).open ? frqScore(q) : 0;
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n += frqPts(q); byFnd[f].k += sc; got += sc;
+    });
+    var unmarked = QUIZ.filter(function (q) { return !Store.frq(q.id).open; }).length;
+    Store.quizResult({ right: got, of: total, at: Date.now() });
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < 0.7 * byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + got + ' of ' + total + ' points — ' + Math.round(got / total * 100) + '%</div>' +
+      (unmarked ? '<p><strong>' + unmarked + ' question' + (unmarked > 1 ? 's' : '') + ' not marked yet</strong> and counted as zero.</p>' : '') +
+      '<p>Points you missed usually come from a missing <em>because</em> rather than a wrong claim. Reread the model answers ' +
+      'for those parts, then try this practice exam again in two or three days without looking.</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by topic</div>' +
+      '<div class="ch-sub">points earned of points available</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    railUpdate();
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  if (!host || typeof QUIZ === 'undefined' || !QUIZ.length) return;   // chapter built without a quiz
+  if (QUIZ[0].type === 'frq') return mountFRQ(host);
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box >= 2; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>

@@ -69,9 +69,17 @@ Push to GitHub, then Settings → Pages → deploy from branch, root. There is n
 
 ## Status
 
-Chapter 1 complete. Chapters 2–7 (gains from trade, PPC, supply and demand, elasticity, market
-outcomes, tax incidence) follow the same single-file pattern — copy `ch01-five-foundations.html`
-and replace the content, models and item bank.
+Eleven chapters. 1–7 end in a graded multiple-choice quiz. 8–11 (price controls, externalities and
+public goods, business costs, competitive firms) end in a **10-question written practice exam** in
+the course's exam format: a scenario, lettered parts with point values, and one answer box. Prose
+can't be marked offline, so the learner writes first, then opens a model answer and a points
+rubric and ticks what they earned. "Copy answers for Claude to grade" exports answers plus rubric
+as a grading prompt. A chapter whose `QUIZ` items are `type: 'frq'` gets this layout automatically.
+
+Each chapter page and the hub show an **Updated** date: the last commit touching `src/chNN/`, or
+the newest file time when that folder has uncommitted edits. `build.py` fills both.
+
+Verify every chapter with `node verify.mjs file://$PWD/chNN-*.html src/chNN/spec.json`.
 
 ## Licence / scope
 

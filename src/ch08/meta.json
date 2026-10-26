@@ -1,0 +1,17 @@
+{
+  "id": "ch08",
+  "file": "ch08-price-controls.html",
+  "num": "Chapter 08",
+  "title": "Chapter 08 — Price Controls",
+  "desc": "Binding and non-binding ceilings and floors, shortages and surpluses, non-price rationing, why controls get worse over time, and the minimum wage.",
+  "h1": "When the law sets the <em>price</em>",
+  "intro": "A ceiling or floor only matters on one side of equilibrium. Once it binds, something other than price decides who gets the goods, and the damage grows the longer the control stays in place.",
+  "stats": "4 chunks · 2 live models · 4 checkpoints · 10-question practice exam",
+  "herotag": "the gap",
+  "herosub": "a ceiling below equilibrium",
+  "hero": "<svg viewBox=\"0 0 280 180\"><line x1=\"30\" y1=\"150\" x2=\"262\" y2=\"150\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"30\" y1=\"150\" x2=\"30\" y2=\"18\" stroke=\"#D1CFC5\" stroke-width=\"1.5\"/><line x1=\"38\" y1=\"26\" x2=\"250\" y2=\"142\" stroke=\"#B85C3E\" stroke-width=\"2\"/><line x1=\"38\" y1=\"138\" x2=\"250\" y2=\"34\" stroke=\"#5A6B45\" stroke-width=\"2\"/><line x1=\"30\" y1=\"108\" x2=\"262\" y2=\"108\" stroke=\"#141413\" stroke-width=\"1.8\" stroke-dasharray=\"5 4\"/><line x1=\"98\" y1=\"118\" x2=\"190\" y2=\"118\" stroke=\"#D97757\" stroke-width=\"4\"/><text x=\"144\" y=\"133\" text-anchor=\"middle\" font-family=\"ui-monospace,monospace\" font-size=\"9\" fill=\"#B85C3E\">shortage</text><text x=\"258\" y=\"102\" text-anchor=\"end\" font-family=\"ui-monospace,monospace\" font-size=\"8.5\" fill=\"#3D3D3A\">ceiling</text></svg>",
+  "next": "<strong>Next:</strong> <a href=\"ch09-externalities-public-goods.html\">Chapter 9 — Externalities and Public Goods</a>",
+  "anchors": ["c1", "c2", "c3", "quiz"],
+  "navTicks": {"#c0": 1, "#c1": 2, "#c2": 3, "#c3": 4},
+  "toc": [["c0", "Binding?", "00"], ["c1", "Rationing", "01"], ["c2", "Minimum wage", "02"], ["c3", "Exam patterns", "03"], ["quiz", "Practice exam", "▸"]]
+}

@@ -1,0 +1,247 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>A firm that can't choose its price</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Chapter 10 gave the firm its cost curves. This chapter puts the firm in a perfectly competitive market and asks how
+    much it should produce, whether it should produce at all, and what happens when the whole industry has had time to adjust.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Feature of perfect competition</th><th>What it implies</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Many buyers and sellers</strong></td><td>no single firm can move the market price</td></tr>
+        <tr><td><strong>Identical products</strong></td><td>a firm that charges more than the market price sells nothing</td></tr>
+        <tr><td><strong>Free entry and exit</strong></td><td>economic profit attracts new firms and losses drive firms out, so profit can't last</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      The result is that each firm is a <strong>price taker</strong>. Its demand curve is horizontal at the market price, so
+      every unit it sells adds exactly P to revenue: <strong>P = MR = AR</strong>. Wheat farms, commodity
+      producers and street-food stalls in a crowded market all come close to this.
+    </p>
+    <div class="card accent">
+      <div class="label">The profit-maximising rule</div>
+      <p style="margin-bottom:0">
+        Produce the quantity where <strong>MR = MC</strong>, which for a price taker means <strong>P = MC</strong>, on the rising
+        part of MC. Below that quantity the next unit adds more to revenue than to cost, so produce it. Above it,
+        the next unit costs more than it brings in. This is Chapter 1's marginal thinking turned into a production decision.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">Maximising profit ≠ minimising ATC</div>
+      <p style="margin-bottom:0">
+        The firm doesn't produce where ATC is lowest. It produces where P = MC. Those two points coincide only in long-run
+        equilibrium. Whenever price is above minimum ATC, the best output is <em>larger</em> than the cost-minimising one.
+      </p>
+    </div>
+
+    <div class="applet" id="ap-cf">
+      <span class="tag">model · live</span>
+      <div class="ap-title">One competitive firm, at any market price</div>
+      <div class="ap-sub">TC = 50 + 10q − 1.5q² + 0.1q³ · min AVC $4.38 · min ATC $10.00</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="cf-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Market price</span><span class="cv" id="cf-p-v">$7.30</span></div>
+            <input type="range" id="cf-p" min="2" max="20" step="0.1" value="7.3">
+            <div class="ch">Try $14, $10, $7.30 and $4. Those are the four cases on every exam.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Best output q*</div><div class="rv" id="cf-ro-q">—</div></div>
+            <div class="ro"><div class="rl">MC at q*</div><div class="rv" id="cf-ro-mc">—</div></div>
+            <div class="ro"><div class="rl">ATC at q*</div><div class="rv" id="cf-ro-atc">—</div></div>
+            <div class="ro"><div class="rl">AVC at q*</div><div class="rv" id="cf-ro-avc">—</div></div>
+            <div class="ro hero"><div class="rl">Profit</div><div class="rv" id="cf-ro-pi">—</div></div>
+            <div class="ro"><div class="rl">Short run</div><div class="rv" id="cf-ro-sr">—</div></div>
+            <div class="ro good"><div class="rl">Long-run signal</div><div class="rv" id="cf-ro-lr">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="cf-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Price takers · P = MC · profit</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>Losing money but still open: the shutdown rule</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    A firm earning a loss should sometimes stay open. Whether it should depends on the difference between fixed and variable costs.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Price is…</th><th>Short run</th><th>Long run</th></tr></thead>
+      <tbody>
+        <tr><td><strong>P &gt; ATC</strong></td><td>produce, earning an economic profit</td><td>firms <strong>enter</strong></td></tr>
+        <tr><td><strong>P = min ATC</strong></td><td>produce, breaking even</td><td>no entry or exit (long-run equilibrium)</td></tr>
+        <tr><td><strong>AVC ≤ P &lt; ATC</strong></td><td>produce at a loss: it is smaller than the fixed cost</td><td>firms <strong>exit</strong></td></tr>
+        <tr><td><strong>P &lt; min AVC</strong></td><td><strong>shut down</strong>: produce nothing and lose only the fixed cost</td><td>firms exit</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>Shutdown (short run):</strong> produce nothing <em>for now</em>, but still pay the fixed costs, such as the lease.
+        Shut down if P &lt; AVC. Fixed costs are sunk in the short run, so they don't enter the decision.</li>
+      <li><strong>Exit (long run):</strong> leave the industry for good, with no costs left to pay. Exit if P &lt; ATC.</li>
+      <li>So the firm's <strong>short-run supply curve</strong> is its MC curve above minimum AVC. At any price below that, it
+        supplies zero.</li>
+    </ul>
+    <div class="card trap">
+      <div class="label">The most-missed point in the chapter</div>
+      <p style="margin-bottom:0">
+        "The firm is losing money, so it should shut down" is wrong whenever P is above AVC. In the model above, at
+        $7.30 the firm loses $25.70 by producing. Shutting down would lose the full $50 of fixed cost, so producing at a loss is
+        the better choice. Compare with AVC to decide whether to shut down. Compare with ATC to decide whether to exit.
+      </p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Shutdown vs exit · the supply curve</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>Entry and exit push the price back to minimum ATC</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    In the short run the number of firms is fixed. In the long run it isn't. Free entry and exit
+    are what make economic profit temporary.
+  </p>
+  <div class="sec-body">
+    <ol>
+      <li>Demand rises, so the price rises, and existing firms earn an economic profit.</li>
+      <li>The profit attracts new firms, which shifts market supply to the right.</li>
+      <li>The price falls back, and entry continues until profit is zero.</li>
+      <li>The new long-run equilibrium has the same price, <strong>P = min ATC</strong>, more firms, and a higher market quantity.</li>
+    </ol>
+    <p>
+      A fall in demand works the same way in reverse: losses, exit, supply shifts left, and the price recovers to minimum ATC.
+      If input costs don't change as the industry grows (a <em>constant-cost</em> industry), the <strong>long-run supply curve is
+      horizontal</strong> at minimum ATC.
+    </p>
+
+    <div class="applet" id="ap-lr">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A demand shock, year by year</div>
+      <div class="ap-sub">identical firms (cost curves above) · demand Qd = A − 50P · starts at 100 firms, $10</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="lr-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Change in market demand</span><span class="cv" id="lr-a-v">+20%</span></div>
+            <input type="range" id="lr-a" min="900" max="2100" step="60" value="1800">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Years since the change</span><span class="cv" id="lr-yr-v">0</span></div>
+            <input type="range" id="lr-yr" min="0" max="12" step="1" value="0">
+            <div class="ch">Each year the market clears, then firms enter or exit in response to profit.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Firms</div><div class="rv" id="lr-ro-n">—</div></div>
+            <div class="ro"><div class="rl">Market price</div><div class="rv" id="lr-ro-p">—</div></div>
+            <div class="ro"><div class="rl">Output per firm</div><div class="rv" id="lr-ro-q">—</div></div>
+            <div class="ro hero"><div class="rl">Profit per firm</div><div class="rv" id="lr-ro-pi">—</div></div>
+            <div class="ro"><div class="rl">Market quantity</div><div class="rv" id="lr-ro-mq">—</div></div>
+            <div class="ro good"><div class="rl">Entry (+) / exit (−)</div><div class="rv" id="lr-ro-d">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="lr-note"></p>
+    </div>
+
+    <div class="card">
+      <div class="label">Why long-run equilibrium is efficient</div>
+      <p style="margin-bottom:0">
+        At P = min ATC two things hold. <strong>P = MC</strong>: the last unit is worth exactly what it costs, which is allocative
+        efficiency. <strong>Output is at minimum ATC</strong>: goods are made at the lowest possible cost, which is productive efficiency.
+        Competition gives consumers both without anyone planning it.
+      </p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Entry, exit &amp; long-run equilibrium</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Nearly every question on this chapter asks for the same four steps, in the same order.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Step</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>1. Quantity</td><td>Find q* where P = MC.</td>
+            <td>Choosing where ATC is lowest, or where P = ATC.</td></tr>
+        <tr><td>2. Profit</td><td>(P − ATC at q*) × q*, or equivalently TR − TC.</td>
+            <td>Using minimum ATC instead of ATC <em>at q*</em>.</td></tr>
+        <tr><td>3. Short-run decision</td><td>Compare P with AVC: produce if P ≥ AVC.</td>
+            <td>"Losing money → shut down." Check AVC, not ATC.</td></tr>
+        <tr><td>4. Long run</td><td>Profit → entry, losses → exit, until P = min ATC and profit = 0.</td>
+            <td>Saying profit lasts because the firm is efficient. Free entry removes it.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">Zero profit is the destination, not a problem</div>
+      <p style="margin-bottom:0">
+        In long-run equilibrium firms earn zero <em>economic</em> profit, but they are doing fine. Accounting profit is positive and
+        covers the owners' opportunity costs (Chapter 10). Only economic profit is pushed to zero.
+      </p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Method &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Practice exam</h2><span class="count">10 questions · 100 points</span></div>
+  <p class="sec-intro">
+    Written questions in the same format as the midterm. Write your full answer <em>before</em> you open the model answer.
+    Then tick only the rubric points you actually earned. Your answers are saved in this browser.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">exam format</span>
+      <div class="ck-h">All of Chapter 11, interleaved</div>
+      <div class="ck-s">write first · then mark yourself against the rubric</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Competitive firm</td>
+            <td>The profit-maximising output, found by scanning every output from 0 to 20 in steps of 0.01 rather than assuming P = MC. MC, ATC and AVC at that output, profit, and the short- and long-run decisions. The shutdown point comes out of the scan and isn't coded in as a rule.</td>
+            <td>One illustrative cubic cost function. Output is continuous.</td></tr>
+        <tr><td>Entry &amp; exit</td>
+            <td>Each year the market price is solved by bisection so that demand equals the number of firms × each firm's MC-based supply. Each firm's profit then sets entry or exit for the next year.</td>
+            <td>Identical firms, a constant-cost industry (input prices don't change as it grows), and linear demand. The adjustment speed (about half a firm per dollar of profit) is illustrative. The long-run endpoint doesn't depend on it.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>

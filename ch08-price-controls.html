@@ -1,0 +1,1840 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 08 — Price Controls · ECN 1A study guide</title>
+<meta name="description" content="Binding and non-binding ceilings and floors, shortages and surpluses, non-price rationing, why controls get worse over time, and the minimum wage.">
+<style>
+
+/* guide.css — design language lifted from local-models-blog (ivory/clay, serif
+ * headlines, mono eyebrows, 1.5px bordered paper cards), extended with the
+ * components a study guide needs: chunks, applets, checkpoints, quiz, progress.
+ * Light only, print-like, no dark mode — same as the blog.
+ */
+
+:root {
+  --ivory:  #FAF9F5;
+  --paper:  #FFFFFF;
+  --slate:  #141413;
+  --clay:   #D97757;
+  --clay-d: #B85C3E;
+  --oat:    #E3DACC;
+  --olive:  #788C5D;
+  --olive-d:#5A6B45;
+  --g100:   #F0EEE6;
+  --g200:   #E6E3DA;
+  --g300:   #D1CFC5;
+  --g500:   #87867F;
+  --g700:   #3D3D3A;
+  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--slate);
+  font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 140px; }
+
+/* ── masthead ─────────────────────────── */
+header.masthead { padding: 72px 0 48px; border-bottom: 1.5px solid var(--g300); margin-bottom: 12px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--clay); }
+h1 {
+  font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.06; letter-spacing: -0.018em; margin: 0 0 8px; max-width: 20ch;
+}
+h1 em { font-style: italic; color: var(--clay); }
+.intro { font-size: 16.5px; color: var(--g700); margin: 22px 0 0; max-width: 660px; }
+.intro a, .sec-body a, footer a { color: var(--clay); text-decoration-color: var(--oat); text-underline-offset: 3px; }
+.intro a:hover, .sec-body a:hover { text-decoration-color: var(--clay); }
+.meta {
+  margin-top: 26px; font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--g500); text-transform: uppercase;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+@media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero-fig {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 12px;
+  padding: 22px 22px 18px; box-shadow: 0 12px 32px rgba(20,20,19,.08); position: relative;
+}
+.hero-fig .tag {
+  position: absolute; top: -10px; left: 18px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.hero-fig .fig-h {
+  font-family: var(--mono); font-size: 10.5px; color: var(--g500);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-fig svg { display: block; width: 100%; height: auto; }
+
+/* ── toc pills ────────────────────────── */
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 26px 0 0; }
+nav.toc a {
+  font-size: 12.5px; padding: 7px 14px; border: 1.5px solid var(--g300); border-radius: 999px;
+  text-decoration: none; color: var(--g700); background: var(--paper);
+  transition: border-color 120ms, color 120ms, background 120ms;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+nav.toc a .n { font-family: var(--mono); font-size: 10px; color: var(--g500); }
+nav.toc a:hover { border-color: var(--slate); color: var(--slate); }
+nav.toc a:hover .n { color: var(--clay); }
+nav.toc a.done { border-color: var(--olive); }
+nav.toc a.done .n { color: var(--olive-d); }
+
+/* ── section / chunk ──────────────────── */
+section { margin-top: 68px; scroll-margin-top: 20px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.sec-head .idx { font-family: var(--mono); font-size: 13px; color: var(--clay); font-weight: 600; width: 34px; flex-shrink: 0; }
+.sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 0; letter-spacing: -0.012em; }
+.sec-head .count {
+  font-family: var(--mono); font-size: 11px; color: var(--g500);
+  background: var(--g100); padding: 2px 8px; border-radius: 999px;
+}
+.sec-intro { font-size: 15px; color: var(--g700); max-width: 700px; margin: 0 0 32px 50px; }
+.sec-body { margin-left: 50px; }
+@media (max-width: 640px) { .sec-intro, .sec-body { margin-left: 0; } }
+
+h3 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 40px 0 14px; letter-spacing: -0.008em; }
+h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--g500); margin: 28px 0 10px; }
+p { margin: 0 0 14px; font-size: 15.5px; color: var(--g700); }
+p strong { color: var(--slate); font-weight: 600; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; color: var(--g700); font-size: 15.5px; }
+li { margin-bottom: 6px; }
+li strong { color: var(--slate); }
+code { font-family: var(--mono); font-size: 13px; background: var(--g100); padding: 1.5px 6px; border-radius: 4px; color: var(--slate); }
+
+/* ── card / callout ───────────────────── */
+.card { background: var(--paper); border: 1.5px solid var(--g300); border-radius: 14px; padding: 24px 28px; margin: 18px 0 24px; }
+.card.accent { border-color: var(--slate); }
+.card.trap { border-color: var(--clay); background: linear-gradient(to right, #FCEEE3 0%, var(--paper) 55%); }
+.card .label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--clay); margin-bottom: 10px;
+}
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* ── tables ───────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 8px 0 24px; border-radius: 10px; border: 1.5px solid var(--g200); background: var(--paper); }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.tbl th {
+  text-align: left; padding: 12px 14px; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500);
+  background: var(--g100); border-bottom: 1.5px solid var(--g200);
+}
+table.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--g100); vertical-align: top; color: var(--g700); }
+table.tbl tbody tr:last-child td { border-bottom: 0; }
+table.tbl tbody tr:hover td { background: var(--ivory); }
+table.tbl td strong { color: var(--slate); }
+table.tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12.5px; }
+
+/* ── applet ───────────────────────────── */
+.applet {
+  background: var(--paper); border: 1.5px solid var(--slate); border-radius: 14px;
+  padding: 26px 28px 22px; margin: 22px 0 30px; position: relative;
+  box-shadow: 0 12px 32px rgba(20,20,19,.06);
+}
+.applet > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--slate); border-radius: 6px; color: var(--slate);
+}
+.applet .ap-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--slate); margin: 2px 0 4px; }
+.applet .ap-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+.ap-grid { display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; }
+@media (max-width: 820px) { .ap-grid { grid-template-columns: 1fr; gap: 22px; } }
+.ap-fig svg { display: block; width: 100%; height: auto; }
+
+.ctrl { margin-bottom: 16px; }
+.ctrl .cl {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--g500); margin-bottom: 6px;
+}
+.ctrl .cv { font-size: 12.5px; color: var(--clay-d); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; }
+.ctrl input[type=range] {
+  width: 100%; margin: 0; -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px; background: var(--g200); cursor: pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%;
+  background: var(--clay); border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+  transition: transform 140ms var(--ease);
+}
+.ctrl input[type=range]:active::-webkit-slider-thumb { transform: scale(1.18); }
+.ctrl input[type=range]::-moz-range-thumb {
+  width: 15px; height: 15px; border-radius: 50%; background: var(--clay);
+  border: 2px solid var(--paper); box-shadow: 0 1px 3px rgba(20,20,19,.28);
+}
+.ctrl input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: var(--g200); }
+.ctrl input[type=range]:focus-visible { outline: 2px solid var(--slate); outline-offset: 3px; }
+.ctrl .ch { font-size: 12px; color: var(--g500); margin-top: 5px; line-height: 1.4; }
+.ctrl.toggle { display: flex; align-items: flex-start; gap: 10px; }
+.ctrl.toggle input { accent-color: var(--clay); margin-top: 3px; flex-shrink: 0; }
+.ctrl.toggle label { font-size: 13px; color: var(--g700); }
+
+.ro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 1.5px; background: var(--g200); border: 1.5px solid var(--g200); border-radius: 10px; overflow: hidden; margin-top: 18px; }
+.ro { background: var(--paper); padding: 11px 13px; }
+.ro .rl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--g500); margin-bottom: 3px; }
+.ro .rv { font-family: var(--mono); font-size: 15px; color: var(--slate); font-variant-numeric: tabular-nums; }
+.ro.hero { background: linear-gradient(to bottom right, #FCEEE3, var(--paper)); }
+.ro.hero .rv { color: var(--clay-d); font-weight: 600; }
+.ro.good .rv { color: var(--olive-d); }
+.ap-note { font-size: 13.5px; color: var(--g700); margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--g200); }
+.ap-note strong { color: var(--slate); }
+
+/* ── checkpoint + quiz ────────────────── */
+.check {
+  background: var(--paper); border: 1.5px solid var(--clay); border-radius: 14px;
+  padding: 24px 28px; margin: 26px 0 30px; position: relative;
+}
+.check > .tag {
+  position: absolute; top: -10px; left: 20px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; background: var(--ivory);
+  padding: 2px 8px; border: 1.5px solid var(--clay); border-radius: 6px; color: var(--clay-d);
+}
+.check .ck-h { font-family: var(--serif); font-size: 17px; font-weight: 500; margin: 2px 0 2px; }
+.check .ck-s { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+
+.q { padding: 18px 0; border-top: 1px solid var(--g200); }
+.q:first-of-type { border-top: 0; padding-top: 2px; }
+.q .qn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.q .qn .pill { background: var(--g100); border-radius: 999px; padding: 2px 8px; color: var(--g700); }
+.q .qn .pill.recall { background: #FCEEE3; color: var(--clay-d); }
+.q .stem { font-size: 15.5px; color: var(--slate); margin-bottom: 14px; }
+.q .stem em { color: var(--clay-d); font-style: italic; }
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  text-align: left; font-family: var(--sans); font-size: 14.5px; color: var(--g700);
+  background: var(--paper); border: 1.5px solid var(--g300); border-radius: 10px;
+  padding: 11px 15px; cursor: pointer; transition: border-color 120ms, background 120ms;
+  display: flex; gap: 11px; align-items: flex-start; line-height: 1.45;
+}
+.opt:hover:not(:disabled) { border-color: var(--slate); }
+.opt .k { font-family: var(--mono); font-size: 11px; color: var(--g500); padding-top: 2px; flex-shrink: 0; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--olive); background: #F2F5EE; color: var(--slate); }
+.opt.right .k { color: var(--olive-d); }
+.opt.wrong { border-color: var(--clay); background: #FCEEE3; color: var(--slate); }
+.opt.wrong .k { color: var(--clay-d); }
+.opt.muted { opacity: 0.5; }
+
+.numrow { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.numrow .pre { font-family: var(--mono); font-size: 14px; color: var(--g500); }
+.numrow input {
+  font-family: var(--mono); font-size: 14.5px; padding: 10px 13px; width: 160px;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate);
+}
+.numrow input:focus { outline: none; border-color: var(--slate); }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 16px; border: 1.5px solid var(--slate); border-radius: 10px;
+  background: var(--slate); color: var(--ivory); cursor: pointer; transition: opacity 120ms;
+}
+.btn:hover { opacity: 0.84; }
+.btn.ghost { background: var(--paper); color: var(--g700); border-color: var(--g300); }
+.btn.ghost:hover { border-color: var(--slate); color: var(--slate); opacity: 1; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+.clsrow { display: grid; grid-template-columns: 1fr 210px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--g100); font-size: 14.5px; color: var(--g700); }
+.clsrow:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .clsrow { grid-template-columns: 1fr; gap: 7px; } }
+.clsrow select {
+  font-family: var(--sans); font-size: 13.5px; padding: 8px 11px; border: 1.5px solid var(--g300);
+  border-radius: 9px; background: var(--paper); color: var(--slate); width: 100%;
+}
+.clsrow select:focus { outline: none; border-color: var(--slate); }
+.clsrow.right select { border-color: var(--olive); background: #F2F5EE; }
+.clsrow.wrong select { border-color: var(--clay); background: #FCEEE3; }
+
+.fb { margin-top: 13px; padding: 13px 16px; border-radius: 10px; font-size: 14px; line-height: 1.5; }
+.fb.ok { background: #F2F5EE; border-left: 3px solid var(--olive); color: var(--g700); }
+.fb.no { background: #FCEEE3; border-left: 3px solid var(--clay); color: var(--g700); }
+.fb strong { color: var(--slate); }
+.fb .vk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 5px; color: var(--g500); }
+.ck-foot { margin-top: 20px; padding-top: 16px; border-top: 1.5px solid var(--g200); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ck-score { font-family: var(--mono); font-size: 12px; color: var(--g700); font-variant-numeric: tabular-nums; }
+.ck-score b { color: var(--slate); }
+
+/* ── progress rail ────────────────────── */
+.rail { position: sticky; top: 0; z-index: 20; background: rgba(250,249,245,.93); backdrop-filter: blur(8px); border-bottom: 1.5px solid var(--g200); margin: 0 -32px 0; padding: 11px 32px; }
+.rail-in { max-width: 1056px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+.rail .rt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g500); white-space: nowrap; }
+.rail .bar { flex: 1; height: 7px; background: var(--g200); border-radius: 999px; overflow: hidden; }
+.rail .bar i { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 999px; transition: width 300ms; }
+.rail .rv { font-family: var(--mono); font-size: 11.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* ── quiz result ──────────────────────── */
+.result { margin-top: 24px; }
+.result .rh { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
+.chart { background: var(--paper); border: 1.5px solid var(--g200); border-radius: 12px; padding: 22px 26px 16px; margin: 18px 0 24px; }
+.chart .ch-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+.chart .ch-sub { font-family: var(--mono); font-size: 10.5px; color: var(--g500); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+.chart .ch-row { display: grid; grid-template-columns: 190px 1fr 62px; align-items: center; gap: 16px; padding: 7px 0; font-size: 13.5px; }
+@media (max-width: 640px) { .chart .ch-row { grid-template-columns: 118px 1fr 50px; gap: 10px; font-size: 12.5px; } }
+.chart .ch-label { color: var(--g700); font-weight: 500; }
+.chart .ch-bar-wrap { position: relative; height: 20px; background: var(--g100); border-radius: 4px; overflow: hidden; }
+.chart .ch-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--oat); border-radius: 4px; transition: width 400ms; }
+.chart .ch-row.peak .ch-bar { background: var(--olive); }
+.chart .ch-row.weak .ch-bar { background: var(--clay); }
+.chart .ch-val { font-family: var(--mono); font-size: 12px; color: var(--g700); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── footer ───────────────────────────── */
+footer { margin-top: 90px; border-top: 1.5px solid var(--g300); padding-top: 32px; font-size: 13px; color: var(--g500); }
+footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); font-size: 15px; }
+.foot-grid { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+.ledger { margin-bottom: 30px; }
+.ledger table.tbl td:first-child { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-d); white-space: nowrap; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── motion + completion feedback ──────────
+ * Borrowed from thariqs.github.io/html-effectiveness/07-prototype-animation:
+ * one swappable --ease, a staggered 0/80/120 ms cadence (fill → check → text),
+ * a stroke-drawn checkmark, and collapse-on-settle so a finished checkpoint
+ * stops competing for attention. Clay = needs you, olive = settled.
+ */
+:root {
+  --ease: cubic-bezier(.34, 1.56, .64, 1);   /* spring, slight overshoot */
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* the drawn checkmark */
+.tick { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+.tick circle { fill: var(--olive); transform: scale(0); transform-origin: 50% 50%; animation: tickPop 260ms var(--ease) forwards; }
+.tick path { stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round;
+             stroke-dasharray: 20; stroke-dashoffset: 20; animation: tickDraw 300ms var(--ease-out) 80ms forwards; }
+.tick.no circle { fill: var(--clay); }
+@keyframes tickPop  { to { transform: scale(1); } }
+@keyframes tickDraw { to { stroke-dashoffset: 0; } }
+
+/* option settling into its answered state */
+.opt { transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease), opacity 200ms linear; }
+.opt.right { transform: translateX(2px); }
+.opt.muted { opacity: .45; }
+
+/* feedback arrives after the option has settled (120 ms, their cadence) */
+.fb { animation: fbIn 300ms var(--ease-out) 120ms both; }
+@keyframes fbIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* a retired question collapses to a single strikethrough line */
+.q { transition: max-height 420ms var(--ease-out), opacity 300ms linear; overflow: hidden; max-height: 1400px; }
+.q.settled { max-height: 46px; opacity: .55; }
+.q.settled:hover { opacity: 1; }
+.q .qlabel { position: relative; display: none; font-size: 14px; color: var(--g700); align-items: center; gap: 9px; }
+.q.settled .qlabel { display: flex; }
+.q.settled .stem, .q.settled .opts, .q.settled .fb, .q.settled .numrow, .q.settled .clsrow { display: none; }
+.q .qlabel .txt { position: relative; }
+.q .qlabel .txt::after {
+  content: ""; position: absolute; left: 0; top: 52%; height: 1.5px; width: 0;
+  background: var(--g500); transition: width 340ms var(--ease-out) 120ms;
+}
+.q.settled .qlabel .txt::after { width: 100%; }
+.q .qlabel .re { font-family: var(--mono); font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--clay-d); background: #FCEEE3; border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+
+/* ── applet step-through annotator ─────── */
+.steps { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--g200); }
+.steps-h { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.steps-h .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: var(--g500); }
+.step {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 9px 12px; border-radius: 10px;
+  font-size: 14px; color: var(--g500); border: 1.5px solid transparent;
+  transition: background 260ms var(--ease-out), color 260ms var(--ease-out), border-color 260ms var(--ease-out), transform 260ms var(--ease);
+}
+.step .sn { font-family: var(--mono); font-size: 11px; color: var(--g300); padding-top: 2px; transition: color 260ms; }
+.step .sv { font-family: var(--mono); font-size: 12.5px; color: var(--clay-d); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; opacity: 0; transition: opacity 300ms var(--ease-out) 90ms; }
+.step.on { background: var(--paper); border-color: var(--clay); color: var(--slate); transform: translateX(3px); }
+.step.on .sn { color: var(--clay); }
+.step.on .sv { opacity: 1; }
+.step.past { color: var(--g700); }
+.step.past .sn { color: var(--olive); }
+.step.past .sv { opacity: .8; color: var(--g500); }
+
+/* readout gets a ring while its step is live */
+.ro { transition: box-shadow 260ms var(--ease-out), background 260ms var(--ease-out); }
+.ro.lit { box-shadow: inset 0 0 0 1.5px var(--clay); background: #FDF6F1; }
+.ro.hero.lit { box-shadow: inset 0 0 0 1.5px var(--clay-d); }
+
+/* figure highlight layer */
+.ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+
+/* ── exam-format free response ────────── */
+.q.frq { max-height: none; padding: 24px 0; }
+.frq-h { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 12px; }
+.frq-t { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--slate); }
+.frq-p { font-family: var(--mono); font-size: 12px; color: var(--g500); white-space: nowrap; }
+.frq-part { font-size: 15px; color: var(--g700); margin: 0 0 10px; }
+.frq-part b { color: var(--slate); }
+.q.frq textarea {
+  width: 100%; margin: 8px 0 12px; padding: 13px 15px; font-family: var(--sans); font-size: 14.5px; line-height: 1.5;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate); resize: vertical;
+}
+.q.frq textarea:focus { outline: none; border-color: var(--slate); }
+.frq-key { margin-top: 16px; border-top: 1.5px dashed var(--g300); padding-top: 14px; animation: fbIn 300ms var(--ease-out) both; }
+.frq-ans { background: #F2F5EE; border-left: 3px solid var(--olive); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+.frq-al { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--olive-d); margin-bottom: 5px; }
+.frq-ans p { font-size: 14px; color: var(--g700); margin: 0 0 8px; }
+.rub { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--g700); padding: 4px 0; cursor: pointer; }
+.rub input { accent-color: var(--olive); margin-top: 3px; flex-shrink: 0; }
+.rub b { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--olive-d); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="background:#FCEEE3;border-bottom:1.5px solid #D97757;padding:16px 32px;font-family:system-ui,sans-serif;color:#141413">
+    <strong>This page needs JavaScript.</strong> The questions, the quiz and the models are built in the
+    browser — with scripts blocked you will see empty cards. Open it in a normal browser tab.
+  </div>
+</noscript>
+
+<div class="rail">
+  <div class="rail-in">
+    <span class="rt">Chapter 08 mastery</span>
+    <span class="bar"><i id="railbar"></i></span>
+    <span class="rv" id="railval">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">ECN 1A · UC Davis · Chapter 08</div>
+      <h1>When the law sets the <em>price</em></h1>
+      <p class="intro">A ceiling or floor only matters on one side of equilibrium. Once it binds, something other than price decides who gets the goods, and the damage grows the longer the control stays in place.</p>
+      <div class="meta">4 chunks · 2 live models · 4 checkpoints · 10-question practice exam</div>
+      <div class="meta" style="margin-top:4px">Updated Oct 25, 2026</div>
+      <nav class="toc"><a href="#c0">Binding? <span class="n">00</span></a><a href="#c1">Rationing <span class="n">01</span></a><a href="#c2">Minimum wage <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Practice exam <span class="n">▸</span></a></nav>
+    </div>
+    <div class="hero-fig" aria-hidden="true">
+      <span class="tag">the gap</span>
+      <div class="fig-h">a ceiling below equilibrium</div>
+      <svg viewBox="0 0 280 180"><line x1="30" y1="150" x2="262" y2="150" stroke="#D1CFC5" stroke-width="1.5"/><line x1="30" y1="150" x2="30" y2="18" stroke="#D1CFC5" stroke-width="1.5"/><line x1="38" y1="26" x2="250" y2="142" stroke="#B85C3E" stroke-width="2"/><line x1="38" y1="138" x2="250" y2="34" stroke="#5A6B45" stroke-width="2"/><line x1="30" y1="108" x2="262" y2="108" stroke="#141413" stroke-width="1.8" stroke-dasharray="5 4"/><line x1="98" y1="118" x2="190" y2="118" stroke="#D97757" stroke-width="4"/><text x="144" y="133" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#B85C3E">shortage</text><text x="258" y="102" text-anchor="end" font-family="ui-monospace,monospace" font-size="8.5" fill="#3D3D3A">ceiling</text></svg>
+    </div>
+  </div>
+</header>
+
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>A control only bites on the wrong side of equilibrium</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Chapter 6 showed that a price control burns surplus. This chapter is about what happens next:
+    who ends up with the goods, why the damage grows over time, and what the minimum wage does to a
+    labour market.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th></th><th>Price ceiling — a legal <em>maximum</em></th><th>Price floor — a legal <em>minimum</em></th></tr></thead>
+      <tbody>
+        <tr><td><strong>Binding when</strong></td><td>set <strong>below</strong> equilibrium</td><td>set <strong>above</strong> equilibrium</td></tr>
+        <tr><td><strong>Creates</strong></td><td>a shortage: Q<sub>d</sub> &gt; Q<sub>s</sub></td><td>a surplus: Q<sub>s</sub> &gt; Q<sub>d</sub></td></tr>
+        <tr><td><strong>Quantity traded</strong></td><td>Q<sub>s</sub>: sellers are the short side</td><td>Q<sub>d</sub>: buyers are the short side</td></tr>
+        <tr><td><strong>Examples</strong></td><td>rent control, price-gouging laws, capped ticket prices</td><td>minimum wage, agricultural price supports</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">The names are backwards from your intuition</div>
+      <p style="margin-bottom:0">
+        A ceiling is a maximum price, but to bind it has to sit <em>below</em> equilibrium. A ceiling above
+        equilibrium is a cap nobody hits. Students mix this up by picturing a ceiling as something high up.
+        Think of it as a limit on how high the price can go: it only matters if the price wants to go higher.
+      </p>
+    </div>
+    <p>
+      Both controls cut the quantity traded below equilibrium, for the same reason. At a price that is not the equilibrium price,
+      the quantity that changes hands is the <strong>smaller</strong> of Q<sub>d</sub> and Q<sub>s</sub>. You
+      cannot force a seller to sell or a buyer to buy.
+    </p>
+
+    <div class="applet" id="ap-pc">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Set a control and see what happens</div>
+      <div class="ap-sub">equilibrium P* = $40, Q* = 60 · short run D: P = 100 − Q, S: P = 10 + 0.5Q</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pc-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Controlled price</span><span class="cv" id="pc-p-v">$30</span></div>
+            <input type="range" id="pc-p" min="15" max="65" step="1" value="30">
+            <div class="ch">Drag it across $40 and watch the control switch between binding and irrelevant.</div>
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="pc-floor">
+            <label for="pc-floor">Make it a <strong>price floor</strong> instead of a ceiling</label>
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="pc-lr">
+            <label for="pc-lr"><strong>Long run</strong>: both curves 2.5× flatter, because buyers and sellers have had time to adjust</label>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Qty demanded</div><div class="rv" id="pc-ro-qd">—</div></div>
+            <div class="ro"><div class="rl">Qty supplied</div><div class="rv" id="pc-ro-qs">—</div></div>
+            <div class="ro hero"><div class="rl" id="pc-rl-gap">Shortage</div><div class="rv" id="pc-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Qty traded</div><div class="rv" id="pc-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Black-market price</div><div class="rv" id="pc-ro-bm">—</div></div>
+            <div class="ro"><div class="rl">Deadweight loss</div><div class="rv" id="pc-ro-dwl">—</div></div>
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="pc-ro-cs">—</div></div>
+            <div class="ro good"><div class="rl">Producer surplus</div><div class="rv" id="pc-ro-ps">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pc-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Binding or not · shortage and surplus</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>When price can't ration, something else does</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    A shortage doesn't stay a gap on a graph. There are more buyers than goods, so <em>something</em> decides
+    who gets them. If the price can't do it, other things will.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Waiting and search.</strong> Lines at the gas station, months on an apartment hunt. Time spent
+        waiting is a real cost that nobody receives, so it eats into the gain buyers were promised.</li>
+      <li><strong>Black markets.</strong> The units that are supplied are worth more to buyers than the legal
+        price. With a ceiling at $30, the 40th unit is worth $60 to someone. That gap pulls trade off the books, and
+        the model above computes the price from the demand curve at Q<sub>s</sub>.</li>
+      <li><strong>Falling quality.</strong> A landlord who can't raise the rent can still cut maintenance.
+        Quality falls until the real price matches the legal one.</li>
+      <li><strong>Favouritism and side payments.</strong> When sellers pick from a queue, they choose friends,
+        tenants who look easy, or whoever pays "key money" under the table.</li>
+    </ul>
+    <div class="card accent">
+      <div class="label">The control does more damage over time</div>
+      <p style="margin-bottom:0">
+        Supply and demand are both <strong>more elastic in the long run</strong>. Landlords convert apartments
+        to condos and stop building. Renters who would have moved out or found roommates stay in big
+        apartments instead. So the same rent ceiling causes a small shortage in year one and a much larger one in
+        year ten. Go back to the model and tick <em>long run</em>. At a $30 ceiling the shortage grows from
+        30 units to 75, and the deadweight loss grows from $300 to $750.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">"The market will adjust back to equilibrium"</div>
+      <p style="margin-bottom:0">
+        It can't. Under a binding control the price is not allowed to move, and the price is what would
+        close the gap. A shortage under a ceiling lasts as long as the law does. The only thing that
+        changes over time is elasticity, and that makes the shortage worse.
+      </p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Non-price rationing · short run vs long run</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>The minimum wage is a price floor on labour</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    In the labour market the roles are swapped: <strong>workers supply</strong> labour and <strong>firms
+    demand</strong> it. A minimum wage above the market wage is a binding floor, so it creates a surplus of
+    labour, which is unemployment.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Employment</strong> falls to the quantity of labour demanded. Firms hire fewer workers, substitute
+        machines for labour, or cut hours.</li>
+      <li><strong>Unemployment = L<sub>s</sub> − L<sub>d</sub></strong>. It is larger than the number of jobs lost,
+        because the higher wage also draws <em>new</em> people into looking for work.</li>
+      <li><strong>Whether low-wage workers earn more in total</strong> depends on the elasticity of labour demand.
+        This is the total-revenue test from Chapter 5 with workers as the sellers. If demand is inelastic, the wage bill rises.
+        If it is elastic, the wage bill falls.</li>
+    </ul>
+    <p>
+      Agricultural price supports are the same kind of floor in a goods market. To keep the floor from collapsing,
+      governments often <em>buy</em> the surplus, so taxpayers pay for output that nobody consumes at that price.
+    </p>
+
+    <div class="applet" id="ap-mw">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A minimum wage, and who it helps</div>
+      <div class="ap-sub">market wage $12 · 100k workers · labour supply W = 4 + 0.08L</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="mw-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Minimum wage</span><span class="cv" id="mw-w-v">$15.00</span></div>
+            <input type="range" id="mw-w" min="8" max="20" step="0.5" value="15">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Labour-demand elasticity at equilibrium</span><span class="cv" id="mw-b-v">1.20</span></div>
+            <input type="range" id="mw-b" min="0.03" max="0.3" step="0.01" value="0.1">
+            <div class="ch">Drag left for an elastic demand curve (firms can easily automate), right for an inelastic one.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Employed (k)</div><div class="rv" id="mw-ro-ld">—</div></div>
+            <div class="ro"><div class="rl">Want to work (k)</div><div class="rv" id="mw-ro-ls">—</div></div>
+            <div class="ro hero"><div class="rl">Unemployed (k)</div><div class="rv" id="mw-ro-un">—</div></div>
+            <div class="ro"><div class="rl">Jobs lost (k)</div><div class="rv" id="mw-ro-lost">—</div></div>
+            <div class="ro good"><div class="rl">Wage bill $k/hr</div><div class="rv" id="mw-ro-bill">—</div></div>
+            <div class="ro"><div class="rl">Demand elasticity</div><div class="rv" id="mw-ro-el">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="mw-note"></p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Minimum wage · floors in goods markets</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Written questions on price controls follow a few fixed patterns. Each pattern has one point graders look for.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Is the control binding?"</td><td>Compare it with P*. Ceiling below, floor above. Then <em>say why</em> in one sentence.</td>
+            <td>A bare "yes" with no comparison to equilibrium gets half marks at best.</td></tr>
+        <tr><td>"Find the shortage / surplus"</td><td>Plug the controlled price into <em>both</em> equations. Gap = |Q<sub>d</sub> − Q<sub>s</sub>|.</td>
+            <td>Subtracting from Q* instead of from the other curve.</td></tr>
+        <tr><td>"Find the deadweight loss"</td><td>Q traded = the short side. DWL = ½ × (D(Q) − S(Q)) × (Q* − Q).</td>
+            <td>Using the controlled price as the triangle's height. The height is the gap between the <em>curves</em> at the traded quantity.</td></tr>
+        <tr><td>"Who gains, who loses?"</td><td>Ceiling: sellers lose. Buyers who get the good gain, buyers who are shut out lose. Floor: the mirror image.</td>
+            <td>Saying "consumers gain" from a ceiling as a group. That can be false.</td></tr>
+        <tr><td>"What happens over time?"</td><td>Both curves become more elastic, so the shortage or surplus and the DWL grow.</td>
+            <td>"The market adjusts back to equilibrium." The price isn't allowed to.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">Writing a full-credit answer</div>
+      <p style="margin-bottom:0">
+        For each lettered part, give the claim, the mechanism and, if there are numbers, the number. "Buyers bear more
+        (claim) <em>because</em> demand is inelastic, so they can't switch away (mechanism)." Graders give
+        points for the <em>because</em>. The questions at the end of this chapter are in the same format as the
+        exam and come with a points rubric.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">Transfer vs loss, again</div>
+      <p style="margin-bottom:0">
+        A ceiling <strong>moves</strong> surplus from sellers to the buyers who still get the good, and it
+        <strong>destroys</strong> the surplus on trades that stopped. Waiting in line and searching are also lost,
+        because nobody receives that time. Bribes and key money are transfers. Keep those two categories separate in every answer.
+      </p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Surplus, deadweight loss &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Practice exam</h2><span class="count">10 questions · 100 points</span></div>
+  <p class="sec-intro">
+    Written questions in the same format as the midterm. Write your full answer <em>before</em> you open the model answer.
+    Once you've written something, compare it with the rubric and tick the points you actually earned. Be strict, the way a grader would be.
+    Your answers are saved in this browser.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">exam format</span>
+      <div class="ck-h">All of Chapter 8, interleaved</div>
+      <div class="ck-s">write first · then mark yourself against the rubric</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Price control</td>
+            <td>Whether the control binds, Q<sub>d</sub> and Q<sub>s</sub> at the controlled price, the shortage or surplus, the quantity traded (the short side), the black-market price (demand at Q<sub>s</sub>), and consumer surplus, producer surplus and DWL as exact areas under the curves.</td>
+            <td>Linear curves. <strong>Efficient rationing</strong>: the units that trade go to the highest-value buyers and come from the lowest-cost sellers, so the DWL shown is the <em>minimum</em>. Real queues and lotteries waste more. "Long run" means both slopes ÷ 2.5 around the same equilibrium. That number is illustrative and not estimated from data.</td></tr>
+        <tr><td>Minimum wage</td>
+            <td>Employment, labour supplied, unemployment, jobs lost, new entrants, the wage bill before and after, and the point elasticity of labour demand at the equilibrium.</td>
+            <td>One competitive labour market with linear curves. No monopsony, no hours adjustment, no spillover to other wages, no effect on prices.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="k">ECN 1A · Chapter 08 of 11</div>
+      <div style="margin-top:6px">
+        Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
+        paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div><strong>Next:</strong> <a href="ch09-externalities-public-goods.html">Chapter 9 — Externalities and Public Goods</a></div>
+      <div style="margin-top:6px"><a href="index.html">← all chapters</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+/* ===================================================================
+ * Chapter 01 — four live models, a step-through annotator, and the
+ * within-material retrieval schedule. Plain ES5-ish JS in IIFEs, no
+ * dependencies, no build step. Opens from file://, deploys to any
+ * static host. Every displayed number comes out of a compute() below.
+ * =================================================================== */
+'use strict';
+
+/* ---------- tiny helpers ------------------------------------------ */
+function $(s, r) { return (r || document).querySelector(s); }
+function el(id) { return document.getElementById(id); }
+function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function pct(n, d) { return (n * 100).toFixed(d === undefined ? 0 : d) + '%'; }
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+function kg(g) { return g >= 1000 ? (g / 1000).toFixed(1) + ' kg' : Math.round(g) + ' g'; }
+
+/* A scale factory: domain -> pixel range. */
+function scale(d0, d1, p0, p1) {
+  return function (v) { return p0 + (v - d0) / (d1 - d0) * (p1 - p0); };
+}
+var AX = '#D1CFC5', INK = '#3D3D3A', FAINT = '#87867F',
+    CLAY = '#D97757', CLAYD = '#B85C3E', OAT = '#E3DACC', OLIVE = '#788C5D', G100 = '#F0EEE6';
+function txt(x, y, s, o) {
+  o = o || {};
+  return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'start') +
+    '" font-family="ui-monospace,monospace" font-size="' + (o.s || 9) + '" fill="' + (o.f || INK) +
+    '"' + (o.ls ? ' letter-spacing="' + o.ls + '"' : '') + '>' + s + '</text>';
+}
+function line(x1, y1, x2, y2, c, w, dash) {
+  return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+    '" stroke="' + c + '" stroke-width="' + (w || 1.5) + '"' +
+    (dash ? ' stroke-dasharray="' + dash + '"' : '') + ' stroke-linecap="round"/>';
+}
+function rect(x, y, w, h, f, r) {
+  return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+    '" fill="' + f + '" rx="' + (r === undefined ? 3 : r) + '"/>';
+}
+function svg(vb, body) {
+  return '<svg viewBox="' + vb + '" role="img">' + body + '</svg>';
+}
+
+/* ---------- the step-through annotator ---------------------------- *
+ * Each applet gets a numbered walkthrough. Advancing a step lights the
+ * readouts that step is about and fills in the live value, so the reader
+ * is told which number to look at and why, in order.
+ */
+function Stepper(host, defs, recompute) {
+  var box = document.createElement('div');
+  box.className = 'steps';
+  box.innerHTML =
+    '<div class="steps-h"><span class="lbl">Walk me through it</span>' +
+    '<button class="btn ghost" data-a="prev">‹ back</button>' +
+    '<button class="btn ghost" data-a="next">next ›</button>' +
+    '<span class="ck-score" data-k="pos"></span></div>' +
+    defs.map(function (d, i) {
+      return '<div class="step" data-i="' + i + '"><span class="sn">' +
+        String(i + 1).padStart(2, '0') + '</span><span>' + d.t +
+        '<span class="sv"></span></span></div>';
+    }).join('');
+  host.appendChild(box);
+
+  var rows = box.querySelectorAll('.step'), pos = -1;
+  function paint() {
+    for (var i = 0; i < rows.length; i++) {
+      rows[i].className = 'step' + (i === pos ? ' on' : i < pos ? ' past' : '');
+    }
+    $('[data-k=pos]', box).textContent = pos < 0 ? '' : (pos + 1) + ' / ' + rows.length;
+    // clear every lit readout in this applet, then light the live step's
+    var lits = host.querySelectorAll('.ro.lit');
+    for (var j = 0; j < lits.length; j++) lits[j].classList.remove('lit');
+    if (pos >= 0 && defs[pos].lit) {
+      defs[pos].lit.forEach(function (id) { var n = el(id); if (n) n.closest('.ro').classList.add('lit'); });
+    }
+    values();
+  }
+  function values() {
+    var m = recompute();
+    for (var i = 0; i < rows.length; i++) {
+      var sv = $('.sv', rows[i]);
+      sv.textContent = (i <= pos && defs[i].v) ? defs[i].v(m) : '';
+    }
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    pos = clamp(pos + (b.dataset.a === 'next' ? 1 : -1), -1, rows.length - 1);
+    paint();
+  });
+  box.addEventListener('click', function (e) {
+    var r = e.target.closest('.step'); if (!r) return;
+    pos = +r.dataset.i; paint();
+  });
+  return { refresh: values, paint: paint };
+}
+</script>
+<script>
+'use strict';
+/* Both curves pivot around the same no-control equilibrium, P* = $40,
+ * Q* = 60, so switching to the long run changes elasticity and nothing
+ * else. Short run: demand P = 100 - Q, supply P = 10 + 0.5Q. */
+var PCP = 40, PCQ = 60, PCB = 1, PCD = 0.5, PCLR = 2.5;
+
+/* =================================================================
+ * MODEL 1 — a price control, ceiling or floor, short run or long run.
+ * Rationing is assumed efficient (the units that trade go to the
+ * highest-value buyers and come from the lowest-cost sellers), so the
+ * deadweight loss shown is the smallest the control can cause.
+ * ================================================================= */
+(function () {
+  function compute(p) {
+    var k = p.lr ? PCLR : 1, b = PCB / k, d = PCD / k;
+    function D(q) { return PCP - b * (q - PCQ); }
+    function S(q) { return PCP + d * (q - PCQ); }
+    var cs0 = 0.5 * (D(0) - PCP) * PCQ, ps0 = 0.5 * (PCP - S(0)) * PCQ;
+    var binding = p.floor ? p.price > PCP : p.price < PCP;
+    var pr = binding ? p.price : PCP;
+    var qd = Math.max(0, PCQ + (PCP - pr) / b), qs = Math.max(0, PCQ + (pr - PCP) / d);
+    var q = Math.min(qd, qs);
+    // areas under linear curves over [0, q]: trapezoids
+    var cs = q * (D(0) + D(q)) / 2 - pr * q;
+    var ps = pr * q - q * (S(0) + S(q)) / 2;
+    return {
+      b: b, d: d, D0: D(0), S0: S(0), binding: binding, pr: pr,
+      qd: qd, qs: qs, q: q, gap: Math.abs(qd - qs), short: qd > qs,
+      bm: !p.floor && binding ? D(q) : null, Dq: D(q), Sq: S(q),
+      cs: cs, ps: ps, cs0: cs0, ps0: ps0, dwl: cs0 + ps0 - cs - ps
+    };
+  }
+
+  function draw(p, m) {
+    var bx = [], qm = Math.max(m.qd, m.qs, 120) * 1.08, pm = 105;
+    var x = scale(0, qm, 48, 340), y = scale(0, pm, 230, 20);
+    bx.push(line(48, 230, 344, 230, AX), line(48, 230, 48, 16, AX));
+    bx.push(txt(48, 248, 'QUANTITY →', { s: 8, f: FAINT, ls: 0.8 }));
+    bx.push(txt(52, 26, 'PRICE', { s: 8, f: FAINT, ls: 0.8 }));
+    var dEnd = Math.min(qm, m.D0 / m.b);
+    // surplus areas, from the computed corner points
+    if (m.q > 0) {
+      bx.push('<polygon points="' + x(0) + ',' + y(m.D0) + ' ' + x(m.q) + ',' + y(m.Dq) + ' ' + x(m.q) + ',' + y(m.pr) + ' ' + x(0) + ',' + y(m.pr) + '" fill="' + CLAY + '" opacity="0.22"/>');
+      bx.push('<polygon points="' + x(0) + ',' + y(m.pr) + ' ' + x(m.q) + ',' + y(m.pr) + ' ' + x(m.q) + ',' + y(m.Sq) + ' ' + x(0) + ',' + y(Math.max(0, m.S0)) + '" fill="' + OLIVE + '" opacity="0.25"/>');
+    }
+    if (m.binding) {
+      bx.push('<polygon points="' + x(m.q) + ',' + y(m.Dq) + ' ' + x(PCQ) + ',' + y(PCP) + ' ' + x(m.q) + ',' + y(m.Sq) + '" fill="' + INK + '" opacity="0.5"/>');
+      if (x(PCQ) - x(m.q) > 30)   // label at the centroid, only when it fits
+        bx.push(txt((2 * x(m.q) + x(PCQ)) / 3, (y(m.Dq) + y(PCP) + y(m.Sq)) / 3 + 3, 'DWL', { a: 'middle', s: 8.5, f: '#fff' }));
+    }
+    bx.push(line(x(0), y(m.D0), x(dEnd), y(m.D0 - m.b * dEnd), CLAYD, 2.2));
+    var sEnd = Math.min(qm, (pm - m.S0) / m.d);
+    bx.push(line(x(0), y(m.S0), x(sEnd), y(m.S0 + m.d * sEnd), '#5A6B45', 2.2));
+    bx.push(txt(x(dEnd) - 4, y(m.D0 - m.b * dEnd) - 6, 'D', { a: 'end', s: 10, f: CLAYD }));
+    bx.push(txt(x(sEnd) - 4, y(m.S0 + m.d * sEnd) + 14, 'S', { a: 'end', s: 10, f: '#5A6B45' }));
+    // the control line
+    bx.push(line(48, y(p.price), 344, y(p.price), m.binding ? INK : FAINT, m.binding ? 2 : 1.3, '5 4'));
+    bx.push(txt(44, y(p.price) + 4, '$' + p.price, { a: 'end', s: 9, f: INK }));
+    bx.push(txt(340, y(p.price) - 6, (p.floor ? 'floor' : 'ceiling') + (m.binding ? '' : ' (not binding)'), { a: 'end', s: 8.5, f: m.binding ? INK : FAINT }));
+    bx.push('<circle cx="' + x(PCQ) + '" cy="' + y(PCP) + '" r="4" fill="none" stroke="' + FAINT + '" stroke-width="1.5"/>');
+    if (m.binding) {
+      [m.qd, m.qs].forEach(function (v) { bx.push(line(x(v), 230, x(v), y(m.pr), AX, 1.2, '3 3')); });
+      bx.push(txt(x(m.qd), 242, 'Qd ' + Math.round(m.qd), { a: 'middle', s: 8.5, f: CLAYD }));
+      bx.push(txt(x(m.qs), 242, 'Qs ' + Math.round(m.qs), { a: 'middle', s: 8.5, f: '#5A6B45' }));
+      // the gap, drawn along the control line
+      var gy = y(m.pr) + (p.floor ? -12 : 12);
+      bx.push(line(x(Math.min(m.qd, m.qs)), gy, x(Math.max(m.qd, m.qs)), gy, CLAY, 3));
+      bx.push(txt((x(m.qd) + x(m.qs)) / 2, gy + (p.floor ? -6 : 14), (m.short ? 'shortage ' : 'surplus ') + fq(m.gap), { a: 'middle', s: 9, f: CLAYD }));
+    }
+    return svg('0 0 360 256', bx.join(''));
+  }
+
+  function fq(v) { return String(+v.toFixed(1)); }
+  function usd(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
+  function params() { return { price: +el('pc-p').value, floor: el('pc-floor').checked, lr: el('pc-lr').checked }; }
+
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('pc-p-v').textContent = '$' + p.price;
+    el('pc-fig').innerHTML = draw(p, m);
+    el('pc-ro-qd').textContent = fq(m.qd);
+    el('pc-ro-qs').textContent = fq(m.qs);
+    el('pc-rl-gap').textContent = !m.binding ? 'Shortage / surplus' : m.short ? 'Shortage' : 'Surplus';
+    el('pc-ro-gap').textContent = fq(m.gap);
+    el('pc-ro-q').textContent = fq(m.q);
+    el('pc-ro-bm').textContent = m.bm === null ? '—' : '$' + fq(m.bm);
+    el('pc-ro-cs').textContent = usd(m.cs);
+    el('pc-ro-ps').textContent = usd(m.ps);
+    el('pc-ro-dwl').textContent = usd(m.dwl);
+    var kind = p.floor ? 'floor' : 'ceiling', note;
+    if (!m.binding) {
+      note = '<strong>Not binding.</strong> A ' + kind + ' at $' + p.price + ' sits ' + (p.floor ? 'below' : 'above') +
+        ' the $' + PCP + ' equilibrium, so the market clears at $' + PCP + ' exactly as if the law did not exist. A ' + kind +
+        ' only bites when it is set ' + (p.floor ? '<em>above</em>' : '<em>below</em>') + ' equilibrium.';
+    } else if (!p.floor) {
+      note = '<strong>A shortage of ' + fq(m.gap) + ' units.</strong> At $' + p.price + ' buyers want ' + fq(m.qd) +
+        ' but sellers offer only ' + fq(m.qs) + ' — and the short side always wins, so only ' + fq(m.q) +
+        ' change hands. Someone holding one of them could resell it for $' + fq(m.bm) +
+        ', which is why black markets appear. ' + (p.lr
+          ? 'This is the <em>long run</em>: both curves are flatter, so the same ceiling produces a far bigger shortage and a $' + Math.round(m.dwl).toLocaleString('en-US') + ' deadweight loss.'
+          : 'Now tick <em>long run</em> and watch the same ceiling do much more damage.');
+    } else {
+      note = '<strong>A surplus of ' + fq(m.gap) + ' units.</strong> At $' + p.price + ' sellers offer ' + fq(m.qs) +
+        ' but buyers take only ' + fq(m.qd) + ', so ' + fq(m.q) + ' trade and the rest go unsold — unless a government buys them, at a cost of $' +
+        Math.round(m.gap * p.price).toLocaleString('en-US') + '. Sellers who still sell are better off; the ' + fq(PCQ - m.q) +
+        ' trades that vanished are the $' + Math.round(m.dwl).toLocaleString('en-US') + ' deadweight loss.' +
+        (p.lr ? ' In the long run the surplus is larger, because supply has had time to expand.' : '');
+    }
+    el('pc-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  el('pc-p').addEventListener('input', render);
+  el('pc-floor').addEventListener('change', render);
+  el('pc-lr').addEventListener('change', render);
+  st = Stepper(el('ap-pc'), [
+    { t: 'First question, always: is it binding? A ceiling binds only <strong>below</strong> equilibrium; a floor only <strong>above</strong>.', lit: [], v: function (m) { return m.binding ? 'binding at $' + m.pr : 'not binding — market clears at $' + PCP; } },
+    { t: 'At the controlled price, read quantity demanded and quantity supplied off the two curves. They no longer match.', lit: ['pc-ro-qd', 'pc-ro-qs'], v: function (m) { return 'Qd ' + fq(m.qd) + ', Qs ' + fq(m.qs); } },
+    { t: 'The gap is the shortage (ceiling) or surplus (floor). The quantity that actually trades is the <strong>smaller</strong> of the two — nobody can be forced to buy or sell.', lit: ['pc-ro-gap', 'pc-ro-q'], v: function (m) { return 'gap ' + fq(m.gap) + ', traded ' + fq(m.q); } },
+    { t: 'Under a ceiling, the last unit supplied is worth more to buyers than the legal price. That gap is the black-market price.', lit: ['pc-ro-bm'], v: function (m) { return m.bm === null ? 'no black-market premium here' : 'buyers would pay $' + fq(m.bm); } },
+    { t: 'Surplus is re-split, and the trades that stopped are lost to everyone: that triangle is the deadweight loss.', lit: ['pc-ro-cs', 'pc-ro-ps', 'pc-ro-dwl'], v: function (m) { return 'CS ' + usd(m.cs) + ', PS ' + usd(m.ps) + ', DWL ' + usd(m.dwl); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+/* =================================================================
+ * MODEL 2 — a minimum wage. Labour supply W = 4 + 0.08L is fixed;
+ * labour demand pivots around the equilibrium (L* = 100k workers,
+ * W* = $12) so its elasticity is the one thing the learner changes.
+ * ================================================================= */
+var MWW = 12, MWL = 100, MWC = 4, MWD = 0.08;
+(function () {
+  function compute(p) {
+    var binding = p.w > MWW, w = binding ? p.w : MWW;
+    var ld = binding ? Math.max(0, MWL - (w - MWW) / p.b) : MWL;
+    var ls = binding ? (w - MWC) / MWD : MWL;
+    return {
+      binding: binding, w: w, ld: ld, ls: ls, unemp: ls - ld, lost: MWL - ld, entrants: ls - MWL,
+      bill: w * ld, bill0: MWW * MWL, el: (1 / p.b) * (MWW / MWL)
+    };
+  }
+
+  function draw(p, m) {
+    var bx = [], lm = 210, wm = 25;
+    var x = scale(0, lm, 48, 340), y = scale(0, wm, 230, 20);
+    bx.push(line(48, 230, 344, 230, AX), line(48, 230, 48, 16, AX));
+    bx.push(txt(48, 248, 'WORKERS (THOUSANDS) →', { s: 8, f: FAINT, ls: 0.8 }));
+    bx.push(txt(52, 26, 'WAGE $/HR', { s: 8, f: FAINT, ls: 0.8 }));
+    // wage bill rectangle for the employed
+    bx.push('<rect x="' + x(0) + '" y="' + y(m.w) + '" width="' + (x(m.ld) - x(0)) + '" height="' + (230 - y(m.w)) + '" fill="' + OLIVE + '" opacity="0.18"/>');
+    var d0 = MWW + p.b * MWL, dEnd = Math.min(lm, d0 / p.b), dStart = Math.max(0, (d0 - wm) / p.b);
+    bx.push(line(x(dStart), y(d0 - p.b * dStart), x(dEnd), y(d0 - p.b * dEnd), CLAYD, 2.2));
+    var sEnd = Math.min(lm, (wm - MWC) / MWD);
+    bx.push(line(x(0), y(MWC), x(sEnd), y(MWC + MWD * sEnd), '#5A6B45', 2.2));
+    bx.push(txt(x(dEnd) - 4, y(d0 - p.b * dEnd) - 6, 'labour demand', { a: 'end', s: 8.5, f: CLAYD }));
+    bx.push(txt(x(sEnd) - 4, y(MWC + MWD * sEnd) + 14, 'labour supply', { a: 'end', s: 8.5, f: '#5A6B45' }));
+    bx.push(line(48, y(p.w), 344, y(p.w), m.binding ? INK : FAINT, m.binding ? 2 : 1.3, '5 4'));
+    bx.push(txt(44, y(p.w) + 4, '$' + p.w, { a: 'end', s: 9, f: INK }));
+    bx.push('<circle cx="' + x(MWL) + '" cy="' + y(MWW) + '" r="4" fill="none" stroke="' + FAINT + '" stroke-width="1.5"/>');
+    if (m.binding) {
+      bx.push(line(x(m.ld), y(m.w) - 12, x(m.ls), y(m.w) - 12, CLAY, 3));
+      bx.push(txt((x(m.ld) + x(m.ls)) / 2, y(m.w) - 18, 'unemployed ' + m.unemp.toFixed(1) + 'k', { a: 'middle', s: 9, f: CLAYD }));
+      [m.ld, m.ls].forEach(function (v) { bx.push(line(x(v), 230, x(v), y(m.w), AX, 1.2, '3 3')); });
+    }
+    bx.push(txt(x(m.ld / 2), 222, 'wage bill', { a: 'middle', s: 8.5, f: '#5A6B45' }));
+    return svg('0 0 360 256', bx.join(''));
+  }
+
+  function params() { return { w: +el('mw-w').value, b: +el('mw-b').value }; }
+  var st;
+  function render() {
+    var p = params(), m = compute(p);
+    el('mw-w-v').textContent = '$' + p.w.toFixed(2);
+    el('mw-b-v').textContent = m.el.toFixed(2);
+    el('mw-fig').innerHTML = draw(p, m);
+    el('mw-ro-ld').textContent = m.ld.toFixed(1);
+    el('mw-ro-ls').textContent = m.ls.toFixed(1);
+    el('mw-ro-un').textContent = m.unemp.toFixed(1);
+    el('mw-ro-lost').textContent = m.lost.toFixed(1);
+    el('mw-ro-bill').textContent = money(m.bill);
+    el('mw-ro-el').textContent = m.el.toFixed(2);
+    var note;
+    if (!m.binding) {
+      note = '<strong>Not binding.</strong> A minimum of $' + p.w.toFixed(2) + ' is below the $' + MWW +
+        ' market wage, so employers already pay more than the law requires and nothing changes.';
+    } else {
+      note = '<strong>' + m.unemp.toFixed(1) + 'k unemployed</strong> — but only ' + m.lost.toFixed(1) +
+        'k of them lost a job. The other ' + m.entrants.toFixed(1) + 'k were drawn <em>into</em> the labour market by the higher wage and found no job. ' +
+        (m.bill > m.bill0
+          ? 'Labour demand is inelastic here (' + m.el.toFixed(2) + '), so the wage bill <em>rose</em> from ' + money(m.bill0) + ' to ' + money(m.bill) + ': workers as a group gain, even though some lose their jobs entirely.'
+          : 'Labour demand is elastic here (' + m.el.toFixed(2) + '), so the wage bill <em>fell</em> from ' + money(m.bill0) + ' to ' + money(m.bill) + ': the jobs lost outweigh the raise for those who kept theirs.');
+    }
+    el('mw-note').innerHTML = note;
+    if (st) st.refresh();
+  }
+  ['w', 'b'].forEach(function (k) { el('mw-' + k).addEventListener('input', render); });
+  st = Stepper(el('ap-mw'), [
+    { t: 'A minimum wage is a <strong>price floor</strong> on labour. Workers are the sellers here, firms the buyers.', lit: [], v: function (m) { return m.binding ? 'binding: $' + m.w.toFixed(2) + ' > $' + MWW : 'not binding'; } },
+    { t: 'Firms hire along labour demand, so employment falls to quantity demanded.', lit: ['mw-ro-ld', 'mw-ro-lost'], v: function (m) { return m.ld.toFixed(1) + 'k employed, ' + m.lost.toFixed(1) + 'k jobs gone'; } },
+    { t: 'Meanwhile more people want to work at the higher wage. Unemployment counts both groups: Ls − Ld.', lit: ['mw-ro-ls', 'mw-ro-un'], v: function (m) { return m.ls.toFixed(1) + 'k − ' + m.ld.toFixed(1) + 'k = ' + m.unemp.toFixed(1) + 'k'; } },
+    { t: 'Whether workers <em>as a group</em> earn more depends on the elasticity of labour demand — the same total-revenue test as Chapter 5.', lit: ['mw-ro-bill', 'mw-ro-el'], v: function (m) { return money(m.bill0) + ' → ' + money(m.bill) + ' at elasticity ' + m.el.toFixed(2); } }
+  ], function () { return compute(params()); });
+  render();
+})();
+
+</script>
+<script>
+'use strict';
+var CHAPTER = {"id": "ch08", "title": "Chapter 08 \u2014 Price Controls", "anchors": ["c1", "c2", "c3", "quiz"], "navTicks": {"#c0": 1, "#c1": 2, "#c2": 3, "#c3": 4}};
+var FND = ['Binding or not', 'Ceilings & shortages', 'Floors & surpluses', 'Short run vs long run', 'Surplus & deadweight loss'];
+
+var BANK = [
+  { id: 'b1', home: 1, fnd: 1, type: 'mcq', short: 'A ceiling above equilibrium',
+    stem: 'The equilibrium price of bread is $4. The government imposes a price ceiling of $5. What happens?',
+    opts: [
+      { t: 'Nothing. The ceiling is not binding, so the market still clears at $4', ok: true },
+      { t: 'A surplus, because the legal price is above equilibrium', why: 'That is what a <em>floor</em> above equilibrium does. A ceiling is a maximum, and the market price of $4 is already under it, so the law never comes into play.' },
+      { t: 'A shortage, because ceilings always create shortages', why: 'Only <em>binding</em> ceilings, which are set below equilibrium, create shortages. This one is above equilibrium.' },
+      { t: 'The price rises to $5, since sellers may now charge up to that', why: 'Allowing sellers to charge $5 doesn\'t make buyers pay it. At $5, quantity supplied exceeds quantity demanded, and competition pushes the price back to $4.' }
+    ] },
+  { id: 'b2', home: 1, fnd: 2, type: 'numeric', short: 'Computing a shortage',
+    stem: 'Demand is Q<sub>d</sub> = 200 − 2P and supply is Q<sub>s</sub> = 3P − 50. A price ceiling is set at $40. How large is the shortage, in units?',
+    answer: 50, tol: 0,
+    why: 'Equilibrium: 200 − 2P = 3P − 50 gives P* = $50 and Q* = 100, so a $40 ceiling binds. At $40, Q<sub>d</sub> = 120 and Q<sub>s</sub> = 70, so the shortage is <strong>50</strong>. The common slip is 120 − 100 = 20, which measures the gap against Q* rather than against quantity supplied.' },
+  { id: 'b3', home: 1, fnd: 1, type: 'mcq', short: 'Which floor binds',
+    stem: 'Which of these is a <em>binding</em> price floor?',
+    opts: [
+      { t: 'A legal minimum price set above the equilibrium price', ok: true },
+      { t: 'A legal minimum price set below the equilibrium price', why: 'The market price is already above this minimum, so the floor never comes into play.' },
+      { t: 'A legal maximum price set above the equilibrium price', why: 'That is a ceiling, not a floor, and it is a non-binding one.' },
+      { t: 'Any legal minimum price, since sellers must charge at least that much', why: 'A minimum below equilibrium changes nothing because sellers already charge more. Whether a floor binds depends on where it sits relative to P*.' }
+    ] },
+
+  { id: 's1', home: 2, fnd: 4, type: 'mcq', short: 'Rent control after ten years',
+    stem: 'A city has had the same binding rent ceiling for ten years. Compared with year one, the shortage of apartments is most likely:',
+    opts: [
+      { t: 'Larger, because supply and demand have both become more elastic', ok: true },
+      { t: 'Smaller, because the market has gradually adjusted back toward equilibrium', why: 'The price is what would close the gap, and the law doesn\'t let it move. Nothing pulls the market back to equilibrium while the ceiling binds.' },
+      { t: 'The same, because the controlled price hasn\'t changed', why: 'The price is the same, but the curves aren\'t. Given time, landlords convert or stop building and renters stay put, so both quantities move further apart.' },
+      { t: 'Gone, because landlords have raised rents to compensate', why: 'Raising rents above the ceiling is illegal. Landlords do adjust in other ways, such as cutting maintenance, but that is a quality response and doesn\'t remove the shortage.' }
+    ] },
+  { id: 's2', home: 2, fnd: 2, type: 'mcq', short: 'Time spent in line',
+    stem: 'A price ceiling on gasoline causes hour-long lines. How should an economist treat the time drivers spend waiting?',
+    opts: [
+      { t: 'As a real cost that nobody receives, which eats into the benefit of the lower price', ok: true },
+      { t: 'As irrelevant, because drivers pay a lower price at the pump', why: 'The money price is lower, but the full price is money plus time. Waiting is how the shortage is rationed when the price can\'t do it.' },
+      { t: 'As a transfer to gas stations', why: 'Stations get nothing from your hour in line. A transfer means someone else receives what you gave up, and here nobody does.' },
+      { t: 'As part of producer surplus', why: 'Producers don\'t collect the waiting time. It is a cost that the market diagram doesn\'t show, which is why the DWL triangle understates the true damage.' }
+    ] },
+  { id: 's3', home: 2, fnd: 2, type: 'numeric', short: 'Black-market price',
+    stem: 'Demand is P = 120 − Q. A binding ceiling of $30 means sellers bring only 40 units to market. What is the most a buyer would pay for the 40th unit, which sets the black-market price?',
+    pre: '$', answer: 80, tol: 0,
+    why: 'Read the demand curve at the quantity actually supplied: 120 − 40 = <strong>$80</strong>. The common error is plugging in $30 to get Q<sub>d</sub> = 90. That is how many people <em>want</em> the good at the legal price, not what the scarce units are worth.' },
+
+  { id: 'm1', home: 3, fnd: 3, type: 'mcq', short: 'What unemployment counts',
+    stem: 'A binding minimum wage causes unemployment equal to:',
+    opts: [
+      { t: 'Labour supplied minus labour demanded at the minimum wage', ok: true },
+      { t: 'The number of workers who lost their jobs', why: 'That leaves out the new entrants, people who start looking for work because the wage is higher. Unemployment counts everyone looking for work who can\'t find it.' },
+      { t: 'Labour demanded minus labour supplied', why: 'Wrong order. A floor above equilibrium makes quantity supplied the <em>larger</em> one, so this would come out negative.' },
+      { t: 'Zero, if the market had full employment before', why: 'Full employment at the old wage doesn\'t protect anyone from the new one. Firms hire fewer and more people apply.' }
+    ] },
+  { id: 'm2', home: 3, fnd: 3, type: 'numeric', short: 'Minimum-wage unemployment',
+    stem: 'Labour demand is L<sub>d</sub> = 1000 − 40W and labour supply is L<sub>s</sub> = 60W − 200. A minimum wage of $15 is set. How many workers are unemployed?',
+    answer: 300, tol: 0,
+    why: 'Equilibrium: 1000 − 40W = 60W − 200 gives W* = $12 and L* = 520, so $15 binds. At $15, L<sub>d</sub> = 400 and L<sub>s</sub> = 700, so <strong>300</strong> are unemployed. Answering 120, the jobs lost (520 − 400), misses the 180 new entrants.' },
+  { id: 'm3', home: 3, fnd: 3, type: 'mcq', short: 'When the wage bill rises',
+    stem: 'A minimum wage raises the <em>total</em> earnings of low-wage workers as a group when:',
+    opts: [
+      { t: 'Labour demand is inelastic, so employment falls by a smaller percentage than the wage rises', ok: true },
+      { t: 'Labour demand is elastic', why: 'Elastic demand means employment falls by a <em>larger</em> percentage than the wage rises, so the wage bill shrinks. This is the Chapter 5 total-revenue test with workers as the sellers.' },
+      { t: 'Always, since every employed worker earns more', why: 'Every <em>employed</em> worker earns more, but some are no longer employed. The total depends on which effect is bigger.' },
+      { t: 'Never, since any unemployment lowers total earnings', why: 'Some unemployment can still leave the total higher, if the raise to those still working outweighs the earnings that were lost.' }
+    ] },
+
+  { id: 'w1', home: 4, fnd: 5, type: 'numeric', short: 'Deadweight loss of a ceiling',
+    stem: 'Demand is P = 80 − Q and supply is P = 20 + Q. A price ceiling is set at $40. What is the deadweight loss?',
+    pre: '$', answer: 100, tol: 0,
+    why: 'Equilibrium: Q* = 30, P* = $50. At $40, Q<sub>s</sub> = 20, which is the quantity traded. At Q = 20, demand is $60 and supply is $40, so the height is 20. DWL = ½ × 20 × (30 − 20) = <strong>$100</strong>. Using the ceiling as the height (½ × 10 × 10 = $50) is the most common mistake.' },
+  { id: 'w2', home: 4, fnd: 5, type: 'mcq', short: 'Ceiling and consumer surplus',
+    stem: 'After a binding price ceiling, consumer surplus:',
+    opts: [
+      { t: 'May rise or fall: buyers who still get the good gain, but buyers shut out lose', ok: true },
+      { t: 'Always rises, because the price is lower', why: 'The lower price helps only the buyers who still get the good. Fewer units trade, and in a steep enough case the lost units outweigh the cheaper ones.' },
+      { t: 'Always falls, because there is a shortage', why: 'Often it rises. The transfer from sellers can easily be larger than the surplus buyers lose on the units that disappear.' },
+      { t: 'Is unchanged, because the loss all falls on producers', why: 'Some buyers who used to buy can\'t anymore, so part of the deadweight loss is <em>consumer</em> surplus.' }
+    ] },
+  { id: 'w3', home: 4, fnd: 5, type: 'classify', short: 'Rent control: transfer or loss',
+    stem: 'A binding rent ceiling. Classify each item.',
+    cats: ['Transfer', 'Lost to everyone'],
+    rows: [
+      { t: 'The lower rent paid on apartments that are still rented', cat: 'Transfer' },
+      { t: 'The surplus on apartments that are no longer supplied', cat: 'Lost to everyone' },
+      { t: 'Weeks renters spend searching for an apartment', cat: 'Lost to everyone' },
+      { t: 'Under-the-table "key money" paid to a landlord', cat: 'Transfer' }
+    ],
+    why: 'If someone else receives it, it is a transfer: the lower rent goes to tenants and key money goes to landlords. If nobody receives it, it is lost: trades that don\'t happen, and time spent searching that nobody is paid for. Search time is a loss that the DWL triangle doesn\'t include.' }
+];
+
+/* Exam-format free response. Each part's rubric points sum to the part's
+ * points; every question totals 10. Graded by the learner against the
+ * rubric, since prose can't be marked offline. */
+var QUIZ = [
+  { id: 'q1', fnd: 2, type: 'frq', title: 'Rent Control', short: 'Rent ceiling in a city',
+    stem: 'A city caps monthly rent on one-bedroom apartments at <strong>$1,500</strong>. Before the cap, the equilibrium rent was $2,000.',
+    parts: [
+      { q: 'Is the ceiling binding? Explain.', pts: 2,
+        model: 'Yes. A ceiling binds when it is set below the equilibrium price, and $1,500 < $2,000, so the legal maximum stops rent from reaching equilibrium.',
+        rub: [['States that it is binding', 1], ['Justifies it by comparing $1,500 with the $2,000 equilibrium (ceiling below P*)', 1]] },
+      { q: 'What happens to quantity demanded, quantity supplied, and the market as a result?', pts: 3,
+        model: 'At the lower rent, quantity demanded rises (more people want their own apartment) and quantity supplied falls (fewer units offered). Qd > Qs, which is a shortage, and the number of apartments actually rented falls to Qs.',
+        rub: [['Quantity demanded rises', 1], ['Quantity supplied falls', 1], ['Concludes there is a shortage (Qd > Qs) and fewer apartments are rented', 1]] },
+      { q: 'Name two ways apartments get allocated when price can\'t do the rationing.', pts: 2,
+        model: 'Any two of: waiting lists and long searches, landlord favouritism or discrimination, side payments such as "key money", black-market sublets, and quality cuts.',
+        rub: [['First valid non-price rationing mechanism', 1], ['Second valid mechanism', 1]] },
+      { q: 'Among renters, who gains and who loses?', pts: 3,
+        model: 'Renters who get a controlled apartment gain, because they pay $500 less, which is a transfer from landlords. Renters who would have rented at $2,000 but can\'t find a unit lose, because their surplus disappears and they bear search costs. So renters as a group don\'t all gain.',
+        rub: [['Renters who get an apartment gain from the lower rent', 1], ['Renters shut out by the shortage lose', 1], ['Notes that renters as a group don\'t all gain, or names the transfer from landlords', 1]] }
+    ] },
+
+  { id: 'q2', fnd: 5, type: 'frq', title: 'Calculating a Price Ceiling', short: 'Ceiling: shortage and DWL',
+    stem: 'In a market, demand is <strong>P = 120 − 2Q</strong> and supply is <strong>P = 20 + 2Q</strong>. The government sets a price ceiling of <strong>$50</strong>.',
+    parts: [
+      { q: 'Find the equilibrium price and quantity.', pts: 2,
+        model: '120 − 2Q = 20 + 2Q → 4Q = 100 → Q* = 25, P* = 120 − 50 = $70.',
+        rub: [['Q* = 25', 1], ['P* = $70', 1]] },
+      { q: 'At the ceiling, find quantity demanded, quantity supplied, and the shortage.', pts: 3,
+        model: 'Qd: 50 = 120 − 2Q → Qd = 35. Qs: 50 = 20 + 2Q → Qs = 15. Shortage = 35 − 15 = 20.',
+        rub: [['Qd = 35', 1], ['Qs = 15', 1], ['Shortage = 20', 1]] },
+      { q: 'Calculate the deadweight loss.', pts: 3,
+        model: 'Quantity traded is 15. At Q = 15, demand price = 120 − 30 = $90 and supply price = 20 + 30 = $50. DWL = ½ × (90 − 50) × (25 − 15) = ½ × 40 × 10 = $200.',
+        rub: [['Uses Q traded = 15 (the short side)', 1], ['Height = $40, the gap between the curves at Q = 15', 1], ['DWL = $200', 1]] },
+      { q: 'Explain why that area is lost rather than transferred.', pts: 2,
+        model: 'It is the surplus from the 10 units between 15 and 25 that would have been traded. Buyers valued them above their cost, but they are no longer produced. Nobody, whether buyer, seller or government, receives that surplus.',
+        rub: [['Ties the area to trades that no longer happen', 1], ['States that nobody receives it, unlike the lower price on units still sold', 1]] }
+    ] },
+
+  { id: 'q3', fnd: 3, type: 'frq', title: 'The Minimum Wage', short: 'Minimum wage above market',
+    stem: 'A state raises its minimum wage from $16 to <strong>$20</strong> per hour. The equilibrium wage for teenage workers is <strong>$17</strong>.',
+    parts: [
+      { q: 'Was the old minimum binding for teens? Is the new one? Explain.', pts: 2,
+        model: 'The old $16 minimum was not binding because it was below the $17 equilibrium. The new $20 minimum is binding because a floor binds when it is above equilibrium.',
+        rub: [['Old $16: not binding (below $17)', 1], ['New $20: binding (above $17)', 1]] },
+      { q: 'Explain what happens to labour demanded, labour supplied, and unemployment.', pts: 3,
+        model: 'Firms demand less labour at $20 and hire fewer teens. More teens want to work at $20, so labour supplied rises. Ls > Ld, which is a surplus of labour, and unemployment = Ls − Ld.',
+        rub: [['Labour demanded falls', 1], ['Labour supplied rises', 1], ['Unemployment = the gap Ls − Ld (a surplus of labour)', 1]] },
+      { q: 'Under what condition would teens\' total earnings rise? Explain using elasticity.', pts: 3,
+        model: 'If labour demand is inelastic, employment falls by a smaller percentage than the wage rises (about 18% here). Then wage × employment, the wage bill, increases. If demand is elastic, it falls.',
+        rub: [['Names inelastic labour demand', 1], ['Explains that the % fall in employment is smaller than the % rise in the wage', 1], ['Links this to total earnings = wage × employment', 1]] },
+      { q: 'Name one group that clearly benefits and one that clearly loses.', pts: 2,
+        model: 'Benefits: teens who keep their jobs, who now earn $20 instead of $17. Loses: teens who lose their jobs or can\'t find one. Employers and consumers facing higher prices are also acceptable losers.',
+        rub: [['A valid winner (e.g. teens who stay employed)', 1], ['A valid loser (e.g. teens who lose or can\'t find jobs)', 1]] }
+    ] },
+
+  { id: 'q4', fnd: 4, type: 'frq', title: 'Rent Control Over Time', short: 'Long-run rent control',
+    stem: 'A city introduced a binding rent ceiling ten years ago and has never changed it. The housing shortage is now far worse than in the first year.',
+    parts: [
+      { q: 'Why is the supply of rental housing more elastic in the long run than in the short run?', pts: 3,
+        model: 'In the short run the stock of buildings is fixed, so landlords can\'t quickly change how many units exist. Over time they can stop building new rentals, convert units to condos, or let buildings leave the market. With more time to adjust, quantity supplied responds more to the price.',
+        rub: [['In the short run the housing stock is fixed or hard to change', 1], ['In the long run landlords can build less, convert, or withdraw units', 1], ['States the general principle: more time to adjust → more elastic', 1]] },
+      { q: 'Explain why the shortage grows over time even though the ceiling hasn\'t changed.', pts: 3,
+        model: 'Supply becomes more elastic, so Qs falls further below equilibrium. Demand also becomes more elastic as renters stay in large units, skip roommates, and move to the city for cheap rent, so Qd rises further. Both moves widen Qd − Qs.',
+        rub: [['Qs falls further over time', 1], ['Qd rises further over time', 1], ['Concludes the gap Qd − Qs widens, and the price can\'t move to close it', 1]] },
+      { q: 'Why does apartment quality tend to fall under rent control?', pts: 2,
+        model: 'Landlords can\'t raise the rent, and with a shortage they will still find tenants regardless of condition. So they cut maintenance, which lowers their costs until the effective price matches the legal one.',
+        rub: [['Landlords can\'t raise rent, so they cut maintenance or quality instead', 1], ['The shortage means tenants still come regardless of quality', 1]] },
+      { q: 'Why might rent control stay politically popular despite these effects?', pts: 2,
+        model: 'The benefits are concentrated and visible: current tenants pay less and they vote. The costs are spread out and delayed, falling on future renters, people who can\'t find housing, and the slow decline in supply.',
+        rub: [['Benefits go to visible current tenants', 1], ['Costs are hidden, spread out, or arrive later', 1]] }
+    ] },
+
+  { id: 'q5', fnd: 1, type: 'frq', title: 'Binding or Non-binding', short: 'Milk: ceiling vs floor',
+    stem: 'The equilibrium price of milk is <strong>$4</strong> per gallon.',
+    parts: [
+      { q: 'The government sets a price ceiling of $5. What is the effect on price and quantity?', pts: 2,
+        model: 'None. A ceiling of $5 is above equilibrium, so it is not binding, and the market still clears at $4.',
+        rub: [['Not binding', 1], ['Price stays $4 and quantity is unchanged', 1]] },
+      { q: 'Instead, the government sets a price floor of $5. What happens?', pts: 3,
+        model: 'It is binding because it is above equilibrium. At $5, quantity supplied rises and quantity demanded falls, creating a surplus of milk. Only Qd is sold, so quantity traded falls.',
+        rub: [['Binding (above P*)', 1], ['Creates a surplus: Qs > Qd', 1], ['Quantity traded falls to Qd', 1]] },
+      { q: 'Suppose instead there is a $3.50 ceiling, and then a supply increase lowers the equilibrium price to $3. What happens to the ceiling\'s effect?', pts: 3,
+        model: 'At first the $3.50 ceiling binds because $3.50 < $4, and there is a shortage. After supply rises, equilibrium is $3, which is below the ceiling, so the ceiling stops binding. The shortage disappears and the market clears at $3.',
+        rub: [['Initially binding with a shortage', 1], ['After the shift, P* = $3 is below $3.50, so not binding', 1], ['The market clears at $3 with no shortage', 1]] },
+      { q: 'State the general rule for when ceilings and floors bind.', pts: 2,
+        model: 'A ceiling binds only when it is set below equilibrium. A floor binds only when it is set above equilibrium.',
+        rub: [['Ceiling: binds below P*', 1], ['Floor: binds above P*', 1]] }
+    ] },
+
+  { id: 'q6', fnd: 3, type: 'frq', title: 'Agricultural Price Support', short: 'Wheat floor, govt buys surplus',
+    stem: 'In the wheat market (millions of bushels), demand is <strong>Q<sub>d</sub> = 500 − 50P</strong> and supply is <strong>Q<sub>s</sub> = 100P − 400</strong>. The government guarantees farmers a price of <strong>$8</strong> and buys any unsold wheat.',
+    parts: [
+      { q: 'Find the equilibrium price and quantity.', pts: 2,
+        model: '500 − 50P = 100P − 400 → 150P = 900 → P* = $6, Q* = 200 million bushels.',
+        rub: [['P* = $6', 1], ['Q* = 200', 1]] },
+      { q: 'At $8, find quantity demanded, quantity supplied, and the surplus.', pts: 3,
+        model: 'Qd = 500 − 400 = 100. Qs = 800 − 400 = 400. Surplus = 300 million bushels.',
+        rub: [['Qd = 100', 1], ['Qs = 400', 1], ['Surplus = 300', 1]] },
+      { q: 'How much does the government spend buying the surplus?', pts: 2,
+        model: '$8 × 300 million = $2,400 million ($2.4 billion).',
+        rub: [['Multiplies the support price by the surplus', 1], ['$2,400 million', 1]] },
+      { q: 'Why is this program inefficient, beyond the cost to taxpayers?', pts: 3,
+        model: 'Farmers produce 400 million bushels where marginal cost is above what consumers will pay for them, so resources are spent on output that buyers don\'t value at that cost. Consumers pay more and buy less (100 vs 200), losing surplus. Storage or disposal of the surplus adds more waste.',
+        rub: [['Units are produced whose cost exceeds their value to buyers (overproduction)', 1], ['Consumers pay more and buy less', 1], ['Any extra waste: storage, disposal, or the resources tied up', 1]] }
+    ] },
+
+  { id: 'q7', fnd: 5, type: 'frq', title: 'Surplus Under a Price Ceiling', short: 'Gasoline ceiling: welfare',
+    stem: 'After a hurricane, a state imposes a <strong>binding price ceiling on gasoline</strong> to prevent "price gouging."',
+    parts: [
+      { q: 'What happens to producer surplus? Why?', pts: 2,
+        model: 'It falls. Sellers receive a lower price on every unit they still sell, and they sell fewer units.',
+        rub: [['Producer surplus falls', 1], ['Because of a lower price and fewer units sold', 1]] },
+      { q: 'Consumer surplus may rise or fall. Explain the two opposing effects.', pts: 3,
+        model: 'Gain: buyers who still get gas pay less, a transfer from sellers. Loss: fewer gallons are sold, so buyers who are shut out lose the surplus they would have had. The net change depends on which effect is larger.',
+        rub: [['Gain to buyers who still purchase at the lower price', 1], ['Loss to buyers shut out by the reduced quantity', 1], ['Net effect depends on which is larger', 1]] },
+      { q: 'Explain why there is a deadweight loss.', pts: 3,
+        model: 'Quantity falls to Qs, below the equilibrium quantity. On the gallons between Qs and Q*, buyers value gas above its cost of supply, but those trades no longer happen. That lost surplus goes to no one, and it is the deadweight loss.',
+        rub: [['Quantity traded falls below equilibrium', 1], ['Those lost units had value above cost', 1], ['The surplus is gone and goes to no one', 1]] },
+      { q: 'Name one cost of the ceiling that the supply-and-demand diagram does not show.', pts: 2,
+        model: 'Time spent waiting in line or searching for open stations. Others: black-market resale, gas going to people who value it less, and less gas shipped into the state.',
+        rub: [['Names a valid unseen cost (lines, search, misallocation, black market)', 1], ['Explains why it is a real cost (resources or time wasted)', 1]] }
+    ] },
+
+  { id: 'q8', fnd: 2, type: 'frq', title: 'Ticket Price Cap', short: 'Concert tickets and scalpers',
+    stem: 'A venue has <strong>150</strong> seats, a fixed and perfectly inelastic supply. Demand for tickets is <strong>P = 250 − Q</strong>. A law caps ticket prices at <strong>$50</strong>.',
+    parts: [
+      { q: 'What would the market price be without the cap?', pts: 2,
+        model: 'Supply is 150, so P = 250 − 150 = $100.',
+        rub: [['Uses Q = 150', 1], ['P = $100', 1]] },
+      { q: 'At $50, how large is the shortage?', pts: 3,
+        model: 'Qd = 250 − 50 = 200, and Qs = 150. Shortage = 50 tickets.',
+        rub: [['Qd = 200', 1], ['Qs = 150', 1], ['Shortage = 50', 1]] },
+      { q: 'What is the highest price a scalper could charge for a ticket?', pts: 2,
+        model: 'The value of the 150th ticket on the demand curve: 250 − 150 = $100.',
+        rub: [['Reads demand at Q = 150, the scarce quantity', 1], ['$100', 1]] },
+      { q: 'Does the cap create a deadweight loss? Explain carefully.', pts: 3,
+        model: 'Not from reduced quantity: supply is perfectly inelastic, so all 150 seats are still used. The cap mainly transfers $50 per ticket from the venue to whoever gets a ticket. But if tickets go to people by luck or by waiting in line, some go to fans who value them less than shut-out fans do. That misallocation, plus time spent queuing, is a real loss.',
+        rub: [['No quantity-based DWL: all 150 seats are still sold', 1], ['Identifies the transfer from venue to ticket holders', 1], ['Notes the misallocation or queuing loss when tickets aren\'t allocated by value', 1]] }
+    ] },
+
+  { id: 'q9', fnd: 4, type: 'frq', title: 'The Minimum Wage Over Time', short: 'Min wage and automation',
+    stem: 'Two years after a large minimum-wage increase, many fast-food restaurants have installed self-order kiosks.',
+    parts: [
+      { q: 'What does this suggest about the elasticity of labour demand over time?', pts: 2,
+        model: 'Labour demand becomes more elastic in the long run, because firms have time to find substitutes for labour such as kiosks.',
+        rub: [['More elastic in the long run', 1], ['Because substitutes for labour become available over time', 1]] },
+      { q: 'Compare unemployment from the minimum wage in the short run and the long run.', pts: 3,
+        model: 'In the short run firms can\'t easily replace workers, so Ld falls only a little. In the long run Ld falls further as automation spreads, so unemployment (Ls − Ld) is larger in the long run.',
+        rub: [['Short run: a small fall in labour demanded', 1], ['Long run: a larger fall as firms substitute', 1], ['So unemployment is larger in the long run', 1]] },
+      { q: 'Explain how the total wage bill could rise in the short run but fall in the long run.', pts: 3,
+        model: 'In the short run labour demand is inelastic, so the % fall in jobs is smaller than the % rise in the wage, and the wage bill rises. In the long run labour demand is elastic, so the % fall in jobs exceeds the % rise in the wage, and the wage bill falls.',
+        rub: [['Short run: inelastic demand → wage bill rises', 1], ['Long run: elastic demand → wage bill falls', 1], ['Uses the % change in jobs vs % change in wage comparison', 1]] },
+      { q: 'Give one parallel between this and long-run rent control.', pts: 2,
+        model: 'In both cases a binding price control does more damage over time, because both sides become more elastic. The surplus or shortage widens even though the controlled price never changes.',
+        rub: [['Both involve a binding price control', 1], ['Both get worse over time as elasticity rises', 1]] }
+    ] },
+
+  { id: 'q10', fnd: 1, type: 'frq', title: 'A Control and a Supply Shock', short: 'Egg ceiling and bird flu',
+    stem: 'The equilibrium price of eggs is <strong>$3</strong> a dozen. A state sets a price ceiling of <strong>$4</strong>. Later, bird flu sharply cuts the egg supply, and the equilibrium price would rise to <strong>$6</strong>.',
+    parts: [
+      { q: 'Before bird flu, is the ceiling binding? What is its effect?', pts: 2,
+        model: 'No, because $4 is above the $3 equilibrium. The market clears at $3 and the ceiling has no effect.',
+        rub: [['Not binding', 1], ['No effect: price $3 with the market clearing', 1]] },
+      { q: 'After bird flu, is it binding? What happens to price and quantity?', pts: 3,
+        model: 'Yes, because the new equilibrium of $6 is above the $4 ceiling. The price is stuck at $4. Qd at $4 exceeds Qs at $4, so there is a shortage, and quantity traded is Qs.',
+        rub: [['Now binding, since $6 > $4', 1], ['The price is held at $4 and there is a shortage', 1], ['Quantity traded = Qs at $4', 1]] },
+      { q: 'Compare this outcome with what would happen without the ceiling.', pts: 3,
+        model: 'Without the ceiling, the price rises to $6 and the market clears with no shortage. Quantity traded is at the new, lower equilibrium, which is higher than Qs at $4. The eggs go to the buyers who value them most, instead of being rationed by empty shelves or luck.',
+        rub: [['Without the ceiling, price rises to $6 and the market clears', 1], ['More eggs are traded than under the ceiling (Q* > Qs at $4)', 1], ['Allocation by willingness to pay vs non-price rationing', 1]] },
+      { q: 'What does it mean to say the ceiling "suppresses the price signal"?', pts: 2,
+        model: 'A higher price would tell buyers to conserve and tell producers to supply more, for example by shipping eggs in from other states. With the price capped, neither signal reaches anyone.',
+        rub: [['A higher price tells buyers to cut back', 1], ['A higher price tells sellers to supply more', 1]] }
+    ] }
+];
+
+</script>
+<script>
+'use strict';
+'use strict';
+/* =================================================================
+ * STORE + ENGINE
+ *
+ * The schedule is deliberately plain: an item you miss returns at the
+ * next checkpoint, one you get right returns two checkpoints later, and
+ * two correct recalls retire it to the quiz. No expanding-interval
+ * cleverness, because meta-analysis puts expanding vs uniform spacing
+ * at g = 0.034 — indistinguishable. Successful retrievals are what
+ * count, so the schedule just makes sure they happen, spaced.
+ * ================================================================= */
+/* ---------- answer-position scrambling ---------------------------
+ * Items are authored with the correct option first — easy to read in the
+ * source, and a free pass if it ships that way: a learner who notices can
+ * score full marks by always picking A.
+ *
+ * Two properties are wanted at once. The correct answer must land in each
+ * position about equally often across the chapter, so no single letter is
+ * worth guessing; and the sequence of positions must not be guessable
+ * either, so a round-robin A, B, C, D is out. So: deal out a balanced
+ * multiset of target slots, shuffle THAT, and give each item the slot it
+ * draws. Everything is seeded off the chapter and item ids, so a learner
+ * sees the same layout on every reload and when an item returns later.
+ * ================================================================= */
+(function scramble() {
+  function rng(seed) {
+    var h = 2166136261, n = 0;                      // FNV-1a over the seed
+    for (var i = 0; i < seed.length; i++) { h ^= seed.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return function () {                            // splitmix32: each draw mixed on its own,
+      var z = (h + Math.imul(++n, 0x9E3779B9)) | 0; // so short, similar ids don't correlate
+      z = Math.imul(z ^ (z >>> 16), 0x21F0AAAD);
+      z = Math.imul(z ^ (z >>> 15), 0x735A2D97);
+      return ((z ^ (z >>> 15)) >>> 0) / 4294967296;
+    };
+  }
+  function shuffle(a, r) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  /* Group by option count first: a three-option item cannot take slot 3,
+   * and folding it back with % would bias position 0. */
+  var groups = {};
+  BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).forEach(function (q) {
+    if (q.type !== 'mcq') return;
+    (groups[q.opts.length] = groups[q.opts.length] || []).push(q);
+  });
+
+  Object.keys(groups).forEach(function (key) {
+    var n = +key, group = groups[key];
+    var slots = group.map(function (_, i) { return i % n; });
+    shuffle(slots, rng(CHAPTER.id + ':slots:' + n));
+    group.forEach(function (q, k) {
+      var right = null, rest = [];
+      q.opts.forEach(function (o) { if (o.ok && !right) right = o; else rest.push(o); });
+      if (!right) return;                           // malformed item; the verifier reports it
+      shuffle(rest, rng(q.id));
+      rest.splice(slots[k], 0, right);
+      q.opts = rest;
+    });
+  });
+})();
+
+var Store = (function () {
+  var KEY = 'econ1a.' + CHAPTER.id + '.v1', db;
+  try { db = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { db = {}; }
+  if (!db.items) db.items = {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
+  return {
+    get: function (id) { return db.items[id] || null; },
+    record: function (id, ok, tick) {
+      var it = db.items[id] || (db.items[id] = { box: 0, last: -9, seen: 0 });
+      it.seen++; it.last = tick;
+      it.box = !ok ? 1 : (it.box >= 2 ? 3 : 2);
+      save(); return it.box;
+    },
+    /* which previously-seen items are due to come back at this checkpoint */
+    dueAt: function (tick) {
+      return BANK.filter(function (q) {
+        var it = db.items[q.id];
+        if (!it || it.box === 0 || it.box === 3 || it.last >= tick) return false;
+        var gap = tick - it.last;
+        return (it.box === 1 && gap >= 1) || (it.box === 2 && gap >= 2);
+      });
+    },
+    /* Fraction of the bank answered correctly and not outstanding.
+     * This used to need box 3 — two successful recalls — which no item
+     * homed at the last two checkpoints can ever reach, because there is
+     * no later checkpoint to bring it back. A flawless run topped out at
+     * 69%. Box 2 and box 3 both mean "got it right and nothing is owed";
+     * the schedule still uses the distinction, the bar no longer does. */
+    mastery: function () {
+      var done = 0;
+      BANK.forEach(function (q) {
+        var it = db.items[q.id];
+        if (it && it.box >= 2) done += 1;
+      });
+      return done / BANK.length;
+    },
+    missed: function () {
+      return BANK.concat(typeof QUIZ === 'undefined' ? [] : QUIZ).filter(function (q) {
+        var it = db.items[q.id]; return it && it.box === 1;
+      });
+    },
+    quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    /* free-response state: { txt, open, marks: ['partIdx.rubIdx', ...] } per item */
+    frq: function (id, v) {
+      db.frq = db.frq || {};
+      if (v !== undefined) { db.frq[id] = v; save(); }
+      return db.frq[id] || { txt: '', open: false, marks: [] };
+    },
+    nuke: function () { db = { items: {} }; save(); }
+  };
+})();
+
+/* ---------- rendering one question ------------------------------- */
+var TICK = '<svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+           '<path d="M5.5 10.5 L8.8 13.6 L14.5 6.9"/></svg>';
+var XMARK = '<svg class="tick no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/>' +
+            '<path d="M6.5 6.5 L13.5 13.5 M13.5 6.5 L6.5 13.5"/></svg>';
+
+function renderQ(q, n, isReview) {
+  var h = '<div class="q" data-id="' + q.id + '">';
+  h += '<div class="qn"><span>' + (typeof n === 'number' ? String(n).padStart(2, '0') : n) + '</span>' +
+       '<span class="pill">' + FND[q.fnd - 1] + '</span>' +
+       (isReview ? '<span class="pill recall">spaced recall</span>' : '') + '</div>';
+  h += '<div class="qlabel"><span class="mk"></span><span class="txt">' + q.short + '</span>' +
+       (isReview ? '<span class="re">recall</span>' : '') + '</div>';
+  h += '<div class="stem">' + q.stem + '</div>';
+
+  if (q.type === 'mcq') {
+    h += '<div class="opts">';
+    q.opts.forEach(function (o, i) {
+      h += '<button class="opt" data-i="' + i + '"><span class="k">' +
+           'ABCD'[i] + '</span><span>' + o.t + '</span></button>';
+    });
+    h += '</div>';
+  } else if (q.type === 'numeric') {
+    h += '<div class="numrow">' + (q.pre ? '<span class="pre">' + q.pre + '</span>' : '') +
+         '<input type="text" inputmode="decimal" placeholder="your answer" aria-label="answer">' +
+         '<button class="btn" data-a="check">Check</button></div>';
+  } else if (q.type === 'classify') {
+    q.rows.forEach(function (r, i) {
+      h += '<div class="clsrow" data-i="' + i + '"><span>' + r.t + '</span><select>' +
+           '<option value="">— pick one —</option>' +
+           q.cats.map(function (c) { return '<option>' + c + '</option>'; }).join('') +
+           '</select></div>';
+    });
+    h += '<div class="numrow" style="margin-top:12px"><button class="btn" data-a="check">Check all</button></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function num(s) { return parseFloat(String(s).replace(/[$,\s]/g, '')); }
+
+/* Grade one question node. Returns true/false, or null if unanswered. */
+function grade(node, q, pick) {
+  if (q.type === 'mcq') {
+    if (pick === undefined || pick === null) return null;
+    return !!q.opts[pick].ok;
+  }
+  if (q.type === 'numeric') {
+    var v = num($('input', node).value);
+    if (isNaN(v)) return null;
+    return Math.abs(v - q.answer) <= (q.tol || 0);
+  }
+  if (q.type === 'classify') {
+    var rows = node.querySelectorAll('.clsrow'), all = true, any = false;
+    for (var i = 0; i < rows.length; i++) {
+      var sel = $('select', rows[i]).value;
+      if (sel) any = true; else all = false;
+      if (sel !== q.rows[+rows[i].dataset.i].cat) all = false;
+    }
+    return any ? all : null;
+  }
+  return null;
+}
+
+/* Paint the answered state. */
+function reveal(node, q, ok, pick, showWhy, review) {
+  node.querySelectorAll('.opt').forEach(function (b, i) {
+    b.disabled = true;
+    if (q.opts[i].ok) b.classList.add('right');
+    else if (i === pick) b.classList.add('wrong');
+    else b.classList.add('muted');
+  });
+  if (q.type === 'classify') {
+    node.querySelectorAll('.clsrow').forEach(function (r) {
+      var sel = $('select', r), want = q.rows[+r.dataset.i].cat;
+      if (review) {
+        // no stored per-row answer, so just show the key
+        sel.value = want;
+        if (ok) r.classList.add('right');
+      } else {
+        r.classList.add(sel.value === want ? 'right' : 'wrong');
+        if (sel.value !== want) {
+          var o = document.createElement('option');
+          o.textContent = '✓ ' + want; o.disabled = true; sel.appendChild(o);
+        }
+      }
+      sel.disabled = true;
+    });
+  }
+  node.querySelectorAll('input,button[data-a=check]').forEach(function (n) { n.disabled = true; });
+  $('.mk', node).innerHTML = ok ? TICK : XMARK;
+
+  if (showWhy) {
+    var why = '';
+    if (ok) {
+      why = '<span class="vk">correct</span>' + (q.why ? q.why :
+        (q.type === 'mcq' && q.opts.find(function (o) { return o.ok; }).why) || 'That\'s the one.');
+    } else {
+      var mine = q.type === 'mcq' && pick != null ? q.opts[pick] : null;
+      why = '<span class="vk">not quite</span>' +
+        (mine && mine.why ? mine.why + ' ' : '') +
+        (q.why ? q.why : (q.type === 'mcq' ? '<strong>' + q.opts.find(function (o) { return o.ok; }).t + '</strong> is correct.' : ''));
+      if (q.type === 'numeric' && !q.why) why += ' The answer is <strong>' + q.answer + '</strong>.';
+    }
+    var fb = document.createElement('div');
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    fb.innerHTML = why;
+    node.appendChild(fb);
+  }
+}
+
+/* ---------- a checkpoint ----------------------------------------- */
+function mountCheckpoint(ckId, tick) {
+  var host = $('#' + ckId + ' .ck-body');
+  /* fresh = never attempted, so this is its debut. prior = already attempted
+   * here, shown collapsed for review but NOT re-asked; it returns through the
+   * due queue at a later checkpoint, which is the whole point of the spacing. */
+  var fresh = BANK.filter(function (q) { return q.home === tick && !Store.get(q.id); });
+  var prior = BANK.filter(function (q) { return q.home === tick && Store.get(q.id); });
+  var due = Store.dueAt(tick).filter(function (q) { return q.home !== tick; });
+  var live = fresh.concat(due);
+
+  var html = '';
+  if (!live.length) {
+    html += '<p style="margin:0 0 6px">' + TICK + ' Nothing new to answer here — you have attempted ' +
+      'everything that debuts at this checkpoint. Missed items reappear further down the page.</p>';
+  }
+  html += live.map(function (q, i) { return renderQ(q, i + 1, q.home !== tick); }).join('');
+  html += prior.map(function (q) { return renderQ(q, '✓', false); }).join('');
+  if (live.length) {
+    html += '<div class="ck-foot"><span class="ck-score"><b data-k="done">0</b> / ' + live.length +
+      ' answered' + (due.length ? ' · ' + due.length + ' brought back from earlier' : '') +
+      '</span><a href="#' + nextAnchor(tick) + '" class="btn ghost">Continue reading ›</a></div>';
+  }
+  host.innerHTML = html;
+
+  var answered = 0;
+  live.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    function finish(ok, pick) {
+      reveal(node, q, ok, pick, true);
+      Store.record(q.id, ok, tick);
+      answered++;
+      var d = $('[data-k=done]', host); if (d) d.textContent = answered;
+      railUpdate();
+      if (ok) setTimeout(function () { node.classList.add('settled'); }, 1400);
+    }
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () { finish(!!q.opts[+b.dataset.i].ok, +b.dataset.i); });
+      });
+    } else {
+      var btn = $('[data-a=check]', node);
+      btn.addEventListener('click', function () {
+        var g = grade(node, q);
+        if (g === null) {
+          btn.textContent = 'Answer first';
+          setTimeout(function () { btn.textContent = q.type === 'classify' ? 'Check all' : 'Check'; }, 1200);
+          return;
+        }
+        finish(g);
+      });
+      var inp = $('input', node);
+      if (inp) inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') btn.click(); });
+    }
+    $('.qlabel', node).addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+
+  /* collapsed review stubs for what was answered here on an earlier visit */
+  prior.forEach(function (q) {
+    var nodes = host.querySelectorAll('[data-id="' + q.id + '"]');
+    var node = nodes[nodes.length - 1];
+    var it = Store.get(q.id), ok = it.box >= 2;
+    reveal(node, q, ok, null, true, true);
+    node.classList.add('settled');
+    var lab = $('.qlabel', node);
+    var tagEl = document.createElement('span');
+    tagEl.className = 're';
+    var canReturn = it.last + 2 <= CHAPTER.anchors.length;
+    tagEl.textContent = !ok ? 'due again' : (it.box === 3 || !canReturn) ? 'retired' : 'returns later';
+    lab.appendChild(tagEl);
+    lab.addEventListener('click', function () { node.classList.remove('settled'); });
+  });
+}
+function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
+
+/* ---------- exam-format free response ---------------------------
+ * A chapter whose QUIZ is type 'frq' gets the written-exam layout:
+ * scenario, lettered parts with points, one answer box. Prose can't be
+ * marked offline, so the learner writes first, then opens a model answer
+ * and a points rubric and ticks what they earned. Drafts and marks
+ * persist; under 70% counts as a miss for the export prompt. */
+function frqPts(q) { return q.parts.reduce(function (s, p) { return s + p.pts; }, 0); }
+function frqScore(q) {
+  return Store.frq(q.id).marks.reduce(function (s, k) {
+    var ij = k.split('.'); return s + q.parts[+ij[0]].rub[+ij[1]][1];
+  }, 0);
+}
+function mountFRQ(host) {
+  var total = QUIZ.reduce(function (s, q) { return s + frqPts(q); }, 0);
+  host.innerHTML = QUIZ.map(function (q, i) {
+    return '<div class="q frq" data-id="' + q.id + '">' +
+      '<div class="frq-h"><span class="frq-t">Question ' + (i + 1) + ': ' + q.title + '</span>' +
+      '<span class="frq-p">' + frqPts(q) + ' points</span></div>' +
+      '<div class="stem">' + q.stem + '</div>' +
+      q.parts.map(function (p, j) {
+        return '<p class="frq-part"><b>' + 'ABCDEF'[j] + '.</b> ' + p.q + ' (' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + ')</p>';
+      }).join('') +
+      '<textarea rows="7" placeholder="Type your answer to Question ' + (i + 1) + ' here..." aria-label="answer to question ' + (i + 1) + '"></textarea>' +
+      '<div class="numrow"><button class="btn" data-a="open">Check against model answer</button>' +
+      '<span class="ck-score" data-k="sc"></span></div>' +
+      '<div class="frq-key" hidden>' + q.parts.map(function (p, j) {
+        return '<div class="frq-ans"><div class="frq-al">' + 'ABCDEF'[j] + ' · model answer · ' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + '</div>' +
+          '<p>' + p.model + '</p>' + p.rub.map(function (r, k) {
+            return '<label class="rub"><input type="checkbox" data-m="' + j + '.' + k + '"><span>' + r[0] + '</span><b>+' + r[1] + '</b></label>';
+          }).join('') + '</div>';
+      }).join('') + '</div></div>';
+  }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog"></span>' +
+    '<span><button class="btn ghost" data-a="copy">Copy answers for Claude to grade</button> ' +
+    '<button class="btn" data-a="submit">Show my breakdown</button></span></div>' +
+    '<p class="ck-score" data-k="copied" style="margin:10px 0 0"></p>';
+
+  function node(q) { return $('[data-id="' + q.id + '"]', host); }
+  function paint(q) {
+    var n = node(q), s = Store.frq(q.id), key = $('.frq-key', n);
+    key.hidden = !s.open;
+    $('[data-a=open]', n).hidden = s.open;
+    $('[data-k=sc]', n).textContent = s.open ? frqScore(q) + ' / ' + frqPts(q) + ' points' : '';
+    prog();
+  }
+  function prog() {
+    var marked = QUIZ.filter(function (q) { return Store.frq(q.id).open; });
+    var got = marked.reduce(function (s, q) { return s + frqScore(q); }, 0);
+    $('[data-k=prog]', host).textContent = got + ' / ' + total + ' points · ' + marked.length + ' of ' + QUIZ.length + ' marked';
+  }
+  QUIZ.forEach(function (q) {
+    var n = node(q), s = Store.frq(q.id), ta = $('textarea', n);
+    ta.value = s.txt;
+    s.marks.forEach(function (k) { var c = $('[data-m="' + k + '"]', n); if (c) c.checked = true; });
+    ta.addEventListener('input', function () { var v = Store.frq(q.id); v.txt = ta.value; Store.frq(q.id, v); });
+    $('[data-a=open]', n).addEventListener('click', function () {
+      if (!ta.value.trim()) {     // retrieval first: the rubric is worth little if read before writing
+        this.textContent = 'Write your answer first';
+        var b = this; setTimeout(function () { b.textContent = 'Check against model answer'; }, 1400);
+        return;
+      }
+      var v = Store.frq(q.id); v.open = true; Store.frq(q.id, v);
+      Store.record(q.id, false, 99);
+      paint(q);
+    });
+    n.querySelectorAll('[data-m]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var v = Store.frq(q.id);
+        v.marks = Array.prototype.map.call(n.querySelectorAll('[data-m]:checked'), function (x) { return x.dataset.m; });
+        Store.frq(q.id, v);
+        Store.record(q.id, frqScore(q) >= 0.7 * frqPts(q), 99);
+        paint(q);
+      });
+    });
+    paint(q);
+  });
+
+  $('[data-a=copy]', host).addEventListener('click', function () {
+    var plain = function (h) { return h.replace(/<[^>]+>/g, ''); };
+    var txt = 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '. Grade my written answers ' +
+      'like a strict exam grader, using ONLY the rubric points listed. For each question give the score per part, ' +
+      'which rubric points I missed, and one sentence on how to earn them.\n\n' +
+      QUIZ.map(function (q, i) {
+        return 'QUESTION ' + (i + 1) + ': ' + q.title + ' (' + frqPts(q) + ' pts)\n' + plain(q.stem) + '\n' +
+          q.parts.map(function (p, j) {
+            return 'ABCDEF'[j] + '. ' + plain(p.q) + ' (' + p.pts + ')\n   Rubric: ' +
+              p.rub.map(function (r) { return r[0] + ' [+' + r[1] + ']'; }).join('; ');
+          }).join('\n') + '\nMY ANSWER:\n' + (Store.frq(q.id).txt.trim() || '(left blank)');
+      }).join('\n\n');
+    var note = $('[data-k=copied]', host);
+    navigator.clipboard.writeText(txt).then(function () {
+      note.textContent = 'Copied — paste into Claude for a second opinion on your marking.';
+    }, function () { note.textContent = 'Clipboard blocked by the browser.'; });
+  });
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, got = 0;
+    QUIZ.forEach(function (q) {
+      var f = FND[q.fnd - 1], sc = Store.frq(q.id).open ? frqScore(q) : 0;
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n += frqPts(q); byFnd[f].k += sc; got += sc;
+    });
+    var unmarked = QUIZ.filter(function (q) { return !Store.frq(q.id).open; }).length;
+    Store.quizResult({ right: got, of: total, at: Date.now() });
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < 0.7 * byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + got + ' of ' + total + ' points — ' + Math.round(got / total * 100) + '%</div>' +
+      (unmarked ? '<p><strong>' + unmarked + ' question' + (unmarked > 1 ? 's' : '') + ' not marked yet</strong> and counted as zero.</p>' : '') +
+      '<p>Points you missed usually come from a missing <em>because</em> rather than a wrong claim. Reread the model answers ' +
+      'for those parts, then try this practice exam again in two or three days without looking.</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by topic</div>' +
+      '<div class="ch-sub">points earned of points available</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    railUpdate();
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+/* ---------- the chapter quiz ------------------------------------- */
+(function mountQuiz() {
+  var host = $('#bigquiz .ck-body');
+  if (!host || typeof QUIZ === 'undefined' || !QUIZ.length) return;   // chapter built without a quiz
+  if (QUIZ[0].type === 'frq') return mountFRQ(host);
+  host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
+    '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';
+
+  var picks = {};
+  QUIZ.forEach(function (q) {
+    var node = $('[data-id="' + q.id + '"]', host);
+    if (q.type === 'mcq') {
+      node.querySelectorAll('.opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          node.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('right'); o.style.borderColor = ''; });
+          b.style.borderColor = 'var(--slate)';
+          picks[q.id] = +b.dataset.i;
+          prog();
+        });
+      });
+    } else if (q.type === 'numeric') {
+      $('[data-a=check]', node).remove();
+      $('input', node).addEventListener('input', prog);
+    } else {
+      $('[data-a=check]', node).closest('.numrow').remove();
+      node.querySelectorAll('select').forEach(function (s) { s.addEventListener('change', prog); });
+    }
+  });
+  function attempted() {
+    return QUIZ.filter(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      return grade(node, q, picks[q.id]) !== null;
+    }).length;
+  }
+  function prog() { $('[data-k=prog]', host).textContent = attempted() + ' / ' + QUIZ.length + ' attempted'; }
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, right = 0;
+    QUIZ.forEach(function (q) {
+      var node = $('[data-id="' + q.id + '"]', host);
+      var ok = grade(node, q, picks[q.id]) === true;
+      reveal(node, q, ok, picks[q.id], true);
+      Store.record(q.id, ok, 99);
+      if (ok) right++;
+      var f = FND[q.fnd - 1];
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n++; if (ok) byFnd[f].k++;
+    });
+    this.disabled = true;
+    Store.quizResult({ right: right, of: QUIZ.length, at: Date.now() });
+    railUpdate();
+
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + right + ' of ' + QUIZ.length + ' — ' +
+      Math.round(right / QUIZ.length * 100) + '%</div>' +
+      '<p>' + (right === QUIZ.length
+        ? 'Clean sweep. Come back to this quiz in three days rather than re-reading the chapter — the gap is doing the work, and re-reading feels productive while adding almost nothing.'
+        : 'Read the explanation on every item you missed before moving on. Then reopen this chapter in two or three days: spaced retrieval beats massed review by about g = 0.74, which is the largest effect in this whole guide.') + '</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by foundation</div>' +
+      '<div class="ch-sub">weakest first in your revision queue</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  prog();
+})();
+
+/* ---------- rail, export, reset ---------------------------------- */
+function railUpdate() {
+  var m = Store.mastery();
+  el('railbar').style.width = (m * 100).toFixed(1) + '%';
+  el('railval').textContent = Math.round(m * 100) + '%';
+  document.querySelectorAll('nav.toc a').forEach(function (a) {
+    var t = CHAPTER.navTicks[a.getAttribute('href')];
+    if (!t) return;
+    var set = BANK.filter(function (q) { return q.home === t; });
+    var allDone = set.length && set.every(function (q) { var it = Store.get(q.id); return it && it.box >= 2; });
+    a.classList.toggle('done', !!allDone);
+  });
+}
+
+CHAPTER.anchors.forEach(function (_, i) { mountCheckpoint('ck' + (i + 1), i + 1); });
+railUpdate();
+
+/* The export pattern from the HTML-effectiveness post: turn what the page
+ * knows back into something you can paste into a prompt. */
+el('btn-export').addEventListener('click', function () {
+  var m = Store.missed();
+  var txt = m.length
+    ? 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '.\n' +
+      'I got these specific items wrong and have not yet re-earned them:\n\n' +
+      m.map(function (q, i) {
+        return (i + 1) + '. [' + FND[q.fnd - 1] + '] ' + q.short + '\n   ' +
+               q.stem.replace(/<[^>]+>/g, '');
+      }).join('\n\n') +
+      '\n\nDrill me on just these, one question at a time, with harder variants than the originals. ' +
+      'Do not re-explain the parts I got right.'
+    : 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + ', and have no outstanding missed items. ' +
+      'Quiz me on the hardest exam-level applications of this chapter.';
+  navigator.clipboard.writeText(txt).then(function () {
+    el('export-note').textContent = m.length
+      ? 'Copied — ' + m.length + ' missed item' + (m.length > 1 ? 's' : '') + ', ready to paste into Claude.'
+      : 'Copied — nothing outstanding, so it asks for harder material instead.';
+  }, function () {
+    el('export-note').textContent = 'Clipboard blocked by the browser. Select the page and copy manually.';
+  });
+});
+
+el('btn-reset').addEventListener('click', function () {
+  if (!confirm('Clear all progress for Chapter 1? This cannot be undone.')) return;
+  Store.nuke();
+  location.reload();
+});
+</script>
+</body>
+</html>

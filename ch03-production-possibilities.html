@@ -368,6 +368,26 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 
 /* figure highlight layer */
 .ap-fig .dim { opacity: .22; transition: opacity 300ms var(--ease-out); }
+
+/* ── exam-format free response ────────── */
+.q.frq { max-height: none; padding: 24px 0; }
+.frq-h { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 12px; }
+.frq-t { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--slate); }
+.frq-p { font-family: var(--mono); font-size: 12px; color: var(--g500); white-space: nowrap; }
+.frq-part { font-size: 15px; color: var(--g700); margin: 0 0 10px; }
+.frq-part b { color: var(--slate); }
+.q.frq textarea {
+  width: 100%; margin: 8px 0 12px; padding: 13px 15px; font-family: var(--sans); font-size: 14.5px; line-height: 1.5;
+  border: 1.5px solid var(--g300); border-radius: 10px; background: var(--paper); color: var(--slate); resize: vertical;
+}
+.q.frq textarea:focus { outline: none; border-color: var(--slate); }
+.frq-key { margin-top: 16px; border-top: 1.5px dashed var(--g300); padding-top: 14px; animation: fbIn 300ms var(--ease-out) both; }
+.frq-ans { background: #F2F5EE; border-left: 3px solid var(--olive); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+.frq-al { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--olive-d); margin-bottom: 5px; }
+.frq-ans p { font-size: 14px; color: var(--g700); margin: 0 0 8px; }
+.rub { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--g700); padding: 4px 0; cursor: pointer; }
+.rub input { accent-color: var(--olive); margin-top: 3px; flex-shrink: 0; }
+.rub b { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--olive-d); }
 </style>
 </head>
 <body>
@@ -396,6 +416,7 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
       <h1>The curve that draws <em>scarcity</em></h1>
       <p class="intro">One picture holds scarcity, trade-offs, opportunity cost and efficiency at once — which is why it keeps coming back all quarter. The marks are in reading points off it correctly and knowing what moves the curve versus what moves you along it.</p>
       <div class="meta">4 chunks · 2 live models · 3 checkpoints · 10-question quiz</div>
+      <div class="meta" style="margin-top:4px">Updated Oct 14, 2026</div>
       <nav class="toc"><a href="#c0">Reading the curve <span class="n">00</span></a><a href="#c1">Why it bows <span class="n">01</span></a><a href="#c2">What shifts it <span class="n">02</span></a><a href="#c3">Exam patterns <span class="n">03</span></a><a href="#quiz">Chapter quiz <span class="n">▸</span></a></nav>
     </div>
     <div class="hero-fig" aria-hidden="true">
@@ -627,7 +648,7 @@ footer .k { font-family: var(--serif); font-style: italic; color: var(--g700); f
 <footer>
   <div class="foot-grid">
     <div>
-      <div class="k">ECN 1A · Chapter 03 of 07</div>
+      <div class="k">ECN 1A · Chapter 03 of 11</div>
       <div style="margin-top:6px">
         Built against Mateer, Coppock &amp; Nietfeld, <em>Principles of Microeconomics</em>. This guide
         paraphrases and drills the concepts — it reproduces none of the book's text, figures or problem sets.
@@ -1181,6 +1202,12 @@ var Store = (function () {
       });
     },
     quizResult: function (r) { if (r !== undefined) { db.quiz = r; save(); } return db.quiz; },
+    /* free-response state: { txt, open, marks: ['partIdx.rubIdx', ...] } per item */
+    frq: function (id, v) {
+      db.frq = db.frq || {};
+      if (v !== undefined) { db.frq[id] = v; save(); }
+      return db.frq[id] || { txt: '', open: false, marks: [] };
+    },
     nuke: function () { db = { items: {} }; save(); }
   };
 })();
@@ -1371,10 +1398,137 @@ function mountCheckpoint(ckId, tick) {
 }
 function nextAnchor(tick) { return CHAPTER.anchors[tick - 1] || 'quiz'; }
 
+/* ---------- exam-format free response ---------------------------
+ * A chapter whose QUIZ is type 'frq' gets the written-exam layout:
+ * scenario, lettered parts with points, one answer box. Prose can't be
+ * marked offline, so the learner writes first, then opens a model answer
+ * and a points rubric and ticks what they earned. Drafts and marks
+ * persist; under 70% counts as a miss for the export prompt. */
+function frqPts(q) { return q.parts.reduce(function (s, p) { return s + p.pts; }, 0); }
+function frqScore(q) {
+  return Store.frq(q.id).marks.reduce(function (s, k) {
+    var ij = k.split('.'); return s + q.parts[+ij[0]].rub[+ij[1]][1];
+  }, 0);
+}
+function mountFRQ(host) {
+  var total = QUIZ.reduce(function (s, q) { return s + frqPts(q); }, 0);
+  host.innerHTML = QUIZ.map(function (q, i) {
+    return '<div class="q frq" data-id="' + q.id + '">' +
+      '<div class="frq-h"><span class="frq-t">Question ' + (i + 1) + ': ' + q.title + '</span>' +
+      '<span class="frq-p">' + frqPts(q) + ' points</span></div>' +
+      '<div class="stem">' + q.stem + '</div>' +
+      q.parts.map(function (p, j) {
+        return '<p class="frq-part"><b>' + 'ABCDEF'[j] + '.</b> ' + p.q + ' (' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + ')</p>';
+      }).join('') +
+      '<textarea rows="7" placeholder="Type your answer to Question ' + (i + 1) + ' here..." aria-label="answer to question ' + (i + 1) + '"></textarea>' +
+      '<div class="numrow"><button class="btn" data-a="open">Check against model answer</button>' +
+      '<span class="ck-score" data-k="sc"></span></div>' +
+      '<div class="frq-key" hidden>' + q.parts.map(function (p, j) {
+        return '<div class="frq-ans"><div class="frq-al">' + 'ABCDEF'[j] + ' · model answer · ' + p.pts + ' pt' + (p.pts > 1 ? 's' : '') + '</div>' +
+          '<p>' + p.model + '</p>' + p.rub.map(function (r, k) {
+            return '<label class="rub"><input type="checkbox" data-m="' + j + '.' + k + '"><span>' + r[0] + '</span><b>+' + r[1] + '</b></label>';
+          }).join('') + '</div>';
+      }).join('') + '</div></div>';
+  }).join('') +
+    '<div class="ck-foot"><span class="ck-score" data-k="prog"></span>' +
+    '<span><button class="btn ghost" data-a="copy">Copy answers for Claude to grade</button> ' +
+    '<button class="btn" data-a="submit">Show my breakdown</button></span></div>' +
+    '<p class="ck-score" data-k="copied" style="margin:10px 0 0"></p>';
+
+  function node(q) { return $('[data-id="' + q.id + '"]', host); }
+  function paint(q) {
+    var n = node(q), s = Store.frq(q.id), key = $('.frq-key', n);
+    key.hidden = !s.open;
+    $('[data-a=open]', n).hidden = s.open;
+    $('[data-k=sc]', n).textContent = s.open ? frqScore(q) + ' / ' + frqPts(q) + ' points' : '';
+    prog();
+  }
+  function prog() {
+    var marked = QUIZ.filter(function (q) { return Store.frq(q.id).open; });
+    var got = marked.reduce(function (s, q) { return s + frqScore(q); }, 0);
+    $('[data-k=prog]', host).textContent = got + ' / ' + total + ' points · ' + marked.length + ' of ' + QUIZ.length + ' marked';
+  }
+  QUIZ.forEach(function (q) {
+    var n = node(q), s = Store.frq(q.id), ta = $('textarea', n);
+    ta.value = s.txt;
+    s.marks.forEach(function (k) { var c = $('[data-m="' + k + '"]', n); if (c) c.checked = true; });
+    ta.addEventListener('input', function () { var v = Store.frq(q.id); v.txt = ta.value; Store.frq(q.id, v); });
+    $('[data-a=open]', n).addEventListener('click', function () {
+      if (!ta.value.trim()) {     // retrieval first: the rubric is worth little if read before writing
+        this.textContent = 'Write your answer first';
+        var b = this; setTimeout(function () { b.textContent = 'Check against model answer'; }, 1400);
+        return;
+      }
+      var v = Store.frq(q.id); v.open = true; Store.frq(q.id, v);
+      Store.record(q.id, false, 99);
+      paint(q);
+    });
+    n.querySelectorAll('[data-m]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var v = Store.frq(q.id);
+        v.marks = Array.prototype.map.call(n.querySelectorAll('[data-m]:checked'), function (x) { return x.dataset.m; });
+        Store.frq(q.id, v);
+        Store.record(q.id, frqScore(q) >= 0.7 * frqPts(q), 99);
+        paint(q);
+      });
+    });
+    paint(q);
+  });
+
+  $('[data-a=copy]', host).addEventListener('click', function () {
+    var plain = function (h) { return h.replace(/<[^>]+>/g, ''); };
+    var txt = 'I am studying ECN 1A (Mateer/Coppock/Nietfeld), ' + CHAPTER.title + '. Grade my written answers ' +
+      'like a strict exam grader, using ONLY the rubric points listed. For each question give the score per part, ' +
+      'which rubric points I missed, and one sentence on how to earn them.\n\n' +
+      QUIZ.map(function (q, i) {
+        return 'QUESTION ' + (i + 1) + ': ' + q.title + ' (' + frqPts(q) + ' pts)\n' + plain(q.stem) + '\n' +
+          q.parts.map(function (p, j) {
+            return 'ABCDEF'[j] + '. ' + plain(p.q) + ' (' + p.pts + ')\n   Rubric: ' +
+              p.rub.map(function (r) { return r[0] + ' [+' + r[1] + ']'; }).join('; ');
+          }).join('\n') + '\nMY ANSWER:\n' + (Store.frq(q.id).txt.trim() || '(left blank)');
+      }).join('\n\n');
+    var note = $('[data-k=copied]', host);
+    navigator.clipboard.writeText(txt).then(function () {
+      note.textContent = 'Copied — paste into Claude for a second opinion on your marking.';
+    }, function () { note.textContent = 'Clipboard blocked by the browser.'; });
+  });
+
+  $('[data-a=submit]', host).addEventListener('click', function () {
+    var byFnd = {}, got = 0;
+    QUIZ.forEach(function (q) {
+      var f = FND[q.fnd - 1], sc = Store.frq(q.id).open ? frqScore(q) : 0;
+      byFnd[f] = byFnd[f] || { n: 0, k: 0 };
+      byFnd[f].n += frqPts(q); byFnd[f].k += sc; got += sc;
+    });
+    var unmarked = QUIZ.filter(function (q) { return !Store.frq(q.id).open; }).length;
+    Store.quizResult({ right: got, of: total, at: Date.now() });
+    var rows = Object.keys(byFnd).map(function (f) {
+      var d = byFnd[f], r = d.k / d.n;
+      return '<div class="ch-row ' + (r === 1 ? 'peak' : r < 0.5 ? 'weak' : '') + '">' +
+        '<span class="ch-label">' + f + '</span>' +
+        '<span class="ch-bar-wrap"><i class="ch-bar" style="width:' + (r * 100) + '%"></i></span>' +
+        '<span class="ch-val">' + d.k + '/' + d.n + '</span></div>';
+    }).join('');
+    var weak = Object.keys(byFnd).filter(function (f) { return byFnd[f].k < 0.7 * byFnd[f].n; });
+    var res = el('qresult');
+    res.hidden = false;
+    res.innerHTML = '<div class="rh">' + got + ' of ' + total + ' points — ' + Math.round(got / total * 100) + '%</div>' +
+      (unmarked ? '<p><strong>' + unmarked + ' question' + (unmarked > 1 ? 's' : '') + ' not marked yet</strong> and counted as zero.</p>' : '') +
+      '<p>Points you missed usually come from a missing <em>because</em> rather than a wrong claim. Reread the model answers ' +
+      'for those parts, then try this practice exam again in two or three days without looking.</p>' +
+      '<div class="chart"><div class="ch-title">Where you stand, by topic</div>' +
+      '<div class="ch-sub">points earned of points available</div>' + rows + '</div>' +
+      (weak.length ? '<p><strong>Revise in this order:</strong> ' + weak.join(', ') + '.</p>' : '');
+    railUpdate();
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
 /* ---------- the chapter quiz ------------------------------------- */
 (function mountQuiz() {
   var host = $('#bigquiz .ck-body');
   if (!host || typeof QUIZ === 'undefined' || !QUIZ.length) return;   // chapter built without a quiz
+  if (QUIZ[0].type === 'frq') return mountFRQ(host);
   host.innerHTML = QUIZ.map(function (q, i) { return renderQ(q, i + 1, false); }).join('') +
     '<div class="ck-foot"><span class="ck-score" data-k="prog">0 / ' + QUIZ.length + ' attempted</span>' +
     '<button class="btn" data-a="submit">Submit all ' + QUIZ.length + '</button></div>';

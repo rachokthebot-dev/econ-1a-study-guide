@@ -56,6 +56,14 @@ const bank = await p.evaluate(() => {
     } else if (q.type === 'classify') {
       if (!q.why) probs.push(`${q.id}: classify with no explanation`);
       q.rows.forEach(r => { if (!q.cats.includes(r.cat)) probs.push(`${q.id}: row cat "${r.cat}" not in cats`); });
+    } else if (q.type === 'frq') {
+      if (!q.title || !q.stem) probs.push(`${q.id}: frq needs a title and stem`);
+      if (!q.parts || q.parts.length < 2) probs.push(`${q.id}: frq needs at least two parts`);
+      (q.parts || []).forEach((pt, j) => {
+        if (!pt.q || !pt.model) probs.push(`${q.id} part ${j}: no question or model answer`);
+        const sum = (pt.rub || []).reduce((s, r) => s + r[1], 0);
+        if (sum !== pt.pts) probs.push(`${q.id} part ${j}: rubric sums to ${sum}, part is worth ${pt.pts}`);
+      });
     } else probs.push(`${q.id}: unknown type ${q.type}`);
   };
   BANK.forEach(q => check(q, 'BANK'));
@@ -167,6 +175,29 @@ if (second) ok((await p.locator(`#ck2 .q[data-id=${second.id}]`).count()) === 1,
 if (first) ok((await p.locator(`#ck1 .q[data-id=${first.id}] .opt:not([disabled])`).count()) === 0, 'answered item is not re-asked at its home checkpoint');
 ok(parseInt(await p.locator('#railval').textContent()) > 0, 'progress bar survives reload (localStorage)');
 
+/* ---- free-response quiz: write, open the rubric, tick every point ---- */
+const isFrq = await p.evaluate(() => QUIZ.length > 0 && QUIZ[0].type === 'frq');
+if (isFrq) {
+  const ids = await p.evaluate(() => QUIZ.map(q => q.id));
+  const total = await p.evaluate(() => QUIZ.reduce((s, q) => s + frqPts(q), 0));
+  ok((await p.locator('#bigquiz .q.frq').count()) === ids.length, `exam renders all ${ids.length} written questions`);
+  const n0 = p.locator(`#bigquiz .q[data-id=${ids[0]}]`);
+  await n0.locator('[data-a=open]').click();
+  ok(await n0.locator('.frq-key').isHidden(), 'rubric stays hidden until an answer is written');
+  for (const id of ids) {
+    const n = p.locator(`#bigquiz .q[data-id=${id}]`);
+    await n.locator('textarea').fill('draft answer for ' + id);
+    await n.locator('[data-a=open]').click();
+    for (const c of await n.locator('[data-m]').all()) await c.check();
+  }
+  await p.reload({ waitUntil: 'load' });
+  ok((await p.locator(`#bigquiz .q[data-id=${ids[0]}] textarea`).inputValue()) === 'draft answer for ' + ids[0], 'written answers survive a reload');
+  await p.locator('#bigquiz button[data-a=submit]').click();
+  await p.waitForTimeout(400);
+  const rh = (await p.locator('#qresult .rh').textContent()).trim();
+  ok(rh.startsWith(`${total} of ${total}`), `full rubric marks score full points (${rh})`, rh);
+  ok((await p.locator('#qresult .ch-row').count()) === bank.topics, `breakdown covers all ${bank.topics} topics`);
+} else {
 /* ---- quiz, answered from the page's own key ---- */
 const key = await p.evaluate(() => QUIZ.map(q => ({
   id: q.id, type: q.type,
@@ -186,6 +217,7 @@ await p.waitForTimeout(400);
 const rh = (await p.locator('#qresult .rh').textContent()).trim();
 ok(rh.startsWith(`${key.length} of ${key.length}`), `quiz grades the key as full marks (${rh})`, rh);
 ok((await p.locator('#qresult .ch-row').count()) === bank.topics, `breakdown covers all ${bank.topics} topics`);
+}
 
 /* ---- export ---- */
 await p.context().grantPermissions(['clipboard-read', 'clipboard-write']);

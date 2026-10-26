@@ -1,0 +1,264 @@
+<section id="c0">
+  <div class="sec-head"><span class="idx">00</span><h2>A control only bites on the wrong side of equilibrium</h2><span class="count">chunk 1 of 4</span></div>
+  <p class="sec-intro">
+    Chapter 6 showed that a price control burns surplus. This chapter is about what happens next:
+    who ends up with the goods, why the damage grows over time, and what the minimum wage does to a
+    labour market.
+  </p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th></th><th>Price ceiling — a legal <em>maximum</em></th><th>Price floor — a legal <em>minimum</em></th></tr></thead>
+      <tbody>
+        <tr><td><strong>Binding when</strong></td><td>set <strong>below</strong> equilibrium</td><td>set <strong>above</strong> equilibrium</td></tr>
+        <tr><td><strong>Creates</strong></td><td>a shortage: Q<sub>d</sub> &gt; Q<sub>s</sub></td><td>a surplus: Q<sub>s</sub> &gt; Q<sub>d</sub></td></tr>
+        <tr><td><strong>Quantity traded</strong></td><td>Q<sub>s</sub>: sellers are the short side</td><td>Q<sub>d</sub>: buyers are the short side</td></tr>
+        <tr><td><strong>Examples</strong></td><td>rent control, price-gouging laws, capped ticket prices</td><td>minimum wage, agricultural price supports</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card trap">
+      <div class="label">The names are backwards from your intuition</div>
+      <p style="margin-bottom:0">
+        A ceiling is a maximum price, but to bind it has to sit <em>below</em> equilibrium. A ceiling above
+        equilibrium is a cap nobody hits. Students mix this up by picturing a ceiling as something high up.
+        Think of it as a limit on how high the price can go: it only matters if the price wants to go higher.
+      </p>
+    </div>
+    <p>
+      Both controls cut the quantity traded below equilibrium, for the same reason. At a price that is not the equilibrium price,
+      the quantity that changes hands is the <strong>smaller</strong> of Q<sub>d</sub> and Q<sub>s</sub>. You
+      cannot force a seller to sell or a buyer to buy.
+    </p>
+
+    <div class="applet" id="ap-pc">
+      <span class="tag">model · live</span>
+      <div class="ap-title">Set a control and see what happens</div>
+      <div class="ap-sub">equilibrium P* = $40, Q* = 60 · short run D: P = 100 − Q, S: P = 10 + 0.5Q</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="pc-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Controlled price</span><span class="cv" id="pc-p-v">$30</span></div>
+            <input type="range" id="pc-p" min="15" max="65" step="1" value="30">
+            <div class="ch">Drag it across $40 and watch the control switch between binding and irrelevant.</div>
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="pc-floor">
+            <label for="pc-floor">Make it a <strong>price floor</strong> instead of a ceiling</label>
+          </div>
+          <div class="ctrl toggle">
+            <input type="checkbox" id="pc-lr">
+            <label for="pc-lr"><strong>Long run</strong>: both curves 2.5× flatter, because buyers and sellers have had time to adjust</label>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Qty demanded</div><div class="rv" id="pc-ro-qd">—</div></div>
+            <div class="ro"><div class="rl">Qty supplied</div><div class="rv" id="pc-ro-qs">—</div></div>
+            <div class="ro hero"><div class="rl" id="pc-rl-gap">Shortage</div><div class="rv" id="pc-ro-gap">—</div></div>
+            <div class="ro"><div class="rl">Qty traded</div><div class="rv" id="pc-ro-q">—</div></div>
+            <div class="ro"><div class="rl">Black-market price</div><div class="rv" id="pc-ro-bm">—</div></div>
+            <div class="ro"><div class="rl">Deadweight loss</div><div class="rv" id="pc-ro-dwl">—</div></div>
+            <div class="ro"><div class="rl">Consumer surplus</div><div class="rv" id="pc-ro-cs">—</div></div>
+            <div class="ro good"><div class="rl">Producer surplus</div><div class="rv" id="pc-ro-ps">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="pc-note"></p>
+    </div>
+
+    <div class="check" id="ck1"><span class="tag">checkpoint 01</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Binding or not · shortage and surplus</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c1">
+  <div class="sec-head"><span class="idx">01</span><h2>When price can't ration, something else does</h2><span class="count">chunk 2 of 4</span></div>
+  <p class="sec-intro">
+    A shortage doesn't stay a gap on a graph. There are more buyers than goods, so <em>something</em> decides
+    who gets them. If the price can't do it, other things will.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Waiting and search.</strong> Lines at the gas station, months on an apartment hunt. Time spent
+        waiting is a real cost that nobody receives, so it eats into the gain buyers were promised.</li>
+      <li><strong>Black markets.</strong> The units that are supplied are worth more to buyers than the legal
+        price. With a ceiling at $30, the 40th unit is worth $60 to someone. That gap pulls trade off the books, and
+        the model above computes the price from the demand curve at Q<sub>s</sub>.</li>
+      <li><strong>Falling quality.</strong> A landlord who can't raise the rent can still cut maintenance.
+        Quality falls until the real price matches the legal one.</li>
+      <li><strong>Favouritism and side payments.</strong> When sellers pick from a queue, they choose friends,
+        tenants who look easy, or whoever pays "key money" under the table.</li>
+    </ul>
+    <div class="card accent">
+      <div class="label">The control does more damage over time</div>
+      <p style="margin-bottom:0">
+        Supply and demand are both <strong>more elastic in the long run</strong>. Landlords convert apartments
+        to condos and stop building. Renters who would have moved out or found roommates stay in big
+        apartments instead. So the same rent ceiling causes a small shortage in year one and a much larger one in
+        year ten. Go back to the model and tick <em>long run</em>. At a $30 ceiling the shortage grows from
+        30 units to 75, and the deadweight loss grows from $300 to $750.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">"The market will adjust back to equilibrium"</div>
+      <p style="margin-bottom:0">
+        It can't. Under a binding control the price is not allowed to move, and the price is what would
+        close the gap. A shortage under a ceiling lasts as long as the law does. The only thing that
+        changes over time is elasticity, and that makes the shortage worse.
+      </p>
+    </div>
+
+    <div class="check" id="ck2"><span class="tag">checkpoint 02</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Non-price rationing · short run vs long run</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c2">
+  <div class="sec-head"><span class="idx">02</span><h2>The minimum wage is a price floor on labour</h2><span class="count">chunk 3 of 4</span></div>
+  <p class="sec-intro">
+    In the labour market the roles are swapped: <strong>workers supply</strong> labour and <strong>firms
+    demand</strong> it. A minimum wage above the market wage is a binding floor, so it creates a surplus of
+    labour, which is unemployment.
+  </p>
+  <div class="sec-body">
+    <ul>
+      <li><strong>Employment</strong> falls to the quantity of labour demanded. Firms hire fewer workers, substitute
+        machines for labour, or cut hours.</li>
+      <li><strong>Unemployment = L<sub>s</sub> − L<sub>d</sub></strong>. It is larger than the number of jobs lost,
+        because the higher wage also draws <em>new</em> people into looking for work.</li>
+      <li><strong>Whether low-wage workers earn more in total</strong> depends on the elasticity of labour demand.
+        This is the total-revenue test from Chapter 5 with workers as the sellers. If demand is inelastic, the wage bill rises.
+        If it is elastic, the wage bill falls.</li>
+    </ul>
+    <p>
+      Agricultural price supports are the same kind of floor in a goods market. To keep the floor from collapsing,
+      governments often <em>buy</em> the surplus, so taxpayers pay for output that nobody consumes at that price.
+    </p>
+
+    <div class="applet" id="ap-mw">
+      <span class="tag">model · live</span>
+      <div class="ap-title">A minimum wage, and who it helps</div>
+      <div class="ap-sub">market wage $12 · 100k workers · labour supply W = 4 + 0.08L</div>
+      <div class="ap-grid">
+        <div class="ap-fig" id="mw-fig"></div>
+        <div>
+          <div class="ctrl">
+            <div class="cl"><span>Minimum wage</span><span class="cv" id="mw-w-v">$15.00</span></div>
+            <input type="range" id="mw-w" min="8" max="20" step="0.5" value="15">
+          </div>
+          <div class="ctrl">
+            <div class="cl"><span>Labour-demand elasticity at equilibrium</span><span class="cv" id="mw-b-v">1.20</span></div>
+            <input type="range" id="mw-b" min="0.03" max="0.3" step="0.01" value="0.1">
+            <div class="ch">Drag left for an elastic demand curve (firms can easily automate), right for an inelastic one.</div>
+          </div>
+          <div class="ro-grid">
+            <div class="ro"><div class="rl">Employed (k)</div><div class="rv" id="mw-ro-ld">—</div></div>
+            <div class="ro"><div class="rl">Want to work (k)</div><div class="rv" id="mw-ro-ls">—</div></div>
+            <div class="ro hero"><div class="rl">Unemployed (k)</div><div class="rv" id="mw-ro-un">—</div></div>
+            <div class="ro"><div class="rl">Jobs lost (k)</div><div class="rv" id="mw-ro-lost">—</div></div>
+            <div class="ro good"><div class="rl">Wage bill $k/hr</div><div class="rv" id="mw-ro-bill">—</div></div>
+            <div class="ro"><div class="rl">Demand elasticity</div><div class="rv" id="mw-ro-el">—</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="ap-note" id="mw-note"></p>
+    </div>
+
+    <div class="check" id="ck3"><span class="tag">checkpoint 03</span>
+      <div class="ck-h">Before you scroll on</div>
+      <div class="ck-s">Minimum wage · floors in goods markets</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="c3">
+  <div class="sec-head"><span class="idx">03</span><h2>What the exam actually asks</h2><span class="count">chunk 4 of 4</span></div>
+  <p class="sec-intro">Written questions on price controls follow a few fixed patterns. Each pattern has one point graders look for.</p>
+  <div class="sec-body">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Asked as</th><th>Do this</th><th>Trap</th></tr></thead>
+      <tbody>
+        <tr><td>"Is the control binding?"</td><td>Compare it with P*. Ceiling below, floor above. Then <em>say why</em> in one sentence.</td>
+            <td>A bare "yes" with no comparison to equilibrium gets half marks at best.</td></tr>
+        <tr><td>"Find the shortage / surplus"</td><td>Plug the controlled price into <em>both</em> equations. Gap = |Q<sub>d</sub> − Q<sub>s</sub>|.</td>
+            <td>Subtracting from Q* instead of from the other curve.</td></tr>
+        <tr><td>"Find the deadweight loss"</td><td>Q traded = the short side. DWL = ½ × (D(Q) − S(Q)) × (Q* − Q).</td>
+            <td>Using the controlled price as the triangle's height. The height is the gap between the <em>curves</em> at the traded quantity.</td></tr>
+        <tr><td>"Who gains, who loses?"</td><td>Ceiling: sellers lose. Buyers who get the good gain, buyers who are shut out lose. Floor: the mirror image.</td>
+            <td>Saying "consumers gain" from a ceiling as a group. That can be false.</td></tr>
+        <tr><td>"What happens over time?"</td><td>Both curves become more elastic, so the shortage or surplus and the DWL grow.</td>
+            <td>"The market adjusts back to equilibrium." The price isn't allowed to.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card">
+      <div class="label">Writing a full-credit answer</div>
+      <p style="margin-bottom:0">
+        For each lettered part, give the claim, the mechanism and, if there are numbers, the number. "Buyers bear more
+        (claim) <em>because</em> demand is inelastic, so they can't switch away (mechanism)." Graders give
+        points for the <em>because</em>. The questions at the end of this chapter are in the same format as the
+        exam and come with a points rubric.
+      </p>
+    </div>
+    <div class="card trap">
+      <div class="label">Transfer vs loss, again</div>
+      <p style="margin-bottom:0">
+        A ceiling <strong>moves</strong> surplus from sellers to the buyers who still get the good, and it
+        <strong>destroys</strong> the surplus on trades that stopped. Waiting in line and searching are also lost,
+        because nobody receives that time. Bribes and key money are transfers. Keep those two categories separate in every answer.
+      </p>
+    </div>
+
+    <div class="check" id="ck4"><span class="tag">checkpoint 04</span>
+      <div class="ck-h">Last checkpoint</div>
+      <div class="ck-s">Surplus, deadweight loss &amp; callbacks</div>
+      <div class="ck-body"></div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head"><span class="idx">▸</span><h2>Practice exam</h2><span class="count">10 questions · 100 points</span></div>
+  <p class="sec-intro">
+    Written questions in the same format as the midterm. Write your full answer <em>before</em> you open the model answer.
+    Once you've written something, compare it with the rubric and tick the points you actually earned. Be strict, the way a grader would be.
+    Your answers are saved in this browser.
+  </p>
+  <div class="sec-body">
+    <div class="check" id="bigquiz" style="border-color:var(--slate)">
+      <span class="tag" style="border-color:var(--slate);color:var(--slate)">exam format</span>
+      <div class="ck-h">All of Chapter 8, interleaved</div>
+      <div class="ck-s">write first · then mark yourself against the rubric</div>
+      <div class="ck-body"></div>
+    </div>
+    <div class="result" id="qresult" hidden></div>
+  </div>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="idx">✱</span><h2>What's computed</h2></div>
+  <div class="sec-body ledger">
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Model</th><th>Genuinely computed</th><th>Simplified</th></tr></thead>
+      <tbody>
+        <tr><td>Price control</td>
+            <td>Whether the control binds, Q<sub>d</sub> and Q<sub>s</sub> at the controlled price, the shortage or surplus, the quantity traded (the short side), the black-market price (demand at Q<sub>s</sub>), and consumer surplus, producer surplus and DWL as exact areas under the curves.</td>
+            <td>Linear curves. <strong>Efficient rationing</strong>: the units that trade go to the highest-value buyers and come from the lowest-cost sellers, so the DWL shown is the <em>minimum</em>. Real queues and lotteries waste more. "Long run" means both slopes ÷ 2.5 around the same equilibrium. That number is illustrative and not estimated from data.</td></tr>
+        <tr><td>Minimum wage</td>
+            <td>Employment, labour supplied, unemployment, jobs lost, new entrants, the wage bill before and after, and the point elasticity of labour demand at the equilibrium.</td>
+            <td>One competitive labour market with linear curves. No monopsony, no hours adjustment, no spillover to other wages, no effect on prices.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ck-foot" style="border:0;padding:0;margin-top:22px">
+      <div>
+        <button class="btn ghost" id="btn-export">Copy missed items as a prompt</button>
+        <button class="btn ghost" id="btn-reset">Reset chapter progress</button>
+      </div>
+      <span class="ck-score" id="export-note"></span>
+    </div>
+  </div>
+</section>
